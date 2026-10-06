@@ -1,0 +1,88 @@
+.companion-page.companion-builder{max-width:1120px;padding:28px clamp(20px,4vw,48px) 48px;color:#252639;color-scheme:light}
+.companion-builder .builder-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:42px;gap:20px}
+.companion-builder .builder-brand{font-size:16px;color:#464078}.builder-brand span{color:#209cee}
+.companion-builder .language-switch{margin:0;gap:12px}.companion-builder .language-switch button{font-size:10px}
+.companion-builder .builder-heading{margin-bottom:34px;max-width:780px}
+.companion-builder .builder-kicker{font-size:10px;line-height:2;color:#575276;margin-bottom:12px}
+.companion-builder h1{font-size:clamp(17px,2.4vw,24px);line-height:1.7;margin:0 0 14px}
+.companion-builder .builder-copy{font-family:'Press Start 2P',monospace;font-size:17px;line-height:1.55;margin:0}
+.companion-builder .builder-layout{display:grid;grid-template-columns:minmax(240px,.8fr) minmax(0,1.4fr);gap:28px;align-items:start}
+.companion-builder .nes-container{background:#fff9ed;color:#252639;padding:26px}
+.companion-builder .nes-container.with-title>.title{background:#fff9ed;font-size:10px;line-height:1.7;color:#4b466e}
+.companion-builder .preview-panel{position:sticky;top:28px;text-align:center}
+.avatar-stage{height:225px;position:relative;display:flex;justify-content:center;align-items:center;margin:4px 0 12px;background:linear-gradient(#eae7f9 0 74%,#d5e9de 74%);overflow:hidden;border:4px solid #363447}
+.avatar-stage::before{content:'';position:absolute;left:0;right:0;bottom:34px;height:5px;background:#92b6a0}
+.companion-avatar{width:64px;height:96px;display:block;image-rendering:pixelated;flex-shrink:0}
+.avatar-stage .companion-avatar{position:relative;width:112px;height:168px;z-index:1}
+.companion-avatar--animated{animation:companion-idle 2s steps(2,end) infinite}
+.avatar-shadow{position:absolute;bottom:35px;width:90px;height:10px;background:#729c88;opacity:.5}
+.stage-star{position:absolute;color:#555084;font-family:'Press Start 2P',monospace;font-size:24px}.star-one{top:22px;left:24px}.star-two{top:70px;right:24px;color:#5c726a}
+.companion-builder .preview-name{font-size:14px;line-height:1.9;margin:18px 0 6px;overflow-wrap:anywhere}
+.companion-builder .character-type{font-family:'Press Start 2P',monospace;font-size:14px;color:#625c72;margin-bottom:22px}
+.companion-builder .preview-speech{display:block;margin:0 0 16px;padding:12px;background:white;text-align:left}
+.companion-builder .preview-speech p{font-size:16px;overflow-wrap:anywhere}
+.builder-fieldset{border:0;padding:0;margin:0 0 24px;min-width:0}
+.companion-builder legend,.companion-builder .builder-name-field label{font-family:'Press Start 2P',monospace;font-size:11px;line-height:2;float:none;width:auto;margin-bottom:8px}
+.companion-builder .field-hint{font-size:14px;color:#585769}
+.character-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.companion-builder .character-option{border:3px solid #a6a2b2;background:#fff;display:flex;align-items:center;flex-direction:column;padding:12px 4px 10px;gap:12px;cursor:pointer;min-width:0}
+.companion-builder .character-option.is-selected{border-color:#177bb5;background:#eaf5ff;box-shadow:3px 3px 0 #177bb5}
+.companion-builder .character-option:focus-within{outline:3px solid #543d99;outline-offset:4px}
+.companion-builder .radio-line{display:block;font-family:'Press Start 2P',monospace;font-size:14px;line-height:1.5}
+.companion-builder .nes-radio+span{padding-left:23px}.companion-builder .nes-radio+span::before{left:0}
+.companion-builder .character-description{font-size:14px;margin-top:12px;color:#585769;min-height:22px}
+.palette-options{display:flex;flex-wrap:wrap;gap:14px 24px;margin-top:8px}
+.companion-builder .palette-option{font-family:'Press Start 2P',monospace;font-size:15px;line-height:1.8;margin:0}
+.palette-swatch{width:14px;height:14px;border:2px solid #353347;display:inline-block;vertical-align:middle;margin-right:7px}
+.companion-builder .nes-input{font-family:'Press Start 2P',monospace;font-size:20px;background:#fff;color:#252639;width:calc(100% - 8px);margin:4px}
+.name-help{display:flex;gap:12px;justify-content:space-between;margin-top:10px}.name-help>span{font-family:'Press Start 2P',monospace;font-size:13px;white-space:nowrap;color:#585769}
+.companion-builder .builder-error{color:#9e2531;font-size:14px;min-height:22px;margin-top:12px}
+.builder-save{font-size:11px;line-height:1.8;margin-top:10px;width:100%;white-space:normal}
+.companion-builder .draft-status{font-size:13px;color:#416052;min-height:21px;margin-top:12px}
+.companion-builder .saved-panel{margin-top:28px;border-color:#527558;background:#eef9e8}
+.companion-builder .saved-panel h2{font-size:12px;line-height:2;margin:0 0 8px}
+.builder-next{margin-top:30px;padding-left:18px;border-left:4px solid #c8c0e1;max-width:730px}
+.builder-next h2{font-size:10px;line-height:2;color:#5a5277;margin:0 0 8px}.companion-builder .builder-next p{font-size:15px;color:#585769}
+.companion-builder button:focus-visible,.companion-builder input:focus-visible{outline:3px solid #543d99;outline-offset:5px}
+@keyframes companion-idle{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media(max-width:800px){.companion-builder .builder-layout{grid-template-columns:1fr}.companion-builder .preview-panel{position:static;max-width:420px;width:100%;justify-self:center}.avatar-stage{height:190px}.avatar-stage .companion-avatar{width:96px;height:144px}.companion-builder .builder-topbar{margin-bottom:28px}}
+@media(max-width:420px){.companion-page.companion-builder{padding:24px 16px 40px}.companion-builder .nes-container{padding:18px}.character-options{gap:8px}.companion-builder .radio-line{font-size:12px}.companion-builder .character-option{padding:10px 2px}.character-option .companion-avatar{width:48px;height:72px}.companion-builder .builder-brand{font-size:12px}.palette-options{gap:12px}}
+@media(prefers-reduced-motion:reduce){.companion-avatar--animated{animation:none}}
+
+
+/* IMIQ pixel typography v1 */
+.companion-builder {
+    font-family: 'Press Start 2P', monospace;
+}
+.companion-builder .builder-copy {
+    font-size: 11px;
+    line-height: 2;
+}
+.companion-builder .preview-speech p {
+    font-size: 11px;
+    line-height: 2;
+}
+.companion-builder .field-hint,
+.companion-builder .character-description,
+.companion-builder .character-type,
+.companion-builder .draft-status,
+.companion-builder .builder-error,
+.companion-builder .builder-next p {
+    font-size: 9px;
+    line-height: 2;
+}
+.companion-builder .radio-line,
+.companion-builder .palette-option,
+.companion-builder .name-help > span {
+    font-size: 9px;
+    line-height: 2;
+}
+.companion-builder .nes-input {
+    font-size: 13px;
+    line-height: 1.8;
+}
+@media (max-width: 420px) {
+    .companion-builder .radio-line {
+        font-size: 8px;
+    }
+}

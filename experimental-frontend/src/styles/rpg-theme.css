@@ -1,0 +1,22 @@
+/* Original IMIQ theme inspired by 16-bit RPG menu organization. NES.css remains the component base. */
+.rpg-shell{min-height:100svh;background:#11182c;color:#f4f3ff;padding-bottom:env(safe-area-inset-bottom,0px)}
+.rpg-shell .companion-builder,.rpg-shell .weekly-goals{color:#f4f3ff;color-scheme:dark}
+.rpg-shell .companion-builder .nes-container,.rpg-shell .weekly-goals .nes-container{background:#202e58;color:#f4f3ff;border-color:#b8c8ec}
+.rpg-shell .companion-builder .nes-container.with-title>.title,.rpg-shell .weekly-goals .priority-summary>.title{background:#202e58;color:#ffda83}
+.rpg-shell .builder-brand,.rpg-shell .builder-kicker,.rpg-shell .goals-kicker{color:#ffda83}
+.rpg-shell .builder-copy,.rpg-shell .goals-copy{color:#edf0ff}
+.rpg-shell .companion-builder .field-hint,.rpg-shell .companion-builder .character-description,.rpg-shell .companion-builder .character-type,.rpg-shell .companion-builder .builder-next p,.rpg-shell .companion-builder .name-help>span,.rpg-shell .weekly-goals .goal-hint,.rpg-shell .weekly-goals .summary-note,.rpg-shell .goal-neutral{color:#c5d2ef}
+.rpg-shell .avatar-stage{background:linear-gradient(#253b67 0 74%,#39576b 74%);border-color:#a0b3dc}.rpg-shell .avatar-stage::before{background:#78958f}.rpg-shell .stage-star{color:#ffda83}
+.rpg-shell .companion-builder .preview-speech,.rpg-shell .goals-companion .nes-balloon{background:#202e58;color:#f4f3ff}
+.rpg-shell .companion-builder .character-option{background:#17223e;border-color:#8fa2c9;color:#f4f3ff}.rpg-shell .companion-builder .character-option.is-selected{background:#324c76;border-color:#ffda83;box-shadow:3px 3px 0 #ffda83}
+.rpg-shell .companion-builder .nes-radio+span::before{color:#fff}
+.rpg-shell .companion-builder .nes-input{background:#111b34;color:#fff;border-color:#b8c8ec}
+.rpg-shell .companion-builder .builder-next{border-color:#90a3cf}.rpg-shell .companion-builder .builder-next h2{color:#ffda83}
+.rpg-shell .companion-builder .saved-panel,.rpg-shell .weekly-goals .goals-confirmation{background:#193e43;border-color:#8ed6b5}
+.rpg-shell .weekly-goals .budget-panel{background:#263b64;border-color:#b8c8ec;box-shadow:0 8px 0 #11182c}
+.rpg-shell .point-wallet strong,.rpg-shell .goal-rank,.rpg-shell .priority-number,.rpg-shell .priority-list strong{color:#ffda83}
+.rpg-shell .weekly-goals .goal-card{background:#202e58;border-color:#849bc6}.rpg-shell .weekly-goals .goal-card--active{background:#2b4069;border-color:#ffda83}
+.rpg-shell .weekly-goals .goals-draft,.rpg-shell .companion-builder .draft-status{color:#a6e6c5}
+.rpg-shell .weekly-goals .goals-error,.rpg-shell .companion-builder .builder-error{color:#ffc0c5}
+.rpg-shell .week-notice{background:#493d28;color:#ffedb2}
+.rpg-shell button:focus-visible,.rpg-shell input:focus-visible,.rpg-shell .companion-builder .character-option:focus-within{outline:3px solid #ffda83;outline-offset:5px}

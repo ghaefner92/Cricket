@@ -1,0 +1,31 @@
+# Local dependencies and generated files
+node_modules/
+dist/
+dist-ssr/
+build/
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.log
+coverage/
+.pytest_cache/
+*.zip
+
+# Private configuration; examples contain placeholders only
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Local editor state and audit staging
+.idea/
+.vscode/
+.DS_Store
+AUDIT_INVENTORY.*
+
+# This initial repository contains the audited runtime snapshot
+**/tests/

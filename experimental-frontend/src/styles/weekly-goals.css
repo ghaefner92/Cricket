@@ -1,0 +1,42 @@
+.weekly-goals{max-width:1080px;margin:auto;padding:24px clamp(18px,4vw,48px) 48px;color:#252639;color-scheme:light;font-family:'Press Start 2P',monospace}
+.weekly-goals button,.weekly-goals .goals-copy{font-family:'Press Start 2P',monospace}
+.goals-topbar{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:30px}.goals-language{display:flex;gap:12px}.goals-topbar button{font-size:9px;min-height:44px}
+.goals-heading{max-width:800px;margin-bottom:22px}.goals-kicker{font-size:9px;line-height:2;color:#585172;margin:0 0 6px}
+.weekly-goals h1{font-size:clamp(17px,2.5vw,24px);line-height:1.8;margin:0 0 14px;overflow-wrap:anywhere}
+.weekly-goals h1:focus{outline:none}.weekly-goals .goals-copy{font-size:10px;line-height:2;margin:0;overflow-wrap:anywhere}
+.goals-companion{display:flex;align-items:center;gap:20px;max-width:680px;margin:0 0 24px}.goals-companion .companion-avatar{width:48px;height:72px;flex-shrink:0}.goals-companion .nes-balloon{background:#fff9ed;padding:12px;margin:0}
+.weekly-goals .nes-container{background:#fff9ed;color:#252639;padding:20px}
+.weekly-goals .budget-panel{position:sticky;top:8px;z-index:4;border-color:#39354e;background:#f5f0ff;margin-bottom:24px;box-shadow:0 8px 0 #fff}
+.budget-details{display:flex;justify-content:space-between;align-items:center;gap:16px}.week-dates{font-size:10px;line-height:2;margin:0}.point-wallet{display:flex;align-items:center;gap:12px}.point-wallet strong{font-size:26px;color:#106899}.point-wallet span{font-size:8px;line-height:2;max-width:80px}
+.weekly-goals .nes-progress{height:18px;margin:12px 0 0;width:100%;display:block}.weekly-goals .budget-caption{font-size:8px;margin-top:10px}
+.weekly-goals .goals-instruction{margin-bottom:22px}.week-notice{color:#60491e;background:#fff1ca;padding:14px;margin-bottom:20px!important}
+.goals-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(220px,.8fr);gap:26px;align-items:start}
+.goal-list{display:grid;gap:16px}.weekly-goals .goal-card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;border-color:#aaa2ba}.weekly-goals .goal-card--active{border-color:#167c9d;background:#eef9f4}
+.goal-info{flex:1 1 240px;min-width:0}.weekly-goals .goal-card h2{font-size:11px;line-height:1.9;margin:10px 0 6px;overflow-wrap:anywhere}
+.goal-rank,.goal-neutral{font-size:8px;line-height:2}.goal-rank{color:#155a72}.goal-neutral{color:#666071}.weekly-goals .goal-hint{font-size:9px;color:#585769}
+.goal-counter{display:flex;align-items:center;justify-content:flex-end;gap:12px;flex:1 0 auto}.goal-counter button{min-width:44px;min-height:44px;font-size:16px;padding:6px}.goal-value{min-width:30px;text-align:center;font-size:16px}
+.weekly-goals .nes-btn:disabled{opacity:.45;cursor:default;pointer-events:none}
+.weekly-goals .priority-summary{padding:20px;margin:0}.weekly-goals .priority-summary>.title{font-size:8px;line-height:2;background:#fff9ed;max-width:95%}
+.priority-list{list-style:none;padding:0;margin:12px 0 22px;display:grid;gap:18px}.priority-list li{display:grid;grid-template-columns:22px 1fr auto;gap:8px;align-items:start;font-size:9px;line-height:2}.priority-number{color:#106899}.priority-list strong{font-size:8px;color:#106899}.priority-name{overflow-wrap:anywhere}.weekly-goals .summary-note{font-size:8px;color:#585769;margin-top:14px}
+.goals-actions{margin-top:28px;max-width:620px}.weekly-goals .allocation-status{font-size:9px;margin-bottom:16px}.goals-save{width:100%;min-height:48px;font-size:11px;line-height:1.8;white-space:normal}.weekly-goals .goals-draft{font-size:8px;min-height:24px;margin-top:14px;color:#416052}
+.weekly-goals .goals-error{color:#9e2531;margin-bottom:16px;font-size:9px}.weekly-goals .goals-confirmation{margin-top:22px;border-color:#527558;background:#eef9e8}.goals-confirmation h2{font-size:12px;line-height:2;margin:0 0 12px}
+.weekly-goals button:focus-visible{outline:3px solid #543d99;outline-offset:5px}
+@media(max-width:800px){.goals-layout{grid-template-columns:1fr}.weekly-goals .budget-panel{padding:14px}.goal-info{flex-basis:200px}.weekly-goals .goal-card{padding:18px}.goals-actions{max-width:none}}
+@media(max-width:420px){.weekly-goals{padding:20px 16px 36px}.goals-topbar button{font-size:8px}.goals-companion{gap:14px}.goals-companion .nes-balloon{padding:10px}.goals-companion .goals-copy{font-size:9px}.point-wallet{gap:8px}.point-wallet strong{font-size:22px}.point-wallet span{font-size:7px;max-width:65px}.week-dates{font-size:8px}.goal-counter{width:100%}.priority-list li{font-size:8px}.goals-save{font-size:10px}.weekly-goals .goal-card h2{font-size:10px}}
+
+/* IMIQ compact mission menu v2. */
+.mission-layout{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:20px;align-items:start}
+.weekly-goals .mission-menu{grid-column:1;grid-row:1}.weekly-goals .mission-detail{grid-column:2;grid-row:1}
+.goal-scene-canvas{width:100%;height:auto;display:block;image-rendering:pixelated;border:3px solid #8fa2c9;margin:8px 0 16px}
+.goal-pixel-icon{width:40px;height:36px;image-rendering:pixelated;flex-shrink:0}
+.mission-heading,.mission-menu-heading{display:flex;justify-content:space-between;gap:12px;align-items:center}.mission-index{font-size:8px;color:#c5d2ef}
+.weekly-goals .mission-layout h2{font-size:11px;line-height:2;margin:8px 0 12px;overflow-wrap:anywhere}
+.mission-menu-heading .nes-btn{font-size:8px;min-height:44px;padding:8px}.mission-menu-heading h2{font-size:9px!important}
+.mission-goal-list{display:grid;gap:8px;margin:10px 0 18px}
+.mission-goal-row{display:flex;align-items:center;gap:10px;width:100%;min-height:70px;padding:10px;background:#17223e;color:#edf0ff;border:2px solid #849bc6;font-family:inherit;font-size:9px;line-height:2;text-align:left}
+.mission-goal-row span{flex:1;overflow-wrap:anywhere}.mission-goal-row strong{font-size:12px;color:#ffda83}.mission-goal-row.is-selected{border-color:#ffda83;background:#324c76;box-shadow:inset 4px 0 #ffda83}.mission-goal-row.has-points:not(.is-selected){border-color:#86d8d0}
+.mission-pagination{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:9px}.mission-pagination button{min-height:44px;min-width:48px}
+.mission-counter{justify-content:center;margin-top:20px;width:100%}.mission-counter .goal-value{min-width:72px;color:#ffda83}.mission-counter small{font-size:9px;margin-left:6px}.mission-counter button{min-width:56px;min-height:48px}
+.weekly-goals .mission-summary{grid-column:1 / -1}.mission-summary h2{color:#ffda83}
+.mission-priorities{display:flex;flex-wrap:wrap;gap:10px;margin:12px 0}.mission-priorities button{display:flex;align-items:center;gap:16px;min-height:44px;background:#17223e;color:#edf0ff;border:2px solid #849bc6;padding:10px;font-family:inherit;font-size:8px;line-height:2;text-align:left}.mission-priorities strong{color:#ffda83;font-size:11px}.mission-priorities span{overflow-wrap:anywhere}
+@media(max-width:700px){.mission-layout{grid-template-columns:1fr}.weekly-goals .mission-detail{grid-column:1;grid-row:1}.weekly-goals .mission-menu{grid-column:1;grid-row:2}.weekly-goals .mission-layout .nes-container{padding:14px}.mission-goal-row{min-height:60px}.weekly-goals .budget-panel{position:static}.goal-scene-canvas{max-height:190px;object-fit:contain;background:#182744}.weekly-goals .mission-layout h2{font-size:10px}.mission-priorities button{width:100%;justify-content:space-between}}

@@ -1,0 +1,20 @@
+export const toleranceMessages={
+ en:{step:'05 / YOUR TRAVEL CONDITIONS',title:'What can you comfortably tolerate?',intro:'Think about these conditions on your usual journeys.',back:'Back',next:'Next condition',save:'Save and review Passport',neutral:'Choose the middle',unanswered:'Choose your tolerance.',dialogue:value=>value===null?'How does this condition feel to you?':value<4?'This is difficult for me to tolerate.':value>4?'I can tolerate this comfortably.':'I can tolerate this moderately.',question:'How well can you tolerate this condition while travelling?',labels:['Not at all','Very little','A little','Moderately','Quite well','Very well','Without difficulty'],low:'Hard to tolerate',high:'Easy to tolerate',minus:'One step less tolerance',plus:'One step more tolerance',draft:'Progress saved on this device.',storage:'Your answer could not be saved. Please allow local storage and try again.',retry:'Try saving again',conditions:{
+ crowding:{title:'Crowded places',detail:'Being close to many people on the way or in public transport.',scene:'MDCC Arena with a group of jumping football supporters.'},
+ rain:{title:'Rain',detail:'Travelling in rain, with wet streets and splashes.',scene:'City intersection with animated rain and puddles.'},
+ darkness:{title:'Darkness',detail:'Travelling after dark with limited lighting.',scene:'Elevated campus building at night with a moon and stars.'},
+ heat:{title:'Heat',detail:'Travelling in uncomfortable heat and strong sunshine.',scene:'Salbker See with sun, heat waves and your companion.'},
+ cold:{title:'Cold',detail:'Travelling in uncomfortable cold, snow and winter weather.',scene:'Winter at Salbker See with snow and an animated snowman.'},
+ wind:{title:'Wind',detail:'Travelling with strong wind and gusts.',scene:'Horse sculptures with moving leaves and wind gusts.'},
+ traffic:{title:'Heavy traffic',detail:'Travelling amid many vehicles, queues and delays.',scene:'City intersection in dry weather with moving cars.'}
+ }},
+ de:{step:'05 / DEINE REISEBEDINGUNGEN',title:'Was kannst du gut tolerieren?',intro:'Denke an diese Bedingungen auf deinen üblichen Wegen.',back:'Zurück',next:'Nächste Bedingung',save:'Speichern und Passport prüfen',neutral:'Mitte wählen',unanswered:'Wähle deine Toleranz.',dialogue:value=>value===null?'Wie fühlt sich diese Bedingung für dich an?':value<4?'Das ist für mich schwer zu tolerieren.':value>4?'Das kann ich gut tolerieren.':'Das kann ich mäßig tolerieren.',question:'Wie gut kannst du diese Bedingung unterwegs tolerieren?',labels:['Gar nicht','Sehr wenig','Wenig','Mäßig','Ziemlich gut','Sehr gut','Ohne Schwierigkeiten'],low:'Schwer zu tolerieren',high:'Gut zu tolerieren',minus:'Eine Stufe weniger Toleranz',plus:'Eine Stufe mehr Toleranz',draft:'Fortschritt auf diesem Gerät gespeichert.',storage:'Deine Antwort konnte nicht gespeichert werden. Bitte erlaube die lokale Speicherung und versuche es erneut.',retry:'Erneut speichern',conditions:{
+ crowding:{title:'Gedränge',detail:'Viele Menschen dicht um dich herum, unterwegs oder im öffentlichen Verkehr.',scene:'MDCC Arena mit einer Gruppe springender Fußballfans.'},
+ rain:{title:'Regen',detail:'Unterwegs bei Regen, auf nassen Straßen und mit Spritzwasser.',scene:'Straßenkreuzung mit animiertem Regen und Pfützen.'},
+ darkness:{title:'Dunkelheit',detail:'Unterwegs nach Einbruch der Dunkelheit bei wenig Licht.',scene:'Erhöhtes Campusgebäude bei Nacht mit Mond und Sternen.'},
+ heat:{title:'Hitze',detail:'Unterwegs bei unangenehmer Hitze und starkem Sonnenschein.',scene:'Salbker See mit Sonne, Hitzeflimmern und deinem Begleiter.'},
+ cold:{title:'Kälte',detail:'Unterwegs bei unangenehmer Kälte, Schnee und Winterwetter.',scene:'Salbker See im Winter mit Schnee und animiertem Schneemann.'},
+ wind:{title:'Wind',detail:'Unterwegs bei starkem Wind und Böen.',scene:'Pferdeskulpturen mit bewegten Blättern und Windböen.'},
+ traffic:{title:'Starker Verkehr',detail:'Unterwegs zwischen vielen Fahrzeugen, Staus und Verzögerungen.',scene:'Straßenkreuzung bei trockenem Wetter mit fahrenden Autos.'}
+ }}
+}
