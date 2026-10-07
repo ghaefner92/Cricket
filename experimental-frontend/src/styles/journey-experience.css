@@ -1,0 +1,15 @@
+/* Cricket journey experience: preserve established palette and pixel art. */
+.journey-wordmark{color:#ffe39a;letter-spacing:3px;font-size:16px}
+.journey-home{max-width:960px;margin:auto}.journey-home-hero{margin:28px 0}.journey-home-hero .nes-btn{margin-top:16px}
+.journey-home-goals ul{list-style:none;padding:0;display:grid;gap:20px}.journey-home-goals li{display:flex;gap:16px;align-items:center;line-height:2}.journey-home-goals h2{font-size:14px;line-height:2}
+.journey-passport-link,.journey-home-return{margin:24px 0}.journey-home-goals p{font:16px/1.6 system-ui,sans-serif}
+.journey-swap{margin:4px 0 18px}.journey-preferences,.journey-recent{margin:20px 0;border-top:2px solid #7183a3;padding-top:16px}
+.journey-preferences summary,.journey-recent summary,.journey-weather-more summary{cursor:pointer;padding:10px 0;line-height:1.8;font-size:11px}
+.journey-recent ul{padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:12px}.journey-recent li .nes-btn{font:15px/1.5 system-ui,sans-serif;text-align:left}.journey-recent-target{display:flex;flex-wrap:wrap;gap:12px;margin:12px 0}.journey-recent-target [aria-pressed=true]{background:#d5f2cf;color:#15291c}
+.journey-view-switch{display:flex;gap:12px;margin:20px 0}.journey-route-colour{width:14px;height:14px;display:inline-block;border:2px solid #fff;flex-shrink:0}
+.journey-confirmation{margin-top:32px!important;background:#18332d!important;border-color:#91d6ae!important;scroll-margin-top:20px}.journey-confirmation h2{font-size:16px;line-height:2;color:#ffe39a}.journey-confirmed-avatar{display:flex;align-items:center;gap:24px}.journey-confirmed-avatar p,.journey-confirmation dl{font:17px/1.7 system-ui,sans-serif}.journey-confirmation dd{margin:0 0 16px;overflow-wrap:anywhere}.journey-confirmation dt{color:#b4d8c8}.journey-confirmation:focus{outline:3px solid #ffe39a;outline-offset:6px}
+.journey-weather-more{margin:12px 0}.journey-game .journey-dialogue p{font-family:system-ui,sans-serif;font-size:17px;line-height:1.65}.journey-game .journey-dialogue h4{font-size:11px;line-height:2}
+@media(max-width:720px){.journey-confirmed-avatar{gap:12px;align-items:flex-start}.journey-confirmation h2{font-size:13px}.journey-home-hero{flex-wrap:wrap}.journey-view-switch .nes-btn{flex:1}.journey-game .route-card-heading h3{flex-wrap:wrap}.journey-home-goals li{font-size:11px}.journey-game .journey-dialogue p{font-size:16px}.journey-swap{min-height:44px}}
+@media(prefers-reduced-motion:reduce){.journey-home *, .journey-confirmation *{animation:none!important;transition:none!important}}
+
+.journey-alternative-goal{display:block;margin-top:10px;font:15px/1.5 system-ui,sans-serif;color:#d2e4ee}

@@ -32,7 +32,7 @@ export function readPassport(storage,source){
 }
 export function savePassport(storage,source,result){
  if(!validPassport(result,source))throw Error('response')
- const value={version:1,fingerprint:source.fingerprint,createdAt:new Date().toISOString(),weekStart:source.inputs.weekStart,goalPoints:source.inputs.goalPoints,needsSource:source.inputs.needsSource,conversion:source.inputs.conversion,availability:source.availability,tolerancesRaw:{...source.toleranceState.answers},toleranceConversion:'rating_minus1_div6_v1',temperatureScope:'independent_heat_cold',response:result}
+ const value={version:1,confirmedAt:new Date().toISOString(),sourceSnapshot:JSON.parse(JSON.stringify(source)),fingerprint:source.fingerprint,createdAt:new Date().toISOString(),weekStart:source.inputs.weekStart,goalPoints:source.inputs.goalPoints,needsSource:source.inputs.needsSource,conversion:source.inputs.conversion,availability:source.availability,tolerancesRaw:{...source.toleranceState.answers},toleranceConversion:'rating_minus1_div6_v1',temperatureScope:'independent_heat_cold',response:result}
  const previous=storage.getItem(PASSPORT_KEY)
  if(previous){try{const old=JSON.parse(previous),id=old.response?.cognitive_passport?.lineage?.passport_id;if(id&&old.fingerprint!==source.fingerprint)storage.setItem(`${PASSPORT_KEY}.archive.${id}`,previous)}catch(e){if(!(e instanceof SyntaxError))throw e}}
  storage.setItem(PASSPORT_KEY,JSON.stringify(value));return value

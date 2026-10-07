@@ -5,8 +5,8 @@ export function normalizeCompanion(value) {
   return {
     version: 1,
     name: typeof value?.name === 'string' ? [...value.name].slice(0, 24).join('') : '',
-    appearance: ['robot', 'explorer', 'creature'].includes(value?.appearance) ? value.appearance : 'robot',
-    palette: ['mint', 'sunset', 'violet'].includes(value?.palette) ? value.palette : 'mint',
+    appearance: ['robot', 'explorer', 'creature', 'naturalist'].includes(value?.appearance) ? value.appearance : 'robot',
+    palette: 'mint',
   }
 }
 export function readCompanion(storage, { confirmed = false } = {}) {

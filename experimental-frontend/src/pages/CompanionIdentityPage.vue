@@ -3,7 +3,6 @@ import { computed, reactive, ref, watch } from 'vue'
 import AvailabilityKit from '../components/AvailabilityKit.vue'
 import CompanionAvatar from '../components/CompanionAvatar.vue'
 import { messages } from '../i18n/companion.js'
-import { palettes } from '../art/companions.js'
 import { readCompanion, writeCompanion } from '../stores/companion.js'
 import '../styles/companion-page.css'
 const props = defineProps({ locale: { type: String, default: 'en' } })
@@ -59,7 +58,7 @@ function save() {
     <div class="builder-layout">
       <section class="nes-container with-title preview-panel" :aria-label="copy.preview">
         <p class="title">{{ copy.preview }}</p>
-        <div class="avatar-stage" :style="{ '--accent': palettes[companion.palette][2] }">
+        <div class="avatar-stage" style="--accent:#79d6b5">
           <span class="stage-star star-one" aria-hidden="true">✦</span><span class="stage-star star-two" aria-hidden="true">✦</span>
           <CompanionAvatar :appearance="companion.appearance" :palette="companion.palette" animated />
           <span class="avatar-shadow" aria-hidden="true"></span>
@@ -73,21 +72,12 @@ function save() {
           <legend>{{ copy.appearance }}</legend>
           <p id="appearance-hint" class="builder-copy field-hint">{{ copy.appearanceHint }}</p>
           <div class="character-options" aria-describedby="appearance-hint">
-            <label v-for="appearance in ['robot', 'explorer', 'creature']" :key="appearance" class="character-option" :class="{ 'is-selected': companion.appearance === appearance }">
+            <label v-for="appearance in ['robot', 'explorer', 'creature', 'naturalist']" :key="appearance" class="character-option" :class="{ 'is-selected': companion.appearance === appearance }">
               <CompanionAvatar :appearance="appearance" :palette="companion.palette" />
               <span class="radio-line"><input v-model="companion.appearance" type="radio" class="nes-radio" name="appearance" :value="appearance"><span>{{ copy.characters[appearance] }}</span></span>
             </label>
           </div>
           <p class="builder-copy character-description">{{ copy.descriptions[companion.appearance] }}</p>
-        </fieldset>
-        <fieldset class="builder-fieldset palette-fieldset">
-          <legend>{{ copy.palette }}</legend>
-          <div class="palette-options">
-            <label v-for="(colors, palette) in palettes" :key="palette" class="palette-option">
-              <input v-model="companion.palette" type="radio" class="nes-radio" name="palette" :value="palette">
-              <span><i class="palette-swatch" :style="{ background: colors[2] }" aria-hidden="true"></i>{{ copy.palettes[palette] }}</span>
-            </label>
-          </div>
         </fieldset>
         <div class="nes-field builder-name-field">
           <label for="companion-name">{{ copy.name }}</label>

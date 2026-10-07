@@ -1,0 +1,5 @@
+<script setup>
+defineProps({kind:{default:'smile'},animated:Boolean})
+</script>
+<template><svg class="dialogue-mood-icon" :class="['mood-'+kind,{'mood-animated':animated}]" viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true" focusable="false"><template v-if="kind==='question'"><path d="M4 3h8v2h2v4h-4v2H8V7h4V5H4zM8 13h2v2H8z" fill="currentColor"/></template><template v-else><path d="M4 1h8v2h2v2h1v7h-2v2h-2v1H4v-2H2v-2H1V5h2V3h1z" fill="currentColor"/><path d="M4 5h2v2H4zm6 0h2v2h-2z" fill="#15213b"/><path v-if="kind==='smile'" d="M4 9h2v2h4V9h2v3h-2v1H6v-1H4z" fill="#15213b"/><path v-else d="M5 10h6v2H5zM10 2h4v2h-4z" fill="#15213b"/></template></svg></template>
+<style scoped>.dialogue-mood-icon{width:18px;height:18px;display:inline-block;vertical-align:middle;flex-shrink:0;color:#a6ecc9}.mood-thoughtful{color:#ffdfa0}.mood-question{color:#b9dcff}.mood-animated{animation:mood-nod 2.6s steps(2,end) infinite}@keyframes mood-nod{50%{transform:translateY(-2px)}}@media(prefers-reduced-motion:reduce){.mood-animated{animation:none}}</style>

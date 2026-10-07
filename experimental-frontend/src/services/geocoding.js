@@ -4,8 +4,10 @@ const cache=new Map(),CACHE_MS=5*60*1000,MAX_CACHE=50
 const configured=import.meta.env?.VITE_PHOTON_BASE_URL||'https://photon.komoot.io'
 export const photonBase=configured.replace(/\/+$/,'')
 let queue=Promise.resolve(),nextStart=0
-function cacheKey(query,locale,autocomplete){return `${photonBase}:${autocomplete?'suggest':'search'}:${locale==='de'?'de':'en'}:${query.trim().replace(/\s+/g,' ').toLocaleLowerCase('de-DE')}`}
-export function cachedPlaces(query,locale,autocomplete=false){const entry=cache.get(cacheKey(query,locale,autocomplete));if(!entry)return null;if(Date.now()-entry.at>CACHE_MS){cache.delete(cacheKey(query,locale,autocomplete));return null}return entry.places.map(p=>({...p}))}
+function pointForBias(bias){try{return coordinate(bias?.lat,bias?.lon)}catch{return {lat:52.13,lon:11.62}}}
+function nearDistance(place,point){const rad=Math.PI/180,a=place.lat*rad,b=point.lat*rad;return Math.sin((a-b)/2)**2+Math.cos(a)*Math.cos(b)*Math.sin((place.lon-point.lon)*rad/2)**2}
+function cacheKey(query,locale,autocomplete,bias){const p=pointForBias(bias);return `${photonBase}:${locale==='de'?'de':'en'}:${p.lat},${p.lon}:${query.trim().replace(/\s+/g,' ').toLocaleLowerCase('de-DE')}`}
+export function cachedPlaces(query,locale,autocomplete=false,bias=null){const entry=cache.get(cacheKey(query,locale,autocomplete,bias));if(!entry)return null;if(Date.now()-entry.at>CACHE_MS){cache.delete(cacheKey(query,locale,autocomplete,bias));return null}return entry.places.map(p=>({...p}))}
 export function requestedHouseNumber(query){
  // Only explicit German-style number tokens; five-digit postcodes are not portals.
  const streetPart=query.split(',')[0].trim()
@@ -48,31 +50,31 @@ function wait(ms,signal){
  })
 }
 function scheduledFetch(url,signal){
- const task=queue.then(async()=>{
+ const slot=queue.then(async()=>{
   await wait(Math.max(0,nextStart-Date.now()),signal)
   if(signal.aborted)throw new DOMException('Aborted','AbortError')
   nextStart=Date.now()+1000
-  return fetch(url,{headers:{Accept:'application/json'},signal})
  })
- queue=task.catch(()=>{})
- return task
+ queue=slot.catch(()=>{})
+ return slot.then(()=>{if(signal.aborted)throw new DOMException('Aborted','AbortError');return fetch(url,{headers:{Accept:'application/json'},signal})})
 }
-export async function findPlaces(query,locale,signal,{autocomplete=false}={}){
+export async function findPlaces(query,locale,signal,{autocomplete=false,bias=null}={}){
+ const point=pointForBias(bias)
  const text=query.trim();if(text.length<3||text.length>240)throw Error('query')
  if(signal?.aborted)throw new DOMException('Aborted','AbortError')
- const cached=cachedPlaces(text,locale,autocomplete);if(cached)return cached
+ const cached=cachedPlaces(text,locale,autocomplete,bias);if(cached)return cached
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000)
  try{
   const language=locale==='de'?'de':'en',combined=signal?AbortSignal.any([signal,controller.signal]):controller.signal
-  const url=`${photonBase}/api/?${new URLSearchParams({q:text,lang:language,limit:'10',lat:'52.13',lon:'11.62'})}`
+  const url=`${photonBase}/api/?${new URLSearchParams({q:text,lang:language,limit:'10',lat:String(point.lat),lon:String(point.lon)})}`
   const r=await scheduledFetch(url,combined)
   if(!r.ok)throw Error('network')
   const data=await r.json()
   if(data?.type!=='FeatureCollection'||!Array.isArray(data.features))throw Error('response')
   const number=requestedHouseNumber(text)
-  const places=placesFromResponse(data).filter(place=>!number||place.houseNumber.toLocaleLowerCase('de-DE')===number)
+  const places=placesFromResponse(data).filter(place=>!number||place.houseNumber.toLocaleLowerCase('de-DE')===number).sort((a,b)=>nearDistance(a,point)-nearDistance(b,point))
   if(combined.aborted)throw new DOMException('Aborted','AbortError')
-  cache.set(cacheKey(text,locale,autocomplete),{at:Date.now(),places})
+  cache.set(cacheKey(text,locale,autocomplete,bias),{at:Date.now(),places})
   if(cache.size>MAX_CACHE)cache.delete(cache.keys().next().value)
   return places.map(p=>({...p}))
  }catch(e){if(controller.signal.aborted&&!signal?.aborted)throw Error('timeout');throw e}

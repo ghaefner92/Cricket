@@ -1,0 +1,108 @@
+/* Tipografía pixelada de Cricket */
+html { --cricket-copy-size: 12px; }
+html[data-cricket-text="large"] { --cricket-copy-size: 14px; }
+
+html body #app, html body #app * {
+    font-family: 'Press Start 2P', monospace !important;
+    font-variant-ligatures: none;
+}
+
+html body #app p:not(.title),
+html body #app label,
+html body #app li,
+html body #app summary,
+html body #app .address-results button {
+    font-size: var(--cricket-copy-size) !important;
+    line-height: 2 !important;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+}
+
+html body #app input,
+html body #app select,
+html body #app textarea {
+    font-size: 16px !important;
+    line-height: 1.8 !important;
+    min-height: 52px;
+}
+
+html body #app input::placeholder {
+    opacity: 1;
+    color: #aabbd9;
+}
+
+html body #app input:disabled { opacity: .65; }
+
+html body #app .address-search label {
+    display: block;
+    margin-bottom: 12px;
+    color: #ffda83;
+}
+
+html body #app .address-search .route-note {
+    color: #dce7ff;
+    margin-top: 14px;
+}
+
+html body #app button {
+    line-height: 1.9;
+    min-height: 44px;
+    white-space: normal;
+}
+
+html body #app h1,
+html body #app h2,
+html body #app h3 {
+    line-height: 1.9;
+    text-shadow: 2px 2px rgba(0,0,0,.32);
+}
+
+html body #app .nes-btn {
+    text-shadow: 1px 1px rgba(0,0,0,.2);
+}
+
+html body #app .address-results button { padding: 16px; }
+
+html body #app .address-results small {
+    display: block;
+    font-size: 10px;
+    line-height: 2;
+    margin-top: 10px;
+}
+
+html body #app .leaflet-control-attribution {
+    font-size: 8px;
+    line-height: 1.8;
+}
+
+html body #app .leaflet-tooltip {
+    font-size: 10px;
+    line-height: 1.8;
+}
+
+html body #app .leaflet-control-zoom a { font-size: 18px; }
+
+/* Role hierarchy: mobile keeps the same readable body size. */
+html { --cricket-note-size:10px; --cricket-control-size:11px; --cricket-metric-size:16px; }
+html[data-cricket-text="large"] { --cricket-note-size:12px; --cricket-control-size:13px; --cricket-metric-size:18px; }
+html body #app h1 { font-size:clamp(18px,3vw,22px) !important; line-height:1.65 !important; }
+html body #app h2 { font-size:16px !important; line-height:1.75 !important; }
+html body #app h3,html body #app h4 { font-size:13px !important; line-height:1.8 !important; }
+html body #app .dialogue-paragraph { font-size:var(--cricket-copy-size) !important; line-height:2 !important; text-shadow:none; }
+html body #app .route-note,html body #app .dialogue-footnote,html body #app .dialogue-position,html body #app .journey-order-note { font-size:var(--cricket-note-size) !important; line-height:1.85 !important; }
+html body #app .choice-reflection-name { font-size:14px !important; line-height:1.8 !important; }
+html body #app label,html body #app button,html body #app summary { font-size:var(--cricket-control-size) !important; line-height:1.85 !important; }
+html body #app .journey-metrics>span,html body #app .weather-item strong { font-size:var(--cricket-metric-size) !important; line-height:1.65 !important; }
+html body #app .weather-item>span,html body #app .route-state-badge,html body #app .choice-saved-label { font-size:var(--cricket-note-size) !important; line-height:1.85 !important; }
+html body #app .choice-saved-summary { display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:0 0 14px;padding:10px 12px;border:2px solid #8bcbb0;background:#19332f; }
+html body #app .choice-saved-summary strong { font-size:var(--cricket-control-size);overflow-wrap:anywhere; }
+html body #app .route-state-badges { display:flex;gap:8px;flex-wrap:wrap;margin:12px 0; }
+html body #app .route-state-badge { display:inline-flex;align-items:center;gap:6px;padding:6px 9px;border:2px solid #93adc9;background:#1d304d;color:#e2efff; }
+html body #app .route-state-badge--saved { border-color:#91d6ae;background:#19332f;color:#c1f1d4; }
+html body #app .route-state-badge--saved::before { content:'✓'; }
+html body #app .journey-equal-options .journey-metrics { flex-wrap:wrap; }
+html body #app .choice-speaker { min-width:0; }
+@media(max-width:600px){
+ html body #app h1 { font-size:18px !important; }
+ html body #app .journey-metrics { gap:12px;flex-wrap:wrap; }
+}

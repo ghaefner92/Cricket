@@ -2,6 +2,8 @@
 import {drawHbfBackdrop} from './hbfBackdrop.js'
 import {drawCitadelBackdrop} from './citadelBackdrop.js'
 import {drawAffectParticles} from './affectParticles.js'
+import {drawRobotCanvas} from './robotCanvas.js'
+import {drawTransportSprite} from './transportSprites.js'
 import {companions,palettes} from '../art/companions.js'
 function rect(ctx,x,y,w,h,color){ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),Math.round(w),Math.round(h))}
 function tower(ctx){
@@ -40,6 +42,9 @@ function drawTransportBase(ctx,settings,time=0,reduced=false){
  rect(ctx,0,148,320,32,'#d3c8ad');rect(ctx,0,171,320,9,'#819c6e')
  }
  const x=Math.round(46+(!reduced?Math.sin(t*.55)*24:0))
+ // Valence walking uses the existing expressive robot sheet; other modes use their vehicle sheet.
+ if(settings.background===undefined && settings.mode==='walk' && drawRobotCanvas(ctx,settings,{x:x-16,y:108,size:64,mood:settings.value>0?'joyful':settings.value<0?'reflective':'neutral'},time,reduced))return
+ if(drawTransportSprite(ctx,settings,x,time,reduced))return
  if(settings.mode==='walk'){avatar(ctx,x,116+frame,settings,2,frame?2:-2)}
  if(settings.mode==='bike'){
   wheel(ctx,x+4,158,frame);wheel(ctx,x+54,158,frame)

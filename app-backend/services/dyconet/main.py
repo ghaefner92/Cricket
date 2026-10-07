@@ -611,6 +611,9 @@ def contextual_explanation_narrate_route() -> Any:
         return jsonify({"error": "invalid_contextual_narration_request", "message": str(exc)}), 422
 
 
+from choice_explanation_api import register_choice_explanation
+register_choice_explanation(app)
+
 if __name__ == "__main__":
     app.run(
         debug=os.environ.get("FLASK_DEBUG", "0") == "1",

@@ -1,5 +1,5 @@
 import {cardsFromResult,finiteNumber} from './routePlanning.js'
-export const ROUTE_COLORS={car:'#ce4b4b',bike:'#16774f',foot:'#554ac0',walk:'#554ac0',pt:'#a16a00'}
+export const ROUTE_COLORS={car:'#ce4b4b',bike:'#16774f',foot:'#507ee8',walk:'#507ee8',pt:'#a16a00'}
 export function validPoint(p){return finiteNumber(p?.latitude)&&finiteNumber(p?.longitude)&&Math.abs(p.latitude)<=90&&Math.abs(p.longitude)<=180}
 export function mapRoutes(result){
  return cardsFromResult(result).filter(c=>c.route.available!==false).map(card=>{

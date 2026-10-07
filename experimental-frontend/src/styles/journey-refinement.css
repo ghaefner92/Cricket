@@ -1,0 +1,123 @@
+/* Cabecera integrada */
+html body #app .cricket-app-menu {
+    background: #11182c;
+    border-bottom: 3px solid #526589;
+    max-width: none;
+    padding: 12px max(16px, calc((100vw - 880px)/2));
+}
+html body #app .route-topbar {
+    margin-bottom: 22px;
+}
+html body #app .route-companion {
+    box-shadow: 4px 4px #080e20;
+}
+
+/* Panel origen y destino */
+html body #app .journey-address-panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0,1fr) auto;
+    gap: 8px;
+    padding-left: 32px;
+    margin: 24px 0;
+}
+html body #app .journey-address-panel::before {
+    content: '';
+    position: absolute;
+    left: 9px;
+    top: 16px;
+    bottom: 30px;
+    border-left: 3px dashed #92b3df;
+}
+html body #app .journey-address-panel .address-search {
+    grid-column: 1/-1;
+    margin: 0;
+    position: relative;
+    min-width: 0;
+}
+html body #app .journey-address-panel .address-search label::before {
+    position: absolute;
+    left: -32px;
+    top: 0;
+    content: 'A';
+    width: 22px;
+    height: 24px;
+    background: #17233d;
+    color: #ffda83;
+    border: 2px solid #92b3df;
+    text-align: center;
+    font-size: 10px;
+    line-height: 20px;
+}
+html body #app .journey-address-panel .address-search:last-child label::before {
+    content: 'B';
+    color: #a6e6c5;
+}
+html body #app .journey-address-panel .journey-swap {
+    grid-column: 2;
+    margin: 4px 0;
+    min-height: 44px;
+}
+
+/* Acción principal y relieve */
+html body #app .route-form-actions {
+    display: block;
+}
+html body #app .route-form-actions > button {
+    width: 100%;
+    min-height: 56px;
+    font-size: 12px;
+}
+html body #app .route-page .nes-input {
+    border: 3px solid #829dc7;
+    box-shadow: inset 3px 3px #080e20, inset -2px -2px #344970;
+    padding: 12px;
+}
+html body #app .route-page .nes-input:focus {
+    border-color: #ffda83;
+}
+html body #app .route-page .nes-btn:not(:disabled):active {
+    transform: translate(2px,2px);
+}
+
+/* Lectura pixelada */
+html body #app .route-page p:not(.title),
+html body #app .route-page label,
+html body #app .route-page li,
+html body #app .route-page summary {
+    font-size: 11px !important;
+    line-height: 1.9 !important;
+}
+html[data-cricket-text=large] body #app .route-page p:not(.title),
+html[data-cricket-text=large] body #app .route-page label,
+html[data-cricket-text=large] body #app .route-page li,
+html[data-cricket-text=large] body #app .route-page summary {
+    font-size: 13px !important;
+}
+html body #app .route-page input {
+    font-size: 14px !important;
+}
+html body #app .route-page .address-search label {
+    margin-bottom: 8px;
+}
+html body #app .route-page .address-results button {
+    font-size: 11px !important;
+    line-height: 1.9 !important;
+}
+@media(max-width:600px) {
+    html body #app .route-page input {
+        font-size: 16px !important;
+    }
+    html body #app .address-search-row {
+        grid-template-columns: minmax(0,1fr) auto;
+        gap: 10px;
+    }
+    html body #app .address-search-row button {
+        width: auto;
+        font-size: 9px;
+        padding: 8px;
+    }
+    html body #app .route-page .nes-container {
+        padding: 16px;
+    }
+}

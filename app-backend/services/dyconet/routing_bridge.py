@@ -6,6 +6,8 @@ of the HOTCO modal readout.
 """
 from __future__ import annotations
 
+from journey_availability import validate_journey_availability
+
 import copy
 import hashlib
 import json
@@ -167,14 +169,23 @@ def run_routed_deliberation(payload, *, client=None, deliberate=None, geometry_c
     departure = _datetime(payload.get("datetime"))
     origin, destination = _coordinate(payload["start"]), _coordinate(payload["stop"])
     passport, availability = routing_passport(payload.get("cognitive_passport"))
+    if "journey_availability" in payload:
+        availability = validate_journey_availability(payload["journey_availability"])
+        # This is a disposable transport envelope; the saved Passport stays original.
+        passport["profile"]["availability"] = dict(availability)
+        passport.setdefault("routing_parameters", {})["availability"] = dict(availability)
+        passport["beliefs"] = {"owns_bike": availability["bike"], "owns_car": availability["car"], "has_pt_access": availability["pt"]}
     max_walk = payload.get("max_walk_m", 500)
     if type(max_walk) is not int or max_walk < 0:
         raise RoutingBridgeError("max_walk_m must be a nonnegative integer")
     # Validate the original passport through the existing strict HOTCO contract
     # BEFORE disclosing it to the server-configured routing service.
     base = {"search_id": search_id, "timestamp": departure, "cognitive_passport": payload["cognitive_passport"], "contextual_query": payload.get("contextual_query", {"query_orion": True}), "candidate_routes": [CandidateRouteInput("validation", origin, destination).to_dict()]}
+    if "journey_availability" in payload:
+        base["journey_availability"] = dict(availability)
     ContextualDeliberationRequest.from_dict(base)
     routing = (client or RoutingClient()).ranked_routes({"cognitive_passport": passport, "start": payload["start"], "stop": payload["stop"], "datetime": departure, "max_walk_m": max_walk, "include_unavailable": False})
+    routing = copy.deepcopy(routing)
     geometry_enabled = geometry_client is not None or bool(os.environ.get('IMIQ_GRAPHHOPPER_BASE_URL'))
     geometry_cache = {}
     candidates, audit = [], []
@@ -185,6 +196,8 @@ def run_routed_deliberation(payload, *, client=None, deliberate=None, geometry_c
             candidate, reason = adapt_route(route, search_id=search_id, origin=origin, destination=destination, departure=departure, availability=availability)
         except (TypeError, ValueError, KeyError):
             candidate, reason = None, "invalid_route_metrics_or_geometry"
+        if reason in ("unavailable_or_infeasible", "unavailable_leg_mode"):
+            route["available"] = False
         geometry_failure = None
         if candidate is None and reason in ('missing_leg_geometry', 'missing_legs_or_geometry') and geometry_enabled and route.get('mode_key') in ('car', 'bike', 'foot', 'walk'):
             mode = route['mode_key']
@@ -211,4 +224,4 @@ def run_routed_deliberation(payload, *, client=None, deliberate=None, geometry_c
             service = ContextualDeliberationService(provider=OrionQueryListProvider())
             contextual = service.deliberate(ContextualDeliberationRequest.from_dict(base)).to_dict()
     supplemental = any(c['source_metadata'].get('route_identity_verified') is False for c in candidates)
-    return {"schema_version": "routed-contextual-deliberation-v1", "search_id": search_id, "status": "contextual_complete" if candidates and len(candidates) == len(audit) else "contextual_partial" if candidates else "routing_only", "routing": routing, "route_audit": audit, "candidate_routes": candidates, "contextual_deliberation": contextual, "warnings": ["Routing utility and HOTCO modal readouts have different meanings; no combined route ranking is computed."] + (["Independent GraphHopper paths are supplemental same-mode candidates; identity with externally ranked routes is NOT verified. Their geometry and timing both come from GraphHopper."] if supplemental else []) + (["Some routes were excluded from contextual simulation; consult route_audit."] if len(candidates) != len(audit) else [])}
+    return {"schema_version": "routed-contextual-deliberation-v1", "search_id": search_id, "journey_availability": dict(availability), "availability_source": "current_journey_declaration" if "journey_availability" in payload else "confirmed_passport", "status": "contextual_complete" if candidates and len(candidates) == len(audit) else "contextual_partial" if candidates else "routing_only", "routing": routing, "route_audit": audit, "candidate_routes": candidates, "contextual_deliberation": contextual, "warnings": ["Routing utility and HOTCO modal readouts have different meanings; no combined route ranking is computed."] + (["Independent GraphHopper paths are supplemental same-mode candidates; identity with externally ranked routes is NOT verified. Their geometry and timing both come from GraphHopper."] if supplemental else []) + (["Some routes were excluded from contextual simulation; consult route_audit."] if len(candidates) != len(audit) else [])}

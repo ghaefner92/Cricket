@@ -1,3 +1,4 @@
+import {validAvailability} from './appSettings.js'
 export function coordinate(lat, lon) {
   if ([lat, lon].some(v => v === null || v === undefined || String(v).trim() === '')) throw Error('coordinates')
   const point = { lat: Number(lat), lon: Number(lon) }
@@ -8,7 +9,9 @@ export function routePayload(passport, values, now = new Date()) {
   if (!passport?.profile?.needs || !passport?.profile?.availability) throw Error('passport')
   const limit = Number(values.maxWalk)
   if (String(values.maxWalk).trim() === '' || !Number.isFinite(limit) || limit < 0 || limit > 10000) throw Error('walking')
+  if(values.availability!==undefined&&!validAvailability(values.availability))throw Error('availability')
   return {
+    ...(values.availability?{journey_availability:{...values.availability}}:{}),
     search_id: `route-${crypto.randomUUID()}`, datetime: now.toISOString(),
     cognitive_passport: passport,
     start: coordinate(values.startLat, values.startLon), stop: coordinate(values.stopLat, values.stopLon),
@@ -26,6 +29,7 @@ export async function searchRoutes(payload, signal, timeoutMs = 180000) {
     if (!response.ok) throw Error(response.status === 502 || response.status === 503 ? 'unavailable' : 'request')
     const result = await response.json()
     if (result?.schema_version !== 'routed-contextual-deliberation-v1' || !Array.isArray(result?.routing?.routes) || !Array.isArray(result.route_audit)) throw Error('response')
+    if(payload.journey_availability&&(!validAvailability(result.journey_availability)||Object.keys(payload.journey_availability).some(mode=>payload.journey_availability[mode]!==result.journey_availability[mode])))throw Error('response')
     return result
   } catch (error) {
     if (timeout.signal.aborted && !signal?.aborted) throw Error('timeout')

@@ -1,4 +1,5 @@
 // Original pixel art for the eleven canonical needs; no transport preference cues.
+import {drawRobotCanvas} from './robotCanvas.js'
 import {companions,palettes} from '../art/companions.js'
 export const goalArt = {
  env:['....gg....','...gggg...','..gggggg..','...gggg...','....bb....','....bb....','...bbbb...'],
@@ -33,7 +34,8 @@ export function drawGoalScene(ctx,settings,time=0,reduced=false){
  const rows=companions[settings.appearance]||companions.robot,colors=palettes[settings.palette]||palettes.mint
  const stride=reduced?0:Math.floor(t*5)%2?2:-2
  ctx.fillStyle='#17233c';ctx.fillRect(Math.round(x)-3,127,40,4)
- for(const [py,row] of rows.entries())for(const [px,c] of [...row].entries())if(c!=='.'){
+ const upgraded=drawRobotCanvas(ctx,settings,{x:x-16,y:64,size:64},time,reduced)
+ if(!upgraded)for(const [py,row] of rows.entries())for(const [px,c] of [...row].entries())if(c!=='.'){
   const shift=py>=18?(px<8?stride:-stride):0
   ctx.fillStyle=colors[Number(c)];ctx.fillRect(Math.round(x)+px*2+shift,80+py*2,2,2)
  }

@@ -24,7 +24,7 @@
 .builder-fieldset{border:0;padding:0;margin:0 0 24px;min-width:0}
 .companion-builder legend,.companion-builder .builder-name-field label{font-family:'Press Start 2P',monospace;font-size:11px;line-height:2;float:none;width:auto;margin-bottom:8px}
 .companion-builder .field-hint{font-size:14px;color:#585769}
-.character-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.character-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
 .companion-builder .character-option{border:3px solid #a6a2b2;background:#fff;display:flex;align-items:center;flex-direction:column;padding:12px 4px 10px;gap:12px;cursor:pointer;min-width:0}
 .companion-builder .character-option.is-selected{border-color:#177bb5;background:#eaf5ff;box-shadow:3px 3px 0 #177bb5}
 .companion-builder .character-option:focus-within{outline:3px solid #543d99;outline-offset:4px}

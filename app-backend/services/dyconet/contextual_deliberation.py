@@ -8,6 +8,7 @@ their scientific rules.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
+from journey_availability import apply_journey_availability
 from typing import Any, Mapping, Sequence
 
 from context_perturbation import (
@@ -166,6 +167,12 @@ class ContextualDeliberationRequest:
                 )
         else:
             raise ContextualDeliberationError("participant or cognitive_passport is required")
+
+        if "journey_availability" in data:
+            try:
+                participant = apply_journey_availability(participant, data["journey_availability"])
+            except ValueError as exc:
+                raise ContextualDeliberationError(str(exc)) from exc
 
         warnings: list[str] = []
         tolerance_values = data.get("tolerance_profile")

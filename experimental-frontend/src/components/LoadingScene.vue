@@ -1,4 +1,5 @@
 <script setup>
+import {quietMotion} from '../services/appSettings.js'
 import { computed, onMounted, onBeforeUnmount, ref } from 'vue'
 import { startMagdeburgScene } from '../animation/magdeburgScene.js'
 
@@ -15,9 +16,9 @@ const copy = computed(() => props.locale === 'de' ? {
   modes: ['Walk', 'Bike', 'Car', 'Public transport'],
 })
 let stop = () => {}, media
-function restart() { stop(); if (canvas.value) stop = startMagdeburgScene(canvas.value, { reducedMotion: media.matches }) }
-onMounted(() => { media = window.matchMedia('(prefers-reduced-motion: reduce)'); restart(); media.addEventListener('change', restart) })
-onBeforeUnmount(() => { stop(); media?.removeEventListener('change', restart) })
+function restart() { stop(); if (canvas.value) stop = startMagdeburgScene(canvas.value, { reducedMotion: media.matches||quietMotion() }) }
+onMounted(() => { window.addEventListener('cricket-settings-change', restart); media = window.matchMedia('(prefers-reduced-motion: reduce)'); restart(); media.addEventListener('change', restart) })
+onBeforeUnmount(() => { window.removeEventListener('cricket-settings-change', restart);stop(); media?.removeEventListener('change', restart) })
 </script>
 
 <template>

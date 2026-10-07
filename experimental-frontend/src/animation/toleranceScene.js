@@ -1,6 +1,8 @@
 // Original procedural pixel scenes based on the five user-supplied references.
+import {drawRobotCanvas} from './robotCanvas.js'
 import {companions,palettes} from '../art/companions.js'
 const W=320,H=180
+const hasSprite=s=>['robot','explorer','creature','naturalist'].includes(s.appearance)
 function r(c,x,y,w,h,color){c.fillStyle=color;c.fillRect(Math.round(x),Math.round(y),w,h)}
 function line(c,points,color,width=2){c.strokeStyle=color;c.lineWidth=width;c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(Math.round(x),Math.round(y)):c.moveTo(Math.round(x),Math.round(y)));c.stroke()}
 function text(c,str,x,y){c.font='9px "Press Start 2P", monospace';c.fillStyle='#fff4d2';c.fillText(str,x,y)}
@@ -10,12 +12,13 @@ function avatar(c,s,t,reduced){
  const jitter=reduced?0:Math.round(Math.sin(t*(5+discomfort*3))*discomfort*.6)
  const x=143+(reduced?0:Math.round(Math.sin(t*.6)*7))+jitter,y=127+(reduced?0:discomfort?Math.floor(t*6)%2:0)
  const rows=companions[s.appearance]||companions.robot,colors=palettes[s.palette]||palettes.mint,step=reduced?0:(Math.floor(t*(discomfort?3:5))%2?2:-2)
- r(c,x-3,173,38,3,'#24353f');rows.forEach((row,py)=>[...row].forEach((a,px)=>{if(a!=='.'){
+ const upgraded=hasSprite(s)&&drawRobotCanvas(c,s,{x:x-20,y:96,size:80,mood:calm?'joyful':discomfort?'reflective':'neutral'},t*1000,reduced)
+ r(c,x-3,173,38,3,'#24353f');if(!upgraded)rows.forEach((row,py)=>[...row].forEach((a,px)=>{if(a!=='.'){
   const lean=s.condition==='wind'&&discomfort?Math.round((24-py)*discomfort/10):0
   r(c,x+px*2+(py>=18?(px<8?step:-step):0)+lean,y+py*2,2,2,colors[Number(a)])
  }}))
  const mouth=s.appearance==='robot'?6:s.appearance==='explorer'?8:9
- if(answered){r(c,x+12,y+(mouth-1)*2,8,6,colors[2]);r(c,x+12,y+(calm?mouth-1:mouth+1)*2,2,2,colors[1]);r(c,x+18,y+(calm?mouth-1:mouth+1)*2,2,2,colors[1]);r(c,x+14,y+mouth*2,4,2,colors[1])}
+ if(answered&&!upgraded){r(c,x+12,y+(mouth-1)*2,8,6,colors[2]);r(c,x+12,y+(calm?mouth-1:mouth+1)*2,2,2,colors[1]);r(c,x+18,y+(calm?mouth-1:mouth+1)*2,2,2,colors[1]);r(c,x+14,y+mouth*2,4,2,colors[1])}
  if(discomfort){for(let i=0;i<discomfort;i++)r(c,x-6-i*4,y-4+(reduced?0:Math.floor(t*4)%3),2,5,'#f8c998')}
  if(s.condition==='heat'&&discomfort)r(c,x+25,y+15+(reduced?0:Math.floor(t*4)%8),2,4,'#a9e1f1')
  if(s.condition==='traffic'&&discomfort)r(c,x+32,y+36,3,3,'#f8c998')
@@ -51,5 +54,5 @@ export function drawToleranceScene(c,s,time=0,reduced=false){
  }
  else if(s.condition==='wind')windy(c,t,reduced)
  else intersection(c,t,reduced,false)
- if(s.condition==='cold')snowman(c,s,t,reduced);else avatar(c,s,t,reduced)
+ if(s.condition==='cold'&&!hasSprite(s))snowman(c,s,t,reduced);else avatar(c,s,t,reduced)
 }
