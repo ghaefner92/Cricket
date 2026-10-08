@@ -7,6 +7,7 @@ of the HOTCO modal readout.
 from __future__ import annotations
 
 from journey_availability import validate_journey_availability
+from otp_transit import OtpTransitClient, OtpError
 
 import copy
 import hashlib
@@ -14,13 +15,14 @@ import json
 import math
 import os
 from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor
 from urllib.error import HTTPError, URLError
 from urllib.parse import urlsplit
 from urllib.request import Request, urlopen
 
 from contextual_deliberation import ContextualDeliberationRequest, ContextualDeliberationService, run_contextual_deliberation
 from route_context import CandidateRouteInput, Coordinate
-from graphhopper_geometry import GraphHopperGeometryClient, supplemental_route
+from graphhopper_geometry import GraphHopperGeometryClient, supplemental_route, independent_route
 from orion_query_list import OrionQueryListProvider
 
 MODES = {"foot": "walk", "walk": "walk", "bike": "bike", "car": "car", "pt": "pt"}
@@ -148,7 +150,7 @@ def adapt_route(route, *, search_id, origin, destination, departure, availabilit
         distance = _metric(leg.get("distance_meters"), "leg distance")
         if duration <= 0:
             return None, "missing_positive_leg_duration"
-        legs.append({"segment_id": f"leg-{i+1}", "mode": mode, "start": geometry[0], "end": geometry[-1], "geometry": geometry, "duration_seconds": duration, "distance_meters": distance})
+        legs.append({"segment_id": f"leg-{i+1}", "mode": mode, "start": geometry[0], "end": geometry[-1], "geometry": geometry, "duration_seconds": duration, "distance_meters": distance, **({"transit": copy.deepcopy(leg["transit"])} if "transit" in leg else {})})
     if not required.issubset({leg["mode"] for leg in legs}):
         return None, "mode_sequence_does_not_match_route"
     _metric(summary.get("duration_seconds"), "route duration")
@@ -157,10 +159,10 @@ def adapt_route(route, *, search_id, origin, destination, departure, availabilit
     identity = json.dumps({"search": search_id, "departure": departure, "mode": mode_key, "legs": legs}, sort_keys=True)
     route_id = "routing-" + hashlib.sha256(identity.encode()).hexdigest()[:20]
     evidence = route.get('_geometry_evidence', {})
-    return CandidateRouteInput(route_id, origin, destination, summary=summary, legs=tuple(legs), geometry=overall or None, requested_at=departure, transport_modes=tuple(leg["mode"] for leg in legs), source_metadata={"provider": "imiq-routing", "geometry_provenance": "ROUTING_LEG_GEOMETRY", "segment_timing_method": "leg_duration_allocated_by_sampled_distance", "unallocated_duration_seconds": max(0.0, float(summary["duration_seconds"]) - sum(leg["duration_seconds"] for leg in legs)), "routing_rank": route.get("rank"), "routing_score": route.get("score"), "mode_key": mode_key, **evidence}), None
+    return CandidateRouteInput(route_id, origin, destination, summary=summary, legs=tuple(legs), geometry=overall or None, requested_at=departure, transport_modes=tuple(leg["mode"] for leg in legs), source_metadata={"provider": route.get("provider", "imiq-routing"), "geometry_provenance": "ROUTING_LEG_GEOMETRY", "segment_timing_method": "leg_duration_allocated_by_sampled_distance", "unallocated_duration_seconds": max(0.0, float(summary["duration_seconds"]) - sum(leg["duration_seconds"] for leg in legs)), "routing_rank": route.get("rank"), "routing_score": route.get("score"), "mode_key": mode_key, **({"provider_itinerary_id": route["provider_itinerary_id"], "transit": copy.deepcopy(route.get("transit", {}))} if route.get("provider_itinerary_id") else {}), **evidence}), None
 
 
-def run_routed_deliberation(payload, *, client=None, deliberate=None, geometry_client=None):
+def run_routed_deliberation(payload, *, client=None, deliberate=None, geometry_client=None, transit_client=None):
     if not isinstance(payload, dict):
         raise RoutingBridgeError("request must be an object")
     search_id = payload.get("search_id")
@@ -184,10 +186,71 @@ def run_routed_deliberation(payload, *, client=None, deliberate=None, geometry_c
     if "journey_availability" in payload:
         base["journey_availability"] = dict(availability)
     ContextualDeliberationRequest.from_dict(base)
-    routing = (client or RoutingClient()).ranked_routes({"cognitive_passport": passport, "start": payload["start"], "stop": payload["stop"], "datetime": departure, "max_walk_m": max_walk, "include_unavailable": False})
-    routing = copy.deepcopy(routing)
+    otp_enabled = transit_client is not None or bool(os.environ.get('CRICKET_OTP_BASE_URL'))
     geometry_enabled = geometry_client is not None or bool(os.environ.get('IMIQ_GRAPHHOPPER_BASE_URL'))
     geometry_cache = {}
+    provider_warnings = []
+    routing_failure = None
+    try:
+        routing = (client or RoutingClient()).ranked_routes({"cognitive_passport": passport, "start": payload["start"], "stop": payload["stop"], "datetime": departure, "max_walk_m": max_walk, "include_unavailable": False})
+        routing = copy.deepcopy(routing)
+    except RoutingUnavailableError as exc:
+        if not (otp_enabled and availability['pt']) and not geometry_enabled:raise
+        routing_failure = exc
+        routing = {"routes": []}
+        provider_warnings.append('Existing routing unavailable; independently retrieved OTP and GraphHopper options are used when available.')
+    routing.setdefault('provider_audit', {})['imiq-routing'] = {
+        'provider': 'imiq-routing', 'status': 'UNAVAILABLE' if routing_failure else 'AVAILABLE',
+        'route_count': len(routing['routes']),
+    }
+    if not otp_enabled or not availability['pt']:
+        routing.setdefault('provider_audit', {})['otp'] = {
+            'provider': 'otp', 'status': 'DISABLED' if not otp_enabled else 'NOT_REQUESTED',
+            'reason': 'NOT_CONFIGURED' if not otp_enabled else 'PUBLIC_TRANSPORT_UNAVAILABLE'}
+    if otp_enabled and availability['pt']:
+        try:
+            transit_routes, transit_audit = (transit_client or OtpTransitClient()).routes(start=payload['start'], stop=payload['stop'], departure=departure, availability=availability, max_walk=max_walk)
+            # Ranks are unique presentation positions, not comparable provider scores.
+            last_rank = max((r.get('rank', 0) for r in routing['routes'] if isinstance(r, dict) and type(r.get('rank')) is int), default=0)
+            for offset, route in enumerate(transit_routes, 1):
+                route['rank'] = last_rank + offset
+                routing['routes'].append(route)
+            routing.setdefault('provider_audit', {})['otp'] = transit_audit
+            routing['ordering_policy'] = 'existing_provider_order_then_otp_order_no_combined_utility'
+            provider_warnings.append('OTP alternatives retain independent provider order; their presentation positions and scores are not a combined utility ranking.')
+            if transit_routes:
+                provider_warnings.append('OTP transit geometry is approximate without shapes.txt. Waiting intervals and delays are retained as travel facts, not additional HOTCO forcing.')
+        except (OSError, ValueError, TypeError, KeyError) as exc:
+            routing.setdefault('provider_audit', {})['otp'] = {'provider': 'otp', 'status': 'UNAVAILABLE', 'reason': type(exc).__name__}
+            provider_warnings.append('OTP unavailable; existing routes retained. No transit itinerary was fabricated.')
+        # A successful OTP query with no matching itinerary is a valid search
+        # result. Preserve its rejection reasons so the UI can explain the
+        # walking limit, even if the independent routing provider failed.
+    # A missing provider option must not suppress another available travel mode.
+    # These paths have independent provider order and no imported utility score.
+    missing_modes = [mode for mode in ('walk', 'bike', 'car') if availability[mode]
+                     and not any(MODES.get(r.get('mode_key')) == mode and r.get('available') is True
+                                 and r.get('feasible') is not False for r in routing['routes'])]
+    geometry_audit = {}
+    if geometry_enabled and missing_modes:
+        def retrieve(mode):
+            try:
+                return mode, (geometry_client or GraphHopperGeometryClient()).path(mode, payload['start'], payload['stop']), None
+            except (OSError, ValueError, TypeError, KeyError) as exc:
+                return mode, None, type(exc).__name__
+        with ThreadPoolExecutor(max_workers=3) as pool:
+            for mode, path, failure in pool.map(retrieve, missing_modes):
+                geometry_audit[mode] = {'status': 'UNAVAILABLE' if failure else 'AVAILABLE', 'reason': failure}
+                if path:
+                    geometry_cache[mode] = path
+                    rank = max((r.get('rank', 0) for r in routing['routes'] if type(r.get('rank')) is int), default=0) + 1
+                    routing['routes'].append(independent_route(mode, path, rank))
+        routing['ordering_policy'] = 'independent_provider_order_no_combined_utility'
+    routing['provider_audit']['graphhopper'] = {
+        'provider': 'graphhopper', 'configured': geometry_enabled, 'modes': geometry_audit,
+    }
+    if routing_failure and not routing['routes'] and routing['provider_audit'].get('otp', {}).get('status') != 'NO_MATCHING_ITINERARIES':
+        raise routing_failure
     candidates, audit = [], []
     for route in routing["routes"]:
         if not isinstance(route, dict):
@@ -224,4 +287,4 @@ def run_routed_deliberation(payload, *, client=None, deliberate=None, geometry_c
             service = ContextualDeliberationService(provider=OrionQueryListProvider())
             contextual = service.deliberate(ContextualDeliberationRequest.from_dict(base)).to_dict()
     supplemental = any(c['source_metadata'].get('route_identity_verified') is False for c in candidates)
-    return {"schema_version": "routed-contextual-deliberation-v1", "search_id": search_id, "journey_availability": dict(availability), "availability_source": "current_journey_declaration" if "journey_availability" in payload else "confirmed_passport", "status": "contextual_complete" if candidates and len(candidates) == len(audit) else "contextual_partial" if candidates else "routing_only", "routing": routing, "route_audit": audit, "candidate_routes": candidates, "contextual_deliberation": contextual, "warnings": ["Routing utility and HOTCO modal readouts have different meanings; no combined route ranking is computed."] + (["Independent GraphHopper paths are supplemental same-mode candidates; identity with externally ranked routes is NOT verified. Their geometry and timing both come from GraphHopper."] if supplemental else []) + (["Some routes were excluded from contextual simulation; consult route_audit."] if len(candidates) != len(audit) else [])}
+    return {"schema_version": "routed-contextual-deliberation-v1", "search_id": search_id, "journey_availability": dict(availability), "availability_source": "current_journey_declaration" if "journey_availability" in payload else "confirmed_passport", "status": "contextual_complete" if candidates and len(candidates) == len(audit) else "contextual_partial" if candidates else "routing_only", "routing": routing, "route_audit": audit, "candidate_routes": candidates, "contextual_deliberation": contextual, "warnings": provider_warnings + ["Routing utility and HOTCO modal readouts have different meanings; no combined route ranking is computed."] + (["Independent GraphHopper paths are supplemental same-mode candidates; identity with externally ranked routes is NOT verified. Their geometry and timing both come from GraphHopper."] if supplemental else []) + (["Some routes were excluded from contextual simulation; consult route_audit."] if len(candidates) != len(audit) else [])}

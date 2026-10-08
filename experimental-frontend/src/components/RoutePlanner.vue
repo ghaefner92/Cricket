@@ -15,6 +15,7 @@ import {readActivePassport} from '../services/passportLifecycle.js'
 import {beginSearch,finishSearch,failSearch,addChoice,getSearch,addExplanation} from '../services/simulationHistory.js'
 import {readSettings,effectiveAvailability} from '../services/appSettings.js'
 import { routePayload, searchRoutes } from '../services/routePlanning.js'
+import {transitNotice} from '../services/transitStatus.js'
 import RouteRecommendations from './RouteRecommendations.vue'
 import PixelJourneyIcon from './PixelJourneyIcon.vue'
 import {recommendation} from '../services/routePresentation.js'
@@ -29,7 +30,11 @@ const props = defineProps({locale:{default:'en'},passport:{type:Object,required:
 const emit = defineEmits(['back','locale-change'])
 let storage; try { storage = localStorage } catch { storage = {getItem(){return null}} }
 const companion = ref(readCompanion(storage,{confirmed:true})),preferences=ref(readSettings(storage))
-function refreshPreferences(){preferences.value=readSettings(storage);companion.value=readCompanion(storage,{confirmed:true})}
+function refreshPreferences(){
+ const previousWalk=preferences.value.maxWalk
+ preferences.value=readSettings(storage);companion.value=readCompanion(storage,{confirmed:true})
+ if(preferences.value.maxWalk!==previousWalk)form.maxWalk=preferences.value.maxWalk
+}
 onMounted(()=>window.addEventListener('cricket-settings-change',refreshPreferences))
 onUnmounted(()=>window.removeEventListener('cricket-settings-change',refreshPreferences))
 const de = computed(() => props.locale === 'de')
@@ -38,6 +43,14 @@ const origin=ref(null),destination=ref(null),selected=ref(null)
 watch([origin,destination,()=>form.maxWalk],()=>{result.value=null;selected.value=null;chosen.value=null;savedChoice.value=null;saved.value=false;error.value=''})
 const historyWarning=ref(''),searchId=ref(null),choosing=ref(false)
 const busy = ref(false), result = ref(null), error = ref(''), resultHeading = ref(null)
+const transitStatus=computed(()=>transitNotice(result.value,props.locale))
+async function retryTransit(){
+ const limit=transitStatus.value?.retryLimit
+ if(!limit||busy.value||choosing.value)return
+ form.maxWalk=limit
+ await nextTick()
+ await search()
+}
 function refreshRecents(){recent.value=recentPlaces(storage)}
 onMounted(()=>window.addEventListener('cricket-recents-change',refreshRecents))
 onUnmounted(()=>window.removeEventListener('cricket-recents-change',refreshRecents))
@@ -320,7 +333,7 @@ function useMyLocation() {
      <p v-if="locationError" class="address-error" role="alert">{{locationErrorText}}</p>
      <p v-if="origin?.source==='geolocation'" class="route-note" role="status">{{de?'Standort als Start gesetzt.':'Location set as origin.'}} {{Number.isFinite(origin.accuracy_meters)?(de?'Genauigkeit: ca. ':'Accuracy: about ')+Math.ceil(origin.accuracy_meters)+' m.':''}} {{origin.accuracy_meters>100?(de?'Ungenauer Standort: Start auf der Karte prüfen.':'Approximate location: check the origin on the map.'):''}}</p>
      <div v-if="openJourneyPanel==='recent'" id="journey-recent-panel" class="journey-search-drawer" :aria-label="de?'Zuletzt verwendete Orte':'Recent places'"><RecentPlaces embedded :places="recent" :locale="locale" :target="recentTarget" :disabled="locating||busy||choosing" @target-change="recentTarget=$event" @select="useRecent" @clear="clearRecent"/><p v-if="!recent.length" class="route-note">{{de?'Noch keine gespeicherten Orte.':'No recent places yet.'}}</p></div>
-     <div v-if="openJourneyPanel==='preferences'" id="journey-preferences-panel" class="journey-search-drawer"><label class="route-walk-limit">{{de?'Maximale Gehstrecke (Meter)':'Maximum walking distance (metres)'}}<input v-model="form.maxWalk" type="number" min="0" max="10000" step="1" class="nes-input" :disabled="locating||busy||choosing" required/></label><p class="route-note">{{de?'Das Limit gilt für den Routendienst. Reine Fußwege können länger sein.':'This limit is sent to the route service. Walking-only paths may be longer.'}}</p></div>
+     <div v-if="openJourneyPanel==='preferences'" id="journey-preferences-panel" class="journey-search-drawer"><label class="route-walk-limit">{{de?'Maximale Gehstrecke (Meter)':'Maximum walking distance (metres)'}}<input v-model="form.maxWalk" type="number" min="0" max="10000" step="1" class="nes-input" :disabled="locating||busy||choosing" required/></label><p class="route-note">{{de?'Bei ÖPNV gilt das Limit für alle Fußwege zusammen, einschließlich Zugang, Umsteigen und Zielweg. Reine Fußwege können länger sein.':'For public transport, this limit covers all walking combined, including access, transfers and the final walk. Walking-only paths may be longer.'}}</p></div>
     </form>
    </template>
   </RouteMap>
@@ -331,6 +344,10 @@ function useMyLocation() {
   <section v-if="result" class="route-results" aria-labelledby="route-results-heading">
    <h2 id="route-results-heading" ref="resultHeading" tabindex="-1">{{de?'Deine Möglichkeiten':'Your options'}}</h2>
    <p v-if="result.journey_availability" class="route-note">{{de?'Verfügbar in dieser Simulation:':'Available in this simulation:'}} {{Object.entries(result.journey_availability).filter(([,available])=>available).map(([mode])=>modeLabel(mode)).join(' · ')}}</p>
+   <div v-if="transitStatus" class="nes-container route-status" role="status">
+    <p>{{transitStatus.message}}</p>
+    <button v-if="transitStatus.retryLimit" type="button" class="nes-btn" :disabled="busy||choosing" @click="retryTransit">{{de?`Mit ${transitStatus.retryLimit} m Gehlimit erneut suchen`:`Search again with a ${transitStatus.retryLimit} m walking limit`}}</button>
+   </div>
    <RouteRecommendations :chosen-id="savedChoice?`${savedChoice.route.rank}-${savedChoice.route.mode_key}`:null" :cards-visible="cardsVisible" :result="result" :passport="passport" :companion="companion" :locale="locale" :selected="selected" :paused="true" @select="selectFromCard" @choose="chooseJourney">
     
    </RouteRecommendations>

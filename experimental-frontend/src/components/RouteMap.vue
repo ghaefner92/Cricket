@@ -1,6 +1,7 @@
 <script setup>
 import {computed,nextTick,onMounted,onUnmounted,ref,watch} from 'vue'
 import {mapRoutes} from '../services/routeMap.js'
+import {modeGroups} from '../services/routePresentation.js'
 import PixelJourneyIcon from './PixelJourneyIcon.vue'
 import '../vendor/leaflet/leaflet.css'
 
@@ -16,12 +17,18 @@ const emit=defineEmits(['select'])
 const element=ref(null),failed=ref(false),tileError=ref(false)
 const ready=ref(false),expanded=ref(false)
 const de=computed(()=>props.locale==='de')
-const routes=computed(()=>mapRoutes(props.result).map(r=>({
+const routes=computed(()=>{
+ const visible=new Set(modeGroups(props.result).map(group=>{
+  const card=group.cards.find(c=>`${c.route.rank}-${c.route.mode_key}`===props.selected)||group.representative
+  return `${card.route.rank}-${card.route.mode_key}`
+ }))
+ return mapRoutes(props.result).filter(r=>visible.has(r.id)).map(r=>({
  ...r,
  summary:props.result?.routing?.routes?.find(
   a=>a.rank===r.rank&&a.mode_key===r.mode
  )?.summary
-})))
+}))
+})
 
 let L,map,lines,markers,observer,alive=true
 
@@ -59,10 +66,11 @@ function paint(fit=false){
 
  for(const r of ordered){
   const selected=props.selected===r.id
-  for(const path of r.paths){
+  for(const segment of r.segments){
+   const path=segment.path
    bounds.push(...path)
    const dim=props.selected&&!selected
-   const dash=r.supplemental?'9 5':null
+   const dash=segment.approximate?'4 7':r.supplemental?'9 5':segment.mode==='walk'&&r.mode==='pt'?'2 6':null
 
    L.polyline(path,{
     color:'#14213b',
@@ -73,14 +81,14 @@ function paint(fit=false){
    }).addTo(lines)
 
    const line=L.polyline(path,{
-    color:r.color,
+    color:segment.color,
     weight:selected?7:4,
     opacity:dim?0.45:1,
     dashArray:dash
    }).addTo(lines)
 
    line.bindTooltip(safeText(
-    `${r.rank}. ${mode(r.mode)}${r.supplemental
+    `${r.rank}. ${mode(segment.mode)}${segment.line?' · '+segment.line:''}${segment.approximate?(de.value?' · Ungefährer Verlauf':' · Approximate path'):''}${r.supplemental
      ? (de.value?' · Ergänzender Weg':' · Supplemental path')
      : ''}`
    ))

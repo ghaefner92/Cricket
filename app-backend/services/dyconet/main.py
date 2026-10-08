@@ -15,7 +15,14 @@ from __future__ import annotations
 import logging
 import os
 import threading
+from pathlib import Path
 from typing import Any, Dict, Mapping
+
+from dotenv import load_dotenv
+
+# Resolve local configuration independently of the launch directory.
+# Deployment environment variables take precedence over the local file.
+load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=False)
 
 from flask import Flask, jsonify, request
 from werkzeug.exceptions import BadRequest
@@ -212,6 +219,7 @@ def health() -> Any:
                 "longitudinal_estimated_to_observed_updates": True,
             },
             "runtime": "numpy/cpu",
+            "transit": {"provider": "otp", "configured": bool(os.environ.get("CRICKET_OTP_BASE_URL"))},
             "digital_companion": digital_companion_contract_status(),
             "orion": {
                 "mode": "public",

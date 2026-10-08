@@ -78,3 +78,20 @@ def supplemental_route(route, path):
         'metric_comparison': comparison, 'profile': path['profile'],
     }
     return result
+
+
+def independent_route(mode, path, rank):
+    """A complete GraphHopper option with its own metrics and provenance."""
+    summary = {name: path[name] for name in ('duration_seconds', 'distance_meters')}
+    summary['transfers'] = 0
+    return {
+        'mode_key': mode, 'rank': rank, 'available': True, 'feasible': True,
+        'provider': 'graphhopper', 'score': None, 'summary': summary,
+        'geometry': copy.deepcopy(path['geometry']),
+        'legs': [{'mode': mode, **summary, 'geometry': copy.deepcopy(path['geometry'])}],
+        '_geometry_evidence': {
+            'provider': 'graphhopper', 'geometry_provenance': 'GRAPHHOPPER_INDEPENDENT_PATH',
+            'route_identity_verified': True, 'candidate_kind': 'independent_mode_path',
+            'timing_source': 'graphhopper', 'profile': path['profile'],
+        },
+    }

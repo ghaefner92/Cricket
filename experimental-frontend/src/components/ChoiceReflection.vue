@@ -9,7 +9,7 @@ import PixelJourneyIcon from './PixelJourneyIcon.vue'
 import DialogueMoodIcon from './DialogueMoodIcon.vue'
 import {choiceReaction} from '../services/choiceReaction.js'
 import {reactionMeaning} from '../services/reactionMeaning.js'
-import {voicedStatements,voiceOpening} from '../services/choiceVoice.js'
+import {voicedStatements,voiceOpening,voiceQuestion,conversationalVoice} from '../services/choiceVoice.js'
 import {narrativeRows,dialoguePages,dialogueTokens,paragraphIcon} from '../services/dialoguePresentation.js'
 import {createDialogueReveal} from '../services/dialogueReveal.js'
 const props=defineProps({companion:{type:Object,required:true},locale:{default:'en'},reflection:Object,choiceCard:Object,busy:Boolean,error:Boolean,paused:Boolean,embedded:Boolean})
@@ -17,7 +17,13 @@ const emit=defineEmits(['retry']),headingId=useId()
 const de=computed(()=>props.locale==='de'),reducedMotion=ref(false),revealed=ref(0),page=ref(0),all=ref(false)
 const reaction=computed(()=>choiceReaction(props.reflection))
 const statements=computed(()=>voicedStatements(props.reflection))
-const narrative=computed(()=>narrativeRows(props.reflection,dialogueStatements(statements.value,props.choiceCard),voiceOpening(props.reflection)))
+const showDetails=ref(false)
+const modern=computed(()=>conversationalVoice(props.reflection))
+const completeNarrative=computed(()=>narrativeRows(props.reflection,dialogueStatements(statements.value,props.choiceCard),voiceOpening(props.reflection),voiceQuestion(props.reflection)))
+const briefRules=new Set(['GOALS_UNKNOWN','NO_CONTEXT_SIMULATION','INTERPRETATION_LIMIT','RELATIONS_INCLUDE_ESTIMATES'])
+const briefRow=row=>['opening','selection','affinities','tensions','comparison','reflection','uncertainty'].includes(row.section)||briefRules.has(row.rule)
+const narrative=computed(()=>!modern.value||showDetails.value?completeNarrative.value:completeNarrative.value.filter(briefRow))
+const hasDetails=computed(()=>modern.value&&completeNarrative.value.some(row=>!briefRow(row)))
 const choiceMode=computed(()=>{const mode=modelMode(props.choiceCard?.route?.mode_key);return (beliefMessages[props.locale]||beliefMessages.en).modes[mode]||mode})
 const pages=computed(()=>dialoguePages(narrative.value))
 const current=computed(()=>all.value?narrative.value:pages.value[Math.min(page.value,pages.value.length-1)])
@@ -26,9 +32,10 @@ const fullText=computed(()=>rows.value.map(row=>row.text).join(''))
 const typing=computed(()=>revealed.value<Array.from(fullText.value).length)
 const fragment=row=>Array.from(row.text).slice(0,Math.max(0,revealed.value-row.offset)).join('')
 const reveal=createDialogueReveal(n=>{revealed.value=n})
-watch(()=>props.reflection,()=>{page.value=0;all.value=false})
+watch(()=>props.reflection,()=>{page.value=0;all.value=false;showDetails.value=false})
 watch([fullText,()=>props.paused,reducedMotion],()=>reveal.start(fullText.value,!all.value&&!props.paused&&!reducedMotion.value),{immediate:true})
 function readAll(){all.value=true;reveal.showAll()}
+function toggleDetails(){showDetails.value=!showDetails.value;page.value=0;all.value=false}
 function next(){if(typing.value){reveal.showAll();return}if(page.value<pages.value.length-1)page.value++}
 let media
 function motionChanged(){reducedMotion.value=media.matches}
@@ -57,6 +64,7 @@ const modes=['car','bike','walk','pt']
      </p>
     </div>
     <nav class="dialogue-controls" :aria-label="de?'Dialog lesen':'Read dialogue'">
+     <button v-if="hasDetails" type="button" class="nes-btn" :aria-expanded="showDetails" @click="toggleDetails">{{showDetails?(de?'Kurze Erklärung':'Brief explanation'):(de?'Details der Simulation':'Simulation details')}}</button>
      <button v-if="typing" type="button" class="nes-btn" @click="reveal.showAll()">{{de?'Text anzeigen':'Show text'}}</button>
      <button v-if="!all&&page>0" type="button" class="nes-btn" @click="page--">← {{de?'Zurück':'Back'}}</button>
      <button v-if="!all&&page<pages.length-1" type="button" class="nes-btn is-primary" @click="next">{{de?'Weiter':'Continue'}} →</button>

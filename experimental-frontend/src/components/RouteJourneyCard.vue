@@ -3,16 +3,20 @@ import {computed} from 'vue'
 import CompanionAvatar from './CompanionAvatar.vue'
 import PixelJourneyIcon from './PixelJourneyIcon.vue'
 import WeatherInventory from './WeatherInventory.vue'
+import TransitJourney from './TransitJourney.vue'
 import {beliefMessages} from '../i18n/beliefs.js'
-import {ROUTE_COLORS} from '../services/routeMap.js'
+import {ROUTE_COLORS,mapRoutes} from '../services/routeMap.js'
+import {transitTiming} from '../services/transitPresentation.js'
 import {goalLinks} from '../services/routePresentation.js'
 import {explainRoute,modelMode} from '../services/routeExplanation.js'
 import {environmentalRows,finiteNumber} from '../services/routePlanning.js'
-const props=defineProps({card:{required:true},passport:{required:true},result:{required:true},companion:{required:true},locale:{default:'en'},primary:{type:Boolean,default:false},neutral:{type:Boolean,default:false},state:{default:'uncertain'},selected:{default:null},chosenId:{default:null},paused:{default:false}})
+const props=defineProps({card:{required:true},passport:{required:true},result:{required:true},companion:{required:true},locale:{default:'en'},primary:{type:Boolean,default:false},neutral:{type:Boolean,default:false},state:{default:'uncertain'},selected:{default:null},chosenId:{default:null},paused:{default:false},now:{default:()=>Date.now()}})
 const emit=defineEmits(['select','choose'])
 const de=computed(()=>props.locale==='de'),labels=computed(()=>beliefMessages[props.locale]||beliefMessages.en)
 const id=computed(()=>`${props.card.route.rank}-${props.card.route.mode_key}`)
 const mode=computed(()=>labels.value.modes[modelMode(props.card.route.mode_key)]||props.card.route.mode_key)
+const expired=computed(()=>transitTiming(props.card.route,props.now).expired)
+const hasMap=computed(()=>mapRoutes(props.result).some(r=>r.id===id.value))
 const explanation=computed(()=>explainRoute(props.card)),goals=computed(()=>goalLinks(props.passport,props.card.route.mode_key))
 const conditionLabels=computed(()=>de.value?{rain:'Regen',wind:'Wind',heat:'Hitze',cold:'Kälte',darkness:'Dunkelheit',traffic:'Verkehr',crowding:'Gedränge'}:{rain:'rain',wind:'wind',heat:'heat',cold:'cold',darkness:'darkness',traffic:'traffic',crowding:'crowding'})
 function number(v,d=2){return finiteNumber(v)?new Intl.NumberFormat(de.value?'de-DE':'en-GB',{maximumFractionDigits:d}).format(v):'—'}
@@ -28,6 +32,8 @@ const title=computed(()=>featured.value?(de.value?'Passt im Modell zu deinem Pro
    <span v-if="selected===id" class="route-state-badge">{{de?'Kartenvorschau':'Map preview'}}</span>
   </div>
   <div class="journey-metrics"><span><PixelJourneyIcon kind="clock" :animated="!paused"/>{{number(finiteNumber(card.route.summary?.duration_seconds)?card.route.summary.duration_seconds/60:null,1)}} min</span><span>{{number(finiteNumber(card.route.summary?.distance_meters)?card.route.summary.distance_meters/1000:null,2)}} km</span></div>
+  <TransitJourney v-if="card.route.provider==='otp'" :route="card.route" :locale="locale" :now="now"/>
+  <p v-if="card.route.provider==='graphhopper'" class="route-note">{{de?'Unabhängig berechneter Weg · Zeit und Strecke sind Schätzungen.':'Independently calculated route · time and distance are estimates.'}}</p>
   <p v-if="card.route.available===false">{{de?'Mit deiner angegebenen Ausstattung nicht verfügbar.':'Unavailable with your declared travel kit.'}}</p>
   <template v-else>
    <div v-if="!neutral" class="route-avatar-explanation journey-dialogue">
@@ -40,11 +46,10 @@ const title=computed(()=>featured.value?(de.value?'Passt im Modell zu deinem Pro
     </div>
    </div>
    <ul v-if="goals.length" class="journey-goals" :aria-label="de?'Verbundene Wochenprioritäten':'Linked weekly priorities'"><li v-for="g in goals" :key="g.name"><PixelJourneyIcon :kind="modelMode(card.route.mode_key)" :animated="false"/>{{labels.needs[g.name]||g.name}}</li></ul>
-   <h4 v-if="featured||neutral">{{de?'Dein Umweltinventar':'Your environment inventory'}}</h4>
-   <WeatherInventory v-if="featured||neutral" :compact="true" :candidate="card.candidate" :locale="locale" :animated="!paused"/>
-   <div class="journey-card-actions"><button type="button" class="nes-btn is-success" @click="emit('choose',card)">{{de?'Diesen Weg wählen':'Choose this journey'}}</button><button v-if="card.audit?.context_ready" type="button" class="nes-btn" :class="{'is-primary':selected!==id}" :aria-pressed="selected===id" @click="emit('select',id)">{{de?'Auf Karte ansehen':'View on map'}}</button></div>
+   <h4>{{de?'Wetter entlang dieses Weges':'Weather along this route'}}</h4>
+   <WeatherInventory :compact="true" :candidate="card.candidate" :locale="locale" :animated="!paused"/>
+   <div class="journey-card-actions"><button type="button" class="nes-btn is-success" :disabled="expired" @click="emit('choose',card)">{{de?'Diesen Weg wählen':'Choose this journey'}}</button><button v-if="hasMap" type="button" class="nes-btn" :class="{'is-primary':selected!==id}" :aria-pressed="selected===id" @click="emit('select',id)">{{de?'Auf Karte ansehen':'View on map'}}</button></div>
    <details class="route-details journey-why"><summary>{{de?'Warum diese Einordnung?':'Why this assessment?'}}</summary>
-    <WeatherInventory v-if="!featured&&!neutral" :candidate="card.candidate" :locale="locale" :animated="!paused"/>
     <p v-if="explanation.available">{{explanation.changes.length?(de?'Der Kontext verändert folgende Bedürfnisse: ':'Context changes these needs: ')+explanation.changes.map(([n])=>labels.needs[n]||n).join(', '):(de?'Die verfügbaren Kontextdaten erzeugen keine zusätzliche Bedürfnisaktivierung.':'Available context data add no need activation.')}}</p>
     <p>{{de?'Das Modell berücksichtigt deine Wochenprioritäten, deine Verbindungen zwischen Zielen und Verkehrsmitteln, deine affektiven Bewertungen im Profil und die aktuelle Verfügbarkeit. Die oben genannten Verbindungen beschreiben dein Profil; sie sind keine isolierten Ursachen der Empfehlung.':'The model uses your weekly priorities, goal–mode connections, affective ratings in your profile and current availability. The links shown above describe your profile; they are not isolated causes of the recommendation.'}}</p>
     <p v-if="featured">{{de?'Hervorgehoben wird der Modus, den alle verfügbaren Kontextauswertungen eindeutig bevorzugen. Verschiedene Wege desselben Modus sind damit nicht gegeneinander bewertet.':'The highlighted mode is the clear leader in every available context assessment. Different paths for the same mode are not ranked against each other by this rule.'}}</p>

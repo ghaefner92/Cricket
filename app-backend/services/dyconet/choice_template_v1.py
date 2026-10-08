@@ -116,13 +116,16 @@ def render_choice_template(evidence, *, language='en'):
      i,row=by_need[need]
      relevant.append((goal,need,points[goal],i,row))
    signs=set()
+   # Keep the brief explanation to two priorities in total, representing
+   # both support and opposition when both are present.
+   priority_limit=1 if {'SUPPORT','OPPOSITION'}.issubset({r[4]['relation'] for r in relevant}) else 2
    for relation,section in [('OPPOSITION','tensions'),('SUPPORT','affinities')]:
     selected=[r for r in relevant if r[4]['relation']==relation and finite(r[4]['signed_input_terminal'])
               and (r[4]['signed_input_terminal']<0 if relation=='OPPOSITION' else r[4]['signed_input_terminal']>0)]
     selected.sort(key=lambda r:(-r[2],-abs(r[4]['signed_input_terminal']),r[1]))
     if not selected:continue
     signs.add(relation)
-    selected=selected[:3];labels=', '.join(LABELS[language][r[1]] for r in selected)
+    selected=selected[:priority_limit];labels=', '.join(LABELS[language][r[1]] for r in selected)
     text=tr(f'The model represents tensions with these weekly priorities: {labels}.' if relation=='OPPOSITION' else f'The model represents support linked to these weekly priorities: {labels}.',
       f'Das Modell zeigt Spannungen mit diesen Wochenprioritäten: {labels}.' if relation=='OPPOSITION' else f'Das Modell zeigt Unterstützung im Zusammenhang mit diesen Wochenprioritäten: {labels}.',
       f'El modelo representa tensiones con estas prioridades semanales: {labels}.' if relation=='OPPOSITION' else f'El modelo representa apoyos relacionados con estas prioridades semanales: {labels}.')

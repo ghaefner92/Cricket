@@ -12,8 +12,17 @@ from choice_evidence_v1 import digest
 
 MODEL = 'openai/gpt-oss-120b'
 SCHEMA = 'cricket-choice-voice-v1'
-PROMPT_VERSION = 'choice-voice-selector-1.0'
+PROMPT_VERSION = 'choice-voice-selector-1.1'
 WORDING = json.loads(Path(__file__).with_name('choice_wording_v1.json').read_text(encoding='utf-8'))
+
+
+def conversation_options(template):
+    rules = {s['rule'] for s in template['statements']}
+    tone = ('uncertain' if rules & {'GOALS_UNKNOWN', 'NO_CONTEXT_SIMULATION'} else
+            'reflective' if rules & {'GOALS_OPPOSITION', 'DIFFERENT_CLEAR', 'CHOICE_BELOW_AMBIGUOUS_PAIR'} else 'warm')
+    questions = [q for q in WORDING['questions'][template['language']]
+                 if set(q['requires']).issubset(rules)]
+    return tone, questions
 
 
 def catalog(template):
@@ -27,7 +36,9 @@ def catalog(template):
         if replacement and s['text'].startswith(replacement[0]):
             options.append(replacement[1] + s['text'][len(replacement[0]):])
         result.append({'id': s['id'], 'section': s['section'], 'options': options})
-    return {'language': language, 'criteria': template['criteria'],
+    tone, questions = conversation_options(template)
+    return {'language': language, 'criteria': template['criteria'], 'tone': tone,
+            'opening_indices': WORDING['tones'][tone], 'questions': questions,
             'openings': WORDING['openings'][language], 'statements': result}
 
 
@@ -35,18 +46,22 @@ def selection_schema(prompt):
     variants = {s['id']: {'type': 'integer', 'enum': list(range(len(s['options'])))}
                 for s in prompt['statements']}
     return {'type': 'object', 'properties': {
-        'opening': {'type': 'integer', 'enum': list(range(len(prompt['openings'])))},
+        'opening': {'type': 'integer', 'enum': prompt['opening_indices']},
+        'tone': {'type': 'string', 'enum': [prompt['tone']]},
+        'question': {'type': 'string', 'enum': [q['id'] for q in prompt['questions']]},
         'emphasis': {'type': 'string', 'enum': ['affinities', 'tensions']},
         'variants': {'type': 'object', 'properties': variants,
                      'required': list(variants), 'additionalProperties': False}},
-        'required': ['opening', 'emphasis', 'variants'], 'additionalProperties': False}
+        'required': ['opening', 'emphasis', 'variants', 'tone', 'question'], 'additionalProperties': False}
 
 
 def validate_selection(value, prompt):
-    if not isinstance(value, dict) or set(value) != {'opening', 'emphasis', 'variants'}:
+    if not isinstance(value, dict) or set(value) != {'opening', 'emphasis', 'variants', 'tone', 'question'}:
         raise ValueError('selection keys')
-    if type(value['opening']) is not int or value['opening'] not in range(len(prompt['openings'])):
+    if type(value['opening']) is not int or value['opening'] not in prompt['opening_indices']:
         raise ValueError('opening')
+    if value['tone'] != prompt['tone'] or value['question'] not in {q['id'] for q in prompt['questions']}:
+        raise ValueError('conversation context')
     if value['emphasis'] not in ('affinities', 'tensions'):
         raise ValueError('emphasis')
     variants = value['variants']
@@ -71,6 +86,13 @@ def provider_selection(prompt, api_key):
             messages=[{'role': 'system', 'content': (
                 'You are the voice editor for a digital travelling companion. '
                 'Select natural, warm wording for this saved choice, using only the supplied options. '
+                'Speak directly to the user as a supportive companion, using their stated weekly priorities. '
+                'Recognize the choice, connect it to priorities, then acknowledge trade-offs without blame. '
+                'Use the supplied tone and a compatible opening. Choose at most one optional reflection question. '
+                'A question invites reflection; it is not a claim about the user’s motives. '
+                'Prefer clear everyday language. Do not praise compliance or express disappointment. '
+                'Emoji are already included in reviewed options; never invent or add text. '
+                'Do not claim actual emotions, completed goals, causal benefits or certainty beyond the simulation. '
                 'The simulation criteria are authoritative; do not judge the user or choose another route. '
                 'Use every statement exactly once, including uncertainty and interpretation limits. '
                 'Choose whether supporting priorities or tensions should be presented first. '

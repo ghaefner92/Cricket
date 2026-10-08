@@ -18,13 +18,14 @@ export function dialogueTokens(text,row={}){
  if(end<text.length)tokens.push({kind:'text',text:text.slice(end)})
  return tokens
 }
-export function narrativeRows(reflection,statements,opening=''){
+export function narrativeRows(reflection,statements,opening='',question=''){
  const preference=reflection?.narration?.selection?.emphasis
  const order=['selection',...(preference==='tensions'?['tensions','affinities']:['affinities','tensions']),'balance','comparison','observations','context','evolution','uncertainty','model_detail']
  const rows=opening?[{id:'opening',rule:'OPENING',section:'opening',text:opening}]:[]
  for(const section of order)rows.push(...statements.filter(row=>row.section===section))
  // Preserve every statement even if an older record uses another section.
  rows.push(...statements.filter(row=>!order.includes(row.section)))
+ if(question)rows.push({id:'reflection-question',rule:'REFLECTION_QUESTION',section:'reflection',text:question})
  return rows
 }
 export function dialoguePages(rows,limit=850){
@@ -34,6 +35,7 @@ export function dialoguePages(rows,limit=850){
  return pages.length?pages:[[]]
 }
 export function paragraphIcon(row){
+ if(row.section==='reflection')return null // The reviewed question already contains its emoji.
  if(row.rule==='OBSERVED_temperature')return 'temperature'
  if(row.rule==='OBSERVED_rain')return 'rain'
  if(row.rule==='OBSERVED_windSpeed')return 'wind'

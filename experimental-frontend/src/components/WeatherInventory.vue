@@ -2,16 +2,30 @@
 import {computed} from 'vue'
 import {explainRoute} from '../services/routeExplanation.js'
 import PixelJourneyIcon from './PixelJourneyIcon.vue'
-import {weatherTiles} from '../services/routePresentation.js'
+import {weatherTiles,weatherInfo} from '../services/routePresentation.js'
 const props=defineProps({candidate:{default:null},locale:{default:'en'},animated:{default:true},compact:{default:false},dialogue:Boolean})
 const de=computed(()=>props.locale==='de'),tiles=computed(()=>weatherTiles(props.candidate))
 const names=computed(()=>de.value?{temperature:'Temperatur',humidity:'Luftfeuchtigkeit',rain:'Regen',windSpeed:'Wind',windGust:'Windböen',uvIndex:'UV-Index',lightIntensity:'Licht'}:{temperature:'Temperature',humidity:'Humidity',rain:'Rain',windSpeed:'Wind',windGust:'Wind gust',uvIndex:'UV index',lightIntensity:'Light'})
 const visibleTiles=computed(()=>props.compact?tiles.value.filter(t=>['temperature','rain','windSpeed'].includes(t.variable)):tiles.value)
 const icons={temperature:'temperature',humidity:'humidity',rain:'rain',windSpeed:'wind',windGust:'wind',uvIndex:'sun',lightIntensity:'sun'}
+const info=computed(()=>weatherInfo(props.candidate))
+const statusText=computed(()=>({
+ AVAILABLE:de.value?'Orion · verfügbare Messwerte':'Orion · available observations',
+ NO_CONTEXT:de.value?'Für diesen Weg fehlen Umweltmesswerte.':'Environmental readings are unavailable for this route.',
+ UNAVAILABLE:de.value?'Orion ist derzeit nicht erreichbar.':'Orion is currently unavailable.',
+ MALFORMED:de.value?'Die Wetterantwort konnte nicht ausgewertet werden.':'The weather response could not be interpreted.',
+ EMPTY:de.value?'Keine Wetterstation im abgefragten Bereich gefunden.':'No weather station was found in the queried area.',
+ UNUSABLE:de.value?'Die gelieferten Wetterwerte sind nicht verwendbar.':'The returned weather readings are not usable.',
+ NOT_QUERIED:de.value?'Für diese gespeicherte Suche sind keine Orion-Wetterwerte vorhanden.':'This saved search contains no Orion weather observations.'
+})[info.value.status])
+function measuredAt(timestamp){return new Intl.DateTimeFormat(props.locale,{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Berlin'}).format(new Date(timestamp))}
 function value(t){const fmt=n=>new Intl.NumberFormat(de.value?'de-DE':'en-GB',{maximumFractionDigits:2}).format(n);return t.min===t.max?fmt(t.min):`${fmt(t.min)}–${fmt(t.max)}`}
 </script>
 <template>
  <section class="weather-inventory" :class="{'weather-inventory--dialogue':dialogue}" :aria-label="de?'Umweltdaten':'Environmental data'">
+  <p class="route-note" role="status">{{statusText}}</p>
+  <p v-if="info.timestamps.length" class="route-note">{{de?'Gemessen:':'Measured:'}} {{measuredAt(info.timestamps[0])}}<template v-if="info.timestamps.length>1"> – {{measuredAt(info.timestamps.at(-1))}}</template></p>
+  <p v-if="info.status==='AVAILABLE'&&!dialogue" class="route-note">{{de?'Messwerte dieser Suche; keine Vorhersage für spätere Abfahrten.':'Observations from this search; not a forecast for later departures.'}}</p>
   <ul><li v-for="t in visibleTiles" :key="t.variable" class="weather-item" :class="{'weather-item--unknown':!t.known}"><PixelJourneyIcon :kind="icons[t.variable]" :animated="animated&&t.known"/><span>{{names[t.variable]}}</span><strong>{{t.known?`${value(t)} ${t.unit}`:(de?'Keine Daten':'No data')}}</strong></li></ul>
   <details v-if="compact&&!dialogue" class="journey-weather-more"><summary>{{de?'Weitere Umweltwerte':'More environmental readings'}}</summary><WeatherInventory :candidate="candidate" :locale="locale" :animated="animated"/></details>
   <p v-if="!dialogue&&explainRoute({candidate}).measurementAgeUnknown" class="route-note">{{de?'Aktualität der Messungen nicht bestätigt.':'Reading freshness is unverified.'}}</p>
