@@ -2,6 +2,8 @@
 import {computed,nextTick,onMounted,onUnmounted,ref,watch} from 'vue'
 import {mapRoutes} from '../services/routeMap.js'
 import {modeGroups} from '../services/routePresentation.js'
+import {isNative} from '../services/nativePlatform.js'
+import {nativeMapTiles} from '../services/nativeMapTiles.js'
 import PixelJourneyIcon from './PixelJourneyIcon.vue'
 import '../vendor/leaflet/leaflet.css'
 
@@ -11,7 +13,8 @@ const props=defineProps({
  destination:{default:null},
  locale:{default:'en'},
  selected:{default:null},
- chosenId:{default:null}
+ chosenId:{default:null},
+ showMap:{type:Boolean,default:true}
 })
 const emit=defineEmits(['select'])
 const element=ref(null),failed=ref(false),tileError=ref(false)
@@ -30,7 +33,7 @@ const routes=computed(()=>{
 }))
 })
 
-let L,map,lines,markers,observer,alive=true
+let L,map,tiles,lines,markers,observer,alive=true
 
 function mode(key){
  return (de.value
@@ -132,16 +135,15 @@ onMounted(async()=>{
    zoomControl:false
   }).setView([52.13,11.63],13)
 
-  L.tileLayer(
-   import.meta.env.VITE_MAP_TILE_URL||
-   'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-   {
+  const tileOptions={
     maxZoom:19,
     attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
    }
-  ).on('tileerror',()=>{
+  tiles=(isNative()?nativeMapTiles(L,tileOptions):L.tileLayer(
+   import.meta.env.VITE_MAP_TILE_URL||'https://tile.openstreetmap.org/{z}/{x}/{y}.png',tileOptions
+  )).on('tileerror',()=>{
    if(alive)tileError.value=true
-  }).addTo(map)
+  })
 
   lines=L.layerGroup().addTo(map)
   markers=L.layerGroup().addTo(map)
@@ -152,6 +154,7 @@ onMounted(async()=>{
   await nextTick()
   paint(true)
   fitSelected()
+  if(props.showMap)tiles.addTo(map)
  }catch{
   if(alive)failed.value=true
  }
@@ -164,6 +167,12 @@ watch(
 )
 watch(()=>props.selected,()=>{paint(false);fitSelected()})
 watch(()=>props.locale,()=>paint(false))
+watch(()=>props.showMap,async visible=>{
+ if(!visible){expanded.value=false;if(map&&tiles)map.removeLayer(tiles);return}
+ await nextTick()
+ map?.invalidateSize({pan:false});paint(true);fitSelected()
+ if(map&&tiles&&!map.hasLayer(tiles)){tileError.value=false;tiles.addTo(map)}
+})
 
 onUnmounted(()=>{
  alive=false
@@ -205,9 +214,10 @@ defineExpose({focusMap})
  <section
   class="nes-container route-map-panel journey-map-v2"
   :class="{'journey-map-expanded':expanded}"
-  aria-labelledby="route-map-heading"
+  :aria-labelledby="showMap?'route-map-heading':undefined"
+  :aria-label="showMap?undefined:(de?'Reisesuche':'Journey search')"
  >
-  <header class="route-map-heading">
+  <header v-show="showMap" class="route-map-heading">
    <h2 id="route-map-heading">
     {{de?'Dein Reiseplan':'Your journey map'}}
    </h2>
@@ -224,6 +234,7 @@ defineExpose({focusMap})
 
   </slot>
 
+  <div v-show="showMap" class="journey-map-content">
   <div class="journey-map-tools" role="group" :aria-label="de?'Kartensteuerung':'Map controls'">
    <button class="nes-btn" type="button" :disabled="!ready" @click="zoom(1)" :aria-label="de?'Hineinzoomen':'Zoom in'">+</button>
    <button class="nes-btn" type="button" :disabled="!ready" @click="zoom(-1)" :aria-label="de?'Herauszoomen':'Zoom out'">−</button>
@@ -280,6 +291,7 @@ defineExpose({focusMap})
   <p v-else-if="!result" class="route-note">
    {{de?'Wähle Start und Ziel. Wege erscheinen nach der Routensuche.':'Choose origin and destination. Paths appear after searching.'}}
   </p>
+  </div>
  </section>
 </template>
 

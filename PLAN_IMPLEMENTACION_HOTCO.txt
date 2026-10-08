@@ -1,0 +1,190 @@
+PLAN DE IMPLEMENTACIÓN PARA CRICKET
+HOTCO sin F3 y con creencias contextuales y aprendizaje bayesiano
+Fecha: 8 de octubre de 2026
+
+ESTADO DE REFERENCIA
+El estado previo a estos cambios está guardado en el commit a50d77c,
+subido a origin/main: https://github.com/ghaefner92/Cricket/commit/a50d77c
+Este documento describe trabajo propuesto; no implica que esté implementado.
+
+OBJETIVO
+Conservar el solver de HOTCO, sustituir F3 como fuerza ambiental sobre las
+necesidades por creencias contextuales y añadir aprendizaje entre viajes.
+
+Flujo propuesto:
+Pasaporte + routing/OTP + Orion
+    -> expectativas contextuales y contribuciones estimadas
+    -> conexiones para la deliberación HOTCO sin perturbación F3
+    -> recomendación y explicación
+    -> viaje confirmado y feedback
+    -> actualización bayesiana para decisiones posteriores.
+
+1. DEFINIR EL CONTRATO DEL NUEVO MODELO
+
+Separar cuatro elementos:
+- Metas y valencias declaradas: conservarlas; cambios mediante revisión del usuario.
+- Creencias declaradas: punto de partida del aprendizaje.
+- Creencias aprendidas: estimaciones con incertidumbre y procedencia.
+- Consecuencias estimadas: tiempo, distancia y CO2e, identificadas como datos
+  o estimaciones del sistema.
+
+Versionar el modelo y cada actualización para explicar y revertir cambios.
+Conservar las declaraciones originales separadas de las estimaciones aprendidas.
+Las prioridades almacenadas no cambian automáticamente por una elección.
+Las activaciones internas de las necesidades pueden evolucionar en el solver.
+
+2. CONSTRUIR LAS CARACTERÍSTICAS DE CADA ITINERARIO
+
+Crear un módulo que reúna:
+- Duración total y hora de llegada.
+- Distancia y minutos caminando o pedaleando, incluidos accesos al transporte público.
+- Esperas, transbordos y márgenes de conexión disponibles.
+- Meteorología y exposición exterior identificable.
+- Fuente y calidad de cada dato.
+
+Contrato de Orion acordado con el usuario:
+Orion entrega condiciones meteorológicas actuales, aunque no incluya timestamp.
+Guardar la hora de consulta y conservar el timestamp del sensor cuando exista.
+Identificar cuándo la referencia temporal procede de la consulta.
+Para salidas posteriores, actualizar la consulta cerca de la salida.
+La lectura actual describe el presente; no es una previsión.
+
+No inferir tráfico ni aglomeración: quedan como desconocidos.
+No asumir que toda espera está protegida ni que todo el viaje está al aire libre.
+
+3. AÑADIR ESTIMACIONES DE CO2 EQUIVALENTE
+
+Calcular por tramo: distancia en km x factor medio por persona y km.
+Sumar los tramos del itinerario, distinguiendo autobús, tranvía y tren.
+
+Factores iniciales de referencia de Alemania, año 2024:
+- Coche: 164 g CO2e/persona-km; ocupación media de 1,4 personas.
+- Autobús urbano: 90 g CO2e/persona-km.
+- Tranvía/metro: 42 g CO2e/persona-km.
+- Tren regional: 44 g CO2e/persona-km.
+
+Fuente: Umweltbundesamt, TREMOD.
+https://www.umweltbundesamt.de/system/files/medien/366/bilder/dateien/vtv_2024_pv_tab_pdf.pdf
+
+Guardar factor, fuente, año, emisiones por persona y supuestos.
+Los factores incluyen suministro energético; no representan el ciclo de vida completo.
+Caminar y bicicleta convencional: cero emisiones de propulsión durante el trayecto.
+Personalizar vehículo y ocupantes posteriormente, de forma opcional.
+
+Mostrar "Emisiones estimadas por persona" en las tarjetas.
+Definir y validar por separado la conversión a contribución ambiental en HOTCO.
+Evitar duplicarla con la creencia ambiental inicial.
+
+4. IMPLEMENTAR EL MODELO BAYESIANO
+
+Crear una capa independiente del solver:
+Creencia inicial + características del itinerario -> expectativa e incertidumbre.
+
+Comenzar con pocas variables para:
+- Comodidad: esfuerzo, esperas, transbordos y exposición meteorológica.
+- Rapidez: duración completa y llegada prevista.
+- Actividad física: minutos caminando o pedaleando y adecuación personal.
+- Fiabilidad: márgenes de conexión, retrasos disponibles y experiencias pertinentes.
+
+Una duración estimada o un horario publicado no demuestra fiabilidad.
+Las relaciones sin información suficiente conservan su punto de partida.
+No inferir riesgo de delito por oscuridad, ni infecciones por usar transporte público.
+
+Las cuatro preguntas adaptativas de creencias aportan información inicial.
+Las creencias estimadas conservan mayor incertidumbre que las respuestas directas.
+Las tolerancias a lluvia, calor, frío, viento, oscuridad, aglomeración y tráfico
+pasan a ser opcionales y orientan parámetros iniciales.
+Omitir una respuesta significa desconocimiento, no tolerancia media.
+No aplicar esas tolerancias también como penalización fija mediante F3.
+
+Guardar distribuciones de parámetros y procedencia de la evidencia.
+Definir la transformación a la escala de creencias de HOTCO, de -1 a +1.
+Validar su correspondencia con las respuestas personales.
+
+5. INTEGRAR CON HOTCO Y RETIRAR F3
+
+Modificar la orquestación en app-backend/services/dyconet/contextual_deliberation.py:
+1) Construir las creencias contextuales.
+2) Entregar su matriz al solver.
+3) Ejecutar HOTCO sin perturbación F3.
+4) Registrar conexiones modificadas, motivos e incertidumbre.
+
+Conservar inicialmente las ecuaciones del solver y los nodos de modos.
+Evaluar varias matrices plausibles para conocer la robustez de la recomendación.
+El feedback emocional no se confunde con comodidad o fiabilidad.
+
+Limitación inicial:
+Las simulaciones siguen siendo por ruta y comparan modos.
+Sus resultados separados no constituyen automáticamente un ranking de itinerarios.
+Comparar directamente itinerarios en una sola deliberación sería una ampliación
+posterior de la estructura de acciones y requeriría validación adicional.
+
+6. AÑADIR EXPERIENCIA Y APRENDIZAJE
+
+Ampliar el historial con:
+- Itinerario seleccionado y alternativas mostradas.
+- Recomendación que vio el usuario.
+- Confirmación de realización y posibles cambios de ruta.
+- Contexto consultado.
+- Feedback específico por necesidad.
+- Revisión del modelo antes y después del aprendizaje.
+
+Preguntas propuestas:
+- "¿Realizaste este viaje?" Sí, como estaba previsto / Sí, con cambios / No.
+- "¿Qué tan cómodo te resultó?" u otra pregunta pertinente a una necesidad.
+- Ocasionalmente: "¿Cambió lo que esperas de viajes similares?"
+- Motivo de elección opcional: "¿Qué pesó más para elegir esta opción hoy?"
+
+La selección sola no actualiza las creencias como experiencia.
+Una valoración global no actualiza indiscriminadamente todos los vínculos.
+La experiencia y la expectativa personal se registran por separado.
+El feedback puede omitirse sin modificar el perfil.
+Evitar procesar dos veces la misma evidencia.
+Generalizar a otros itinerarios mediante características compartidas y evidencia;
+las alternativas no utilizadas conservan incertidumbre.
+
+7. ADAPTAR LAS EXPLICACIONES
+
+Distinguir en la interfaz:
+- Prioridad: "Quieres favorecer la actividad física".
+- Consecuencia estimada: "Esta ruta incluye 12 minutos caminando".
+- Expectativa aprendida: "En viajes similares, esa caminata te ha resultado cómoda".
+- Incertidumbre: "Todavía tengo poca experiencia para estimarlo".
+
+Groq recibe evidencia estructurada para narrar; no decide actualizaciones del modelo.
+El usuario puede revisar y corregir lo aprendido.
+
+8. VALIDAR Y ACTIVAR GRADUALMENTE
+
+Primero ejecutar el nuevo modelo en paralelo, conservando las recomendaciones actuales.
+Evaluar:
+- Actualizaciones correctas, sin doble conteo ni cambios implícitos de metas.
+- Predicciones sobre viajes posteriores, respetando el orden temporal.
+- Incertidumbre razonable cuando faltan datos.
+- Interpretaciones reconocidas y corregibles por el usuario.
+- Utilidad frente al pasaporte estático y una actualización sencilla.
+- Carga de preguntas aceptable.
+
+Aceptar más recomendaciones no basta para demostrar una mejora.
+El compañero influye en las elecciones; registrar esa influencia.
+La cantidad de usuarios y viajes se define según variabilidad y mejora a detectar.
+
+Activar el nuevo flujo sin F3 cuando cumpla los criterios acordados,
+conservando la posibilidad de volver al modelo anterior.
+La validación descrita es trabajo futuro de esta implementación.
+
+ORDEN DE TRABAJO
+
+Contrato y versionado
+    -> características y CO2e
+    -> modelo bayesiano
+    -> integración HOTCO
+    -> feedback e historial
+    -> explicaciones
+    -> validación y activación.
+
+ENTREGABLES
+
+Primero: deliberación sin F3 con creencias contextuales trazables.
+Segundo: aprendizaje persistente a partir de experiencias confirmadas.
+Posteriormente: evaluación de una deliberación conjunta entre itinerarios.

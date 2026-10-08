@@ -1,4 +1,5 @@
 import {validVoice} from './choiceVoice.js'
+import {apiFetch} from './apiTransport.js'
 export function confirmedSnapshot(storage,record){
  const snapshot=record.confirmed_snapshot
  if(snapshot)return snapshot
@@ -26,7 +27,7 @@ export function validReflection(value,record,index,language){
 export async function requestReflection(record,index,snapshot,language,signal){
  const timeout=new AbortController(),timer=setTimeout(()=>timeout.abort(),20000)
  try{
-  const response=await fetch('/api/dyconet/choice-explanation',{method:'POST',
+  const response=await apiFetch('/api/dyconet/choice-explanation',{method:'POST',
    headers:{'Content-Type':'application/json'},signal:signal?AbortSignal.any([signal,timeout.signal]):timeout.signal,
    body:JSON.stringify({record,choice_index:index,confirmed_snapshot:snapshot,language})})
   if(!response.ok)throw Error('reflection')

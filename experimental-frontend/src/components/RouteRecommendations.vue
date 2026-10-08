@@ -1,5 +1,7 @@
 <script setup>
 import {computed,watch,nextTick,ref,onMounted,onUnmounted} from 'vue'
+import {useCompactLayout} from '../services/useCompactLayout.js'
+import PixelJourneyIcon from './PixelJourneyIcon.vue'
 import RouteJourneyCard from './RouteJourneyCard.vue'
 import {beliefMessages} from '../i18n/beliefs.js'
 import {modelMode} from '../services/routeExplanation.js'
@@ -8,6 +10,7 @@ import {recommendationMessage} from '../services/recommendationMessaging.js'
 import {clockText,transitTiming} from '../services/transitPresentation.js'
 const props=defineProps({result:{required:true},passport:{required:true},companion:{required:true},locale:{default:'en'},selected:{default:null},paused:{default:false},cardsVisible:{default:true},chosenId:{default:null}})
 const emit=defineEmits(['select','choose'])
+const compact=useCompactLayout(),activeMode=ref(null)
 const now=ref(Date.now()),active=ref({}),expanded=ref({})
 let timer
 onMounted(()=>{timer=setInterval(()=>{now.value=Date.now()},15000)})
@@ -19,6 +22,7 @@ const message=computed(()=>recommendationMessage(view.value,props.locale,mode(vi
 const groups=computed(()=>modeGroups(props.result,now.value).map(group=>({
  ...group,card:group.cards.find(c=>id(c)===active.value[group.mode])||group.representative
 })).sort((a,b)=>Number(b.mode===view.value.winner)-Number(a.mode===view.value.winner)))
+const currentMode=computed(()=>groups.value.some(g=>g.mode===activeMode.value)?activeMode.value:groups.value[0]?.mode)
 const missingModes=computed(()=>Object.entries(props.result.journey_availability||{}).filter(([m,available])=>available&&!view.value.cards.some(c=>modelMode(c.route.mode_key)===m&&c.route.available===true)).map(([m])=>m))
 const providerWarnings=computed(()=>{
  const audit=props.result.routing?.provider_audit||{},messages=[]
@@ -26,11 +30,11 @@ const providerWarnings=computed(()=>{
  if(audit.otp?.later_departures?.status==='UNAVAILABLE')messages.push(de.value?'Weitere Abfahrten konnten nicht geladen werden. Die angezeigten Verbindungen bleiben verfügbar.':'Later departures could not be loaded. The returned connections remain available.')
  return messages
 })
-watch(()=>props.result,()=>{active.value={};expanded.value={}})
+watch(()=>props.result,()=>{active.value={};expanded.value={};activeMode.value=null})
 watch(()=>props.selected,async selected=>{
  if(!selected)return
  const group=groups.value.find(g=>g.cards.some(c=>id(c)===selected))
- if(group)active.value={...active.value,[group.mode]:selected}
+ if(group){active.value={...active.value,[group.mode]:selected};activeMode.value=group.mode}
  await nextTick()
 },{immediate:true})
 function preview(group,card){active.value={...active.value,[group.mode]:id(card)};emit('select',id(card))}
@@ -43,8 +47,11 @@ function minutes(value){return Number.isFinite(value)?new Intl.NumberFormat(prop
   <p v-for="warning in providerWarnings" :key="warning" v-show="cardsVisible" class="route-note" role="status">{{warning}}</p>
   <p v-for="m in missingModes" :key="m" v-show="cardsVisible" class="route-note" role="status">{{de?`Für ${mode(m)} wurde kein passender Weg zurückgegeben. Andere Möglichkeiten bleiben verfügbar.`:`No matching ${mode(m).toLowerCase()} route was returned. Other options remain available.`}}</p>
   <slot name="map"/>
+  <nav v-show="cardsVisible" class="mobile-mode-tabs" :aria-label="de?'Verkehrsmittel vergleichen':'Compare transport modes'">
+   <button v-for="group in groups" :key="group.mode" type="button" class="nes-btn" :class="{'is-primary':currentMode===group.mode}" :aria-pressed="currentMode===group.mode" :aria-controls="`journey-mode-${group.mode}`" @click="activeMode=group.mode"><PixelJourneyIcon :kind="group.mode==='foot'?'walk':group.mode" :animated="false"/><span>{{mode(group.mode)}}</span></button>
+  </nav>
   <div v-show="cardsVisible" class="journey-mode-options">
-   <section v-for="group in groups" :key="group.mode" class="journey-mode-group">
+   <section v-for="group in groups" :key="group.mode" v-show="!compact||currentMode===group.mode" :id="`journey-mode-${group.mode}`" class="journey-mode-group">
     <p v-if="group.mode==='pt'" class="route-note">{{group.card!==group.representative?(de?'Gewählte Verbindungsvorschau · Fußweg zur Haltestelle eingeschlossen':'Selected connection preview · includes the walk to the stop'):(de?'Nächste erreichbare Verbindung · Fußweg zur Haltestelle eingeschlossen':'Next reachable connection · includes the walk to the stop')}}</p>
     <RouteJourneyCard :card="group.card" :passport="passport" :result="result" :companion="companion" :locale="locale" :primary="view.state==='clear'&&group.mode===view.winner" :neutral="view.state!=='clear'" :state="view.state" :selected="selected" :chosen-id="chosenId" :paused="paused" :now="now" @select="emit('select',$event)" @choose="emit('choose',$event)"/>
     <details v-if="group.mode==='pt'&&group.cards.length>1" class="journey-departures" :open="expanded[group.mode]" @toggle="expanded[group.mode]=$event.target.open">

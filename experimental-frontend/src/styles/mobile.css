@@ -1,0 +1,34 @@
+/* Preserve the pixel artwork and type; change the mobile navigation and spacing. */
+.mobile-goal-navigation,.mobile-goal-tabs,.mobile-mode-tabs,.mobile-route-views{display:none}
+.mobile-search-disclosure>summary{cursor:pointer;min-height:44px;color:#ffda83}
+@media(min-width:701px){.mobile-search-disclosure[open]>summary{display:none}}
+html.cricket-native body{
+ padding-top:var(--safe-area-inset-top,env(safe-area-inset-top,0px));
+ padding-bottom:var(--safe-area-inset-bottom,env(safe-area-inset-bottom,0px));
+}
+html.cricket-native body #app .rpg-shell{padding-bottom:0;min-height:calc(100dvh - var(--safe-area-inset-top,0px) - var(--safe-area-inset-bottom,0px))}
+@media(max-width:700px){
+ html body #app .weekly-goals,html body #app .route-page{padding-left:14px;padding-right:14px;min-width:0}
+ html body #app .nes-container{min-width:0}
+ html body #app .weekly-goals .budget-panel{position:sticky;top:var(--safe-area-inset-top,0px);z-index:12;padding:12px;margin:12px 0;background:#15213c}
+ html body #app .budget-details{gap:8px}
+ html body #app .budget-details p{margin:0}
+ html body #app .budget-panel progress{height:12px;margin:8px 0}
+ html body #app .budget-caption{margin:6px 0 0}
+ html body #app .mobile-goal-tabs,html body #app .mobile-route-views{display:flex;gap:8px;margin:16px 0}
+ html body #app .mobile-goal-tabs button,html body #app .mobile-route-views button{flex:1;min-width:0;min-height:44px;padding:8px 6px;font-size:9px!important;line-height:1.8}
+ html body #app .mobile-goal-navigation{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+ html body #app .mobile-goal-navigation button{min-width:44px;min-height:44px}
+ html body #app .mobile-goal-navigation span{font-size:10px;color:#ffda83}
+ html body #app .mission-layout{gap:14px;grid-template-columns:minmax(0,1fr)}
+ html body #app .mission-detail,html body #app .mission-menu,html body #app .mission-summary{grid-column:1;grid-row:auto}
+ html body #app .mobile-mode-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:16px 0}
+ html body #app .mobile-mode-tabs button{display:flex;align-items:center;gap:8px;min-width:0;min-height:44px;padding:8px 6px;font-size:9px!important;line-height:1.8;text-align:left}
+ html body #app .mobile-mode-tabs .journey-pixel-icon{width:24px;height:24px;flex-shrink:0}
+ html body #app .journey-card-actions{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+ html body #app .journey-card-actions button{width:100%;white-space:normal}
+ html body #app .route-card-heading{flex-wrap:wrap;gap:10px}
+ html body #app .journey-map-v2 .journey-map-routes{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ html body #app .journey-map-routes .nes-btn{flex-wrap:wrap;gap:8px;padding:10px}
+ html body #app .journey-map-routes .journey-pixel-icon{width:24px;height:24px}
+}

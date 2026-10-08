@@ -1,4 +1,5 @@
 import {validAvailability} from './appSettings.js'
+import {apiFetch} from './apiTransport.js'
 export function coordinate(lat, lon) {
   if ([lat, lon].some(v => v === null || v === undefined || String(v).trim() === '')) throw Error('coordinates')
   const point = { lat: Number(lat), lon: Number(lon) }
@@ -22,7 +23,7 @@ export function routePayload(passport, values, now = new Date()) {
 export async function searchRoutes(payload, signal, timeoutMs = 180000) {
   const timeout = new AbortController(), timer = setTimeout(() => timeout.abort(), timeoutMs)
   try {
-    const response = await fetch('/api/dyconet/routed-contextual-deliberation', {
+    const response = await apiFetch('/api/dyconet/routed-contextual-deliberation', {
       method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
       signal: signal ? AbortSignal.any([signal, timeout.signal]) : timeout.signal
     })

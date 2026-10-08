@@ -1,4 +1,5 @@
 <script setup>
+import {currentPosition,isNative} from '../services/nativePlatform.js'
 import { computed, nextTick, onMounted, onUnmounted, reactive, ref, watch } from 'vue'
 import CompanionAvatar from './CompanionAvatar.vue'
 import AvatarReaction from './AvatarReaction.vue'
@@ -57,9 +58,9 @@ onUnmounted(()=>window.removeEventListener('cricket-recents-change',refreshRecen
 const recent=ref(recentPlaces(storage)),recentTarget=ref('origin'),chosen=ref(null),savedChoice=ref(null),saved=ref(false),confirmation=ref(null),view=ref('cards'),mobile=ref(false)
 let media
 function updateMobile(){mobile.value=media.matches}
-onMounted(()=>{media=window.matchMedia('(max-width: 720px)');updateMobile();media.addEventListener('change',updateMobile)})
+onMounted(()=>{media=window.matchMedia('(max-width: 700px)');updateMobile();media.addEventListener('change',updateMobile)})
 onUnmounted(()=>media?.removeEventListener('change',updateMobile))
-const cardsVisible=computed(()=>true)
+const cardsVisible=computed(()=>!mobile.value||view.value==='cards')
 const mapVisible=computed(()=>!mobile.value||view.value==='map')
 function swap(){const start=origin.value;origin.value=destination.value;destination.value=start}
 function useRecent(place){if(recentTarget.value==='origin')origin.value=place;else destination.value=place}
@@ -117,6 +118,7 @@ const mapPanel=ref(null)
 function reducedMotion(){return motionPaused.value||window.matchMedia?.('(prefers-reduced-motion: reduce)').matches}
 async function selectFromMap(id){
  selected.value=id
+ view.value='cards'
  if(!id)return
  await nextTick()
  const card=document.getElementById(`route-card-${id}`)
@@ -127,6 +129,7 @@ async function selectFromMap(id){
 }
 async function selectFromCard(id){
  selected.value=id
+ view.value='map'
  await nextTick()
  if(selected.value){mapPanel.value?.$el?.scrollIntoView({behavior:reducedMotion()?'instant':'smooth',block:'start'});mapPanel.value?.focusMap()}
 }
@@ -207,12 +210,12 @@ function useMyLocation() {
  if (locating.value || busy.value || choosing.value) return
  locationError.value = ''
 
- if (!window.isSecureContext) {
+ if (!isNative() && !window.isSecureContext) {
   locationError.value = 'secure'
   return
  }
 
- if (!navigator.geolocation) {
+ if (!isNative() && !navigator.geolocation) {
   locationError.value = 'unsupported'
   return
  }
@@ -233,7 +236,7 @@ function useMyLocation() {
  }
 
  try {
-  navigator.geolocation.getCurrentPosition(position => {
+  currentPosition(position => {
    if (!current()) return
 
    if (
@@ -313,8 +316,14 @@ function useMyLocation() {
    <AvatarReaction dialogue :companion="companion" :paused="true" :locale="locale"/>
    <p>{{de?'Wohin geht unsere Reise? Wähle Start und Ziel.':'Where are we going? Choose your origin and destination.'}}</p>
   </div>
-  <RouteMap :chosen-id="savedChoice?`${savedChoice.route.rank}-${savedChoice.route.mode_key}`:null" ref="mapPanel" :origin="origin" :destination="destination" :result="result" :locale="locale" :selected="selected" @select="selectFromMap">
+  <nav v-if="result" class="mobile-route-views" :aria-label="de?'Reiseansichten':'Journey views'">
+   <button type="button" class="nes-btn" :class="{'is-primary':view==='cards'}" :aria-pressed="view==='cards'" @click="view='cards'">{{de?'Alternativen':'Alternatives'}}</button>
+   <button type="button" class="nes-btn" :class="{'is-primary':view==='map'}" :aria-pressed="view==='map'" @click="view='map'">{{de?'Karte':'Map'}}</button>
+  </nav>
+  <RouteMap :show-map="mapVisible" :chosen-id="savedChoice?`${savedChoice.route.rank}-${savedChoice.route.mode_key}`:null" ref="mapPanel" :origin="origin" :destination="destination" :result="result" :locale="locale" :selected="selected" @select="selectFromMap">
    <template #journey-search>
+    <details class="mobile-search-disclosure" :open="!mobile||!result">
+     <summary>{{de?'Reise ändern':'Change journey'}}</summary>
     <form class="journey-compact-form" @submit.prevent="search">
      <div class="journey-endpoints">
       <div class="journey-endpoint"><span class="journey-endpoint-badge badge-origin" aria-hidden="true">A</span><AddressSearch v-model="origin" compact :bias="origin?.source=='geolocation'?origin:null" id="route-origin" :locale="locale" :label="de?'Start auswählen':'Choose origin'" :disabled="locating||busy||choosing"/></div>
@@ -335,13 +344,14 @@ function useMyLocation() {
      <div v-if="openJourneyPanel==='recent'" id="journey-recent-panel" class="journey-search-drawer" :aria-label="de?'Zuletzt verwendete Orte':'Recent places'"><RecentPlaces embedded :places="recent" :locale="locale" :target="recentTarget" :disabled="locating||busy||choosing" @target-change="recentTarget=$event" @select="useRecent" @clear="clearRecent"/><p v-if="!recent.length" class="route-note">{{de?'Noch keine gespeicherten Orte.':'No recent places yet.'}}</p></div>
      <div v-if="openJourneyPanel==='preferences'" id="journey-preferences-panel" class="journey-search-drawer"><label class="route-walk-limit">{{de?'Maximale Gehstrecke (Meter)':'Maximum walking distance (metres)'}}<input v-model="form.maxWalk" type="number" min="0" max="10000" step="1" class="nes-input" :disabled="locating||busy||choosing" required/></label><p class="route-note">{{de?'Bei ÖPNV gilt das Limit für alle Fußwege zusammen, einschließlich Zugang, Umsteigen und Zielweg. Reine Fußwege können länger sein.':'For public transport, this limit covers all walking combined, including access, transfers and the final walk. Walking-only paths may be longer.'}}</p></div>
     </form>
+    </details>
    </template>
   </RouteMap>
   <section v-if="saved&&chosen" class="nes-container route-companion journey-quest" ref="companionPanel" tabindex="-1"><div class="journey-quest-sky" aria-hidden="true"><span class="journey-cloud"></span><span class="journey-cloud journey-cloud--second"></span><span class="journey-city"></span></div><ChoiceReflection :choice-card="savedChoice" embedded :companion="companion" :locale="locale" :reflection="reflection" :busy="reflectionBusy" :error="reflectionError" :paused="motionPaused" @retry="loadReflection(true)"/></section>
   <div v-if="busy" class="nes-container route-status" role="status"><PixelJourneyIcon kind="clock" :animated="!motionPaused"/><p>{{de?'Routen werden gesucht und verfügbare Kontextdaten geprüft…':'Finding routes and checking available context…'}}</p><button type="button" class="nes-btn" @click="cancel">{{de?'Abbrechen':'Cancel'}}</button></div>
   <p v-if="historyWarning" class="nes-container route-error" role="alert">{{historyWarning==='choice'?(de?'Die Auswahl konnte nicht im Verlauf gespeichert werden. Bitte erneut wählen.':'Your choice could not be saved in history. Please choose again.'):(de?'Diese Suche konnte nicht vollständig gespeichert werden. Prüfe den Browserspeicher und versuche es erneut.':'This search could not be fully saved. Check browser storage and try again.')}}</p>
   <p v-if="error" class="nes-container route-error" role="alert">{{errorText}}</p>
-  <section v-if="result" class="route-results" aria-labelledby="route-results-heading">
+  <section v-if="result" v-show="cardsVisible" class="route-results" aria-labelledby="route-results-heading">
    <h2 id="route-results-heading" ref="resultHeading" tabindex="-1">{{de?'Deine Möglichkeiten':'Your options'}}</h2>
    <p v-if="result.journey_availability" class="route-note">{{de?'Verfügbar in dieser Simulation:':'Available in this simulation:'}} {{Object.entries(result.journey_availability).filter(([,available])=>available).map(([mode])=>modeLabel(mode)).join(' · ')}}</p>
    <div v-if="transitStatus" class="nes-container route-status" role="status">

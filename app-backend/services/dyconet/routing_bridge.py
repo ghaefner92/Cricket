@@ -185,6 +185,8 @@ def run_routed_deliberation(payload, *, client=None, deliberate=None, geometry_c
     base = {"search_id": search_id, "timestamp": departure, "cognitive_passport": payload["cognitive_passport"], "contextual_query": payload.get("contextual_query", {"query_orion": True}), "candidate_routes": [CandidateRouteInput("validation", origin, destination).to_dict()]}
     if "journey_availability" in payload:
         base["journey_availability"] = dict(availability)
+    if "tolerance_profile" in payload:
+        base["tolerance_profile"] = payload["tolerance_profile"]
     ContextualDeliberationRequest.from_dict(base)
     otp_enabled = transit_client is not None or bool(os.environ.get('CRICKET_OTP_BASE_URL'))
     geometry_enabled = geometry_client is not None or bool(os.environ.get('IMIQ_GRAPHHOPPER_BASE_URL'))

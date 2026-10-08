@@ -1,5 +1,6 @@
 import {GOAL_KEYS,validPoints,totalPoints,localWeekStart} from '../stores/weeklyGoals.js'
 import {allAnswered,toBackendValences} from '../stores/valences.js'
+import {apiFetch} from './apiTransport.js'
 export const SCHEMA='adaptive_cognitive_passport_onboarding_1.0'
 export const SESSION_KEY='imiq.experimental.adaptive-beliefs.v1'
 export const PROFILE_KEY='imiq.experimental.adaptive-profile.v1'
@@ -32,7 +33,7 @@ export async function postJSON(path,payload,signal){
  const timeout=new AbortController(),timer=setTimeout(()=>timeout.abort(),20000)
  const combined=signal?AbortSignal.any([signal,timeout.signal]):timeout.signal
  try{
-  const response=await fetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:combined})
+  const response=await apiFetch(path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:combined})
   if(!response.ok)throw Error(`HTTP ${response.status}`)
   return await response.json()
  }finally{clearTimeout(timer)}

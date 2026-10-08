@@ -621,6 +621,10 @@ def contextual_explanation_narrate_route() -> Any:
 
 from choice_explanation_api import register_choice_explanation
 register_choice_explanation(app)
+from geocoding_api import register_geocoding
+register_geocoding(app)
+from map_tiles_api import register_map_tiles
+register_map_tiles(app)
 
 if __name__ == "__main__":
     app.run(

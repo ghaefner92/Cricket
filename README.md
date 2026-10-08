@@ -9,6 +9,8 @@ Address suggestions and explicit searches use Photon. Routing is provided by the
 - `experimental-frontend/`: frontend source, required assets, vendored Leaflet and npm lockfile.
 - `app-backend/services/dyconet/`: Flask service, its transitive local imports and the required adaptive-passport model artifact.
 - `docs/AUDIT.md`: inclusion decisions and validation of this snapshot.
+- `experimental-frontend/android/`: Android application packaging the Vue frontend with Capacitor.
+- [Android setup and migration](docs/ANDROID.md): build the APK, connect the backend and transfer an existing Passport.
 
 The runtime source is preserved from the working Windows export. Tests, diagnostic scripts, template examples, unrelated Docker services, local credentials and generated files are omitted from this initial runtime snapshot. Validation was performed before publication using the tests retained in the audit export.
 
@@ -86,3 +88,19 @@ npm run build
 `dist/` is generated and ignored. A production deployment must supply the backend API reverse proxy; the Vite development proxy is not part of the static build. This commit does not deploy the application.
 
 Leaflet's license is retained at `experimental-frontend/src/vendor/leaflet/LICENSE`. Photon/OpenStreetMap attribution remains visible in the interface.
+
+
+## Android nativo: Kotlin + Jetpack Compose
+
+La app Android principal se encuentra en `android-native`. Conserva las funciones
+existentes, el arte pixel y los servicios Python, con navegación inferior y
+pantallas separadas para búsqueda, alternativas, mapa y reflexión. El Passport
+nativo no incluye tolerancias. El primer inicio importa el perfil y el historial
+de la APK Capacitor instalada usando el mismo ID de aplicación.
+
+```powershell
+node android-native/scripts/build.mjs
+```
+
+También funciona `npm run android:apk` desde `experimental-frontend`.
+[Instalación y conexión](docs/ANDROID.md) · [Migración y componentes](docs/MIGRACION_COMPOSE.md).

@@ -1,0 +1,504 @@
+{
+  "version": "choice-voice-1.3",
+  "openings": {
+    "en": [
+      "Let’s look at what matters to you in this choice 🤝",
+      "Let’s connect your choice with the priorities you shared 🤝",
+      "Let’s look at what fits your priorities and where there’s a trade-off 🤝",
+      "I’m here to look at your choice with you. Some information is missing 🤝"
+    ],
+    "de": [
+      "Schauen wir gemeinsam, was dir bei dieser Wahl wichtig ist 🤝",
+      "Schauen wir, wie deine Wahl zu deinen angegebenen Prioritäten passt 🤝",
+      "Schauen wir, was zu deinen Prioritäten passt und wo es eine Spannung gibt 🤝",
+      "Ich schaue mir deine Wahl mit dir an. Einige Angaben fehlen noch 🤝"
+    ]
+  },
+  "replacements": {
+    "en": {
+      "GOALS_SUPPORT": [
+        "Here’s where your choice fits your weekly priorities: ",
+        "You marked these weekly priorities as important. In this simulation, your choice fits them: "
+      ],
+      "GOALS_OPPOSITION": [
+        "There’s also a trade-off with these weekly priorities: ",
+        "You also marked these weekly priorities as important. In this simulation, your choice pulls against them: "
+      ],
+      "ALIGNED_CLEAR": [
+        "Your choice and the clear favourite in this simulation line up.",
+        "Based on your profile and the available context, the simulation also leans clearly towards your choice."
+      ],
+      "CHOICE_IN_AMBIGUOUS_PAIR": [
+        "You picked one of these two closely matched options.",
+        "You picked one of two closely matched options; neither is a clear favourite in this simulation."
+      ],
+      "CONTEXT_NO_CHANGE": [
+        "With the available environmental readings, the saved model results stayed the same.",
+        "Adding the available environmental readings left the saved model results unchanged."
+      ],
+      "OBSERVATION_TIME_UNKNOWN": [
+        "Some readings don’t say when they were taken, so I can’t tell how recent they are.",
+        "I can’t tell how recent some readings are because their measurement times are missing."
+      ],
+      "COMPARISON_UNKNOWN": [
+        "I can’t clearly compare your choice with a favourite from these saved results.",
+        "I don’t have a clear favourite in these results to compare with your choice."
+      ],
+      "JOINT_SUPPORT": [
+        "Looking at your priorities and beliefs, the model points towards this choice. Its emotional side points the same way.",
+        "The part of the model based on your priorities and beliefs supports your choice. Its emotional component supports it too."
+      ],
+      "JOINT_OPPOSITION": [
+        "Looking at your priorities and beliefs, the model leans away from this choice. Its emotional side points the same way.",
+        "Both the part based on your priorities and beliefs and the emotional component of the model lean away from your choice."
+      ],
+      "GOALS_UNKNOWN": [
+        "I don’t have your saved weekly priorities for this search, so I won’t guess how your choice fits them.",
+        "I don’t have the weekly priorities saved for this search, so I can’t tell you how this choice fits them."
+      ],
+      "CONTEXT_MISSING": [
+        "Some environmental information is missing. I won’t assume those conditions are favourable.",
+        "Some environmental information is missing. I can’t count those unknown conditions as favourable."
+      ],
+      "INTERPRETATION_LIMIT": [
+        "I’m reflecting what this model shows, not telling you how you felt. Choosing a route also doesn’t mean you have travelled it or reached your goals yet.",
+        "This is a reading of the simulation. Only you can say what mattered today; a saved choice doesn’t mean you have made the trip or reached your goals."
+      ],
+      "RELATIONS_INCLUDE_ESTIMATES": [
+        "Some links between your priorities and transport modes are estimates, rather than answers you gave directly.",
+        "Some of these links to your priorities are estimated, so this picture may not fully reflect your own view."
+      ]
+    },
+    "de": {
+      "GOALS_SUPPORT": [
+        "Hier passt deine Wahl zu deinen Wochenprioritäten: ",
+        "Diese Wochenprioritäten hast du als wichtig angegeben. In dieser Simulation passt deine Wahl dazu: "
+      ],
+      "GOALS_OPPOSITION": [
+        "Gleichzeitig gibt es eine Spannung zu diesen Wochenprioritäten: ",
+        "Auch diese Wochenprioritäten hast du als wichtig angegeben. In dieser Simulation steht deine Wahl dazu in Spannung: "
+      ],
+      "ALIGNED_CLEAR": [
+        "Deine Wahl passt zum klaren Favoriten dieser Simulation.",
+        "Mit deinem Profil und dem verfügbaren Kontext spricht auch die Simulation klar für deine Wahl."
+      ],
+      "CHOICE_IN_AMBIGUOUS_PAIR": [
+        "Du hast eine dieser beiden ähnlich bewerteten Möglichkeiten gewählt.",
+        "Du hast eine von zwei ähnlich bewerteten Möglichkeiten gewählt; die Simulation zeigt keinen klaren Favoriten."
+      ],
+      "CONTEXT_NO_CHANGE": [
+        "Mit den verfügbaren Umweltmesswerten blieben die gespeicherten Modellergebnisse gleich.",
+        "Die verfügbaren Umweltmesswerte änderten die gespeicherten Modellergebnisse nicht."
+      ],
+      "OBSERVATION_TIME_UNKNOWN": [
+        "Bei einigen Messwerten fehlt die Uhrzeit. Deshalb kann ich nicht sagen, wie aktuell sie sind.",
+        "Wie aktuell einige Messwerte sind, bleibt offen, weil ihr Messzeitpunkt fehlt."
+      ],
+      "COMPARISON_UNKNOWN": [
+        "Aus diesen gespeicherten Ergebnissen kann ich deine Wahl nicht eindeutig mit einem Favoriten vergleichen.",
+        "In diesen Ergebnissen sehe ich keinen klaren Favoriten, mit dem ich deine Wahl vergleichen kann."
+      ],
+      "JOINT_SUPPORT": [
+        "Mit deinen Prioritäten und Überzeugungen spricht das Modell für diese Wahl. Seine emotionale Seite weist in dieselbe Richtung.",
+        "Die Seite des Modells mit deinen Prioritäten und Überzeugungen spricht für deine Wahl. Die emotionale Komponente des Modells unterstützt sie ebenfalls."
+      ],
+      "JOINT_OPPOSITION": [
+        "Mit deinen Prioritäten und Überzeugungen spricht das Modell eher gegen diese Wahl. Seine emotionale Seite weist in dieselbe Richtung.",
+        "Sowohl die Seite mit deinen Prioritäten und Überzeugungen als auch die emotionale Komponente des Modells sprechen eher gegen deine Wahl."
+      ],
+      "GOALS_UNKNOWN": [
+        "Für diese Suche fehlen mir deine gespeicherten Wochenprioritäten. Deshalb rate ich nicht, wie deine Wahl dazu passt.",
+        "Für diese Suche fehlen mir die gespeicherten Wochenprioritäten. Deshalb kann ich deine Wahl nicht damit vergleichen."
+      ],
+      "CONTEXT_MISSING": [
+        "Einige Umweltangaben fehlen. Ich nehme deshalb nicht an, dass diese Bedingungen günstig sind.",
+        "Einige Umweltangaben fehlen. Diese unbekannten Bedingungen kann ich nicht als günstig einordnen."
+      ],
+      "INTERPRETATION_LIMIT": [
+        "Ich spiegele dir, was dieses Modell zeigt, nicht wie du dich gefühlt hast. Eine gewählte Route bedeutet auch noch nicht, dass du sie gefahren bist oder deine Ziele erreicht hast.",
+        "Das ist eine Einordnung der Simulation. Nur du kannst sagen, was heute für dich zählte; eine gespeicherte Wahl bedeutet noch keinen gefahrenen Weg oder erreichte Ziele."
+      ],
+      "RELATIONS_INCLUDE_ESTIMATES": [
+        "Einige Verbindungen zwischen deinen Prioritäten und Verkehrsmitteln sind Schätzungen, keine direkten Antworten von dir.",
+        "Einige dieser Verbindungen zu deinen Prioritäten sind geschätzt. Das Bild kann deshalb von deiner eigenen Sicht abweichen."
+      ]
+    }
+  },
+  "legacy": {
+    "choice-voice-1.0": {
+      "version": "choice-voice-1.0",
+      "openings": {
+        "en": [
+          "Let’s look at how your choice relates to your priorities.",
+          "I’ll help you read the balance behind this choice.",
+          "Here’s what this simulation can tell us about your choice."
+        ],
+        "de": [
+          "Schauen wir, wie deine Wahl zu deinen Prioritäten passt.",
+          "Ich helfe dir, die Abwägung hinter dieser Wahl einzuordnen.",
+          "Das kann uns diese Simulation über deine Wahl sagen."
+        ]
+      },
+      "replacements": {
+        "en": {
+          "SAVED_CHOICE": [
+            "You chose ",
+            "Your saved choice is "
+          ],
+          "GOALS_OPPOSITION": [
+            "The model represents tensions with these weekly priorities: ",
+            "In this simulation, your choice pulls against these weekly priorities: "
+          ],
+          "GOALS_SUPPORT": [
+            "The model represents support linked to these weekly priorities: ",
+            "In this simulation, your choice supports these weekly priorities: "
+          ],
+          "ALIGNED_CLEAR": [
+            "Your choice matches the clearly differentiated tendency in this simulation.",
+            "Your choice follows the tendency that stands out clearly in this simulation."
+          ],
+          "CHOICE_IN_AMBIGUOUS_PAIR": [
+            "You chose one of those closely competing alternatives.",
+            "Your choice is among these closely competing alternatives."
+          ],
+          "CHOICE_BELOW_AMBIGUOUS_PAIR": [
+            "Your chosen mode received lower action activation than both of those alternatives in this run.",
+            "In this run, your chosen mode was less activated than either of those leading alternatives."
+          ],
+          "CONTEXT_NO_CHANGE": [
+            "The exported simulation results are unchanged after incorporating the available context.",
+            "The available context did not change the exported results of this simulation."
+          ],
+          "CONTEXT_MISSING": [
+            "Some contextual dimensions are unknown and cannot be treated as favourable conditions.",
+            "Some context is missing, so I cannot count those unknown conditions as favourable."
+          ],
+          "GOALS_UNKNOWN": [
+            "The original weekly allocation is unavailable, so I cannot assess its relation to your choice.",
+            "I don’t have the original weekly allocation here, so its relation to your choice remains unknown."
+          ]
+        },
+        "de": {
+          "SAVED_CHOICE": [
+            "Du hast ",
+            "Deine gespeicherte Wahl: Du hast "
+          ],
+          "GOALS_OPPOSITION": [
+            "Das Modell zeigt Spannungen mit diesen Wochenprioritäten: ",
+            "In dieser Simulation steht deine Wahl in Spannung zu diesen Wochenprioritäten: "
+          ],
+          "GOALS_SUPPORT": [
+            "Das Modell zeigt Unterstützung im Zusammenhang mit diesen Wochenprioritäten: ",
+            "In dieser Simulation unterstützt deine Wahl diese Wochenprioritäten: "
+          ],
+          "ALIGNED_CLEAR": [
+            "Deine Auswahl stimmt mit der klar unterscheidbaren Tendenz dieser Simulation überein.",
+            "Deine Wahl folgt der Tendenz, die sich in dieser Simulation klar abhebt."
+          ],
+          "CHOICE_IN_AMBIGUOUS_PAIR": [
+            "Du hast eine dieser eng konkurrierenden Alternativen gewählt.",
+            "Deine Wahl gehört zu diesen eng konkurrierenden Alternativen."
+          ],
+          "CHOICE_BELOW_AMBIGUOUS_PAIR": [
+            "Dein gewähltes Verkehrsmittel erhielt in diesem Lauf eine geringere Aktivierung als beide Alternativen.",
+            "In diesem Lauf war dein gewähltes Verkehrsmittel weniger aktiviert als beide führenden Alternativen."
+          ],
+          "CONTEXT_NO_CHANGE": [
+            "Die exportierten Simulationsergebnisse bleiben nach Einbezug des verfügbaren Kontexts unverändert.",
+            "Der verfügbare Kontext hat die exportierten Ergebnisse dieser Simulation nicht verändert."
+          ],
+          "CONTEXT_MISSING": [
+            "Einige Kontextdimensionen sind unbekannt und dürfen nicht als günstige Bedingungen gelten.",
+            "Einige Kontextinformationen fehlen; diese unbekannten Bedingungen kann ich nicht als günstig werten."
+          ],
+          "GOALS_UNKNOWN": [
+            "Die ursprüngliche Wochenverteilung fehlt; ihre Beziehung zu deiner Auswahl kann ich nicht beurteilen.",
+            "Die ursprüngliche Wochenverteilung liegt mir hier nicht vor; ihre Beziehung zu deiner Wahl bleibt unbekannt."
+          ]
+        }
+      }
+    },
+    "choice-voice-1.1": {
+      "version": "choice-voice-1.1",
+      "openings": {
+        "en": [
+          "Let’s look at how your choice relates to your priorities.",
+          "I’ll help you read the balance behind this choice.",
+          "Here’s what this simulation can tell us about your choice."
+        ],
+        "de": [
+          "Schauen wir, wie deine Wahl zu deinen Prioritäten passt.",
+          "Ich helfe dir, die Abwägung hinter dieser Wahl einzuordnen.",
+          "Das kann uns diese Simulation über deine Wahl sagen."
+        ]
+      },
+      "replacements": {
+        "en": {
+          "SAVED_CHOICE": [
+            "You chose ",
+            "Your saved choice is "
+          ],
+          "GOALS_OPPOSITION": [
+            "The model represents tensions with these weekly priorities: ",
+            "In this simulation, your choice pulls against these weekly priorities: "
+          ],
+          "GOALS_SUPPORT": [
+            "The model represents support linked to these weekly priorities: ",
+            "In this simulation, your choice supports these weekly priorities: "
+          ],
+          "ALIGNED_CLEAR": [
+            "Your choice matches the clearly differentiated tendency in this simulation.",
+            "Your choice follows the tendency that stands out clearly in this simulation."
+          ],
+          "CHOICE_IN_AMBIGUOUS_PAIR": [
+            "You chose one of those closely competing alternatives.",
+            "Your choice is among these closely competing alternatives."
+          ],
+          "CHOICE_BELOW_AMBIGUOUS_PAIR": [
+            "Your chosen mode received lower action activation than both of those alternatives in this run.",
+            "In this run, your chosen mode was less activated than either of those leading alternatives."
+          ],
+          "CONTEXT_NO_CHANGE": [
+            "The exported simulation results are unchanged after incorporating the available context.",
+            "The available context did not change the exported results of this simulation."
+          ],
+          "CONTEXT_MISSING": [
+            "Some contextual dimensions are unknown and cannot be treated as favourable conditions.",
+            "Some context is missing, so I cannot count those unknown conditions as favourable."
+          ],
+          "GOALS_UNKNOWN": [
+            "The original weekly allocation is unavailable, so I cannot assess its relation to your choice.",
+            "I don’t have the original weekly allocation here, so its relation to your choice remains unknown."
+          ],
+          "JOINT_SUPPORT": [
+            "At the end of the simulation, both the balance of needs and beliefs and the emotional evaluation support your choice.",
+            "At the end, the simulation shows support for your choice from both the balance of needs and beliefs and the emotional evaluation."
+          ],
+          "JOINT_OPPOSITION": [
+            "At the end of the simulation, both the balance of needs and beliefs and the emotional evaluation weigh against your choice.",
+            "At the end, the simulation shows resistance to your choice from both the balance of needs and beliefs and the emotional evaluation."
+          ]
+        },
+        "de": {
+          "SAVED_CHOICE": [
+            "Du hast ",
+            "Deine gespeicherte Wahl: Du hast "
+          ],
+          "GOALS_OPPOSITION": [
+            "Das Modell zeigt Spannungen mit diesen Wochenprioritäten: ",
+            "In dieser Simulation steht deine Wahl in Spannung zu diesen Wochenprioritäten: "
+          ],
+          "GOALS_SUPPORT": [
+            "Das Modell zeigt Unterstützung im Zusammenhang mit diesen Wochenprioritäten: ",
+            "In dieser Simulation unterstützt deine Wahl diese Wochenprioritäten: "
+          ],
+          "ALIGNED_CLEAR": [
+            "Deine Auswahl stimmt mit der klar unterscheidbaren Tendenz dieser Simulation überein.",
+            "Deine Wahl folgt der Tendenz, die sich in dieser Simulation klar abhebt."
+          ],
+          "CHOICE_IN_AMBIGUOUS_PAIR": [
+            "Du hast eine dieser eng konkurrierenden Alternativen gewählt.",
+            "Deine Wahl gehört zu diesen eng konkurrierenden Alternativen."
+          ],
+          "CHOICE_BELOW_AMBIGUOUS_PAIR": [
+            "Dein gewähltes Verkehrsmittel erhielt in diesem Lauf eine geringere Aktivierung als beide Alternativen.",
+            "In diesem Lauf war dein gewähltes Verkehrsmittel weniger aktiviert als beide führenden Alternativen."
+          ],
+          "CONTEXT_NO_CHANGE": [
+            "Die exportierten Simulationsergebnisse bleiben nach Einbezug des verfügbaren Kontexts unverändert.",
+            "Der verfügbare Kontext hat die exportierten Ergebnisse dieser Simulation nicht verändert."
+          ],
+          "CONTEXT_MISSING": [
+            "Einige Kontextdimensionen sind unbekannt und dürfen nicht als günstige Bedingungen gelten.",
+            "Einige Kontextinformationen fehlen; diese unbekannten Bedingungen kann ich nicht als günstig werten."
+          ],
+          "GOALS_UNKNOWN": [
+            "Die ursprüngliche Wochenverteilung fehlt; ihre Beziehung zu deiner Auswahl kann ich nicht beurteilen.",
+            "Die ursprüngliche Wochenverteilung liegt mir hier nicht vor; ihre Beziehung zu deiner Wahl bleibt unbekannt."
+          ],
+          "JOINT_SUPPORT": [
+            "Am Ende der Simulation sprechen sowohl die Abwägung von Bedürfnissen und Überzeugungen als auch die emotionale Bewertung für deine Wahl.",
+            "Am Ende zeigt die Simulation Unterstützung für deine Wahl sowohl aus der Abwägung von Bedürfnissen und Überzeugungen als auch aus der affektiven Bewertung."
+          ],
+          "JOINT_OPPOSITION": [
+            "Am Ende der Simulation sprechen sowohl die Abwägung von Bedürfnissen und Überzeugungen als auch die emotionale Bewertung gegen deine Wahl.",
+            "Am Ende zeigt die Simulation Widerstand gegen deine Wahl sowohl aus der Abwägung von Bedürfnissen und Überzeugungen als auch aus der affektiven Bewertung."
+          ]
+        }
+      }
+    },
+    "choice-voice-1.2": {
+      "version": "choice-voice-1.2",
+      "openings": {
+        "en": [
+          "Let’s look at your choice together.",
+          "Here’s how I read your choice."
+        ],
+        "de": [
+          "Schauen wir uns deine Wahl gemeinsam an.",
+          "So ordne ich deine Wahl ein."
+        ]
+      },
+      "replacements": {
+        "en": {
+          "GOALS_SUPPORT": [
+            "Here’s where your choice fits your weekly priorities: ",
+            "Your choice goes with these weekly priorities: "
+          ],
+          "GOALS_OPPOSITION": [
+            "There’s also a trade-off with these weekly priorities: ",
+            "At the same time, these weekly priorities pull the other way: "
+          ],
+          "ALIGNED_CLEAR": [
+            "Your choice and the clear favourite in this simulation line up.",
+            "Your choice goes in the same direction as this simulation’s clear favourite."
+          ],
+          "CHOICE_IN_AMBIGUOUS_PAIR": [
+            "You picked one of these two closely matched options.",
+            "You went with one of these two similar options."
+          ],
+          "CONTEXT_NO_CHANGE": [
+            "With the available environmental readings, the saved model results stayed the same.",
+            "Adding the available environmental readings left the saved model results unchanged."
+          ],
+          "OBSERVATION_TIME_UNKNOWN": [
+            "Some readings don’t say when they were taken, so I can’t tell how recent they are.",
+            "I can’t tell how recent some readings are because their measurement times are missing."
+          ],
+          "COMPARISON_UNKNOWN": [
+            "I can’t clearly compare your choice with a favourite from these saved results.",
+            "These saved results don’t give me a clear favourite to compare your choice with."
+          ]
+        },
+        "de": {
+          "GOALS_SUPPORT": [
+            "Hier passt deine Wahl zu deinen Wochenprioritäten: ",
+            "Deine Wahl passt zu diesen Wochenprioritäten: "
+          ],
+          "GOALS_OPPOSITION": [
+            "Gleichzeitig gibt es eine Spannung zu diesen Wochenprioritäten: ",
+            "Diese Wochenprioritäten weisen gleichzeitig in eine andere Richtung: "
+          ],
+          "ALIGNED_CLEAR": [
+            "Deine Wahl passt zum klaren Favoriten dieser Simulation.",
+            "Du hast dich für den klaren Favoriten dieser Simulation entschieden."
+          ],
+          "CHOICE_IN_AMBIGUOUS_PAIR": [
+            "Du hast eine dieser beiden ähnlich bewerteten Möglichkeiten gewählt.",
+            "Deine Wahl ist eine dieser beiden ähnlichen Möglichkeiten."
+          ],
+          "CONTEXT_NO_CHANGE": [
+            "Mit den verfügbaren Umweltmesswerten blieben die gespeicherten Modellergebnisse gleich.",
+            "Die verfügbaren Umweltmesswerte änderten die gespeicherten Modellergebnisse nicht."
+          ],
+          "OBSERVATION_TIME_UNKNOWN": [
+            "Bei einigen Messwerten fehlt die Uhrzeit. Deshalb kann ich nicht sagen, wie aktuell sie sind.",
+            "Wie aktuell einige Messwerte sind, bleibt offen, weil ihr Messzeitpunkt fehlt."
+          ],
+          "COMPARISON_UNKNOWN": [
+            "Aus diesen gespeicherten Ergebnissen kann ich deine Wahl nicht eindeutig mit einem Favoriten vergleichen.",
+            "Diese gespeicherten Ergebnisse zeigen mir keinen klaren Favoriten für einen Vergleich mit deiner Wahl."
+          ]
+        }
+      }
+    }
+  },
+  "prompt_version": "choice-voice-selector-1.1",
+  "tones": {
+    "warm": [
+      0,
+      1
+    ],
+    "reflective": [
+      0,
+      2
+    ],
+    "uncertain": [
+      3
+    ]
+  },
+  "questions": {
+    "en": [
+      {
+        "id": "none",
+        "requires": [],
+        "text": ""
+      },
+      {
+        "id": "priorities",
+        "requires": [],
+        "text": "What mattered most to you when you chose this option today? 💭"
+      },
+      {
+        "id": "support",
+        "requires": [
+          "GOALS_SUPPORT"
+        ],
+        "text": "Which of those priorities mattered most in your choice today? 💭"
+      },
+      {
+        "id": "tension",
+        "requires": [
+          "GOALS_OPPOSITION"
+        ],
+        "text": "What else mattered to you today alongside those priorities? 💭"
+      },
+      {
+        "id": "mixed",
+        "requires": [
+          "GOALS_SUPPORT",
+          "GOALS_OPPOSITION"
+        ],
+        "text": "How do you see the balance between those priorities today? 💭"
+      },
+      {
+        "id": "different",
+        "requires": [
+          "DIFFERENT_CLEAR"
+        ],
+        "text": "What mattered in your choice that this simulation might not capture? 💭"
+      }
+    ],
+    "de": [
+      {
+        "id": "none",
+        "requires": [],
+        "text": ""
+      },
+      {
+        "id": "priorities",
+        "requires": [],
+        "text": "Was war dir heute bei dieser Wahl am wichtigsten? 💭"
+      },
+      {
+        "id": "support",
+        "requires": [
+          "GOALS_SUPPORT"
+        ],
+        "text": "Welche dieser Prioritäten zählte heute bei deiner Wahl am meisten? 💭"
+      },
+      {
+        "id": "tension",
+        "requires": [
+          "GOALS_OPPOSITION"
+        ],
+        "text": "Was war dir heute neben diesen Prioritäten noch wichtig? 💭"
+      },
+      {
+        "id": "mixed",
+        "requires": [
+          "GOALS_SUPPORT",
+          "GOALS_OPPOSITION"
+        ],
+        "text": "Wie siehst du heute die Abwägung zwischen diesen Prioritäten? 💭"
+      },
+      {
+        "id": "different",
+        "requires": [
+          "DIFFERENT_CLEAR"
+        ],
+        "text": "Was zählte bei deiner Wahl, das diese Simulation vielleicht nicht erfasst? 💭"
+      }
+    ]
+  }
+}

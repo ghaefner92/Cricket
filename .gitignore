@@ -11,6 +11,13 @@ __pycache__/
 coverage/
 .pytest_cache/
 *.zip
+.gradle/
+local.properties
+*.apk
+*.aab
+**/android/app/src/main/assets/public/
+**/android/app/src/main/assets/capacitor.config.json
+**/android/app/src/main/assets/capacitor.plugins.json
 
 # Private configuration; examples contain placeholders only
 .env
@@ -29,3 +36,6 @@ AUDIT_INVENTORY.*
 
 # This initial repository contains the audited runtime snapshot
 **/tests/
+
+# Private device migration snapshots
+.local-backups/

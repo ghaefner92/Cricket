@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Cricket</string>
+    <string name="title_activity_main">Cricket</string>
+    <string name="package_name">de.ovgu.imiq.cricket</string>
+    <string name="custom_url_scheme">de.ovgu.imiq.cricket</string>
+</resources>

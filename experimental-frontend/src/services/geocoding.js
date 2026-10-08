@@ -1,4 +1,6 @@
 import {coordinate} from './routePlanning.js'
+import {apiFetch} from './apiTransport.js'
+import {isNative} from './nativePlatform.js'
 const cache=new Map(),CACHE_MS=5*60*1000,MAX_CACHE=50
 // Public demo for moderate use; deployments can select their own Photon service.
 const configured=import.meta.env?.VITE_PHOTON_BASE_URL||'https://photon.komoot.io'
@@ -56,7 +58,7 @@ function scheduledFetch(url,signal){
   nextStart=Date.now()+1000
  })
  queue=slot.catch(()=>{})
- return slot.then(()=>{if(signal.aborted)throw new DOMException('Aborted','AbortError');return fetch(url,{headers:{Accept:'application/json'},signal})})
+ return slot.then(()=>{if(signal.aborted)throw new DOMException('Aborted','AbortError');return apiFetch(url,{headers:{Accept:'application/json'},signal})})
 }
 export async function findPlaces(query,locale,signal,{autocomplete=false,bias=null}={}){
  const point=pointForBias(bias)
@@ -66,7 +68,8 @@ export async function findPlaces(query,locale,signal,{autocomplete=false,bias=nu
  const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),20000)
  try{
   const language=locale==='de'?'de':'en',combined=signal?AbortSignal.any([signal,controller.signal]):controller.signal
-  const url=`${photonBase}/api/?${new URLSearchParams({q:text,lang:language,limit:'10',lat:String(point.lat),lon:String(point.lon)})}`
+  const endpoint=isNative()?'/api/dyconet/geocoding':`${photonBase}/api/`
+  const url=`${endpoint}?${new URLSearchParams({q:text,lang:language,limit:'10',lat:String(point.lat),lon:String(point.lon)})}`
   const r=await scheduledFetch(url,combined)
   if(!r.ok)throw Error('network')
   const data=await r.json()

@@ -1,0 +1,8 @@
+{
+  "appId": "de.ovgu.imiq.cricket",
+  "appName": "Cricket",
+  "webDir": "dist",
+  "server": { "androidScheme": "https" },
+  "android": { "backgroundColor": "#10182c" },
+  "plugins": { "SystemBars": { "insetsHandling": "css", "style": "DARK" } }
+}

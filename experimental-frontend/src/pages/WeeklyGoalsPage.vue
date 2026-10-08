@@ -1,5 +1,6 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref, watch } from 'vue'
+import {useCompactLayout} from '../services/useCompactLayout.js'
 import GoalScene from '../components/GoalScene.vue'
 import { readCompanion } from '../stores/companion.js'
 import { POINT_BUDGET, GOAL_KEYS, loadPlan, savePlan, totalPoints, adjustPoints, rankedGoals, localWeekStart, formatWeek } from '../stores/weeklyGoals.js'
@@ -13,10 +14,12 @@ try { storage=window.localStorage } catch { storage={getItem(){return null},setI
 const companion=readCompanion(storage)
 const plan=ref(loadPlan(storage))
 const saved=ref(false),draftSaved=ref(false),error=ref(false),weekChanged=ref(false)
+const compact=useCompactLayout(),goalPanel=ref('goal')
 const selected=ref(GOAL_KEYS[0]),page=ref(0),showAll=ref(false),pulse=ref(0)
 const visibleGoals=computed(()=>showAll.value?GOAL_KEYS:GOAL_KEYS.slice(page.value*4,page.value*4+4))
 const pageCount=Math.ceil(GOAL_KEYS.length/4)
-function selectGoal(key){selected.value=key;page.value=Math.floor(GOAL_KEYS.indexOf(key)/4)}
+function nextGoal(delta){selectGoal(GOAL_KEYS[Math.max(0,Math.min(GOAL_KEYS.length-1,GOAL_KEYS.indexOf(selected.value)+delta))])}
+function selectGoal(key){goalPanel.value='goal';selected.value=key;page.value=Math.floor(GOAL_KEYS.indexOf(key)/4)}
 function changePage(delta){page.value=Math.max(0,Math.min(pageCount-1,page.value+delta));selected.value=GOAL_KEYS[page.value*4]}
 let pulseTimer
 const total=computed(()=>totalPoints(plan.value.points))
@@ -63,8 +66,16 @@ onUnmounted(()=>{clearTimeout(pulseTimer);window.clearInterval(timer);window.rem
   </section>
   <p class="goals-copy goals-instruction">{{ copy.instruction }}</p>
   <p v-if="weekChanged" class="goals-copy week-notice" role="status">{{ copy.newWeek }}</p>
+  <nav class="mobile-goal-tabs" :aria-label="locale==='de'?'Zielansichten':'Goal views'">
+   <button v-for="panel in ['goal','list','priorities']" :key="panel" type="button" class="nes-btn" :class="{'is-primary':goalPanel===panel}" :aria-pressed="goalPanel===panel" @click="goalPanel=panel">{{ ({goal:locale==='de'?'Ziel':'Goal',list:locale==='de'?'Alle Ziele':'All goals',priorities:locale==='de'?'Prioritäten':'Priorities'})[panel] }}</button>
+  </nav>
   <div class="mission-layout">
-   <section class="nes-container mission-detail" :aria-label="copy.goals[selected].title">
+   <section v-show="!compact||goalPanel==='goal'" class="nes-container mission-detail" :aria-label="copy.goals[selected].title">
+    <nav class="mobile-goal-navigation" :aria-label="locale==='de'?'Ziel auswählen':'Choose a goal'">
+     <button type="button" class="nes-btn" :disabled="selected===GOAL_KEYS[0]" :aria-label="locale==='de'?'Vorheriges Ziel':'Previous goal'" @click="nextGoal(-1)">←</button>
+     <span>{{ GOAL_KEYS.indexOf(selected)+1 }}/{{ GOAL_KEYS.length }}</span>
+     <button type="button" class="nes-btn" :disabled="selected===GOAL_KEYS.at(-1)" :aria-label="locale==='de'?'Nächstes Ziel':'Next goal'" @click="nextGoal(1)">→</button>
+    </nav>
     <p class="goals-kicker">{{ companion.name || (locale==='de'?'Dein Begleiter':'Your companion') }}</p>
     <GoalScene :goal="selected" :appearance="companion.appearance" :palette="companion.palette" :label="copy.goals[selected].title" :pulse="pulse" />
     <div class="mission-heading"><span class="goal-rank">{{ rankMap[selected] ? `${copy.priority} ${rankMap[selected]}` : copy.zero }}</span><span class="mission-index">{{ GOAL_KEYS.indexOf(selected)+1 }}/11</span></div>
@@ -76,7 +87,7 @@ onUnmounted(()=>{clearTimeout(pulseTimer);window.clearInterval(timer);window.rem
      <button type="button" class="nes-btn is-primary" :disabled="remaining===0" :aria-label="copy.increase(copy.goals[selected].title)" @click="adjust(selected,1)">+</button>
     </div>
    </section>
-   <section class="nes-container mission-menu" :aria-label="copy.title">
+   <section v-show="!compact||goalPanel==='list'" class="nes-container mission-menu" :aria-label="copy.title">
     <div class="mission-menu-heading"><h2>{{ locale==='de'?'Ziele auswählen':'Choose goals' }}</h2><button class="nes-btn" type="button" :aria-expanded="showAll" @click="showAll=!showAll">{{ showAll ? (locale==='de'?'Seiten':'Pages') : (locale==='de'?'Alle':'All') }}</button></div>
     <div class="mission-goal-list">
      <button v-for="key in visibleGoals" :key="key" type="button" class="mission-goal-row" :class="{'is-selected':selected===key,'has-points':plan.points[key]>0}" :aria-pressed="selected===key" @click="selectGoal(key)">
@@ -90,7 +101,7 @@ onUnmounted(()=>{clearTimeout(pulseTimer);window.clearInterval(timer);window.rem
      <button class="nes-btn" type="button" :disabled="page===pageCount-1" :aria-label="locale==='de'?'Weitere Ziele':'More goals'" @click="changePage(1)">→</button>
     </nav>
    </section>
-   <aside class="nes-container mission-summary">
+   <aside v-show="!compact||goalPanel==='priorities'" class="nes-container mission-summary">
     <h2>{{ copy.ranking }}</h2>
     <p v-if="!rankings.length" class="goals-copy">{{ copy.empty }}</p>
     <div v-else class="mission-priorities"><button v-for="item in rankings" :key="item.key" type="button" @click="selectGoal(item.key)"><span>{{ item.rank }}. {{ copy.goals[item.key].title }}</span><strong>{{ item.points }}</strong></button></div>
