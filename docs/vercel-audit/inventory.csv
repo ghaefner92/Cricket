@@ -1,0 +1,526 @@
+path,bytes,contained_files,tracked,category,reason
+.git/,,,,git_metadata,Exclude from deployment; contents not inspected.
+.gitignore,700,1,True,repository_config,Retain repository exclusion rules; not an application asset.
+.idea/,,,,editor_state,Exclude from deployment; contents not inspected.
+.local-backups/,,,,private_backups,Exclude from deployment; contents not inspected.
+PLAN_IMPLEMENTACION_HOTCO.txt,9186,1,True,documentation,Retain in repository; exclude from deployment runtime.
+README.md,8739,1,True,documentation,Retain in repository; exclude from deployment runtime.
+android-native/.gradle/,2856150,15,,generated_local,Exclude from source upload; regenerate during build/install.
+android-native/app/build.gradle.kts,1748,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/build/,516534920,1249,,generated_local,Exclude from source upload; regenerate during build/install.
+android-native/app/src/androidTest/java/de/ovgu/imiq/cricket/DatabaseConcurrencyDeviceTest.kt,3424,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/androidTest/java/de/ovgu/imiq/cricket/RouteLoadingDeviceTest.kt,4507,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/androidTest/java/de/ovgu/imiq/cricket/RouteStartDeviceTest.kt,5992,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/androidTest/java/de/ovgu/imiq/cricket/TrackingDeviceTest.kt,6085,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/androidTest/java/de/ovgu/imiq/cricket/TrackingMapDeviceTest.kt,5761,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/androidTest/java/de/ovgu/imiq/cricket/WeeklyPrioritiesDeviceTest.kt,4213,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/debug/res/xml/network_security_config.xml,98,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/AndroidManifest.xml,1251,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/creature-dialogue-v1.png,985677,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/creature-mint-sheet-v1.png,1418307,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/creature-transport-sheet-v1.png,1820640,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/explorer-dialogue-v1.png,1089137,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/explorer-mint-sheet-v1.png,1363739,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/explorer-transport-sheet-v1.png,1721954,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-amanita-v1.png,2055253,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-atlas.json,13288,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-creature-smooth-v2.png,1769242,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-dogs-v1.png,1914897,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-drone-v1.png,1386234,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-explorer-smooth-v2.png,1749195,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-naturalist-smooth-v2.png,2512950,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-naturalist-v1.png,2479280,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-portrait-v1.png,1099437,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-portrait-v2.png,1092914,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-robot-smooth-v2.png,1660012,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-spider-v1.png,818931,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/companion-intro-spirit-v1.png,1628120,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/creature-sheet-v2.png,2561333,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/creature-transport-v2.png,2563047,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/explorer-sheet-v2.png,2407816,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/explorer-transport-v2.png,2520342,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/garden-v2.png,3111708,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/meet-atlas.json,6074,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/meet-creature-action-v1.png,2177103,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/meet-creature-background-v1.png,2466389,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/meet-explorer-action-v1.png,1785870,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/meet-explorer-background-v1.png,2515213,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/meet-naturalist-action-v1.png,2292681,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/meet-naturalist-background-v1.png,3394909,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/meet-robot-action-v1.png,1858953,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/meet-robot-background-v1.png,2217784,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/naturalist-sheet-v2.png,2755946,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/naturalist-transport-v2.png,2664666,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/robot-sheet-v2.png,2185368,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/robot-transport-v2.png,2384721,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/station-v2.png,2982817,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/transport-atlas.json,9747,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/travel-kit-bike-background-v1.png,3224725,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/travel-kit-car-background-v1.png,3232874,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/travel-kit-pt-background-v1.png,3514593,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/travel-kit-walk-background-v1.png,2659049,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/welcome-creature-v1.png,1678265,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/welcome-explorer-v1.png,1587020,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/welcome-naturalist-v1.png,1986532,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/jrpg/welcome-robot-v1.png,1619702,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/naturalist-dialogue-v1.png,1238812,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/naturalist-sheet-v1.png,1885945,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/naturalist-transport-sheet-v1.png,2037582,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/robot-dialogue-v1.png,801551,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/robot-mint-sheet-v1.png,1287587,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/art/robot-transport-sheet-v1.png,1663111,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/branding/companion-funding-transparent-v2.png,426851,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/branding/companion-ovgu-plate-v3.png,686026,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/branding/companion-ovgu-transparent-v2.png,681525,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/branding/imiq-funding-official-dark-v1.png,400324,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/branding/imiq-funding-official.png,5219,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/branding/imiq-ovgu-logo-dark-v1.png,719242,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/branding/imiq-ovgu-logo.png,8793,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/catalog.json,23351,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/choiceWordings.json,24347,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/licenses/LICENSE.material-icons.txt,11357,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/maps/LICENSE.liberty.md,3223,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/maps/LICENSE.openfreemap.md,4118,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/maps/companion-clear.json,42828,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/maps/companion-mobility.json,43689,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/maps/companion-night.json,42791,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/maps/liberty-source.json,111354,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/assets/press-start-OFL.txt,4413,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/CompanionSelectorUi.kt,7232,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/CricketApp.kt,25235,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/CricketModel.kt,27203,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/Data.kt,14600,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/HistoryDetails.kt,2920,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/HomeDashboardUi.kt,5133,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/IntroMascotsUi.kt,8584,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/JourneyAvatarMotion.kt,2952,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/JourneyContract.kt,9034,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/JourneyLoadingUi.kt,4133,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/JourneyUi.kt,29901,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/JrpgSceneChrome.kt,4117,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/JrpgUi.kt,18905,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/Location.kt,3541,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/MainActivity.kt,6785,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/MascotValenceUi.kt,6251,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/NativeMap.kt,18811,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/PixelUi.kt,5205,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/RouteAvatarAnchor.kt,1161,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/RouteData.kt,17604,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/RouteExplorerUi.kt,13444,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/RouteGoalIndicators.kt,4825,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/RouteProfileUi.kt,9022,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/RouteSummaryData.kt,1837,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/RouteSummaryUi.kt,9334,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/SceneLandmarkUi.kt,3493,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/StartupWelcomeUi.kt,13423,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/TrackingEngine.kt,6323,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/TrackingJourneyUi.kt,3115,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/TrackingService.kt,9434,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/TravelKitUi.kt,8836,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/TripRepository.kt,4259,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/TripUi.kt,19392,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/VectorMapUi.kt,9007,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/java/de/ovgu/imiq/cricket/WeeklyPrioritiesUi.kt,7753,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/res/drawable-nodpi/companion_icon_v1.png,1231508,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/res/drawable/companion_icon_monochrome.xml,502,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/res/drawable/cricket_icon.xml,611,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/res/drawable/ic_transit_bus.xml,667,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/res/drawable/ic_transit_train.xml,650,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/res/drawable/ic_transit_tram.xml,635,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/res/font/press_start.ttf,118204,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/res/mipmap-anydpi-v26/companion_launcher.xml,268,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/res/mipmap-anydpi-v33/companion_launcher.xml,342,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/res/values/companion_icon.xml,124,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/main/res/xml/network_security_config.xml,345,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/test/java/de/ovgu/imiq/cricket/Phase1Test.kt,5535,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/test/java/de/ovgu/imiq/cricket/RouteAvatarAnchorTest.kt,1109,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/app/src/test/java/de/ovgu/imiq/cricket/RouteSummaryDataTest.kt,2486,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/build.gradle.kts,214,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/build/,132776,1,,generated_local,Exclude from source upload; regenerate during build/install.
+android-native/gradle.properties,103,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/gradle/wrapper/gradle-wrapper.jar,43764,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/gradle/wrapper/gradle-wrapper.properties,253,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/gradlew,8733,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/gradlew.bat,2937,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/local.properties,53,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/scripts/build-map-styles.mjs,4325,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/scripts/build.mjs,1525,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/scripts/inspect-intro-atlas.py,2105,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/scripts/inspect-sprite-atlas.py,2643,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/scripts/open.mjs,451,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+android-native/settings.gradle.kts,279,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+app-backend/.env,589,1,False,private_configuration,Exclude; configure deployment secrets separately. Contents not read.
+app-backend/.env.example,906,1,True,configuration_example,Keep as documentation; no production secret values.
+app-backend/services/dyconet/__pycache__/,688009,45,,generated_local,Exclude from source upload; regenerate during build/install.
+app-backend/services/dyconet/adaptive_hotco_adapter.py,19988,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/adaptive_hotco_bootstrap.py,2997,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/adaptive_passport_onboarding.py,16396,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/adaptive_passport_v1.py,31131,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/adaptive_passport_xai.py,14679,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/adaptive_profile_update.py,33132,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/adaptive_question_trigger.py,18727,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/artifacts/adaptive_passport_v1.json,20279,1,True,backend_required_data,Required runtime data; retain path layout.
+app-backend/services/dyconet/availability_resolver.py,2874,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/backend-main.stderr.log,26160,1,False,logs,Exclude from deployment; diagnostic output.
+app-backend/services/dyconet/backend-main.stdout.log,49,1,False,logs,Exclude from deployment; diagnostic output.
+app-backend/services/dyconet/backend-otp.err.log,5581,1,False,logs,Exclude from deployment; diagnostic output.
+app-backend/services/dyconet/backend-otp.out.log,49,1,False,logs,Exclude from deployment; diagnostic output.
+app-backend/services/dyconet/backend-otp.stderr.log,9727,1,False,logs,Exclude from deployment; diagnostic output.
+app-backend/services/dyconet/backend-otp.stdout.log,49,1,False,logs,Exclude from deployment; diagnostic output.
+app-backend/services/dyconet/choice_evidence_v1.py,14360,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/choice_explanation_api.py,1831,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/choice_groq_narrator.py,7937,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/choice_story_legacy_v1.py,13203,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/choice_story_v1.py,10342,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/choice_template_v1.py,17187,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/choice_wording_v1.json,24347,1,True,backend_required_data,Required runtime data; retain path layout.
+app-backend/services/dyconet/companion_interpretation.py,11005,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/context_facts.py,6348,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/context_models.py,3239,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/context_perturbation.py,13794,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/contextual_deliberation.py,19515,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/contextual_xai.py,17927,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/contextual_xai_narrator.py,41223,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/digital_companion_contract.py,2768,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/geocoding_api.py,1660,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/graphhopper_geometry.py,5316,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/hotco_ct_v4_3.py,17156,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/input_mapping_v4_3.py,13772,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/journey_api.py,1472,1,False,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/journey_availability.py,1172,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/journey_contract.py,8192,1,False,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/main.py,20341,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/map_tiles_api.py,1878,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/orion_context.py,18372,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/orion_query_list.py,6748,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/otp_transit.py,14033,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/passport_v2.py,16114,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/passport_xai.py,3058,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/profile_update.py,11999,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/question_trigger_engine.py,8663,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/recommendation_robustness.py,2948,1,False,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/requirements.txt,134,1,True,backend_dependencies,Retain for separate backend deployment.
+app-backend/services/dyconet/response_transport.py,1035,1,False,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/route_context.py,17591,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/route_context_adapter.py,26023,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/routing_bridge.py,18988,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/tests/__pycache__/,15975,2,,generated_local,Exclude from source upload; regenerate during build/install.
+app-backend/services/dyconet/tests/test_context_simulation_reuse.py,4960,1,False,validation_only,Retain for checks; exclude from runtime bundle.
+app-backend/services/dyconet/tests/test_response_transport.py,2942,1,False,validation_only,Retain for checks; exclude from runtime bundle.
+app-backend/services/dyconet/weather_api.py,1664,1,False,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+app-backend/services/dyconet/xai_diagnostics.py,21826,1,True,backend_required_module,"Reachable from main.py through Python imports, including optional branches."
+contracts/journey-v1.schema.json,5729,1,False,backend_required_data,Required runtime data; retain path layout.
+docs/ANDROID.md,3885,1,True,documentation,Retain in repository; exclude from deployment runtime.
+docs/ANDROID_LEGACY.md,5524,1,True,documentation,Retain in repository; exclude from deployment runtime.
+docs/AUDIT.md,6847,1,True,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_APP_ICON.md,1923,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_CHARCOAL_PLUM_THEME.md,1837,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_INTRO.md,3485,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_INTRO_ASSETS.json,2501,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_INTRO_BRANDING_PROMPTS.json,2674,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_INTRO_DETAILS.md,2429,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_INTRO_DETAIL_PROMPTS.json,3254,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_INTRO_MASCOTS.md,2788,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_INTRO_MASCOT_PROMPTS.json,6514,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_INTRO_PROMPTS.json,4902,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_INTRO_REFINEMENT.md,3457,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_INTRO_SMOOTH_AVATARS.md,2565,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_INTRO_SMOOTH_PROMPTS.json,7776,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_SELECTION_ASSETS.json,2110,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_SELECTION_PROMPTS.json,11187,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/COMPANION_SELECTION_SCENES.md,2821,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/EVERYDAY_MOBILITY.md,3093,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/FASE1_TRACKING.md,8803,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/GPS_AVATAR_TRAVEL_STAGE.md,2486,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/GPS_CRASH_FIX.md,1372,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/HOME_DASHBOARD.md,1271,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/JOURNEY_LOADING.md,1089,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/JOURNEY_MODE_ALIAS_FIX.md,1496,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/JRPG_ASSET_PROMPTS.json,10293,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/JRPG_VISUAL_REDESIGN.md,3364,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/MAP_CURRENT_POSITION.md,1030,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/MAP_RECOMMENDATION_STYLE.md,2444,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/MAP_ROUTE_EXPLORER.md,2548,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/MAP_VIEWS.md,4422,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/MIGRACION_COMPOSE.md,4899,1,True,documentation,Retain in repository; exclude from deployment runtime.
+docs/PAUSE_DATABASE_LOCK_FIX_2026-10-09.md,1957,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/RECOMMENDATION_INTERPRETATION.md,2399,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/ROUTE_GOALS_VALENCE.md,1790,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/ROUTE_LOADING_DIAGNOSTIC_2026-10-09.md,9293,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/ROUTE_LOADING_IMPROVEMENT_2026-10-09.md,5451,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/ROUTE_PLAY_RESPONSIVENESS_2026-10-09.md,5588,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/ROUTE_SUMMARY_COMPACT.md,7243,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/STARTUP_WELCOME.md,1545,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/TRACKING_MAP_VALIDATION.md,2652,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/TRANSIT_PREVIEW_WALKING_AVATAR.md,917,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/TRANSIT_TIME_FROM_NOW.md,2066,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/TRAVEL_KIT_PROMPTS.json,7264,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/TRAVEL_KIT_SCENES.md,3921,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/TRAVEL_SEARCH_COMPACT.md,952,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/VERCEL_AUDIT.md,16226,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/WEEKLY_PRIORITIES_EDITOR.md,1798,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/WELCOME_ANIMATION_ASSETS.json,1168,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/WELCOME_ANIMATION_PROMPTS.json,6234,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/WELCOME_ANIMATION_V2.md,1380,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/WELCOME_BRANDING_DARK.md,1850,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/art-references/berlin.jpg,92616,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/art-references/kassel.jpg,104749,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/art-references/koeln.jpg,168795,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/art-references/magdeburg.jpg,276219,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/vercel-audit/backend-runtime-smoke.json,1195,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/vercel-audit/frontend-build-graph.json,10839,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/vercel-audit/frontend.vercel.example.json,619,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/vercel-audit/frontend.vercelignore.example,323,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/vercel-audit/inventory-summary.json,7613,1,False,documentation,Retain in repository; exclude from deployment runtime.
+docs/vercel-audit/inventory.csv,77939,1,False,documentation,Retain in repository; exclude from deployment runtime.
+experimental-frontend/.env.example,388,1,True,configuration_example,Keep as documentation; no production secret values.
+experimental-frontend/android/.gitignore,1824,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/.gradle/,2480691,15,,generated_local,Exclude from source upload; regenerate during build/install.
+experimental-frontend/android/app/.gitignore,26,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/build.gradle,2140,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/build/,74904485,518,,generated_local,Exclude from source upload; regenerate during build/install.
+experimental-frontend/android/app/capacitor.build.gradle,566,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/proguard-rules.pro,751,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/debug/res/xml/network_security_config.xml,313,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/AndroidManifest.xml,1767,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/capacitor.config.json,259,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/capacitor.plugins.json,410,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/CreateCompanionPage-CxyRVAot.css,75714,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/CreateCompanionPage-kYVPdI-o.js,166356,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/creature-dialogue-v1-ihr7DdJ6.png,985677,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/creature-mint-sheet-v1-B1e418om.png,1418307,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/creature-transport-sheet-v1-DcP1DZqv.png,1820640,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/esm-7MHgfW8Z.js,338,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/esm-CU23n1yB.js,815,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/esm-CxnmYOuj.js,402,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/esm-DRP1VWcN.js,332,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/explorer-dialogue-v1-Idn-UWcv.png,1089137,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/explorer-mint-sheet-v1-CQ8ao7MB.png,1363739,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/explorer-transport-sheet-v1-CT-LvXjG.png,1721954,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/index-CkiICC3C.js,193818,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/index-DhbHnQ14.css,316794,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/leaflet-src.esm-B99fQUAj.js,148459,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/naturalist-dialogue-v1-BIbttH5V.png,1238812,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/naturalist-sheet-v1-HNIE0Pnl.png,1885945,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/naturalist-transport-sheet-v1-c0NGt_TX.png,2037582,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/press-start-2p-cyrillic-400-normal-DBn7fddJ.woff2,6864,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/press-start-2p-cyrillic-ext-400-normal-CIYZrvmP.woff2,6704,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/press-start-2p-greek-400-normal-DQfalijU.woff2,6592,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/press-start-2p-latin-400-normal-KLytu4cr.woff,6328,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/press-start-2p-latin-400-normal-_wFEWmAB.woff2,12512,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/press-start-2p-latin-ext-400-normal-DBgyq7ky.woff,4944,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/press-start-2p-latin-ext-400-normal-DpfYvR5A.woff2,9856,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/robot-dialogue-v1-CNrDodcw.png,801551,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/robot-mint-sheet-v1-DHd49t1U.png,1287587,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/robot-transport-sheet-v1-CDiriFTu.png,1663111,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/synapse-D5y-aojA.js,624,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/web-Bs3Be07V.js,2088,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/web-CNPSWWHT.js,366,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/web-St1n_7l9.js,8478,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/assets/web-USe9x3zG.js,845,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/branding/imiq-ovgu-logo.png,8793,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/cordova.js,0,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/cordova_plugins.js,0,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/favicon.svg,9522,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/assets/public/index.html,479,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/java/de/ovgu/imiq/cricket/MainActivity.java,124,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable-land-hdpi/splash.png,7705,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable-land-mdpi/splash.png,4040,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable-land-xhdpi/splash.png,9251,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable-land-xxhdpi/splash.png,13984,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable-land-xxxhdpi/splash.png,17683,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable-port-hdpi/splash.png,7934,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable-port-mdpi/splash.png,4096,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable-port-xhdpi/splash.png,9875,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable-port-xxhdpi/splash.png,13346,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable-port-xxxhdpi/splash.png,17489,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable-v24/ic_launcher_foreground.xml,1880,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable/cricket_icon.xml,611,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable/ic_launcher_background.xml,5606,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/drawable/splash.png,4040,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/layout/activity_main.xml,535,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml,265,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml,265,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-hdpi/ic_launcher.png,2786,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png,3450,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-hdpi/ic_launcher_round.png,4341,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-mdpi/ic_launcher.png,1869,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png,2110,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-mdpi/ic_launcher_round.png,2725,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png,3981,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png,5036,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png,6593,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png,6644,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png,9793,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png,10455,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png,9441,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png,15529,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png,15916,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/values/ic_launcher_background.xml,120,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/values/strings.xml,294,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/values/styles.xml,1046,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/xml/config.xml,185,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/xml/file_paths.xml,166,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/app/src/main/res/xml/network_security_config.xml,410,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/build.gradle,637,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/build/,130478,1,,generated_local,Exclude from source upload; regenerate during build/install.
+experimental-frontend/android/capacitor-cordova-android-plugins/build.gradle,1668,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/capacitor-cordova-android-plugins/build/,10322,28,,generated_local,Exclude from source upload; regenerate during build/install.
+experimental-frontend/android/capacitor-cordova-android-plugins/cordova.variables.gradle,312,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/capacitor-cordova-android-plugins/src/main/AndroidManifest.xml,210,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/capacitor-cordova-android-plugins/src/main/java/.gitkeep,0,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/capacitor-cordova-android-plugins/src/main/res/.gitkeep,1,1,False,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/capacitor.settings.gradle,722,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/gradle.properties,987,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/gradle/wrapper/gradle-wrapper.jar,43764,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/gradle/wrapper/gradle-wrapper.properties,253,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/gradlew,8733,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/gradlew.bat,2937,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/settings.gradle,208,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/android/variables.gradle,498,1,True,android_only,Exclude from Vercel web deployment; retain for Android app.
+experimental-frontend/capacitor.config.json,248,1,True,android_build_tool,Not required by npm run build; retain Android tooling.
+experimental-frontend/dist/,18303041,36,,generated_local,Exclude from source upload; regenerate during build/install.
+experimental-frontend/index.html,377,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/node_modules/,87418005,3837,,generated_local,Exclude from source upload; regenerate during build/install.
+experimental-frontend/package-lock.json,79291,1,True,frontend_build_config,Required build configuration.
+experimental-frontend/package.json,937,1,True,frontend_build_config,Required build configuration.
+experimental-frontend/public/branding/imiq-ovgu-logo.png,8793,1,True,frontend_public,Vite copies public files; required or independently reviewed.
+experimental-frontend/public/favicon.svg,9522,1,True,frontend_public,Vite copies public files; required or independently reviewed.
+experimental-frontend/scripts/build-android.mjs,1300,1,True,android_build_tool,Not required by npm run build; retain Android tooling.
+experimental-frontend/src/App.vue,2818,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/animation/affectParticles.js,1643,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/animation/citadelBackdrop.js,1865,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/animation/elbScene.js,5235,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/animation/goalScene.js,3472,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/animation/hbfBackdrop.js,1535,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/animation/magdeburgScene.js,5635,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/animation/robotCanvas.js,1991,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/animation/toleranceScene.js,8477,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/animation/transportSprites.js,2967,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/companions.js,1741,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/creature-dialogue-v1.png,985677,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/creature-mint-sheet-v1.png,1418307,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/creature-transport-sheet-v1.png,1820640,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/explorer-dialogue-v1.png,1089137,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/explorer-mint-sheet-v1.png,1363739,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/explorer-transport-sheet-v1.png,1721954,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/naturalist-dialogue-v1.png,1238812,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/naturalist-sheet-v1.png,1885945,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/naturalist-transport-sheet-v1.png,2037582,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/robot-dialogue-v1.png,801551,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/robot-mint-sheet-v1.png,1287587,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/art/robot-transport-sheet-v1.png,1663111,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/AddressSearch.vue,9309,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/AffectivePortrait.vue,1605,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/AvailabilityKit.vue,2944,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/AvailabilityScene.vue,1617,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/AvatarReaction.vue,5015,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/BackendConnection.vue,1662,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/BeliefScene.vue,1567,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/ChoiceReflection.vue,10764,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/CompanionAvatar.vue,1145,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/DialogueMoodIcon.vue,1068,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/DialoguePortrait.vue,2461,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/GoalScene.vue,1984,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/JourneyControlIcon.vue,1002,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/LoadingScene.vue,2377,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/PixelHeart.vue,1093,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/PixelJourneyIcon.vue,2942,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/RecentPlaces.vue,6393,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/RobotSprite.vue,3410,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/RouteJourneyCard.vue,10166,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/RouteMap.vue,12444,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/RoutePlanner.vue,29341,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/RouteRecommendations.vue,7840,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/SettingsMenu.vue,15248,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/SimulationHistory.vue,4952,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/ToleranceScene.vue,1604,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/TransitJourney.vue,4858,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/TransportScene.vue,1793,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/components/WeatherInventory.vue,5561,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/i18n/beliefs.js,4705,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/i18n/companion.js,3261,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/i18n/tolerances.js,4098,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/i18n/valences.js,5462,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/i18n/weeklyGoals.js,5193,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/main.js,439,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/pages/BeliefsPage.vue,9178,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/pages/CompanionIdentityPage.vue,5920,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/pages/CreateCompanionPage.vue,4003,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/pages/PassportPage.vue,12794,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/pages/TolerancesPage.vue,4377,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/pages/ValencePage.vue,6154,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/pages/WeeklyGoalsPage.vue,9567,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/adaptiveBeliefs.js,3755,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/addressPresentation.js,407,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/apiTransport.js,2080,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/appSettings.js,1919,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/choiceReaction.js,544,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/choiceReflection.js,2282,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/choiceVoice.js,4074,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/choiceWordings.json,24347,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/compactLayout.js,353,1,True,frontend_not_in_build,"Not resolved in current build; candidate only, inspect runtime URLs and future flows before removing."
+experimental-frontend/src/services/dataTransfer.js,3648,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/dialoguePresentation.js,3489,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/dialogueReveal.js,718,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/dialogueWeather.js,490,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/geocoding.js,5901,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/journeyExperience.js,1332,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/nativeMapTiles.js,869,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/nativePlatform.js,1160,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/passport.js,4189,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/passportLifecycle.js,3358,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/reactionMeaning.js,825,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/recommendationMessaging.js,2117,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/routeExplanation.js,1255,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/routeMap.js,1888,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/routePlanning.js,3623,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/routePresentation.js,3768,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/simulationHistory.js,6816,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/transitPresentation.js,3000,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/transitStatus.js,2269,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/services/useCompactLayout.js,354,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/stores/availability.js,1051,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/stores/companion.js,1143,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/stores/tolerances.js,1737,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/stores/valences.js,1887,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/stores/weeklyGoals.js,3378,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/style.css,2812,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/availability.css,979,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/beliefs.css,4852,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/companion-page.css,6843,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/journey-experience.css,2664,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/journey-game.css,6092,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/journey-refinement.css,3153,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/mobile.css,2889,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/passport.css,2573,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/pixel-typography.css,4164,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/routes.css,6310,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/rpg-theme.css,2872,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/settings.css,3378,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/tolerances.css,2421,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/valences.css,5091,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/styles/weekly-goals.css,7405,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/vendor/leaflet/LICENSE,1395,1,True,license,Retain Leaflet attribution/license even without import.
+experimental-frontend/src/vendor/leaflet/images/layers-2x.png,1259,1,True,frontend_library_resource,Retain: CSS url() and Leaflet runtime icon URLs may bypass the JS module graph.
+experimental-frontend/src/vendor/leaflet/images/layers.png,696,1,True,frontend_library_resource,Retain: CSS url() and Leaflet runtime icon URLs may bypass the JS module graph.
+experimental-frontend/src/vendor/leaflet/images/marker-icon-2x.png,2464,1,True,frontend_library_resource,Retain: CSS url() and Leaflet runtime icon URLs may bypass the JS module graph.
+experimental-frontend/src/vendor/leaflet/images/marker-icon.png,1466,1,True,frontend_library_resource,Retain: CSS url() and Leaflet runtime icon URLs may bypass the JS module graph.
+experimental-frontend/src/vendor/leaflet/images/marker-shadow.png,618,1,True,frontend_library_resource,Retain: CSS url() and Leaflet runtime icon URLs may bypass the JS module graph.
+experimental-frontend/src/vendor/leaflet/leaflet-src.esm.js,415596,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/src/vendor/leaflet/leaflet.css,14806,1,True,frontend_build_input,Resolved by the audited Vite build; retain for reproducible build.
+experimental-frontend/vite-otp.stderr.log,0,1,False,logs,Exclude from deployment; diagnostic output.
+experimental-frontend/vite-otp.stdout.log,198,1,False,logs,Exclude from deployment; diagnostic output.
+experimental-frontend/vite.config.js,525,1,True,frontend_build_config,Required build configuration.
+output/,,,,local_artifacts,Exclude from deployment; contents not inspected.
+validation/__pycache__/,30598,3,,generated_local,Exclude from source upload; regenerate during build/install.
+validation/audit_hotco_device_history.py,8268,1,False,validation_only,Retain for checks; exclude from runtime bundle.
+validation/audit_vercel_backend_smoke.py,2570,1,False,validation_only,Retain for checks; exclude from runtime bundle.
+validation/audit_vercel_build.mjs,1578,1,False,validation_only,Retain for checks; exclude from runtime bundle.
+validation/audit_vercel_inventory.py,8270,1,False,validation_only,Retain for checks; exclude from runtime bundle.
+validation/check_phase1_preservation.py,1895,1,False,validation_only,Retain for checks; exclude from runtime bundle.
+validation/device_ui_review.py,1810,1,False,validation_only,Retain for checks; exclude from runtime bundle.
+validation/find_live_delayed_route.py,3706,1,False,validation_only,Retain for checks; exclude from runtime bundle.
+validation/fixtures/journey_cases.json,157268,1,False,validation_only,Retain for checks; exclude from runtime bundle.
+validation/generate_phase1_fixtures.py,7314,1,False,validation_only,Retain for checks; exclude from runtime bundle.
+validation/phase1_test.py,3924,1,False,validation_only,Retain for checks; exclude from runtime bundle.

@@ -25,6 +25,7 @@ from dotenv import load_dotenv
 load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=False)
 
 from flask import Flask, jsonify, request
+from response_transport import register_json_compression
 from werkzeug.exceptions import BadRequest
 
 from hotco_ct_v4_3 import HOTCOCTv43, MODEL_NAME, MODEL_VERSION
@@ -74,6 +75,7 @@ logging.basicConfig(level=os.environ.get("DYCONET_LOG_LEVEL", "INFO"))
 logger = logging.getLogger("dyconet_api")
 
 app = Flask(__name__)
+register_json_compression(app)
 engine = HOTCOCTv43()
 model_lock = threading.Lock()
 
@@ -147,6 +149,8 @@ def run_adaptive_hotco_bootstrap(
 ) -> Dict[str, Any]:
     """Run initial HOTCO-CT from a completed Adaptive Passport."""
 
+    payload = dict(payload)
+    daily_goals = payload.pop("daily_goals", None)
     adaptive_input = (
         prepare_adaptive_hotco_bootstrap(
             payload
@@ -158,11 +162,17 @@ def run_adaptive_hotco_bootstrap(
             adaptive_input.participant
         )
 
-    return build_adaptive_cognitive_passport(
+    output = build_adaptive_cognitive_passport(
         adaptive_input,
         result,
         engine,
     )
+
+
+    if daily_goals is not None:
+        from daily_passport import attach_initial_daily
+        output = attach_initial_daily(output, daily_goals)
+    return output
 
 
 def run_adaptive_profile_update(
@@ -202,6 +212,13 @@ def health() -> Any:
             "profile_update_schema_version": PROFILE_UPDATE_SCHEMA_VERSION,
             "adaptive_questioning": True,
             "longitudinal_passport_lineage": True,
+            "learned_passport": {"schema_version":"d-day-learned-passport-v1",
+                "status":"versioned_shadow","persistence":"client_owned",
+                "active_passport_update":False,"hotco_update":False},
+            "comfort_pilot": {"model_version":"d-day-comfort-ordinal-v1","status":"experimental_shadow",
+                "active_passport_update":False,"hotco_update":False,"uv_excluded":True},
+            "affect_pilot": {"model_version":"d-day-affect-ordinal-v1","status":"experimental_shadow","normalization":"raw/3",
+                "active_passport_update":False,"hotco_update":False,"uv_excluded":True},
             "input_policy": "current_user_responses_only",
             "imputation": False,
             "adaptive_passport": {
@@ -228,7 +245,7 @@ def health() -> Any:
                 "timeout_seconds": PUBLIC_TIMEOUT_SECONDS,
                 "context_contract_version": "route-context-v1",
             },
-            "context_model": {"active_context_model": active_context_model(), "context_model_status": EXPERIMENTAL_UNCALIBRATED, "rho": DEFAULT_RHO},
+            "context_model": {"active_context_model": "observations_only", "context_model_status": "NOT_APPLIED", "f3_enabled_by_default": False, "bayesian_learning_applied": False, "legacy_reproduction_requires_explicit_policy": True},
         }
     )
 
@@ -623,10 +640,31 @@ from choice_explanation_api import register_choice_explanation
 register_choice_explanation(app)
 from geocoding_api import register_geocoding
 register_geocoding(app)
+from transit_stop_api import register_transit_stops
+register_transit_stops(app)
+from weather_api import register_weather
+register_weather(app)
+from comfort_pilot.context_capture import register as register_context_capture
+register_context_capture(app)
 from map_tiles_api import register_map_tiles
 register_map_tiles(app)
+from journey_api import register_journeys
+register_journeys(app)
+from d_day_evidence import register_d_day
+register_d_day(app)
+from comfort_pilot.api import register as register_comfort_pilot
+register_comfort_pilot(app)
+from comfort_pilot.affect import register_affect
+register_affect(app)
+from comfort_pilot.prospective import register as register_prospective
+register_prospective(app)
+from comfort_pilot.learned_passport import register as register_learned_passport
+register_learned_passport(app)
+from daily_passport import register_daily_passport
+register_daily_passport(app, engine, model_lock)
 
 if __name__ == "__main__":
+    logger.info("Starting D-Day comfort pilot; source=%s", Path(__file__).resolve())
     app.run(
         debug=os.environ.get("FLASK_DEBUG", "0") == "1",
         host="0.0.0.0",

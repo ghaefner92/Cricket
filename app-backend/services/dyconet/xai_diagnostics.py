@@ -33,12 +33,19 @@ def ambiguity_state(competition: Mapping[str, Any] | None) -> str:
     if not isinstance(competition, Mapping):
         return "UNKNOWN"
     try:
-        if float(competition.get("co_dominance_fraction")) >= float(competition.get("persistent_rivalry_fraction", PERSISTENT_RIVALRY_FRACTION)):
-            return "NEAR_TIE"
-        margin = competition.get("final_margin", competition.get("minimum_top2_gap"))
+        if competition.get("active_mode_count") == 1:
+            return "ONLY_OPTION"
+        # Never infer terminal ambiguity from an early transient minimum.
+        margin = competition.get("final_margin")
         threshold = competition.get("co_dominance_threshold")
-        if margin is not None and threshold is not None and float(margin) <= float(threshold):
+        if margin is None or threshold is None:
+            return "UNKNOWN"
+        if competition.get("terminal_settled") is not True:
+            return "UNSETTLED"
+        if float(margin) <= float(threshold):
             return "NEAR_TIE"
+        if competition.get("terminal_winner_stable") is not True or float(competition.get("terminal_co_dominance_fraction", 1.0)) >= PERSISTENT_RIVALRY_FRACTION:
+            return "UNSETTLED"
         return "CLEAR"
     except (TypeError, ValueError):
         return "UNKNOWN"
@@ -98,6 +105,14 @@ def _competition_diagnostics(
         int(active_indices[terminal_order[1]]) if active_indices.size > 1 else None
     )
 
+    tail_steps = max(1, int(round(p.settling_dwell / p.dt)))
+    tail = active_actions[-(tail_steps + 1):]
+    terminal_rate = float(np.max(np.abs(np.diff(tail, axis=0))) / p.dt)
+    tail_ordered = np.sort(tail, axis=1)[:, ::-1]
+    final_margin = None if active_indices.size == 1 else float(tail_ordered[-1, 0] - tail_ordered[-1, 1])
+    terminal_close = 0.0 if active_indices.size == 1 else float(np.mean(tail_ordered[:, 0] - tail_ordered[:, 1] <= p.practical_margin_threshold))
+    terminal_stable = bool(np.all(np.argmax(tail, axis=1) == terminal_order[0]))
+
     if active_indices.size == 1:
         co_dominance_fraction = 0.0
         mean_top2_gap = 1.0
@@ -132,6 +147,13 @@ def _competition_diagnostics(
 
     return {
         "winner": MODES[winner_index],
+        "active_mode_count": int(active_indices.size),
+        "final_margin": _optional_number(final_margin),
+        "terminal_window_model_units": (len(tail) - 1) * p.dt,
+        "terminal_action_change_rate": _number(terminal_rate),
+        "terminal_settled": terminal_rate <= p.settling_action_threshold,
+        "terminal_winner_stable": terminal_stable,
+        "terminal_co_dominance_fraction": _number(terminal_close),
         "main_rival": MODES[rival_index] if rival_index is not None else None,
         "evaluation_start_time_model_units": _number(start_index * p.dt),
         "co_dominance_fraction": _number(co_dominance_fraction),
@@ -449,6 +471,10 @@ def build_xai_diagnostics(
     actions = trajectory[:, action_slice]
 
     competition = _competition_diagnostics(actions, availability, engine)
+    tail_steps = max(1, int(round(engine.parameters.settling_dwell / engine.parameters.dt)))
+    full_state_rate = float(np.max(np.abs(np.diff(trajectory[-(tail_steps + 1):], axis=0))) / engine.parameters.dt)
+    competition["terminal_full_state_change_rate"] = _number(full_state_rate)
+    competition["terminal_settled"] = competition["terminal_settled"] and full_state_rate <= engine.parameters.settling_state_threshold
     start_index = int(competition.pop("_start_index"))
     winner_index = int(competition.pop("_winner_index"))
     competition.pop("_rival_index")

@@ -1,0 +1,29 @@
+# Pet portrait prompts — built-in image_gen
+
+Transparent PNG expression atlases. Reference assets retain existing identities.
+«64 bit» is interpreted as JRPG art inspired by the Nintendo 64 era, not a PNG bit-depth specification.
+Each atlas has three columns and three rows: idle, laugh, doubt. Full generated PNGs are preserved without image editing.
+
+## naturalist
+
+Reference: `companion-intro-dogs-v1.png`
+
+Use case: stylized-concept. Asset type: production transparent expression sprite atlas for an Android JRPG app. Input image is the character identity reference; preserve its recognizable colors and features but transform to polished high-resolution pre-rendered 3D, inspired by charming Nintendo64-era JRPG characters, rounded sculpted volume and soft lighting, clean antialiased edges. The naturalist's existing small black and tan floppy-eared puppy, cream eyebrows and muzzle, black nose, warm expressive eyes. Face and ears only, no mushroom or body. Output ONE square sprite sheet, exactly 3 equal columns by 3 equal rows, no labels, no separators, no text. Every cell has exactly the same head size and centered anchor, whole head and ears/halo fit within the middle 78% of the cell with ample transparent margins. Row1 idle: neutral attentive, blink closed, neutral attentive slight smile. Row2 laugh: growing grin, cheerful laughing eyes closed and mouth open, gentle happy smile. Row3 doubt: mildly questioning raised brow, curious slight head tilt 8 degrees and asymmetric brows, thoughtful questioning look. Same camera, identity, scale and lighting for all nine frames; minimal motion, consistent animation registration. Truly transparent background. No full bodies, no scene, no props, no floating symbols, no checkerboard drawn.
+
+## explorer
+
+Reference: `companion-intro-spider-v1.png`
+
+Use case: stylized-concept. Asset type: production transparent expression sprite atlas for an Android JRPG app. Input image is the character identity reference; preserve its recognizable colors and features but transform to polished high-resolution pre-rendered 3D, inspired by charming Nintendo64-era JRPG characters, rounded sculpted volume and soft lighting, clean antialiased edges. The explorer's existing friendly round chocolate-brown spider, huge white eyes and dark pupils, small rounded leg tips framing the face. Cute, not scary. Output ONE square sprite sheet, exactly 3 equal columns by 3 equal rows, no labels, no separators, no text. Every cell has exactly the same head size and centered anchor, whole head and ears/halo fit within the middle 78% of the cell with ample transparent margins. Row1 idle: neutral attentive, blink closed, neutral attentive slight smile. Row2 laugh: growing grin, cheerful laughing eyes closed and mouth open, gentle happy smile. Row3 doubt: mildly questioning raised brow, curious slight head tilt 8 degrees and asymmetric brows, thoughtful questioning look. Same camera, identity, scale and lighting for all nine frames; minimal motion, consistent animation registration. Truly transparent background. No full bodies, no scene, no props, no floating symbols, no checkerboard drawn.
+
+## robot
+
+Reference: `companion-intro-drone-v1.png`
+
+Use case: stylized-concept. Asset type: production transparent expression sprite atlas for an Android JRPG app. Input image is the character identity reference; preserve its recognizable colors and features but transform to polished high-resolution pre-rendered 3D, inspired by charming Nintendo64-era JRPG characters, rounded sculpted volume and soft lighting, clean antialiased edges. The robot's existing white rounded mini-drone pet, black oval digital face panel with luminous cyan eyes, white side pods and small cyan floating halo. Head only. Output ONE square sprite sheet, exactly 3 equal columns by 3 equal rows, no labels, no separators, no text. Every cell has exactly the same head size and centered anchor, whole head and ears/halo fit within the middle 78% of the cell with ample transparent margins. Row1 idle: neutral attentive, blink closed, neutral attentive slight smile. Row2 laugh: growing grin, cheerful laughing eyes closed and mouth open, gentle happy smile. Row3 doubt: mildly questioning raised brow, curious slight head tilt 8 degrees and asymmetric brows, thoughtful questioning look. Same camera, identity, scale and lighting for all nine frames; minimal motion, consistent animation registration. Truly transparent background. No full bodies, no scene, no props, no floating symbols, no checkerboard drawn.
+
+## creature
+
+Reference: `companion-intro-spirit-v1.png`
+
+Use case: stylized-concept. Asset type: production transparent expression sprite atlas for an Android JRPG app. Input image is the character identity reference; preserve its recognizable colors and features but transform to polished high-resolution pre-rendered 3D, inspired by charming Nintendo64-era JRPG characters, rounded sculpted volume and soft lighting, clean antialiased edges. The creature's existing tiny creamy-white magical spirit face, black oval eyes, rosy cheeks, surrounded by mint emerald luminous flame aura. Face portrait only. Output ONE square sprite sheet, exactly 3 equal columns by 3 equal rows, no labels, no separators, no text. Every cell has exactly the same head size and centered anchor, whole head and ears/halo fit within the middle 78% of the cell with ample transparent margins. Row1 idle: neutral attentive, blink closed, neutral attentive slight smile. Row2 laugh: growing grin, cheerful laughing eyes closed and mouth open, gentle happy smile. Row3 doubt: mildly questioning raised brow, curious slight head tilt 8 degrees and asymmetric brows, thoughtful questioning look. Same camera, identity, scale and lighting for all nine frames; minimal motion, consistent animation registration. Truly transparent background. No full bodies, no scene, no props, no floating symbols, no checkerboard drawn.

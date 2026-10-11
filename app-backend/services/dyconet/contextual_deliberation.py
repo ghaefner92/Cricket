@@ -7,7 +7,8 @@ their scientific rules.
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace, asdict
+from copy import deepcopy
 from journey_availability import apply_journey_availability
 from typing import Any, Mapping, Sequence
 
@@ -39,6 +40,7 @@ from adaptive_profile_update import (
 from route_context import CandidateRouteInput, ContextObservation, RouteContext
 from route_context_adapter import NORMALIZATION_VERSION, RouteContextAdapter
 from xai_diagnostics import ambiguity_state, build_xai_diagnostics
+from recommendation_robustness import assess_robustness
 
 
 REQUEST_SCHEMA_VERSION = "contextual-deliberation-request-v1"
@@ -97,6 +99,8 @@ class ContextualDeliberationRequest:
     observations: Mapping[str, Any] = field(default_factory=dict)
     query_configuration: ContextQueryConfiguration = ContextQueryConfiguration()
     warnings: tuple[str, ...] = ()
+    record_trajectories: bool = False
+    context_policy: str = "observations_only"
 
     @classmethod
     def from_dict(cls, data: Mapping[str, Any]) -> "ContextualDeliberationRequest":
@@ -194,6 +198,9 @@ class ContextualDeliberationRequest:
         extras = sorted(set(tolerance_values) - set(SUPPORTED_TOLERANCES))
         if extras:
             warnings.append(f"unsupported tolerance dimensions ignored: {', '.join(extras)}")
+        policy = data.get("context_policy", "observations_only")
+        if policy not in ("observations_only", "legacy_context_drive"):
+            raise ContextualDeliberationError("unsupported context_policy")
         return cls(
             search_id,
             timestamp,
@@ -203,6 +210,8 @@ class ContextualDeliberationRequest:
             data.get("contextual_observations", {}),
             ContextQueryConfiguration.from_dict(data.get("contextual_query")),
             tuple(warnings),
+            data.get("record_trajectories") is True,
+            policy,
         )
 
 
@@ -215,9 +224,10 @@ class HOTCODeliberationSummary:
     process_diagnostics: Mapping[str, Any] = field(default_factory=dict)
     node_activations: Mapping[str, Any] = field(default_factory=dict)
     ambiguity_state: str = "UNKNOWN"
+    simulation_evidence: Mapping[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        return {"final_action_activations": dict(self.final_action_activations), "probabilities": dict(self.probabilities), "winner": self.winner, "context_metadata": dict(self.context_metadata), "process_diagnostics": dict(self.process_diagnostics), "node_activations": dict(self.node_activations), "ambiguity_state": self.ambiguity_state}
+        return {"final_action_activations": dict(self.final_action_activations), "probabilities": dict(self.probabilities), "winner": self.winner, "context_metadata": dict(self.context_metadata), "process_diagnostics": dict(self.process_diagnostics), "node_activations": dict(self.node_activations), "ambiguity_state": self.ambiguity_state, "simulation_evidence": dict(self.simulation_evidence)}
 
 
 @dataclass(frozen=True)
@@ -246,7 +256,21 @@ class ContextualDeliberationResponse:
     warnings: tuple[str, ...]
 
     def to_dict(self) -> dict[str, Any]:
-        return {"schema_version": RESPONSE_SCHEMA_VERSION, "search_id": self.search_id, "timestamp": self.timestamp, "baseline": self.baseline.to_dict(), "candidate_results": [item.to_dict() for item in self.candidate_results], "model_version": self.model_version, "normalization_version": self.normalization_version, "perturbation_version": self.perturbation_version, "warnings": list(self.warnings)}
+        output = {"schema_version": RESPONSE_SCHEMA_VERSION, "search_id": self.search_id, "timestamp": self.timestamp, "baseline": self.baseline.to_dict(), "candidate_results": [item.to_dict() for item in self.candidate_results], "model_version": self.model_version, "normalization_version": self.normalization_version, "perturbation_version": self.perturbation_version, "warnings": list(self.warnings)}
+        from hashlib import sha256
+        import json
+        archive = {}
+        for summary in [output["baseline"], *(item["hotco"] for item in output["candidate_results"])]:
+            evidence = summary["simulation_evidence"]
+            states = evidence.pop("states", [])
+            if states:
+                identity = "trajectory-"+sha256(json.dumps(states, separators=(",", ":")).encode()).hexdigest()
+                archive.setdefault(identity, states)
+                evidence["trajectory_id"] = identity
+                evidence["sample_count"] = len(states)
+        output["trajectory_archive"] = archive
+        return output
+
 
 
 class ContextualDeliberationService:
@@ -256,15 +280,46 @@ class ContextualDeliberationService:
         self.adapter = adapter or RouteContextAdapter()
 
     def deliberate(self, request: ContextualDeliberationRequest) -> ContextualDeliberationResponse:
+        # Cache within this request only: identical effective context forces
+        # share checks, while route observations and metadata stay separate.
+        robustness_cache = {}
+        simulation_cache = {}
         baseline_result = self.engine.simulate(request.participant)
-        baseline = self._summary(request.participant, baseline_result)
+        def summarize(result, context=None):
+            vector, _ = self.engine._context_vectors(context, 1)
+            key = (vector * self.engine.parameters.alpha_context).tobytes()
+            if key not in robustness_cache:
+                robustness_cache[key] = assess_robustness(request.participant, result, self.engine, context)
+            return self._summary(request.participant, result, robustness_cache[key], request.record_trajectories)
+        baseline = summarize(baseline_result)
         candidate_results: list[RouteDeliberationResult] = []
         for candidate in request.candidate_routes:
             route_context, source_status, context_warnings = self._enrich_candidate(candidate, request)
-            perturbation, context_model, rho = build_context_perturbation(route_context, baseline_result, self.engine, dict(request.tolerance_profile.values))
-            contextual_result = self.engine.simulate(request.participant, context_perturbation=perturbation)
+            if request.context_policy == "observations_only":
+                # D-Day excludes F3: preserve measured context, never manufacture
+                # a learned expectation or a direct ODE force from these readings.
+                perturbation = ContextPerturbationResult(candidate.route_id, NORMALIZATION_VERSION,
+                    PERTURBATION_VERSION, (), {}, {}, {}, (), (), (), (), {})
+                context_model, rho = "observations_only", None
+            else:
+                perturbation, context_model, rho = build_context_perturbation(route_context, baseline_result, self.engine, dict(request.tolerance_profile.values))
+            # One participant and fixed engine parameters per request. Equal
+            # aligned forcing vectors have identical dynamics, even when their
+            # route evidence/warnings differ. Keep that metadata per candidate.
+            vector, metadata = self.engine._context_vectors(perturbation, 1)
+            simulation_key = vector.tobytes()
+            if simulation_key not in simulation_cache:
+                simulation_cache[simulation_key] = (baseline_result if request.context_policy == "observations_only" else
+                    self.engine.simulate(request.participant, context_perturbation=perturbation))
+            cached = simulation_cache[simulation_key]
+            contextual_result = replace(cached, trajectory=cached.trajectory.copy(),
+                topology=cached.topology.copy(), availability=cached.availability.copy(),
+                projection_corrections=deepcopy(cached.projection_corrections), context_metadata=metadata)
             contextual_result.context_metadata.update({"context_model": context_model, "context_model_status": EXPERIMENTAL_UNCALIBRATED, "rho": rho})
-            contextual = self._summary(request.participant, contextual_result)
+            if request.context_policy == "observations_only":
+                contextual_result.context_metadata.update({"context_policy": "observations_only",
+                    "context_model_status": "NOT_APPLIED", "learning_applied": False, "state_carryover_applied": False})
+            contextual = summarize(contextual_result, perturbation)
             candidate_results.append(RouteDeliberationResult(candidate.route_id, route_context, perturbation, contextual, self._difference(baseline, contextual), tuple(dict.fromkeys((*context_warnings, *perturbation.warnings, *contextual.context_metadata.get("warnings", ())))), source_status))
         return ContextualDeliberationResponse(request.search_id, request.timestamp, baseline, tuple(candidate_results), MODEL_VERSION, NORMALIZATION_VERSION, PERTURBATION_VERSION, request.warnings)
 
@@ -316,7 +371,7 @@ class ContextualDeliberationService:
         route_context = self.adapter.enrich(candidate, segment_observations=segment_observations, query_metadata=query_metadata)
         return route_context, source_status, warnings
 
-    def _summary(self, participant: ParticipantInput, result: SimulationResult) -> HOTCODeliberationSummary:
+    def _summary(self, participant: ParticipantInput, result: SimulationResult, robustness=None, record_trajectories=False) -> HOTCODeliberationSummary:
         passport = build_base_passport(participant, result, self.engine)["cognitive_passport"]
         deliberation = passport["deliberation"]
         trajectory = result.trajectory[0]
@@ -332,6 +387,10 @@ class ContextualDeliberationService:
             },
         }
         diagnostics = build_xai_diagnostics(participant, result, self.engine)
+        diagnostics["robustness"] = robustness or {"status": "NOT_ASSESSED"}
+        state = ambiguity_state(diagnostics.get("competition"))
+        if state == "CLEAR" and diagnostics["robustness"]["status"] == "SENSITIVE":
+            state = "SENSITIVE"
         return HOTCODeliberationSummary(
             deliberation["terminal_action_activations"],
             deliberation["comparative_readout"],
@@ -339,7 +398,13 @@ class ContextualDeliberationService:
             result.context_metadata,
             diagnostics,
             node_activations,
-            ambiguity_state(diagnostics.get("competition")),
+            state,
+            {"schema_version": "hotco-simulation-evidence-v1", "state_kind": "model_prediction",
+             "model_version": MODEL_VERSION, "parameters": asdict(self.engine.parameters),
+             "state_columns": [*NEEDS, *("action:"+m for m in MODES), *("valence:"+m for m in MODES)],
+             "time_reference": "model_units_not_elapsed_travel_time", "dt": self.engine.parameters.dt,
+             "states": trajectory.tolist() if record_trajectories else [], "topology": result.topology[0].tolist(),
+             "availability": result.availability[0].tolist(), "projection_corrections": result.projection_corrections},
         )
 
     @staticmethod

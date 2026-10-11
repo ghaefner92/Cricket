@@ -1,0 +1,289 @@
+{
+  "generated_at": "2026-10-09T11:51:21.150Z",
+  "method": "Vite/Rollup resolved build module graph; public assets require separate inclusion",
+  "resolved_frontend_inputs": [
+    "experimental-frontend/index.html",
+    "experimental-frontend/src/App.vue",
+    "experimental-frontend/src/animation/affectParticles.js",
+    "experimental-frontend/src/animation/citadelBackdrop.js",
+    "experimental-frontend/src/animation/elbScene.js",
+    "experimental-frontend/src/animation/goalScene.js",
+    "experimental-frontend/src/animation/hbfBackdrop.js",
+    "experimental-frontend/src/animation/magdeburgScene.js",
+    "experimental-frontend/src/animation/robotCanvas.js",
+    "experimental-frontend/src/animation/toleranceScene.js",
+    "experimental-frontend/src/animation/transportSprites.js",
+    "experimental-frontend/src/art/companions.js",
+    "experimental-frontend/src/art/creature-dialogue-v1.png",
+    "experimental-frontend/src/art/creature-mint-sheet-v1.png",
+    "experimental-frontend/src/art/creature-transport-sheet-v1.png",
+    "experimental-frontend/src/art/explorer-dialogue-v1.png",
+    "experimental-frontend/src/art/explorer-mint-sheet-v1.png",
+    "experimental-frontend/src/art/explorer-transport-sheet-v1.png",
+    "experimental-frontend/src/art/naturalist-dialogue-v1.png",
+    "experimental-frontend/src/art/naturalist-sheet-v1.png",
+    "experimental-frontend/src/art/naturalist-transport-sheet-v1.png",
+    "experimental-frontend/src/art/robot-dialogue-v1.png",
+    "experimental-frontend/src/art/robot-mint-sheet-v1.png",
+    "experimental-frontend/src/art/robot-transport-sheet-v1.png",
+    "experimental-frontend/src/components/AddressSearch.vue",
+    "experimental-frontend/src/components/AffectivePortrait.vue",
+    "experimental-frontend/src/components/AvailabilityKit.vue",
+    "experimental-frontend/src/components/AvailabilityScene.vue",
+    "experimental-frontend/src/components/AvatarReaction.vue",
+    "experimental-frontend/src/components/BackendConnection.vue",
+    "experimental-frontend/src/components/BeliefScene.vue",
+    "experimental-frontend/src/components/ChoiceReflection.vue",
+    "experimental-frontend/src/components/CompanionAvatar.vue",
+    "experimental-frontend/src/components/DialogueMoodIcon.vue",
+    "experimental-frontend/src/components/DialoguePortrait.vue",
+    "experimental-frontend/src/components/GoalScene.vue",
+    "experimental-frontend/src/components/JourneyControlIcon.vue",
+    "experimental-frontend/src/components/LoadingScene.vue",
+    "experimental-frontend/src/components/PixelHeart.vue",
+    "experimental-frontend/src/components/PixelJourneyIcon.vue",
+    "experimental-frontend/src/components/RecentPlaces.vue",
+    "experimental-frontend/src/components/RobotSprite.vue",
+    "experimental-frontend/src/components/RouteJourneyCard.vue",
+    "experimental-frontend/src/components/RouteMap.vue",
+    "experimental-frontend/src/components/RoutePlanner.vue",
+    "experimental-frontend/src/components/RouteRecommendations.vue",
+    "experimental-frontend/src/components/SettingsMenu.vue",
+    "experimental-frontend/src/components/SimulationHistory.vue",
+    "experimental-frontend/src/components/ToleranceScene.vue",
+    "experimental-frontend/src/components/TransitJourney.vue",
+    "experimental-frontend/src/components/TransportScene.vue",
+    "experimental-frontend/src/components/WeatherInventory.vue",
+    "experimental-frontend/src/i18n/beliefs.js",
+    "experimental-frontend/src/i18n/companion.js",
+    "experimental-frontend/src/i18n/tolerances.js",
+    "experimental-frontend/src/i18n/valences.js",
+    "experimental-frontend/src/i18n/weeklyGoals.js",
+    "experimental-frontend/src/main.js",
+    "experimental-frontend/src/pages/BeliefsPage.vue",
+    "experimental-frontend/src/pages/CompanionIdentityPage.vue",
+    "experimental-frontend/src/pages/CreateCompanionPage.vue",
+    "experimental-frontend/src/pages/PassportPage.vue",
+    "experimental-frontend/src/pages/TolerancesPage.vue",
+    "experimental-frontend/src/pages/ValencePage.vue",
+    "experimental-frontend/src/pages/WeeklyGoalsPage.vue",
+    "experimental-frontend/src/services/adaptiveBeliefs.js",
+    "experimental-frontend/src/services/addressPresentation.js",
+    "experimental-frontend/src/services/apiTransport.js",
+    "experimental-frontend/src/services/appSettings.js",
+    "experimental-frontend/src/services/choiceReaction.js",
+    "experimental-frontend/src/services/choiceReflection.js",
+    "experimental-frontend/src/services/choiceVoice.js",
+    "experimental-frontend/src/services/choiceWordings.json",
+    "experimental-frontend/src/services/dataTransfer.js",
+    "experimental-frontend/src/services/dialoguePresentation.js",
+    "experimental-frontend/src/services/dialogueReveal.js",
+    "experimental-frontend/src/services/dialogueWeather.js",
+    "experimental-frontend/src/services/geocoding.js",
+    "experimental-frontend/src/services/journeyExperience.js",
+    "experimental-frontend/src/services/nativeMapTiles.js",
+    "experimental-frontend/src/services/nativePlatform.js",
+    "experimental-frontend/src/services/passport.js",
+    "experimental-frontend/src/services/passportLifecycle.js",
+    "experimental-frontend/src/services/reactionMeaning.js",
+    "experimental-frontend/src/services/recommendationMessaging.js",
+    "experimental-frontend/src/services/routeExplanation.js",
+    "experimental-frontend/src/services/routeMap.js",
+    "experimental-frontend/src/services/routePlanning.js",
+    "experimental-frontend/src/services/routePresentation.js",
+    "experimental-frontend/src/services/simulationHistory.js",
+    "experimental-frontend/src/services/transitPresentation.js",
+    "experimental-frontend/src/services/transitStatus.js",
+    "experimental-frontend/src/services/useCompactLayout.js",
+    "experimental-frontend/src/stores/availability.js",
+    "experimental-frontend/src/stores/companion.js",
+    "experimental-frontend/src/stores/tolerances.js",
+    "experimental-frontend/src/stores/valences.js",
+    "experimental-frontend/src/stores/weeklyGoals.js",
+    "experimental-frontend/src/style.css",
+    "experimental-frontend/src/styles/availability.css",
+    "experimental-frontend/src/styles/beliefs.css",
+    "experimental-frontend/src/styles/companion-page.css",
+    "experimental-frontend/src/styles/journey-experience.css",
+    "experimental-frontend/src/styles/journey-game.css",
+    "experimental-frontend/src/styles/journey-refinement.css",
+    "experimental-frontend/src/styles/mobile.css",
+    "experimental-frontend/src/styles/passport.css",
+    "experimental-frontend/src/styles/pixel-typography.css",
+    "experimental-frontend/src/styles/routes.css",
+    "experimental-frontend/src/styles/rpg-theme.css",
+    "experimental-frontend/src/styles/settings.css",
+    "experimental-frontend/src/styles/tolerances.css",
+    "experimental-frontend/src/styles/valences.css",
+    "experimental-frontend/src/styles/weekly-goals.css",
+    "experimental-frontend/src/vendor/leaflet/leaflet-src.esm.js",
+    "experimental-frontend/src/vendor/leaflet/leaflet.css"
+  ],
+  "bundle_outputs": [
+    {
+      "file": "assets/index-ZUeCziBQ.js",
+      "type": "chunk",
+      "bytes": 194037
+    },
+    {
+      "file": "assets/CreateCompanionPage-B7PzwIeV.js",
+      "type": "chunk",
+      "bytes": 166860
+    },
+    {
+      "file": "assets/esm-C1Wn_l1o.js",
+      "type": "chunk",
+      "bytes": 181
+    },
+    {
+      "file": "assets/esm-DfTykFy7.js",
+      "type": "chunk",
+      "bytes": 187
+    },
+    {
+      "file": "assets/esm-Mn6-Xb5g.js",
+      "type": "chunk",
+      "bytes": 664
+    },
+    {
+      "file": "assets/esm-Yw3ovdfO.js",
+      "type": "chunk",
+      "bytes": 251
+    },
+    {
+      "file": "assets/leaflet-src.esm-B99fQUAj.js",
+      "type": "chunk",
+      "bytes": 148459
+    },
+    {
+      "file": "assets/synapse-D5y-aojA.js",
+      "type": "chunk",
+      "bytes": 624
+    },
+    {
+      "file": "assets/web-4UTCAWT9.js",
+      "type": "chunk",
+      "bytes": 366
+    },
+    {
+      "file": "assets/web-BMAfoGQ5.js",
+      "type": "chunk",
+      "bytes": 2088
+    },
+    {
+      "file": "assets/web-BYD1Sw3t.js",
+      "type": "chunk",
+      "bytes": 8478
+    },
+    {
+      "file": "assets/web-DFXwaFzM.js",
+      "type": "chunk",
+      "bytes": 845
+    },
+    {
+      "file": "assets/CreateCompanionPage-DOrS-HiD.css",
+      "type": "asset",
+      "bytes": 75788
+    },
+    {
+      "file": "assets/creature-dialogue-v1-ihr7DdJ6.png",
+      "type": "asset",
+      "bytes": 985677
+    },
+    {
+      "file": "assets/creature-mint-sheet-v1-B1e418om.png",
+      "type": "asset",
+      "bytes": 1418307
+    },
+    {
+      "file": "assets/creature-transport-sheet-v1-DcP1DZqv.png",
+      "type": "asset",
+      "bytes": 1820640
+    },
+    {
+      "file": "assets/explorer-dialogue-v1-Idn-UWcv.png",
+      "type": "asset",
+      "bytes": 1089137
+    },
+    {
+      "file": "assets/explorer-mint-sheet-v1-CQ8ao7MB.png",
+      "type": "asset",
+      "bytes": 1363739
+    },
+    {
+      "file": "assets/explorer-transport-sheet-v1-CT-LvXjG.png",
+      "type": "asset",
+      "bytes": 1721954
+    },
+    {
+      "file": "assets/index-DhbHnQ14.css",
+      "type": "asset",
+      "bytes": 316806
+    },
+    {
+      "file": "assets/naturalist-dialogue-v1-BIbttH5V.png",
+      "type": "asset",
+      "bytes": 1238812
+    },
+    {
+      "file": "assets/naturalist-sheet-v1-HNIE0Pnl.png",
+      "type": "asset",
+      "bytes": 1885945
+    },
+    {
+      "file": "assets/naturalist-transport-sheet-v1-c0NGt_TX.png",
+      "type": "asset",
+      "bytes": 2037582
+    },
+    {
+      "file": "assets/press-start-2p-cyrillic-400-normal-DBn7fddJ.woff2",
+      "type": "asset",
+      "bytes": 6864
+    },
+    {
+      "file": "assets/press-start-2p-cyrillic-ext-400-normal-CIYZrvmP.woff2",
+      "type": "asset",
+      "bytes": 6704
+    },
+    {
+      "file": "assets/press-start-2p-greek-400-normal-DQfalijU.woff2",
+      "type": "asset",
+      "bytes": 6592
+    },
+    {
+      "file": "assets/press-start-2p-latin-400-normal-KLytu4cr.woff",
+      "type": "asset",
+      "bytes": 6328
+    },
+    {
+      "file": "assets/press-start-2p-latin-400-normal-_wFEWmAB.woff2",
+      "type": "asset",
+      "bytes": 12512
+    },
+    {
+      "file": "assets/press-start-2p-latin-ext-400-normal-DBgyq7ky.woff",
+      "type": "asset",
+      "bytes": 4944
+    },
+    {
+      "file": "assets/press-start-2p-latin-ext-400-normal-DpfYvR5A.woff2",
+      "type": "asset",
+      "bytes": 9856
+    },
+    {
+      "file": "assets/robot-dialogue-v1-CNrDodcw.png",
+      "type": "asset",
+      "bytes": 801551
+    },
+    {
+      "file": "assets/robot-mint-sheet-v1-DHd49t1U.png",
+      "type": "asset",
+      "bytes": 1287587
+    },
+    {
+      "file": "assets/robot-transport-sheet-v1-CDiriFTu.png",
+      "type": "asset",
+      "bytes": 1663111
+    }
+  ]
+}

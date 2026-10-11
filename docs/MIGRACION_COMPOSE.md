@@ -77,7 +77,8 @@ Se ha compilado e instalado la APK nativa en el Samsung conectado. En el primer
 inicio se observaron un Passport importado, cuatro búsquedas y quince claves
 locales. Se revisó visualmente la pantalla de inicio conservando Circk y el arte.
 La compilación no equivale a una validación completa de todos los flujos y servicios.
-No se añadieron ni ejecutaron suites de pruebas automáticas.
+En esa migración inicial no se añadieron ni ejecutaron suites de pruebas automáticas.
 
-El tracking continuo y el aprendizaje bayesiano siguen siendo fases posteriores;
-no formaban parte de las funciones operativas del frontend que se migra aquí.
+La versión 0.4.0 posterior añade tracking y contratos de experiencia, con pruebas
+automatizadas y en el teléfono. Véase [Fase 1](FASE1_TRACKING.md).
+El aprendizaje bayesiano permanece pendiente.

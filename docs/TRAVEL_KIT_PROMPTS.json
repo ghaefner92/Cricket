@@ -1,0 +1,42 @@
+{
+  "tool": "image_gen.imagegen (built-in)",
+  "version": "0.4.25",
+  "assets": [
+    {
+      "mode": "pt",
+      "filename": "travel-kit-pt-background-v1.png",
+      "source_file": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-84d1176a-e417-4cc7-8e8b-4aa97d70f158.png",
+      "architectural_reference": "docs/art-references/magdeburg.jpg",
+      "style_reference": "android-native/app/src/main/assets/art/jrpg/meet-naturalist-background-v1.png",
+      "transparent_background": false,
+      "prompt": "Use case: stylized-concept. Asset: Cricket Android JRPG travel-kit scene background, widescreen 16:9. Input image 1 is architectural/location reference only. Input image 2 is existing Cricket pixel-art style reference only. Primary scene: Street-level side view of the Grüne Zitadelle in Magdeburg on Breiter Weg: recognizable pink flowing Hundertwasser facades, uneven windows, green roof gardens and golden onion domes. Reinterpret the aerial architecture reference from street level. Lower quarter is a clear horizontal tram street with two rails, empty of vehicles so our separate animated tram sprite can travel there. Main pink building occupies middle upper area; sunny welcoming mood. Style: premium modern-retro JRPG 64-bit era pixel art; deliberate crisp square pixel clusters, rich detailed architecture, soft atmospheric lighting and layered depth, consistent with existing style reference. Composition: landscape side-scrolling travel illustration, clear lower quarter horizontal flat ground at y=88% for a separate animated companion; landmarks must be recognizable and not obstructed. No foreground character, no cars, no bikes, no tram, no UI frame, no legible words, no logos, no watermark. Do not copy photographic texture: create a new pixel-art interpretation. Opaque background."
+    },
+    {
+      "mode": "walk",
+      "filename": "travel-kit-walk-background-v1.png",
+      "source_file": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-7a6fca98-2b12-4838-8edb-08d56257c720.png",
+      "architectural_reference": "docs/art-references/berlin.jpg",
+      "style_reference": "android-native/app/src/main/assets/art/jrpg/meet-naturalist-background-v1.png",
+      "transparent_background": false,
+      "prompt": "Use case: stylized-concept. Asset: Cricket Android JRPG travel-kit scene background, widescreen 16:9. Input image 1 is architectural/location reference only. Input image 2 is existing Cricket pixel-art style reference only. Primary scene: Alexanderplatz Berlin: recognizable tall Fernsehturm with silver sphere and striped antenna fully visible, and the Urania world clock with armillary sculpture. Wide street-level side-scrolling game interpretation of reference architecture. Keep tower and world clock upper/middle background, and lower quarter clear horizontal paved pedestrian square for our separate walking sprite. Warm sunny light. Style: premium modern-retro JRPG 64-bit era pixel art; deliberate crisp square pixel clusters, rich detailed architecture, soft atmospheric lighting and layered depth, consistent with existing style reference. Composition: landscape side-scrolling travel illustration, clear lower quarter horizontal flat ground at y=88% for a separate animated companion; landmarks must be recognizable and not obstructed. No foreground character, no cars, no bikes, no tram, no UI frame, no legible words, no logos, no watermark. Do not copy photographic texture: create a new pixel-art interpretation. Opaque background."
+    },
+    {
+      "mode": "car",
+      "filename": "travel-kit-car-background-v1.png",
+      "source_file": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-7bba764c-7ef3-4ec5-9d60-229de28bad83.png",
+      "architectural_reference": "docs/art-references/kassel.jpg",
+      "style_reference": "android-native/app/src/main/assets/art/jrpg/meet-naturalist-background-v1.png",
+      "transparent_background": false,
+      "prompt": "Use case: stylized-concept. Asset: Cricket Android JRPG travel-kit scene background, widescreen 16:9. Input image 1 is architectural/location reference only. Input image 2 is existing Cricket pixel-art style reference only. Primary scene: An artistic German travel vignette: horizontal Autobahn in the lower quarter, empty and clean side view with white dashed markings and a guardrail beyond it. Distant forested hill above the guardrail shows recognizable Herkules monument with octagonal base, stone pyramid topped by statue, and long bright stepped Wasserspiele water cascades flowing down the slope. Use photograph to retain monument architecture but reinterpret composition: an illustrative juxtaposition, not an exact geographic road view. Warm daytime sunlight. Style: premium modern-retro JRPG 64-bit era pixel art; deliberate crisp square pixel clusters, rich detailed architecture, soft atmospheric lighting and layered depth, consistent with existing style reference. Composition: landscape side-scrolling travel illustration, clear lower quarter horizontal flat ground at y=88% for a separate animated companion; landmarks must be recognizable and not obstructed. No foreground character, no cars, no bikes, no tram, no UI frame, no legible words, no logos, no watermark. Do not copy photographic texture: create a new pixel-art interpretation. Opaque background."
+    },
+    {
+      "mode": "bike",
+      "filename": "travel-kit-bike-background-v1.png",
+      "source_file": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-5e69e15c-0091-4da8-b13b-5948d1260250.png",
+      "architectural_reference": "docs/art-references/koeln.jpg",
+      "style_reference": "android-native/app/src/main/assets/art/jrpg/meet-naturalist-background-v1.png",
+      "transparent_background": false,
+      "prompt": "Use case: stylized-concept. Asset: Cricket Android JRPG travel-kit scene background, widescreen 16:9. Input image 1 is architectural/location reference only. Input image 2 is existing Cricket pixel-art style reference only. Primary scene: Cologne / Köln Rhine waterfront: recognizable Gothic cathedral with twin tall pointed spires, old town buildings and green Hohenzollern bridge behind. Interpret panorama reference into a welcoming detailed pixel-art daytime scene. Lower quarter is a clear horizontal riverside cycling lane with subtle bicycle lane marking and clean pavement, separated from Rhine by railing; no cyclists or vehicles because animated companion will be composited separately. Cathedral remains fully visible above foreground. Style: premium modern-retro JRPG 64-bit era pixel art; deliberate crisp square pixel clusters, rich detailed architecture, soft atmospheric lighting and layered depth, consistent with existing style reference. Composition: landscape side-scrolling travel illustration, clear lower quarter horizontal flat ground at y=88% for a separate animated companion; landmarks must be recognizable and not obstructed. No foreground character, no cars, no bikes, no tram, no UI frame, no legible words, no logos, no watermark. Do not copy photographic texture: create a new pixel-art interpretation. Opaque background."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "tool": "image_gen.imagegen (built-in)",
+  "version": "0.4.27",
+  "assets": [
+    {
+      "key": "naturalist",
+      "file": "companion-intro-naturalist-v1.png",
+      "prompt": "Use case: stylized-concept. Asset: new Companion Android startup 24-frame character animation atlas. Input reference establishes character identity and premium JRPG retro pixel-art style only. Generate exactly 6 columns by 4 rows, 24 equal square cells, chronological left to right top to bottom, on genuine transparent background. In every cell one same naturalist girl, blonde side ponytail, burgundy shirt, navy trousers, brown boots, blue backpack red straps. Full body, same camera and scale, fixed feet baseline; generously inset every pose from cell edges. Frames 0-5: cheerful greeting, holds right hand open toward the right, palm up, as if presenting a mushroom that will be rendered separately. Frames 6-11: surprised expression, reaches toward right after dogs steal her mushroom; frames 12-17 playful amused reaction; frames 18-23 smiles and waves. Distinct intermediate hand/eye/expression poses, no repeated stills. IMPORTANT: do NOT draw any dogs, mushroom or luminous prop anywhere in this atlas, including backpack; these are separate animated assets. Retain naturalist identity. No grid lines, no labels, no text, no opaque fill. Smooth outlined colorful detailed modern-retro JRPG pixels, matches input.",
+      "transparent_background": true,
+      "reference": "android-native/app/src/main/assets/art/jrpg/welcome-naturalist-v1.png",
+      "source_file": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-e5af923d-7a46-4696-a001-1c5dcad14286.png",
+      "saved_file": "android-native/app/src/main/assets/art/jrpg/companion-intro-naturalist-v1.png"
+    },
+    {
+      "key": "dogs",
+      "file": "companion-intro-dogs-v1.png",
+      "prompt": "Use case: stylized-concept. Asset: Companion Android startup two dogs animation sprite atlas, 8 columns by 4 rows, 32 exactly equal square cells, transparent background. Input reference is identity/style reference for the two little shaggy black-and-gray/tan dogs in naturalist backpack only. No human girl in this output. One dog per cell, same size and fixed paws baseline and camera in all cells, generous transparent margins. ROW 1 cells 0-7: first puppy faces right, eight distinct successive smooth running gait poses, carrying a small luminous RED Amanita cap with WHITE spots and cream stem in its mouth. ROW 2 cells 8-15: SAME first puppy decelerates, crouches, sits next to title (not drawn), eyes glance up, mushroom still in mouth in first FIVE cells of row2; last THREE cells show puppy OPENING mouth and releasing mushroom, mouth empty with NO mushroom anywhere in those last three cells, ending seated happy. ROW 3 cells 16-23: second same-style shaggy puppy, gray-black coat and tan cheeks, faces right, eight successive running gait poses, NO mushroom at all. ROW 4 cells 24-31: second dog slowing, settling into sitting posture, tail wag, happy seated final pose, NO mushroom. Each cell contains only one dog. Clean precise silhouettes, consistent JRPG pixel style and outlines, 32 distinct animation poses. No text, no grid, no background, no prop on ground, no artificial checkerboard.",
+      "transparent_background": true,
+      "reference": "android-native/app/src/main/assets/art/jrpg/welcome-naturalist-v1.png",
+      "source_file": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-def4a96f-d048-4d6e-a306-48d6190bef1e.png",
+      "saved_file": "android-native/app/src/main/assets/art/jrpg/companion-intro-dogs-v1.png"
+    },
+    {
+      "key": "amanita",
+      "file": "companion-intro-amanita-v1.png",
+      "prompt": "Use case: stylized-concept. Asset: Companion JRPG glowing mushroom prop 8-frame atlas, 4 columns by 2 rows, 8 equal square cells, genuine transparent background. Reference is visual style and the naturalist's red Amanita mushroom only. Each cell contains just one SAME red Amanita mushroom cap with clear white spots, short ivory stem and soft restrained mint/gold halo. Same upright orientation, same size, centered with generous margins. Eight distinct frames vary only luminous highlights gently for an idle glow loop. No characters, no dogs, no basket, no text, no labels, no grid, no opaque background, no checkerboard. Modern-retro JRPG detailed pixel art, smooth contour shading, ready for composing into startup scene.",
+      "transparent_background": true,
+      "reference": "android-native/app/src/main/assets/art/jrpg/welcome-naturalist-v1.png",
+      "source_file": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-059eac31-229e-4582-b8af-a4417b4d6971.png",
+      "saved_file": "android-native/app/src/main/assets/art/jrpg/companion-intro-amanita-v1.png"
+    }
+  ]
+}

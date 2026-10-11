@@ -1,0 +1,25 @@
+{
+  "tool": "image_gen.imagegen (built-in)",
+  "assets": [
+    {
+      "key": "university",
+      "ref": "imiq-ovgu-logo.png",
+      "file": "companion-ovgu-transparent-v2.png",
+      "prompt": "Use case: background-extraction and precise-object-edit. Edit the provided university/IMR logo only for use over a dark navy app background. Remove the surrounding opaque WHITE rectangle completely and make that background genuine alpha transparency. Keep the original maroon university panel, original portrait, original layout, spacing, all letters and original logo identity. On the right only, change BLACK text to warm WHITE/ivory so it is readable on dark navy. Exact original text: OTTO VON GUERICKE UNIVERSITÄT MAGDEBURG, and INTELLIGENTER MOBILITÄTSRAUM on the right. Keep all spelling, diacritics, line breaks and typography from reference; no new letters, no caption, no decorative effect, no redesign. Output a wide logo preserving original 421:97 aspect ratio, crisp high resolution; transparent outside actual artwork. Do not replace surrounding white area with black or any other opaque color.",
+      "source": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-45f783d1-d89d-44be-a4c4-394963d5f4cc.png",
+      "saved_path": "android-native/app/src/main/assets/branding/companion-ovgu-transparent-v2.png",
+      "transparent_background": true,
+      "used_in_ui": true
+    },
+    {
+      "key": "funding",
+      "ref": "imiq-funding-official.png",
+      "file": "companion-funding-transparent-v2.png",
+      "prompt": "Use case: precise-object-edit. Edit this official funding strip for a dark navy app background. Preserve the Sachsen-Anhalt coat of arms and EU flag exactly, in their original colors and proportions, with original layout and horizontal spacing. Keep surrounding background genuinely transparent. Change only the dark BLUE text at the right to warm WHITE/ivory for dark-background readability. Text must remain exactly: Finanziert von der Europäischen Union. Keep wording, capitalization, original three-line arrangement, font style, and all symbols. No redesign, no invented letters, no new label, no glow, no frame, no background rectangle. Output same wide original 230:62 aspect ratio at crisp high resolution. Do not convert the flag or coat of arms to monochrome.",
+      "source": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-5c8352e0-c319-4c86-b3c7-fd01a63ef472.png",
+      "saved_path": "android-native/app/src/main/assets/branding/companion-funding-transparent-v2.png",
+      "transparent_background": true,
+      "used_in_ui": false
+    }
+  ]
+}

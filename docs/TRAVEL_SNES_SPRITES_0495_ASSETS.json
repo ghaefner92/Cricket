@@ -1,0 +1,66 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompts": "docs/TRAVEL_SNES_SPRITES_0495_PROMPTS.json",
+  "assets": [
+    {
+      "key": "search",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-search-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "740e9848b9fc29b71a778cfd8acce5c8cbf1abfcc338033b971c4205a487463d"
+    },
+    {
+      "key": "preferences",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-preferences-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "fe56af783153e4fd0738b78eaf63e0ba837b751c003bfdd81885147ee29441e5"
+    },
+    {
+      "key": "recent",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-recent-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "1a229048d464745613b47be384e06f2f38c9d6a415f85d722d977e17d0ab645b"
+    },
+    {
+      "key": "swap",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-swap-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "aabfeb84e6569472dff1667540d8f994388e4c89e282f203b8ba068b7a20c339"
+    },
+    {
+      "key": "origin",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-origin-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "636afcffeed3e63e89760573d0e95870c1b480366f52072b3cdc7d6f869c5f84"
+    },
+    {
+      "key": "destination",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-destination-v1.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "fcc76e418eac0a416c87d0651c10f49aed04b5d92dd2cbe3dc2ddab458df2eb6"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:cricket:d-day-longitudinal-v1",
+  "title": "D-Day longitudinal index inside cricket-backup-v1",
+  "description": "Structural index. Sources remain in storage and simulations of the same atomic backup. Runtime validators additionally check references, immutable Passport identities, Experience consistency and trajectory dimensions. No scientific validity is implied.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "learning_applied", "state_carryover_applied", "model_time_reference", "observation_time_reference", "passport_versions", "searches", "experience_events", "warnings"],
+  "properties": {
+    "schema_version": {"const": "d-day-longitudinal-v1"},
+    "learning_applied": {"const": false},
+    "state_carryover_applied": {"const": false},
+    "model_time_reference": {"const": "model_units_not_elapsed_travel_time"},
+    "observation_time_reference": {"const": "recorded_wall_clock_timestamps"},
+    "passport_versions": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["passport_id", "revision", "parent_passport_id", "source"],
+        "properties": {
+          "passport_id": {"type": "string", "minLength": 1},
+          "revision": {"type": "integer", "minimum": 1},
+          "parent_passport_id": {"type": ["string", "null"]},
+          "source": {"oneOf": [
+            {"type": "object", "additionalProperties": false, "required": ["storage_key"], "properties": {"storage_key": {"type": "string"}}},
+            {"type": "object", "additionalProperties": false, "required": ["search_id", "field"], "properties": {"search_id": {"type": "string"}, "field": {"const": "confirmed_snapshot"}}}
+          ]}
+        }
+      }
+    },
+    "searches": {"type": "array", "items": {"type": "object", "required": ["search_id", "created_at", "completed_at", "status", "decision_passport", "context_policy", "source_record", "recommendation_presentation", "trajectory_ids"]}},
+    "experience_events": {"type": "array", "items": {"type": "object", "required": ["event_id", "at", "search_id", "journey_id", "choice_event_id", "passport_transition", "learning_applied", "state_carryover_applied"]}},
+    "warnings": {"type": "array", "items": {"type": "string"}}
+  }
+}

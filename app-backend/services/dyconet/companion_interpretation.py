@@ -98,7 +98,7 @@ def personal_deliberation_profile(
     questionnaire answers, Passport document, trajectory, coordinates, or new
     behavioural inference.
     """
-    ambiguous = ambiguity_state in {"NEAR_TIE", "UNRESOLVED", "UNKNOWN"}
+    ambiguous = ambiguity_state != "CLEAR"
     recommendation_status = "NO_CLEAR_CHOICE" if ambiguous else "RECOMMENDED"
     recommendation_mode = None if ambiguous else _canonical_mode(contextual_tendency) or None
     competition = contextual_metrics.get("competition", {}) if isinstance(contextual_metrics, Mapping) else {}

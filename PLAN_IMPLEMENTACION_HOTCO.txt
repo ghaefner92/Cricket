@@ -1,3 +1,6 @@
+REFERENCIA ACTUAL: docs/D_DAY.md (alias D-Day/d.day).
+El texto siguiente es histórico y no define la entrega actual de fases 1-3.
+
 PLAN DE IMPLEMENTACIÓN PARA CRICKET
 HOTCO sin F3 y con creencias contextuales y aprendizaje bayesiano
 Fecha: 8 de octubre de 2026
@@ -6,6 +9,14 @@ ESTADO DE REFERENCIA
 El estado previo a estos cambios está guardado en el commit a50d77c,
 subido a origin/main: https://github.com/ghaefner92/Cricket/commit/a50d77c
 Este documento describe trabajo propuesto; no implica que esté implementado.
+
+ACTUALIZACIÓN DE FASE 1 — ANDROID 0.4.0
+La base Kotlin + Compose fue guardada en android-compose, commit a49fd57.
+Se implementaron contratos cricket-journey-v1 y cricket-experience-v1,
+tracking local Android con pausa y finalización, confirmación manual,
+historial y validación local/backend. Detalles y resultados de pruebas:
+docs/FASE1_TRACKING.md.
+Esto no implementa el modelo bayesiano ni retira F3 del solver.
 
 OBJETIVO
 Conservar el solver de HOTCO, sustituir F3 como fuerza ambiental sobre las
@@ -92,10 +103,11 @@ No inferir riesgo de delito por oscuridad, ni infecciones por usar transporte p�
 
 Las cuatro preguntas adaptativas de creencias aportan información inicial.
 Las creencias estimadas conservan mayor incertidumbre que las respuestas directas.
-Las tolerancias a lluvia, calor, frío, viento, oscuridad, aglomeración y tráfico
-pasan a ser opcionales y orientan parámetros iniciales.
-Omitir una respuesta significa desconocimiento, no tolerancia media.
-No aplicar esas tolerancias también como penalización fija mediante F3.
+Decisión posterior del usuario: eliminar las tolerancias del nuevo flujo.
+No se usan como preguntas ni como priors personalizados. Las búsquedas nativas
+envían un perfil vacío para excluir las tolerancias históricas.
+La personalización se aprende mediante experiencia específica confirmada,
+con incertidumbre y sin asumir una tolerancia media.
 
 Guardar distribuciones de parámetros y procedencia de la evidencia.
 Definir la transformación a la escala de creencias de HOTCO, de -1 a +1.
@@ -175,7 +187,7 @@ La validación descrita es trabajo futuro de esta implementación.
 
 ORDEN DE TRABAJO
 
-Contrato y versionado
+Contrato y versionado + tracking + confirmación de experiencia (fase 1)
     -> características y CO2e
     -> modelo bayesiano
     -> integración HOTCO

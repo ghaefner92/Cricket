@@ -27,7 +27,7 @@ def render_choice_story(evidence, *, language='en'):
         'RELATIONS_INCLUDE_ESTIMATES': tr('Some links between your priorities and transport modes are estimates, rather than answers you gave directly.', 'Einige Verbindungen zwischen deinen Prioritäten und Verkehrsmitteln sind Schätzungen, keine direkten Antworten von dir.'),
         'NO_CONTEXT_SIMULATION': tr('Your choice is saved, but there is no contextual simulation here for me to explain.', 'Deine Wahl ist gespeichert, aber hier liegt keine Simulation mit Umweltkontext vor, die ich erklären könnte.'),
         'CONTEXT_MISSING': tr('Some environmental information is missing. I won’t assume those conditions are favourable.', 'Einige Umweltangaben fehlen. Ich nehme deshalb nicht an, dass diese Bedingungen günstig sind.'),
-        'GOALS_UNKNOWN': tr('I don’t have your saved weekly priorities for this search, so I won’t guess how your choice fits them.', 'Für diese Suche fehlen mir deine gespeicherten Wochenprioritäten. Deshalb rate ich nicht, wie deine Wahl dazu passt.')}
+        'GOALS_UNKNOWN': tr('I don’t have your saved priorities for this search, so I won’t guess how your choice fits them.', 'Für diese Suche fehlen mir deine gespeicherten Prioritäten. Deshalb rate ich nicht, wie deine Wahl dazu passt.')}
     support = (evidence.get('selected_relations') or {}).get('support_dynamics') or {}
     for row in story['statements']:
         rule=row['rule']
@@ -35,7 +35,7 @@ def render_choice_story(evidence, *, language='en'):
         if rule=='SAVED_CHOICE': row['text']+=tr(' Let’s see how it fits in this model.', ' Schauen wir, wie diese Wahl ins Modell passt.')
         if rule in ('GOALS_SUPPORT','GOALS_OPPOSITION'):
             labels=row['text'].split(': ',1)[1]
-            row['text']=(tr('Here’s where your choice fits your weekly priorities: ', 'Hier passt deine Wahl zu deinen Wochenprioritäten: ') if rule=='GOALS_SUPPORT' else tr('There’s also a trade-off with these weekly priorities: ', 'Gleichzeitig gibt es eine Spannung zu diesen Wochenprioritäten: '))+labels
+            row['text']=(tr('Here’s where your choice fits your saved priorities: ', 'Hier passt deine Wahl zu deinen gespeicherten Prioritäten: ') if rule=='GOALS_SUPPORT' else tr('There’s also a trade-off with these saved priorities: ', 'Gleichzeitig gibt es eine Spannung zu diesen gespeicherten Prioritäten: '))+labels
         if rule=='OPPOSED_CHANNELS':
             cognitive=support['cognitive_signed_input']['terminal']
             row['text']=tr('Your priorities and beliefs point towards this option in the model, while its emotional side pulls the other way.', 'Deine Prioritäten und Überzeugungen sprechen im Modell für diese Möglichkeit, während seine emotionale Seite in die andere Richtung zieht.') if cognitive>0 else tr('The model’s emotional side points towards this option, while your priorities and beliefs pull the other way in the model.', 'Die emotionale Seite des Modells spricht für diese Möglichkeit, während deine Prioritäten und Überzeugungen im Modell in die andere Richtung ziehen.')

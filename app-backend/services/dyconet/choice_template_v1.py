@@ -18,9 +18,9 @@ MODES = {
  'de': {'car':'das Auto','bike':'das Fahrrad','walk':'das Gehen','pt':'öffentliche Verkehrsmittel'},
  'es': {'car':'el coche','bike':'la bicicleta','walk':'caminar','pt':'el transporte público'}}
 NEEDS = {
- 'en': ['reducing environmental impact','being physically active','having personal space','autonomy','keeping costs down','saving time','traffic safety','personal safety','comfort','reliability','reducing infection exposure'],
- 'de': ['geringere Umweltbelastung','körperliche Aktivität','persönlichen Freiraum','Autonomie','geringe Kosten','Zeitersparnis','Verkehrssicherheit','persönliche Sicherheit','Komfort','Zuverlässigkeit','geringere Infektionsexposition'],
- 'es': ['reducir el impacto ambiental','mantenerte activo','tener espacio personal','autonomía','cuidar el gasto','ahorrar tiempo','seguridad vial','seguridad personal','comodidad','fiabilidad','reducir la exposición a infecciones']}
+ 'en': ['reducing travel emissions','being physically active','having space and privacy','flexibility and independence','keeping costs down','saving time','traffic safety','personal safety','physical comfort','reliability','reducing infection exposure'],
+ 'de': ['geringere Reiseemissionen','körperliche Aktivität','Platz und Privatsphäre','Flexibilität und Unabhängigkeit','geringe Kosten','Zeitersparnis','Verkehrssicherheit','persönliche Sicherheit','körperlicher Komfort','Zuverlässigkeit','geringere Infektionsexposition'],
+ 'es': ['reducir emisiones del viaje','mantenerte activo','tener espacio y privacidad','flexibilidad e independencia','cuidar el gasto','ahorrar tiempo','seguridad vial','seguridad personal','comodidad física','fiabilidad','reducir la exposición a infecciones']}
 NEED_KEYS = ['pro_env','physical','privacy','autonomy','cost','speed','safety_accident','safety_crime','comfort','reliable','health_infection']
 LABELS = {lang: dict(zip(NEED_KEYS, values)) for lang,values in NEEDS.items()}
 
@@ -73,6 +73,10 @@ def render_choice_template(evidence, *, language='en'):
    add('COMPARISON_UNKNOWN','comparison',tr('The available evidence does not allow a comparison with the simulated tendency.',
        'Die verfügbaren Daten erlauben keinen Vergleich mit der simulierten Tendenz.',
        'La evidencia disponible no permite comparar tu elección con la tendencia simulada.'),refs)
+  elif d.get('ambiguity_state') in ('UNSETTLED','SENSITIVE','ONLY_OPTION','UNKNOWN'):
+   add('COMPARISON_UNKNOWN','comparison',tr("I don't have a stable, clearly differentiated recommendation to compare your choice with yet.",
+       'Ich habe noch keine stabile, klar unterscheidbare Empfehlung, mit der ich deine Wahl vergleichen kann.',
+       'Todavía no tengo una recomendación estable y claramente diferenciada con la que comparar tu elección.'),refs)
   elif clear:
    criteria['choice_vs_simulation']='ALIGNED_CLEAR' if mode==leader else 'DIFFERENT_CLEAR'
    refs.append('/deliberation/contextual/leadership/final_leader_identifiable')
@@ -126,8 +130,8 @@ def render_choice_template(evidence, *, language='en'):
     if not selected:continue
     signs.add(relation)
     selected=selected[:priority_limit];labels=', '.join(LABELS[language][r[1]] for r in selected)
-    text=tr(f'The model represents tensions with these weekly priorities: {labels}.' if relation=='OPPOSITION' else f'The model represents support linked to these weekly priorities: {labels}.',
-      f'Das Modell zeigt Spannungen mit diesen Wochenprioritäten: {labels}.' if relation=='OPPOSITION' else f'Das Modell zeigt Unterstützung im Zusammenhang mit diesen Wochenprioritäten: {labels}.',
+    text=tr(f'The model represents tensions with these saved priorities: {labels}.' if relation=='OPPOSITION' else f'The model represents support linked to these saved priorities: {labels}.',
+      f'Das Modell zeigt Spannungen mit diesen gespeicherten Prioritäten: {labels}.' if relation=='OPPOSITION' else f'Das Modell zeigt Unterstützung im Zusammenhang mit diesen gespeicherten Prioritäten: {labels}.',
       f'El modelo representa tensiones con estas prioridades semanales: {labels}.' if relation=='OPPOSITION' else f'El modelo representa apoyos relacionados con estas prioridades semanales: {labels}.')
     refs=[]
     for goal,need,priority,i,row in selected:
@@ -137,9 +141,9 @@ def render_choice_template(evidence, *, language='en'):
     add('GOALS_'+relation,section,text,refs)
    criteria['weekly_goals']='MIXED' if len(signs)==2 else 'OPPOSITION_PRESENT' if 'OPPOSITION'in signs else 'SUPPORT_PRESENT' if signs else 'NO_SIGNED_RELATIONS'
   else:
-   add('GOALS_UNKNOWN','uncertainty',tr('The original weekly allocation is unavailable, so I cannot assess its relation to your choice.',
-       'Die ursprüngliche Wochenverteilung fehlt; ihre Beziehung zu deiner Auswahl kann ich nicht beurteilen.',
-       'Falta la distribución semanal original, por lo que no puedo evaluar su relación con tu elección.'),['/weekly_goals/status'])
+   add('GOALS_UNKNOWN','uncertainty',tr('The saved goal importance is unavailable, so I cannot assess its relation to your choice.',
+       'Die gespeicherte Zielwichtigkeit fehlt; ihre Beziehung zu deiner Auswahl kann ich nicht beurteilen.',
+       'Falta la importancia de metas guardada, por lo que no puedo evaluar su relación con tu elección.'),['/weekly_goals/status'])
 
   support=evidence['selected_relations']['support_dynamics']
   cognitive=support.get('cognitive_signed_input',{}).get('terminal')

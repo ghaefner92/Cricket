@@ -86,7 +86,7 @@ def provider_selection(prompt, api_key):
             messages=[{'role': 'system', 'content': (
                 'You are the voice editor for a digital travelling companion. '
                 'Select natural, warm wording for this saved choice, using only the supplied options. '
-                'Speak directly to the user as a supportive companion, using their stated weekly priorities. '
+                'Speak directly to the user as a supportive companion, using their saved declarations of goal importance. '
                 'Recognize the choice, connect it to priorities, then acknowledge trade-offs without blame. '
                 'Use the supplied tone and a compatible opening. Choose at most one optional reflection question. '
                 'A question invites reflection; it is not a claim about the user’s motives. '

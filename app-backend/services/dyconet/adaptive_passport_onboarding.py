@@ -18,6 +18,7 @@ from adaptive_passport_v1 import (
     AdaptivePassportV1,
 )
 from input_mapping_v4_3 import MODES, NEEDS
+from need_allocation import validate_need_allocation
 
 
 ONBOARDING_SCHEMA_VERSION = "adaptive_cognitive_passport_onboarding_1.0"
@@ -224,6 +225,19 @@ def _normalize_needs(
     )
 
 
+def _need_inputs(source, legacy_key="needs"):
+    if "needs_allocation" in source:
+        if legacy_key in source:
+            _fail("Specify needs_allocation or legacy needs, never both")
+        try:
+            allocation, normalized = validate_need_allocation(source["needs_allocation"])
+        except ValueError as exc:
+            raise AdaptivePassportError(str(exc)) from exc
+        return allocation["points"], normalized, allocation
+    raw, normalized = _normalize_needs({"needs": source.get(legacy_key)})
+    return raw, normalized, None
+
+
 def _normalize_valences(
     responses: Mapping[str, Any],
 ) -> tuple[
@@ -337,6 +351,7 @@ def start_adaptive_passport(
 
     allowed_responses = {
         "needs",
+        "needs_allocation",
         "valences",
     }
 
@@ -355,11 +370,7 @@ def start_adaptive_passport(
             )
         )
 
-    raw_needs, needs = (
-        _normalize_needs(
-            responses
-        )
-    )
+    raw_needs, needs, allocation = _need_inputs(responses)
 
     raw_valences, valences = (
         _normalize_valences(
@@ -422,8 +433,7 @@ def start_adaptive_passport(
         },
 
         "raw_input_provenance": {
-            "needs":
-                raw_needs,
+            **({"needs_allocation": allocation} if allocation is not None else {"needs": raw_needs}),
 
             "valences":
                 raw_valences,
@@ -602,13 +612,6 @@ def complete_adaptive_passport(
         "start.raw_input_provenance",
     )
 
-    raw_needs_source = _mapping(
-        raw_input.get(
-            "needs"
-        ),
-        "start.raw_input_provenance.needs",
-    )
-
     raw_valences_source = _mapping(
         raw_input.get(
             "valences"
@@ -616,14 +619,7 @@ def complete_adaptive_passport(
         "start.raw_input_provenance.valences",
     )
 
-    raw_needs, rebuilt_needs = (
-        _normalize_needs(
-            {
-                "needs":
-                    raw_needs_source
-            }
-        )
-    )
+    raw_needs, rebuilt_needs, allocation = _need_inputs(raw_input)
 
     raw_valences, rebuilt_valences = (
         _normalize_valences(
@@ -800,8 +796,7 @@ def complete_adaptive_passport(
         # Estimated belief cells intentionally have no raw
         # 1..7 representation.
         "observed_measurements": {
-            "needs_raw_1_to_7":
-                raw_needs,
+            **({"needs_allocation": allocation} if allocation is not None else {"needs_raw_1_to_7": raw_needs}),
 
             "valences_raw_minus3_to_3":
                 raw_valences,

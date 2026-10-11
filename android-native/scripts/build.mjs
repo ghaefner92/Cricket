@@ -19,7 +19,10 @@ const sdk=env.ANDROID_HOME||env.ANDROID_SDK_ROOT||
  (env.LOCALAPPDATA?resolve(env.LOCALAPPDATA,'Android','Sdk'):undefined)
 if(sdk&&existsSync(sdk))env.ANDROID_HOME=sdk
 const windows=process.platform==='win32'
-const result=spawnSync(windows?(env.ComSpec||'C:/Windows/System32/cmd.exe'):'./gradlew',windows?['/d','/c','gradlew.bat assembleDebug --console=plain']:['assembleDebug','--console=plain'],
+const tasks=process.argv.slice(2)
+if(!tasks.length)tasks.push('assembleDebug')
+if(tasks.some(task=>!['assembleDebug','testDebugUnitTest','assembleDebugAndroidTest'].includes(task)))throw new Error('Unsupported build task')
+const result=spawnSync(windows?(env.ComSpec||'C:/Windows/System32/cmd.exe'):'./gradlew',windows?['/d','/c',`gradlew.bat ${tasks.join(' ')} --console=plain`]:[...tasks,'--console=plain'],
  {cwd:root,env,stdio:'inherit'})
 if(result.error)console.error(result.error.message)
 process.exit(result.status??1)

@@ -1,0 +1,704 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cricket.local/contracts/journey-v1",
+  "title": "Cricket journey and confirmed experience v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "journey_id",
+    "search_id",
+    "choice_index",
+    "choice_event_id",
+    "created_at",
+    "started_at",
+    "ended_at",
+    "status",
+    "capture_mode",
+    "selection",
+    "passport_reference",
+    "plan",
+    "tracking",
+    "experience"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "cricket-journey-v1"
+    },
+    "journey_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "search_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "choice_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "choice_event_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "created_at": {
+      "type": "string"
+    },
+    "started_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "ended_at": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "recording",
+        "paused",
+        "awaiting_confirmation",
+        "confirmed",
+        "cancelled"
+      ]
+    },
+    "capture_mode": {
+      "enum": [
+        "tracked",
+        "manual"
+      ]
+    },
+    "selection": {
+      "$ref": "#/$defs/selection"
+    },
+    "passport_reference": {
+      "type": "object"
+    },
+    "plan": {
+      "$ref": "#/$defs/plan"
+    },
+    "tracking": {
+      "$ref": "#/$defs/tracking"
+    },
+    "experience": {
+      "$ref": "#/$defs/experience"
+    },
+    "context_capture": {
+      "$ref": "#/$defs/contextCapture"
+    }
+  },
+  "$defs": {
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chosen_at",
+        "mode_key",
+        "route_id",
+        "routing_rank",
+        "provider",
+        "provider_itinerary_id"
+      ],
+      "properties": {
+        "chosen_at": {
+          "type": "string"
+        },
+        "mode_key": {
+          "enum": [
+            "walk",
+            "foot",
+            "bike",
+            "pt",
+            "pt_bus_tram",
+            "car",
+            "car_driver"
+          ]
+        },
+        "route_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "routing_rank": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "provider": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "provider_itinerary_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "route",
+        "recommendation",
+        "alternatives",
+        "context_at_selection"
+      ],
+      "properties": {
+        "route": {
+          "type": "object"
+        },
+        "recommendation": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "alternatives": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          },
+          "maxItems": 200
+        },
+        "context_at_selection": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "queried_at",
+            "snapshot",
+            "temporal_reference"
+          ],
+          "properties": {
+            "queried_at": {
+              "type": "string"
+            },
+            "snapshot": {
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "temporal_reference": {
+              "const": "search_query"
+            }
+          }
+        }
+      }
+    },
+    "point": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "lat",
+        "lon",
+        "accuracy_m",
+        "recorded_at",
+        "received_at",
+        "monotonic_ms",
+        "provider",
+        "mock",
+        "segment_index"
+      ],
+      "properties": {
+        "lat": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "lon": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        },
+        "accuracy_m": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 50
+        },
+        "recorded_at": {
+          "type": "string"
+        },
+        "received_at": {
+          "type": "string"
+        },
+        "monotonic_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "provider": {
+          "type": "string"
+        },
+        "mock": {
+          "type": "boolean"
+        },
+        "segment_index": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "event": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "at",
+        "kind",
+        "detail"
+      ],
+      "properties": {
+        "at": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "start",
+            "pause",
+            "resume",
+            "gap",
+            "provider_unavailable",
+            "permission_lost",
+            "service_restart",
+            "interrupted",
+            "finish",
+            "cancel"
+          ]
+        },
+        "detail": {
+          "type": "string",
+          "maxLength": 300
+        }
+      }
+    },
+    "tracking": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "points",
+        "events",
+        "rejected_fixes",
+        "distance_m",
+        "elapsed_seconds",
+        "gap_count",
+        "segment_index",
+        "approximate",
+        "started_monotonic_ms",
+        "boot_count"
+      ],
+      "properties": {
+        "points": {
+          "type": "array",
+          "maxItems": 20000,
+          "items": {
+            "$ref": "#/$defs/point"
+          }
+        },
+        "events": {
+          "type": "array",
+          "maxItems": 2000,
+          "items": {
+            "$ref": "#/$defs/event"
+          }
+        },
+        "rejected_fixes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "distance_m": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "elapsed_seconds": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "gap_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "segment_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "approximate": {
+          "const": true
+        },
+        "started_monotonic_ms": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "boot_count": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      }
+    },
+    "experience": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "event_id",
+        "confirmed_at",
+        "completion",
+        "actual_modes",
+        "changes",
+        "ratings",
+        "choice_reason",
+        "learning_applied"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "cricket-experience-v1"
+        },
+        "event_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        },
+        "confirmed_at": {
+          "type": "string"
+        },
+        "completion": {
+          "enum": [
+            "as_planned",
+            "changed",
+            "not_taken"
+          ]
+        },
+        "actual_modes": {
+          "type": "array",
+          "maxItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "walk",
+              "bike",
+              "pt",
+              "car"
+            ]
+          }
+        },
+        "changes": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "choice_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 1000
+        },
+        "ratings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "comfort": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "speed": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "physical": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "reliable": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            }
+          }
+        },
+        "learning_applied": {
+          "const": false
+        },
+        "need_satisfaction_raw_1_to_7": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "pro_env": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "physical": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "privacy": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "autonomy": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "cost": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "speed": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "safety_accident": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "safety_crime": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "comfort": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "reliable": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "health_infection": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            }
+          }
+        },
+        "mode_valences_raw_minus3_to_3": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "car": {
+              "type": "integer",
+              "minimum": -3,
+              "maximum": 3
+            },
+            "bike": {
+              "type": "integer",
+              "minimum": -3,
+              "maximum": 3
+            },
+            "pt": {
+              "type": "integer",
+              "minimum": -3,
+              "maximum": 3
+            },
+            "walk": {
+              "type": "integer",
+              "minimum": -3,
+              "maximum": 3
+            }
+          }
+        },
+        "mode_valences_normalized_minus1_to_1": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "walk": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "bike": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "pt": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            },
+            "car": {
+              "type": "number",
+              "minimum": -1,
+              "maximum": 1
+            }
+          }
+        },
+        "affect_scale_version": {
+          "const": "mode-affect-ordinal-minus3-to3-v1"
+        },
+        "comfort_observation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "question_version",
+            "scale",
+            "rating",
+            "mode",
+            "attribution",
+            "language",
+            "answered_at",
+            "mode_selection"
+          ],
+          "properties": {
+            "question_version": {
+              "const": "comfort-physical-bipolar-v1"
+            },
+            "scale": {
+              "const": "helps-hinders-1-to-7"
+            },
+            "rating": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 7
+            },
+            "mode": {
+              "enum": [
+                "walk",
+                "bike",
+                "pt",
+                "car"
+              ]
+            },
+            "attribution": {
+              "const": "actual_mode"
+            },
+            "language": {
+              "enum": [
+                "en",
+                "de"
+              ]
+            },
+            "answered_at": {
+              "type": "string"
+            },
+            "mode_selection": {
+              "enum": [
+                "single_actual_mode",
+                "user_selected_actual_mode"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "contextCapture": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "sampling_interval_seconds",
+        "sample_limit",
+        "samples"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "d-day-trip-context-v1"
+        },
+        "sampling_interval_seconds": {
+          "const": 60
+        },
+        "sample_limit": {
+          "const": 240
+        },
+        "samples": {
+          "type": "array",
+          "maxItems": 240,
+          "items": {
+            "$ref": "#/$defs/contextSample"
+          }
+        }
+      }
+    },
+    "contextSample": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sample_id",
+        "point_monotonic_ms",
+        "segment_index",
+        "requested_at",
+        "received_at",
+        "status",
+        "result",
+        "failure_reason"
+      ],
+      "properties": {
+        "sample_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "point_monotonic_ms": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "segment_index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "requested_at": {
+          "type": "string"
+        },
+        "received_at": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "enum": [
+            "pending",
+            "complete",
+            "failed",
+            "interrupted"
+          ]
+        },
+        "result": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "failure_reason": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 100
+        }
+      }
+    }
+  }
+}

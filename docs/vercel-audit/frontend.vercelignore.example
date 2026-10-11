@@ -1,0 +1,23 @@
+# Example only. Intended deployment root: experimental-frontend.
+# Keep src/, public/, package.json, package-lock.json and vite.config.js.
+android/
+scripts/
+capacitor.config.json
+node_modules/
+dist/
+.gradle/
+.idea/
+.vscode/
+tests/
+coverage/
+*.log
+**/*.log
+.env
+.env.*
+!.env.example
+*.apk
+*.aab
+*.zip
+*.db
+*.db-wal
+*.db-shm

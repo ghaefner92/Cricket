@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-09",
+  "plan": "D-Day",
+  "completed_phases": [
+    1,
+    2,
+    3
+  ],
+  "pending_phases": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "android_version": "0.4.58",
+  "version_code": 69,
+  "jvm": {
+    "tests": 28,
+    "failures": 0
+  },
+  "backend": {
+    "tests": 23,
+    "failures": 0
+  },
+  "device": {
+    "serial": "RZCY70K63HV",
+    "tests": 4,
+    "failures": 0,
+    "classes": [
+      "DailyPassportDeviceTest",
+      "DatabaseConcurrencyDeviceTest"
+    ]
+  },
+  "context_policy": "observations_only",
+  "learning_applied": false,
+  "state_carryover_applied": false,
+  "scientific_validation_claimed": false
+}

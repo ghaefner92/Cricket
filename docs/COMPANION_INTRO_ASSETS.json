@@ -1,0 +1,142 @@
+{
+  "naturalist": {
+    "file": "companion-intro-naturalist-smooth-v2.png",
+    "size": [
+      1536,
+      1024
+    ],
+    "frame_count": 24,
+    "unique_cell_hashes": 24,
+    "alpha_extrema": [
+      0,
+      254
+    ],
+    "corner_alpha": 0
+  },
+  "robot": {
+    "file": "companion-intro-robot-smooth-v2.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "frame_count": 16,
+    "unique_cell_hashes": 16,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "corner_alpha": 0
+  },
+  "explorer": {
+    "file": "companion-intro-explorer-smooth-v2.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "frame_count": 16,
+    "unique_cell_hashes": 16,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "corner_alpha": 0
+  },
+  "creature": {
+    "file": "companion-intro-creature-smooth-v2.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "frame_count": 16,
+    "unique_cell_hashes": 16,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "corner_alpha": 0
+  },
+  "dogs": {
+    "file": "companion-intro-dogs-v1.png",
+    "size": [
+      1774,
+      887
+    ],
+    "frame_count": 32,
+    "unique_cell_hashes": 32,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "corner_alpha": 0
+  },
+  "amanita": {
+    "file": "companion-intro-amanita-v1.png",
+    "size": [
+      1774,
+      887
+    ],
+    "frame_count": 8,
+    "unique_cell_hashes": 8,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "corner_alpha": 0
+  },
+  "spider": {
+    "file": "companion-intro-spider-v1.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "frame_count": 12,
+    "unique_cell_hashes": 12,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "corner_alpha": 0
+  },
+  "drone": {
+    "file": "companion-intro-drone-v1.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "frame_count": 12,
+    "unique_cell_hashes": 12,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "corner_alpha": 0
+  },
+  "spirit": {
+    "file": "companion-intro-spirit-v1.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "frame_count": 12,
+    "unique_cell_hashes": 12,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "corner_alpha": 0
+  },
+  "portrait": {
+    "file": "companion-intro-portrait-v2.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "frame_count": 12,
+    "unique_cell_hashes": 12,
+    "alpha_extrema": [
+      0,
+      255
+    ],
+    "corner_alpha": 0
+  }
+}

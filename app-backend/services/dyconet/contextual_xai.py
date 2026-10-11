@@ -184,6 +184,10 @@ def build_contextual_xai(deliberation: Mapping[str, Any], route_id: str, alterna
             summary.append(f"{negative[0]['stressor']} produced a negative contextual contribution to {negative[0]['target']} ({negative[0]['xi']:.6g}).")
     if contextual_ambiguity in {"NEAR_TIE", "UNRESOLVED"}:
         summary.append("The exploratory analysis shows similar support for the leading alternatives.")
+    elif contextual_ambiguity == "UNSETTLED":
+        summary.append("The terminal dynamics have not established a stable preference.")
+    elif contextual_ambiguity == "SENSITIVE":
+        summary.append("The leading option is sensitive to the checked local belief or integration variations.")
     elif baseline_winner != contextual_winner and baseline_winner and contextual_winner:
         summary.append(f"The simulated model tendency changed from {baseline_winner} to {contextual_winner} compared with the no-context simulation.")
 

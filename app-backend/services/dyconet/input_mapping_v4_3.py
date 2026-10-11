@@ -90,6 +90,8 @@ class ParticipantInput:
     availability: List[float]
     ranking: Optional[List[str]]
     environmental_tolerances: Dict[str, Optional[float]]
+    # For allocations raw_needs stores original points, never fabricated ratings.
+    needs_allocation: Optional[Dict[str, Any]] = None
 
 
 def _object(value: Any, path: str, issues: List[str]) -> Mapping[str, Any]:

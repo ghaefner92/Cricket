@@ -90,6 +90,7 @@ def adapt_itineraries(response,availability,max_walk,rt_fresh):
             if walk>0 and not availability['walk']:raise OtpError('walking_unavailable')
             start=number(it['startTime'],minimum=0);end=number(it['endTime'],minimum=0)
             if end<start:raise OtpError('Invalid itinerary times')
+            if abs((end-start)/1000-duration)>2:raise OtpError('Itinerary duration disagrees with timestamps')
             transfers=it['numberOfTransfers']
             if type(transfers) is not int or transfers<0:raise OtpError('Invalid transfers')
             legs=[];identity=[]
@@ -102,13 +103,30 @@ def adapt_itineraries(response,availability,max_walk,rt_fresh):
                 if seconds<=0:raise OtpError('Missing positive leg duration')
                 a=number(leg['startTime'],minimum=0);b=number(leg['endTime'],minimum=0)
                 if b<a:raise OtpError('Invalid leg times')
+                if abs((b-a)/1000-seconds)>2:raise OtpError('Leg duration disagrees with timestamps')
+                if a<start-2000 or b>end+2000:raise OtpError('Leg times outside itinerary')
                 geometry=decode_polyline((leg.get('legGeometry') or {}).get('points'))
+                if transit:
+                    from graphhopper_geometry import distance_m
+                    for coordinate_index,role in ((0,'from'),(-1,'to')):
+                        place=leg.get(role) or {}
+                        exact=[number(place['lon']),number(place['lat'])]
+                        gap=distance_m(geometry['coordinates'][coordinate_index],exact)
+                        if gap>25:raise OtpError('Transit geometry does not reach its GTFS stop')
+                        # Normalize polyline rounding only, never bridge a missing path.
+                        if gap<=2:geometry['coordinates'][coordinate_index]=exact
                 realtime=transit and rt_fresh and leg.get('realTime') is True
                 def delay(key):
                     value=leg.get(key)
                     return int(value) if realtime and type(value) is int else None
                 dd,ad=delay('departureDelay'),delay('arrivalDelay')
                 route=leg.get('route') or {};trip=leg.get('trip') or {}
+                alignment=None
+                if source_mode=='TRAM':
+                    from tram_alignment import match_tram
+                    matched=match_tram(route.get('shortName'),[leg['from']['lon'],leg['from']['lat']],
+                                       [leg['to']['lon'],leg['to']['lat']],geometry['coordinates'])
+                    if matched:geometry,alignment=matched
                 if transit and not trip.get('gtfsId'):raise OtpError('Missing transit trip identity')
                 details={'source_mode':source_mode,'line':route.get('shortName'),'line_name':route.get('longName'),
                     'gtfs_route_id':route.get('gtfsId'),'gtfs_trip_id':trip.get('gtfsId'),'service_date':leg.get('serviceDate'),
@@ -117,7 +135,8 @@ def adapt_itineraries(response,availability,max_walk,rt_fresh):
                     'departure_delay_seconds':dd,'arrival_delay_seconds':ad,
                     'scheduled_start_time_ms':a-dd*1000 if dd is not None else a if not realtime else None,
                     'scheduled_end_time_ms':b-ad*1000 if ad is not None else b if not realtime else None,
-                    'geometry_quality':'APPROXIMATE_NO_SHAPES' if transit else 'OSM_ROUTED'}
+                    'geometry_quality':alignment['source'] if alignment else 'APPROXIMATE_NO_SHAPES' if transit else 'OSM_ROUTED',
+                    **({'reference_alignment':alignment} if alignment else {})}
                 legs.append({'mode':'pt' if transit else 'walk','duration_seconds':seconds,'distance_meters':dist,'geometry':geometry,'transit':details})
                 identity.append([source_mode,trip.get('gtfsId'),leg.get('serviceDate'),details['scheduled_start_time_ms'],a,(leg.get('from') or {}).get('stop'),(leg.get('to') or {}).get('stop')])
             key=json.dumps(identity,sort_keys=True)
@@ -127,6 +146,8 @@ def adapt_itineraries(response,availability,max_walk,rt_fresh):
             if leg_sum>duration+2:raise OtpError('Leg duration exceeds itinerary duration')
             gaps=[]
             for before,after in zip(legs,legs[1:]):
+                from graphhopper_geometry import distance_m
+                if distance_m(before['geometry']['coordinates'][-1],after['geometry']['coordinates'][0])>25:raise OtpError('Disconnected itinerary geometry')
                 gap=(after['transit']['start_time_ms']-before['transit']['end_time_ms'])/1000
                 if gap < -2:raise OtpError('Overlapping OTP legs')
                 if gap>0:gaps.append({'seconds':gap,'at':before['transit']['to']})
@@ -161,17 +182,21 @@ class OtpTransitClient:
     def status(self):
         try:return self.request(self.status_url)
         except (OSError,ValueError):return None
-    def routes(self,*,start,stop,departure,availability,max_walk):
+    def routes(self,*,start,stop,departure,availability,max_walk,boarding_stop_id=None):
         when=berlin(departure);status_before=self.status();use_rt=fresh(status_before)
         variables={'from':start,'to':stop,'date':when.strftime('%Y-%m-%d'),'time':when.strftime('%H:%M:%S'),'ignore':not use_rt}
-        request={'query':QUERY,'variables':variables}
+        query=QUERY
+        if boarding_stop_id:
+            query=QUERY.replace('$from: InputCoordinates!', '$fromPlace: String!').replace('from: $from,', 'fromPlace: $fromPlace,')
+            variables.pop('from');variables['fromPlace']=boarding_stop_id
+        request={'query':query,'variables':variables}
         try:
             raw=self.request(self.base+'/otp/routers/default/index/graphql',request);plan_of(raw)
         except (OSError,ValueError) as exc:raise OtpError('OTP unavailable or invalid plan') from exc
         # Retrieve a second, explicit departure window rather than fabricating
         # later times by shifting the first itinerary's schedule.
         later=when+datetime.timedelta(minutes=30)
-        later_request={'query':QUERY,'variables':{**variables,'date':later.strftime('%Y-%m-%d'),'time':later.strftime('%H:%M:%S')}}
+        later_request={'query':query,'variables':{**variables,'date':later.strftime('%Y-%m-%d'),'time':later.strftime('%H:%M:%S')}}
         later_raw=None;later_failure=None
         try:
             later_raw=self.request(self.base+'/otp/routers/default/index/graphql',later_request);plan_of(later_raw)
@@ -181,10 +206,10 @@ class OtpTransitClient:
         status_after=self.status() if use_rt else None
         rt_fresh=use_rt and fresh(status_after)
         if use_rt and not rt_fresh:
-            variables={**variables,'ignore':True};request={'query':QUERY,'variables':variables}
+            variables={**variables,'ignore':True};request={'query':query,'variables':variables}
             try:raw=self.request(self.base+'/otp/routers/default/index/graphql',request);plan_of(raw)
             except (OSError,ValueError) as exc:raise OtpError('OTP scheduled fallback unavailable') from exc
-            later_request={'query':QUERY,'variables':{**later_request['variables'],'ignore':True}}
+            later_request={'query':query,'variables':{**later_request['variables'],'ignore':True}}
             try:
                 later_raw=self.request(self.base+'/otp/routers/default/index/graphql',later_request);plan_of(later_raw)
                 later_failure=None
@@ -195,6 +220,8 @@ class OtpTransitClient:
             combined['data']['plan']['itineraries'].extend(plan_of(later_raw)['itineraries'])
             combined['data']['plan']['routingErrors']=(plan_of(raw).get('routingErrors') or [])+(plan_of(later_raw).get('routingErrors') or [])
         routes,audit=adapt_itineraries(combined,availability,max_walk,rt_fresh)
+        if boarding_stop_id:
+            routes=[r for r in routes if next(((l['transit']['from'].get('stop') or {}).get('gtfsId') for l in r['legs'] if l['mode']=='pt'),None)==boarding_stop_id]
         return routes,{**audit,'provider':'otp','status':'AVAILABLE' if routes else 'NO_MATCHING_ITINERARIES',
             'max_walk_meters':max_walk,'scope':'MVB Magdeburg','captured_at':datetime.datetime.now(datetime.timezone.utc).isoformat(),
             'realtime_status_before':status_before,'realtime_status_after':status_after,'realtime_feed_fresh':bool(rt_fresh),

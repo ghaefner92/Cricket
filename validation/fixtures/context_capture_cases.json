@@ -1,0 +1,1968 @@
+[
+  {
+    "name": "ambient_complete",
+    "valid": true,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null,
+      "context_capture": {
+        "schema_version": "d-day-trip-context-v1",
+        "sampling_interval_seconds": 60,
+        "sample_limit": 240,
+        "samples": [
+          {
+            "sample_id": "ambient-fixture",
+            "point_monotonic_ms": 11000,
+            "segment_index": 0,
+            "requested_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:12Z",
+            "status": "complete",
+            "result": {
+              "schema_version": "d-day-context-sample-v1",
+              "request_started_at": "2026-10-08T10:01:10Z",
+              "queried_at": "2026-10-08T10:01:11Z",
+              "query_location": {
+                "lat": 52.1,
+                "lon": 11.6
+              },
+              "raw_observations": [
+                {
+                  "source": "Orion",
+                  "variable": "temperature",
+                  "raw_value": 18,
+                  "numeric_value": 18.0,
+                  "unit": "C",
+                  "timestamp": "2026-10-08T10:01:10Z",
+                  "status": "OBSERVED",
+                  "quality": null,
+                  "confidence": null,
+                  "source_entity_id": "fixture-station",
+                  "spatial_metadata": null,
+                  "source_metadata": {
+                    "measurement_semantics": "ambient_temperature"
+                  }
+                }
+              ],
+              "context": {
+                "queried_at": "2026-10-08T10:01:11Z",
+                "measurements": [
+                  {
+                    "source": "Orion",
+                    "variable": "temperature",
+                    "raw_value": 18,
+                    "numeric_value": 18.0,
+                    "unit": "C",
+                    "timestamp": "2026-10-08T10:01:10Z",
+                    "status": "OBSERVED",
+                    "quality": null,
+                    "confidence": null,
+                    "source_entity_id": "fixture-station",
+                    "spatial_metadata": null,
+                    "source_metadata": {
+                      "measurement_semantics": "ambient_temperature",
+                      "pilot_unit_provenance": "sensor_or_provider_attribute",
+                      "pilot_original_unit": "C"
+                    }
+                  }
+                ],
+                "scope": "ambient_nearest_station_at_retained_gps_fix"
+              },
+              "audit": {
+                "schema_version": "d-day-context-audit-v1",
+                "values": {
+                  "duration_seconds": null,
+                  "temperature": 18.0,
+                  "humidity": null,
+                  "rain": null,
+                  "windSpeed": null,
+                  "windGust": null,
+                  "windSpeed10Min": null,
+                  "lightIntensity": null
+                },
+                "warnings": [],
+                "readings": [
+                  {
+                    "measurement": {
+                      "source": "Orion",
+                      "variable": "temperature",
+                      "raw_value": 18,
+                      "numeric_value": 18.0,
+                      "unit": "C",
+                      "timestamp": "2026-10-08T10:01:10Z",
+                      "status": "OBSERVED",
+                      "quality": null,
+                      "confidence": null,
+                      "source_entity_id": "fixture-station",
+                      "spatial_metadata": null,
+                      "source_metadata": {
+                        "measurement_semantics": "ambient_temperature",
+                        "pilot_unit_provenance": "sensor_or_provider_attribute",
+                        "pilot_original_unit": "C"
+                      }
+                    },
+                    "included": true,
+                    "exclusion_reason": null,
+                    "age_seconds_at_query": 1.0,
+                    "expected_unit": "C",
+                    "unit_compatible": true,
+                    "semantic_issues": []
+                  }
+                ],
+                "route_coverage": {},
+                "weather_used": 1,
+                "weather_expected": 7,
+                "scope": "ambient_nearest_station_at_retained_gps_fix",
+                "actual_trip_exposure_reconstructed": false,
+                "semantic_metadata_complete": true,
+                "feature_columns": [
+                  "intercept",
+                  "duration_seconds",
+                  "temperature",
+                  "humidity",
+                  "rain",
+                  "windSpeed",
+                  "windGust",
+                  "windSpeed10Min",
+                  "lightIntensity",
+                  "temperature_squared",
+                  "missing:duration_seconds",
+                  "missing:temperature",
+                  "missing:humidity",
+                  "missing:rain",
+                  "missing:windSpeed",
+                  "missing:windGust",
+                  "missing:windSpeed10Min",
+                  "missing:lightIntensity"
+                ],
+                "encoded_design_row": [
+                  1.0,
+                  0.0,
+                  -0.2,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.04000000000000001,
+                  1.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "status": "AVAILABLE",
+              "stored_on_server": false,
+              "personal_exposure_measured": false
+            },
+            "failure_reason": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "ambient_foreign_fix",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null,
+      "context_capture": {
+        "schema_version": "d-day-trip-context-v1",
+        "sampling_interval_seconds": 60,
+        "sample_limit": 240,
+        "samples": [
+          {
+            "sample_id": "ambient-fixture",
+            "point_monotonic_ms": 999,
+            "segment_index": 0,
+            "requested_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:12Z",
+            "status": "complete",
+            "result": {
+              "schema_version": "d-day-context-sample-v1",
+              "request_started_at": "2026-10-08T10:01:10Z",
+              "queried_at": "2026-10-08T10:01:11Z",
+              "query_location": {
+                "lat": 52.1,
+                "lon": 11.6
+              },
+              "raw_observations": [
+                {
+                  "source": "Orion",
+                  "variable": "temperature",
+                  "raw_value": 18,
+                  "numeric_value": 18.0,
+                  "unit": "C",
+                  "timestamp": "2026-10-08T10:01:10Z",
+                  "status": "OBSERVED",
+                  "quality": null,
+                  "confidence": null,
+                  "source_entity_id": "fixture-station",
+                  "spatial_metadata": null,
+                  "source_metadata": {
+                    "measurement_semantics": "ambient_temperature"
+                  }
+                }
+              ],
+              "context": {
+                "queried_at": "2026-10-08T10:01:11Z",
+                "measurements": [
+                  {
+                    "source": "Orion",
+                    "variable": "temperature",
+                    "raw_value": 18,
+                    "numeric_value": 18.0,
+                    "unit": "C",
+                    "timestamp": "2026-10-08T10:01:10Z",
+                    "status": "OBSERVED",
+                    "quality": null,
+                    "confidence": null,
+                    "source_entity_id": "fixture-station",
+                    "spatial_metadata": null,
+                    "source_metadata": {
+                      "measurement_semantics": "ambient_temperature",
+                      "pilot_unit_provenance": "sensor_or_provider_attribute",
+                      "pilot_original_unit": "C"
+                    }
+                  }
+                ],
+                "scope": "ambient_nearest_station_at_retained_gps_fix"
+              },
+              "audit": {
+                "schema_version": "d-day-context-audit-v1",
+                "values": {
+                  "duration_seconds": null,
+                  "temperature": 18.0,
+                  "humidity": null,
+                  "rain": null,
+                  "windSpeed": null,
+                  "windGust": null,
+                  "windSpeed10Min": null,
+                  "lightIntensity": null
+                },
+                "warnings": [],
+                "readings": [
+                  {
+                    "measurement": {
+                      "source": "Orion",
+                      "variable": "temperature",
+                      "raw_value": 18,
+                      "numeric_value": 18.0,
+                      "unit": "C",
+                      "timestamp": "2026-10-08T10:01:10Z",
+                      "status": "OBSERVED",
+                      "quality": null,
+                      "confidence": null,
+                      "source_entity_id": "fixture-station",
+                      "spatial_metadata": null,
+                      "source_metadata": {
+                        "measurement_semantics": "ambient_temperature",
+                        "pilot_unit_provenance": "sensor_or_provider_attribute",
+                        "pilot_original_unit": "C"
+                      }
+                    },
+                    "included": true,
+                    "exclusion_reason": null,
+                    "age_seconds_at_query": 1.0,
+                    "expected_unit": "C",
+                    "unit_compatible": true,
+                    "semantic_issues": []
+                  }
+                ],
+                "route_coverage": {},
+                "weather_used": 1,
+                "weather_expected": 7,
+                "scope": "ambient_nearest_station_at_retained_gps_fix",
+                "actual_trip_exposure_reconstructed": false,
+                "semantic_metadata_complete": true,
+                "feature_columns": [
+                  "intercept",
+                  "duration_seconds",
+                  "temperature",
+                  "humidity",
+                  "rain",
+                  "windSpeed",
+                  "windGust",
+                  "windSpeed10Min",
+                  "lightIntensity",
+                  "temperature_squared",
+                  "missing:duration_seconds",
+                  "missing:temperature",
+                  "missing:humidity",
+                  "missing:rain",
+                  "missing:windSpeed",
+                  "missing:windGust",
+                  "missing:windSpeed10Min",
+                  "missing:lightIntensity"
+                ],
+                "encoded_design_row": [
+                  1.0,
+                  0.0,
+                  -0.2,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.04000000000000001,
+                  1.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "status": "AVAILABLE",
+              "stored_on_server": false,
+              "personal_exposure_measured": false
+            },
+            "failure_reason": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "ambient_wrong_location",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null,
+      "context_capture": {
+        "schema_version": "d-day-trip-context-v1",
+        "sampling_interval_seconds": 60,
+        "sample_limit": 240,
+        "samples": [
+          {
+            "sample_id": "ambient-fixture",
+            "point_monotonic_ms": 11000,
+            "segment_index": 0,
+            "requested_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:12Z",
+            "status": "complete",
+            "result": {
+              "schema_version": "d-day-context-sample-v1",
+              "request_started_at": "2026-10-08T10:01:10Z",
+              "queried_at": "2026-10-08T10:01:11Z",
+              "query_location": {
+                "lat": 0,
+                "lon": 11.6
+              },
+              "raw_observations": [
+                {
+                  "source": "Orion",
+                  "variable": "temperature",
+                  "raw_value": 18,
+                  "numeric_value": 18.0,
+                  "unit": "C",
+                  "timestamp": "2026-10-08T10:01:10Z",
+                  "status": "OBSERVED",
+                  "quality": null,
+                  "confidence": null,
+                  "source_entity_id": "fixture-station",
+                  "spatial_metadata": null,
+                  "source_metadata": {
+                    "measurement_semantics": "ambient_temperature"
+                  }
+                }
+              ],
+              "context": {
+                "queried_at": "2026-10-08T10:01:11Z",
+                "measurements": [
+                  {
+                    "source": "Orion",
+                    "variable": "temperature",
+                    "raw_value": 18,
+                    "numeric_value": 18.0,
+                    "unit": "C",
+                    "timestamp": "2026-10-08T10:01:10Z",
+                    "status": "OBSERVED",
+                    "quality": null,
+                    "confidence": null,
+                    "source_entity_id": "fixture-station",
+                    "spatial_metadata": null,
+                    "source_metadata": {
+                      "measurement_semantics": "ambient_temperature",
+                      "pilot_unit_provenance": "sensor_or_provider_attribute",
+                      "pilot_original_unit": "C"
+                    }
+                  }
+                ],
+                "scope": "ambient_nearest_station_at_retained_gps_fix"
+              },
+              "audit": {
+                "schema_version": "d-day-context-audit-v1",
+                "values": {
+                  "duration_seconds": null,
+                  "temperature": 18.0,
+                  "humidity": null,
+                  "rain": null,
+                  "windSpeed": null,
+                  "windGust": null,
+                  "windSpeed10Min": null,
+                  "lightIntensity": null
+                },
+                "warnings": [],
+                "readings": [
+                  {
+                    "measurement": {
+                      "source": "Orion",
+                      "variable": "temperature",
+                      "raw_value": 18,
+                      "numeric_value": 18.0,
+                      "unit": "C",
+                      "timestamp": "2026-10-08T10:01:10Z",
+                      "status": "OBSERVED",
+                      "quality": null,
+                      "confidence": null,
+                      "source_entity_id": "fixture-station",
+                      "spatial_metadata": null,
+                      "source_metadata": {
+                        "measurement_semantics": "ambient_temperature",
+                        "pilot_unit_provenance": "sensor_or_provider_attribute",
+                        "pilot_original_unit": "C"
+                      }
+                    },
+                    "included": true,
+                    "exclusion_reason": null,
+                    "age_seconds_at_query": 1.0,
+                    "expected_unit": "C",
+                    "unit_compatible": true,
+                    "semantic_issues": []
+                  }
+                ],
+                "route_coverage": {},
+                "weather_used": 1,
+                "weather_expected": 7,
+                "scope": "ambient_nearest_station_at_retained_gps_fix",
+                "actual_trip_exposure_reconstructed": false,
+                "semantic_metadata_complete": true,
+                "feature_columns": [
+                  "intercept",
+                  "duration_seconds",
+                  "temperature",
+                  "humidity",
+                  "rain",
+                  "windSpeed",
+                  "windGust",
+                  "windSpeed10Min",
+                  "lightIntensity",
+                  "temperature_squared",
+                  "missing:duration_seconds",
+                  "missing:temperature",
+                  "missing:humidity",
+                  "missing:rain",
+                  "missing:windSpeed",
+                  "missing:windGust",
+                  "missing:windSpeed10Min",
+                  "missing:lightIntensity"
+                ],
+                "encoded_design_row": [
+                  1.0,
+                  0.0,
+                  -0.2,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.04000000000000001,
+                  1.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "status": "AVAILABLE",
+              "stored_on_server": false,
+              "personal_exposure_measured": false
+            },
+            "failure_reason": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "ambient_response_after_end",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null,
+      "context_capture": {
+        "schema_version": "d-day-trip-context-v1",
+        "sampling_interval_seconds": 60,
+        "sample_limit": 240,
+        "samples": [
+          {
+            "sample_id": "ambient-fixture",
+            "point_monotonic_ms": 11000,
+            "segment_index": 0,
+            "requested_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:04:00Z",
+            "status": "complete",
+            "result": {
+              "schema_version": "d-day-context-sample-v1",
+              "request_started_at": "2026-10-08T10:01:10Z",
+              "queried_at": "2026-10-08T10:01:11Z",
+              "query_location": {
+                "lat": 52.1,
+                "lon": 11.6
+              },
+              "raw_observations": [
+                {
+                  "source": "Orion",
+                  "variable": "temperature",
+                  "raw_value": 18,
+                  "numeric_value": 18.0,
+                  "unit": "C",
+                  "timestamp": "2026-10-08T10:01:10Z",
+                  "status": "OBSERVED",
+                  "quality": null,
+                  "confidence": null,
+                  "source_entity_id": "fixture-station",
+                  "spatial_metadata": null,
+                  "source_metadata": {
+                    "measurement_semantics": "ambient_temperature"
+                  }
+                }
+              ],
+              "context": {
+                "queried_at": "2026-10-08T10:01:11Z",
+                "measurements": [
+                  {
+                    "source": "Orion",
+                    "variable": "temperature",
+                    "raw_value": 18,
+                    "numeric_value": 18.0,
+                    "unit": "C",
+                    "timestamp": "2026-10-08T10:01:10Z",
+                    "status": "OBSERVED",
+                    "quality": null,
+                    "confidence": null,
+                    "source_entity_id": "fixture-station",
+                    "spatial_metadata": null,
+                    "source_metadata": {
+                      "measurement_semantics": "ambient_temperature",
+                      "pilot_unit_provenance": "sensor_or_provider_attribute",
+                      "pilot_original_unit": "C"
+                    }
+                  }
+                ],
+                "scope": "ambient_nearest_station_at_retained_gps_fix"
+              },
+              "audit": {
+                "schema_version": "d-day-context-audit-v1",
+                "values": {
+                  "duration_seconds": null,
+                  "temperature": 18.0,
+                  "humidity": null,
+                  "rain": null,
+                  "windSpeed": null,
+                  "windGust": null,
+                  "windSpeed10Min": null,
+                  "lightIntensity": null
+                },
+                "warnings": [],
+                "readings": [
+                  {
+                    "measurement": {
+                      "source": "Orion",
+                      "variable": "temperature",
+                      "raw_value": 18,
+                      "numeric_value": 18.0,
+                      "unit": "C",
+                      "timestamp": "2026-10-08T10:01:10Z",
+                      "status": "OBSERVED",
+                      "quality": null,
+                      "confidence": null,
+                      "source_entity_id": "fixture-station",
+                      "spatial_metadata": null,
+                      "source_metadata": {
+                        "measurement_semantics": "ambient_temperature",
+                        "pilot_unit_provenance": "sensor_or_provider_attribute",
+                        "pilot_original_unit": "C"
+                      }
+                    },
+                    "included": true,
+                    "exclusion_reason": null,
+                    "age_seconds_at_query": 1.0,
+                    "expected_unit": "C",
+                    "unit_compatible": true,
+                    "semantic_issues": []
+                  }
+                ],
+                "route_coverage": {},
+                "weather_used": 1,
+                "weather_expected": 7,
+                "scope": "ambient_nearest_station_at_retained_gps_fix",
+                "actual_trip_exposure_reconstructed": false,
+                "semantic_metadata_complete": true,
+                "feature_columns": [
+                  "intercept",
+                  "duration_seconds",
+                  "temperature",
+                  "humidity",
+                  "rain",
+                  "windSpeed",
+                  "windGust",
+                  "windSpeed10Min",
+                  "lightIntensity",
+                  "temperature_squared",
+                  "missing:duration_seconds",
+                  "missing:temperature",
+                  "missing:humidity",
+                  "missing:rain",
+                  "missing:windSpeed",
+                  "missing:windGust",
+                  "missing:windSpeed10Min",
+                  "missing:lightIntensity"
+                ],
+                "encoded_design_row": [
+                  1.0,
+                  0.0,
+                  -0.2,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.04000000000000001,
+                  1.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "status": "AVAILABLE",
+              "stored_on_server": false,
+              "personal_exposure_measured": false
+            },
+            "failure_reason": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "ambient_pending_after_end",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null,
+      "context_capture": {
+        "schema_version": "d-day-trip-context-v1",
+        "sampling_interval_seconds": 60,
+        "sample_limit": 240,
+        "samples": [
+          {
+            "sample_id": "ambient-fixture",
+            "point_monotonic_ms": 11000,
+            "segment_index": 0,
+            "requested_at": "2026-10-08T10:01:10Z",
+            "received_at": null,
+            "status": "pending",
+            "result": null,
+            "failure_reason": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "name": "ambient_duplicate_identity",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null,
+      "context_capture": {
+        "schema_version": "d-day-trip-context-v1",
+        "sampling_interval_seconds": 60,
+        "sample_limit": 240,
+        "samples": [
+          {
+            "sample_id": "ambient-fixture",
+            "point_monotonic_ms": 11000,
+            "segment_index": 0,
+            "requested_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:12Z",
+            "status": "complete",
+            "result": {
+              "schema_version": "d-day-context-sample-v1",
+              "request_started_at": "2026-10-08T10:01:10Z",
+              "queried_at": "2026-10-08T10:01:11Z",
+              "query_location": {
+                "lat": 52.1,
+                "lon": 11.6
+              },
+              "raw_observations": [
+                {
+                  "source": "Orion",
+                  "variable": "temperature",
+                  "raw_value": 18,
+                  "numeric_value": 18.0,
+                  "unit": "C",
+                  "timestamp": "2026-10-08T10:01:10Z",
+                  "status": "OBSERVED",
+                  "quality": null,
+                  "confidence": null,
+                  "source_entity_id": "fixture-station",
+                  "spatial_metadata": null,
+                  "source_metadata": {
+                    "measurement_semantics": "ambient_temperature"
+                  }
+                }
+              ],
+              "context": {
+                "queried_at": "2026-10-08T10:01:11Z",
+                "measurements": [
+                  {
+                    "source": "Orion",
+                    "variable": "temperature",
+                    "raw_value": 18,
+                    "numeric_value": 18.0,
+                    "unit": "C",
+                    "timestamp": "2026-10-08T10:01:10Z",
+                    "status": "OBSERVED",
+                    "quality": null,
+                    "confidence": null,
+                    "source_entity_id": "fixture-station",
+                    "spatial_metadata": null,
+                    "source_metadata": {
+                      "measurement_semantics": "ambient_temperature",
+                      "pilot_unit_provenance": "sensor_or_provider_attribute",
+                      "pilot_original_unit": "C"
+                    }
+                  }
+                ],
+                "scope": "ambient_nearest_station_at_retained_gps_fix"
+              },
+              "audit": {
+                "schema_version": "d-day-context-audit-v1",
+                "values": {
+                  "duration_seconds": null,
+                  "temperature": 18.0,
+                  "humidity": null,
+                  "rain": null,
+                  "windSpeed": null,
+                  "windGust": null,
+                  "windSpeed10Min": null,
+                  "lightIntensity": null
+                },
+                "warnings": [],
+                "readings": [
+                  {
+                    "measurement": {
+                      "source": "Orion",
+                      "variable": "temperature",
+                      "raw_value": 18,
+                      "numeric_value": 18.0,
+                      "unit": "C",
+                      "timestamp": "2026-10-08T10:01:10Z",
+                      "status": "OBSERVED",
+                      "quality": null,
+                      "confidence": null,
+                      "source_entity_id": "fixture-station",
+                      "spatial_metadata": null,
+                      "source_metadata": {
+                        "measurement_semantics": "ambient_temperature",
+                        "pilot_unit_provenance": "sensor_or_provider_attribute",
+                        "pilot_original_unit": "C"
+                      }
+                    },
+                    "included": true,
+                    "exclusion_reason": null,
+                    "age_seconds_at_query": 1.0,
+                    "expected_unit": "C",
+                    "unit_compatible": true,
+                    "semantic_issues": []
+                  }
+                ],
+                "route_coverage": {},
+                "weather_used": 1,
+                "weather_expected": 7,
+                "scope": "ambient_nearest_station_at_retained_gps_fix",
+                "actual_trip_exposure_reconstructed": false,
+                "semantic_metadata_complete": true,
+                "feature_columns": [
+                  "intercept",
+                  "duration_seconds",
+                  "temperature",
+                  "humidity",
+                  "rain",
+                  "windSpeed",
+                  "windGust",
+                  "windSpeed10Min",
+                  "lightIntensity",
+                  "temperature_squared",
+                  "missing:duration_seconds",
+                  "missing:temperature",
+                  "missing:humidity",
+                  "missing:rain",
+                  "missing:windSpeed",
+                  "missing:windGust",
+                  "missing:windSpeed10Min",
+                  "missing:lightIntensity"
+                ],
+                "encoded_design_row": [
+                  1.0,
+                  0.0,
+                  -0.2,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.04000000000000001,
+                  1.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "status": "AVAILABLE",
+              "stored_on_server": false,
+              "personal_exposure_measured": false
+            },
+            "failure_reason": null
+          },
+          {
+            "sample_id": "ambient-fixture",
+            "point_monotonic_ms": 11000,
+            "segment_index": 0,
+            "requested_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:12Z",
+            "status": "complete",
+            "result": {
+              "schema_version": "d-day-context-sample-v1",
+              "request_started_at": "2026-10-08T10:01:10Z",
+              "queried_at": "2026-10-08T10:01:11Z",
+              "query_location": {
+                "lat": 52.1,
+                "lon": 11.6
+              },
+              "raw_observations": [
+                {
+                  "source": "Orion",
+                  "variable": "temperature",
+                  "raw_value": 18,
+                  "numeric_value": 18.0,
+                  "unit": "C",
+                  "timestamp": "2026-10-08T10:01:10Z",
+                  "status": "OBSERVED",
+                  "quality": null,
+                  "confidence": null,
+                  "source_entity_id": "fixture-station",
+                  "spatial_metadata": null,
+                  "source_metadata": {
+                    "measurement_semantics": "ambient_temperature"
+                  }
+                }
+              ],
+              "context": {
+                "queried_at": "2026-10-08T10:01:11Z",
+                "measurements": [
+                  {
+                    "source": "Orion",
+                    "variable": "temperature",
+                    "raw_value": 18,
+                    "numeric_value": 18.0,
+                    "unit": "C",
+                    "timestamp": "2026-10-08T10:01:10Z",
+                    "status": "OBSERVED",
+                    "quality": null,
+                    "confidence": null,
+                    "source_entity_id": "fixture-station",
+                    "spatial_metadata": null,
+                    "source_metadata": {
+                      "measurement_semantics": "ambient_temperature",
+                      "pilot_unit_provenance": "sensor_or_provider_attribute",
+                      "pilot_original_unit": "C"
+                    }
+                  }
+                ],
+                "scope": "ambient_nearest_station_at_retained_gps_fix"
+              },
+              "audit": {
+                "schema_version": "d-day-context-audit-v1",
+                "values": {
+                  "duration_seconds": null,
+                  "temperature": 18.0,
+                  "humidity": null,
+                  "rain": null,
+                  "windSpeed": null,
+                  "windGust": null,
+                  "windSpeed10Min": null,
+                  "lightIntensity": null
+                },
+                "warnings": [],
+                "readings": [
+                  {
+                    "measurement": {
+                      "source": "Orion",
+                      "variable": "temperature",
+                      "raw_value": 18,
+                      "numeric_value": 18.0,
+                      "unit": "C",
+                      "timestamp": "2026-10-08T10:01:10Z",
+                      "status": "OBSERVED",
+                      "quality": null,
+                      "confidence": null,
+                      "source_entity_id": "fixture-station",
+                      "spatial_metadata": null,
+                      "source_metadata": {
+                        "measurement_semantics": "ambient_temperature",
+                        "pilot_unit_provenance": "sensor_or_provider_attribute",
+                        "pilot_original_unit": "C"
+                      }
+                    },
+                    "included": true,
+                    "exclusion_reason": null,
+                    "age_seconds_at_query": 1.0,
+                    "expected_unit": "C",
+                    "unit_compatible": true,
+                    "semantic_issues": []
+                  }
+                ],
+                "route_coverage": {},
+                "weather_used": 1,
+                "weather_expected": 7,
+                "scope": "ambient_nearest_station_at_retained_gps_fix",
+                "actual_trip_exposure_reconstructed": false,
+                "semantic_metadata_complete": true,
+                "feature_columns": [
+                  "intercept",
+                  "duration_seconds",
+                  "temperature",
+                  "humidity",
+                  "rain",
+                  "windSpeed",
+                  "windGust",
+                  "windSpeed10Min",
+                  "lightIntensity",
+                  "temperature_squared",
+                  "missing:duration_seconds",
+                  "missing:temperature",
+                  "missing:humidity",
+                  "missing:rain",
+                  "missing:windSpeed",
+                  "missing:windGust",
+                  "missing:windSpeed10Min",
+                  "missing:lightIntensity"
+                ],
+                "encoded_design_row": [
+                  1.0,
+                  0.0,
+                  -0.2,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.04000000000000001,
+                  1.0,
+                  0.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0,
+                  1.0
+                ]
+              },
+              "status": "AVAILABLE",
+              "stored_on_server": false,
+              "personal_exposure_measured": false
+            },
+            "failure_reason": null
+          }
+        ]
+      }
+    }
+  }
+]

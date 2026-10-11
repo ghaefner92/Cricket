@@ -1,0 +1,67 @@
+{
+  "tool": "image_gen.imagegen",
+  "prompts": "docs/TRAVEL_AVATAR_STYLE_0496_PROMPTS.json",
+  "reference": "android-native/app/src/main/assets/art/jrpg/naturalist-sheet-v2.png",
+  "assets": [
+    {
+      "key": "search",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-search-v2.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "d7b10ab8eae796aec137b776e5693521c45b128e9e5272fcabf4d3853691bf0f"
+    },
+    {
+      "key": "preferences",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-preferences-v2.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "25c873746972e0e60ec63151e44e691cf5fd172e89c2e7b8b5fcd10d211e676e"
+    },
+    {
+      "key": "recent",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-recent-v2.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "e77356c07918d909b1b91314cdac0179562a9fc6debbf8663fe6f70cfbec01d8"
+    },
+    {
+      "key": "swap",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-swap-v2.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "104c2ce05ad4ea4adce3c860946128557cedd0a9710b51d2a5991e1f5d15d86a"
+    },
+    {
+      "key": "origin",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-origin-v2.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "1cf6d3dba595910bcfed75a360586793c4f1b1d5f7c10818876274a30ee091a5"
+    },
+    {
+      "key": "destination",
+      "asset": "android-native/app/src/main/assets/art/jrpg/travel-destination-v2.png",
+      "width": 1254,
+      "height": 1254,
+      "frame_width": 627,
+      "frame_height": 627,
+      "frames": 4,
+      "sha256": "7a3fee5c12b26b67a7616863bc7c4d9fe3854d40d063b1fc1a5ec648004e6270"
+    }
+  ]
+}

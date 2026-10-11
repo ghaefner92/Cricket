@@ -1,0 +1,20 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "release": "0.4.30",
+  "jobs": [
+    {
+      "key": "portrait-v2",
+      "ref": "C:/Users/equj44id/StudioProjects/Cricket/android-native/app/src/main/assets/art/jrpg/companion-intro-portrait-v1.png",
+      "saved": "android-native/app/src/main/assets/art/jrpg/companion-intro-portrait-v2.png",
+      "prompt": "Use case: precise-object-edit. Edit target is the supplied transparent animation sprite sheet of Otto von Guericke. Preserve EXACT grid layout FOUR columns by THREE rows, 12 full bust portraits, same registration and scale, same monochrome engraved face, hair, coat, collar, clear transparent margins, black and white original logo style. Change ONLY facial expression in the middle row wink sequence: frame 4 (row2 col1) begins closing right eye and tongue begins emerging; frame5 (row2 col2) right eye half closed, small pink tongue visible; frame6 (row2 col3) right eye fully winking, playful pink tongue sticking out from mouth clearly; frame7 (row2 col4) tongue gently retracts and eye reopens. The tongue is the ONLY new color, warm rose pink #F58CAB with slightly darker pink inner detail, not red, never on mustache or collar. Keep frames0-3 and8-11 neutral mouth animation as reference. Do not change head silhouette or add background, rectangles, lettering, extra objects. No chibi redesign. All cells fully transparent outside the portrait.",
+      "source": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-6f7ca9f3-742e-4e5e-a66b-5d8b17a155dd.png"
+    },
+    {
+      "key": "logo-plate-v3",
+      "ref": "C:/Users/equj44id/StudioProjects/Cricket/android-native/app/src/main/assets/branding/companion-ovgu-transparent-v2.png",
+      "saved": "android-native/app/src/main/assets/branding/companion-ovgu-plate-v3.png",
+      "prompt": "Use case: precise-object-edit. Edit the supplied university logo by removing ONLY the von Guericke portrait from the left side. Inpaint his entire face, hair, coat and collar: inside the burgundy purple rounded rectangle extend its existing original burgundy smoothly; below and above the rectangle replace portrait pixels with genuine transparent alpha. Preserve the entire logo at its original 2171 by 724 canvas and exact existing placement/scale. Purple rectangle must become one perfect CONTINUOUS straight horizontal rounded rectangle from original left edge to original right edge, no seams, notches, cuts, divided plates or distorted corners. Preserve ALL original lettering on the right of portrait EXACTLY pixel-for-pixel if possible, unchanged shapes and placement: OTTO VON GUERICKE, UNIVERSITÄT, MAGDEBURG; and INTELLIGENTER MOBILITÄTSRAUM on transparent area to the right. Preserve original burgundy colour and gradient, white/pale lettering; do not regenerate/retype text, do not add logos or change spelling. Only remove portrait and repair the background behind him. This is a fixed logo plate; the app will overlay a separately animated portrait. Genuine alpha transparency around full logo, no opaque white or black backdrop.",
+      "source": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-48961f71-7e57-4fd5-9254-355e1ff8f903.png"
+    }
+  ]
+}

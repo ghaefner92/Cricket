@@ -1,0 +1,351 @@
+{
+  "schema": "cricket-backup-v1",
+  "exported_at": "2026-10-09T10:00:00Z",
+  "storage": {
+    "imiq.experimental.cognitive-passport.v1": "{\"version\": 1, \"fingerprint\": \"fixture-fingerprint\", \"response\": {\"cognitive_passport\": {\"schema_version\": \"2.0\", \"profile\": {\"needs\": {\"pro_env\": 0.5, \"physical\": 0.5, \"cost\": 0.5, \"speed\": 0.5, \"comfort\": 0.5, \"reliable\": 0.5, \"autonomy\": 0.5, \"safety_crime\": 0.5, \"health_infection\": 0.5, \"privacy\": 0.5, \"safety_accident\": 0.5}, \"beliefs\": {\"walk\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}, \"bike\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}, \"pt\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}, \"car\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}}, \"valences\": {\"walk\": 0, \"bike\": 0, \"pt\": 0, \"car\": 0}, \"availability\": {\"walk\": true, \"bike\": true, \"pt\": true, \"car\": true}}, \"lineage\": {\"passport_id\": \"experience-update\", \"revision\": 3, \"parent_passport_id\": \"daily-update\"}, \"evidence_history\": [{\"event_id\": \"experience-trip-fixture\", \"search_id\": \"phase1-fixture\", \"journey_id\": \"trip-fixture\", \"choice_event_id\": \"choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74\", \"experience\": {\"schema_version\": \"cricket-experience-v1\", \"event_id\": \"experience-trip-fixture\", \"confirmed_at\": \"2026-10-08T10:02:00Z\", \"completion\": \"as_planned\", \"actual_modes\": [\"walk\"], \"changes\": \"\", \"ratings\": {\"comfort\": 6}, \"choice_reason\": null, \"learning_applied\": false}, \"learning_applied\": false, \"state_carryover_applied\": false}]}}}",
+    "imiq.experimental.cognitive-passport.v1.archive.fixture-passport": "{\"version\": 1, \"fingerprint\": \"fixture-fingerprint\", \"response\": {\"cognitive_passport\": {\"schema_version\": \"2.0\", \"profile\": {\"needs\": {\"pro_env\": 0.5, \"physical\": 0.5, \"cost\": 0.5, \"speed\": 0.5, \"comfort\": 0.5, \"reliable\": 0.5, \"autonomy\": 0.5, \"safety_crime\": 0.5, \"health_infection\": 0.5, \"privacy\": 0.5, \"safety_accident\": 0.5}, \"beliefs\": {\"walk\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}, \"bike\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}, \"pt\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}, \"car\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}}, \"valences\": {\"walk\": 0, \"bike\": 0, \"pt\": 0, \"car\": 0}, \"availability\": {\"walk\": true, \"bike\": true, \"pt\": true, \"car\": true}}, \"lineage\": {\"passport_id\": \"fixture-passport\", \"revision\": 1, \"parent_passport_id\": null}, \"evidence_history\": []}}}",
+    "imiq.experimental.cognitive-passport.v1.archive.daily-update": "{\"version\": 1, \"fingerprint\": \"fixture-fingerprint\", \"response\": {\"cognitive_passport\": {\"schema_version\": \"2.0\", \"profile\": {\"needs\": {\"pro_env\": 0.5, \"physical\": 0.5, \"cost\": 0.5, \"speed\": 0.5, \"comfort\": 0.5, \"reliable\": 0.5, \"autonomy\": 0.5, \"safety_crime\": 0.5, \"health_infection\": 0.5, \"privacy\": 0.5, \"safety_accident\": 0.5}, \"beliefs\": {\"walk\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}, \"bike\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}, \"pt\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}, \"car\": {\"pro_env\": 0, \"physical\": 0, \"cost\": 0, \"speed\": 0, \"comfort\": 0, \"reliable\": 0, \"autonomy\": 0, \"safety_crime\": 0, \"health_infection\": 0, \"privacy\": 0, \"safety_accident\": 0}}, \"valences\": {\"walk\": 0, \"bike\": 0, \"pt\": 0, \"car\": 0}, \"availability\": {\"walk\": true, \"bike\": true, \"pt\": true, \"car\": true}}, \"lineage\": {\"passport_id\": \"daily-update\", \"revision\": 2, \"parent_passport_id\": \"fixture-passport\"}, \"evidence_history\": []}}}"
+  },
+  "simulations": [
+    {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z",
+        "context_policy": "observations_only"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ],
+      "journeys": [
+        {
+          "schema_version": "cricket-journey-v1",
+          "journey_id": "trip-fixture",
+          "search_id": "phase1-fixture",
+          "choice_index": 0,
+          "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+          "created_at": "2026-10-08T10:01:00Z",
+          "started_at": null,
+          "ended_at": "2026-10-08T10:01:00Z",
+          "status": "confirmed",
+          "capture_mode": "manual",
+          "selection": {
+            "chosen_at": "2026-10-08T10:00:00Z",
+            "mode_key": "walk",
+            "route_id": "route-fixture",
+            "routing_rank": 0,
+            "provider": null,
+            "provider_itinerary_id": null
+          },
+          "passport_reference": {
+            "passport_id": "fixture-passport",
+            "revision": 1,
+            "fingerprint": "fixture-fingerprint",
+            "confirmed_at": "2026-10-08T09:00:00Z"
+          },
+          "plan": {
+            "route": {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            },
+            "recommendation": {
+              "state": "uncertain",
+              "winner": null,
+              "primary_route_id": null
+            },
+            "alternatives": [
+              {
+                "routing_rank": 0,
+                "mode_key": "walk",
+                "available": true
+              }
+            ],
+            "context_at_selection": {
+              "queried_at": "2026-10-08T09:59:00Z",
+              "snapshot": null,
+              "temporal_reference": "search_query"
+            }
+          },
+          "tracking": {
+            "points": [],
+            "events": [],
+            "rejected_fixes": 0,
+            "distance_m": null,
+            "elapsed_seconds": null,
+            "gap_count": 0,
+            "segment_index": 0,
+            "approximate": true,
+            "started_monotonic_ms": null,
+            "boot_count": null
+          },
+          "experience": {
+            "schema_version": "cricket-experience-v1",
+            "event_id": "experience-trip-fixture",
+            "confirmed_at": "2026-10-08T10:02:00Z",
+            "completion": "as_planned",
+            "actual_modes": [
+              "walk"
+            ],
+            "changes": "",
+            "ratings": {
+              "comfort": 6
+            },
+            "choice_reason": null,
+            "learning_applied": false
+          }
+        }
+      ],
+      "confirmed_snapshot": {
+        "version": 1,
+        "fingerprint": "fixture-fingerprint",
+        "response": {
+          "cognitive_passport": {
+            "schema_version": "2.0",
+            "profile": {
+              "needs": {
+                "pro_env": 0.5,
+                "physical": 0.5,
+                "cost": 0.5,
+                "speed": 0.5,
+                "comfort": 0.5,
+                "reliable": 0.5,
+                "autonomy": 0.5,
+                "safety_crime": 0.5,
+                "health_infection": 0.5,
+                "privacy": 0.5,
+                "safety_accident": 0.5
+              },
+              "beliefs": {
+                "walk": {
+                  "pro_env": 0,
+                  "physical": 0,
+                  "cost": 0,
+                  "speed": 0,
+                  "comfort": 0,
+                  "reliable": 0,
+                  "autonomy": 0,
+                  "safety_crime": 0,
+                  "health_infection": 0,
+                  "privacy": 0,
+                  "safety_accident": 0
+                },
+                "bike": {
+                  "pro_env": 0,
+                  "physical": 0,
+                  "cost": 0,
+                  "speed": 0,
+                  "comfort": 0,
+                  "reliable": 0,
+                  "autonomy": 0,
+                  "safety_crime": 0,
+                  "health_infection": 0,
+                  "privacy": 0,
+                  "safety_accident": 0
+                },
+                "pt": {
+                  "pro_env": 0,
+                  "physical": 0,
+                  "cost": 0,
+                  "speed": 0,
+                  "comfort": 0,
+                  "reliable": 0,
+                  "autonomy": 0,
+                  "safety_crime": 0,
+                  "health_infection": 0,
+                  "privacy": 0,
+                  "safety_accident": 0
+                },
+                "car": {
+                  "pro_env": 0,
+                  "physical": 0,
+                  "cost": 0,
+                  "speed": 0,
+                  "comfort": 0,
+                  "reliable": 0,
+                  "autonomy": 0,
+                  "safety_crime": 0,
+                  "health_infection": 0,
+                  "privacy": 0,
+                  "safety_accident": 0
+                }
+              },
+              "valences": {
+                "walk": 0,
+                "bike": 0,
+                "pt": 0,
+                "car": 0
+              },
+              "availability": {
+                "walk": true,
+                "bike": true,
+                "pt": true,
+                "car": true
+              }
+            },
+            "lineage": {
+              "passport_id": "fixture-passport",
+              "revision": 1,
+              "parent_passport_id": null
+            },
+            "evidence_history": []
+          }
+        }
+      },
+      "passport_transitions": [
+        {
+          "event_id": "experience-trip-fixture",
+          "before": {
+            "passport_id": "daily-update",
+            "revision": 2,
+            "parent_passport_id": "fixture-passport"
+          },
+          "after": {
+            "passport_id": "experience-update",
+            "revision": 3,
+            "parent_passport_id": "daily-update"
+          },
+          "learning_applied": false,
+          "state_carryover_applied": false
+        }
+      ]
+    }
+  ],
+  "longitudinal": {
+    "schema_version": "d-day-longitudinal-v1",
+    "learning_applied": false,
+    "state_carryover_applied": false,
+    "model_time_reference": "model_units_not_elapsed_travel_time",
+    "observation_time_reference": "recorded_wall_clock_timestamps",
+    "passport_versions": [
+      {
+        "passport_id": "daily-update",
+        "revision": 2,
+        "parent_passport_id": "fixture-passport",
+        "source": {
+          "storage_key": "imiq.experimental.cognitive-passport.v1.archive.daily-update"
+        }
+      },
+      {
+        "passport_id": "experience-update",
+        "revision": 3,
+        "parent_passport_id": "daily-update",
+        "source": {
+          "storage_key": "imiq.experimental.cognitive-passport.v1"
+        }
+      },
+      {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "parent_passport_id": null,
+        "source": {
+          "storage_key": "imiq.experimental.cognitive-passport.v1.archive.fixture-passport"
+        }
+      }
+    ],
+    "searches": [
+      {
+        "search_id": "phase1-fixture",
+        "created_at": "2026-10-08T09:59:00Z",
+        "completed_at": null,
+        "status": "complete",
+        "decision_passport": {
+          "passport_id": "fixture-passport",
+          "revision": 1,
+          "fingerprint": "fixture-fingerprint",
+          "confirmed_at": "2026-10-08T09:00:00Z"
+        },
+        "context_policy": "observations_only",
+        "source_record": "phase1-fixture",
+        "recommendation_presentation": "not_instrumented",
+        "trajectory_ids": []
+      }
+    ],
+    "experience_events": [
+      {
+        "event_id": "experience-trip-fixture",
+        "at": "2026-10-08T10:02:00Z",
+        "search_id": "phase1-fixture",
+        "journey_id": "trip-fixture",
+        "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+        "passport_transition": {
+          "event_id": "experience-trip-fixture",
+          "before": {
+            "passport_id": "daily-update",
+            "revision": 2,
+            "parent_passport_id": "fixture-passport"
+          },
+          "after": {
+            "passport_id": "experience-update",
+            "revision": 3,
+            "parent_passport_id": "daily-update"
+          },
+          "learning_applied": false,
+          "state_carryover_applied": false
+        },
+        "learning_applied": false,
+        "state_carryover_applied": false
+      }
+    ],
+    "warnings": [
+      "phase1-fixture: simulation unavailable (complete)"
+    ]
+  }
+}

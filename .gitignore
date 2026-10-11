@@ -39,3 +39,7 @@ AUDIT_INVENTORY.*
 
 # Private device migration snapshots
 .local-backups/
+
+# Reproducible simulation outputs and local audit artifacts
+output/
+app-backend/services/dyconet/tmp*/

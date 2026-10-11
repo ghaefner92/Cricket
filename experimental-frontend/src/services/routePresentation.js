@@ -40,14 +40,22 @@ export function goalLinks(passport,mode){
 }
 
 const VARIABLES=['temperature','humidity','rain','windSpeed','windGust','uvIndex','lightIntensity']
-export function weatherTiles(candidate){
+export function displayedWeatherRows(candidate){
  const rows=environmentalRows(candidate)
+ const rain=rows.filter(o=>o.variable==='rain'&&o.status==='OBSERVED'&&finiteNumber(o.numeric_value)&&o.source_metadata?.normalization_eligible!==false&&o.source_entity_id==='Sensor:Weather:Winfred'&&o.source_metadata?.source_attribute==='rainIntensity'&&['mm/h','mm/hour','mm/hr'].includes(String(o.unit).toLowerCase())&&o.numeric_value>=0&&o.numeric_value<=450)
+  .sort((a,b)=>(Date.parse(b.source_metadata?.last_report_at)||0)-(Date.parse(a.source_metadata?.last_report_at)||0)).slice(0,1)
+ return [...rows.filter(o=>!['rain','rainIntensity','cumulativeRainfall','rainHourly','rainDaily','rainWeekly','rainMonthly','rainYearly'].includes(o.variable)),...rain]
+}
+export function weatherTiles(candidate){
+ const rows=displayedWeatherRows(candidate)
  return VARIABLES.map(variable=>{
-  const readings=rows.filter(o=>o.variable===variable&&o.status==='OBSERVED'&&finiteNumber(o.numeric_value)&&o.source_metadata?.normalization_eligible!==false&&o.unit)
+  let readings=rows.filter(o=>o.variable===variable&&o.status==='OBSERVED'&&finiteNumber(o.numeric_value)&&o.source_metadata?.normalization_eligible!==false&&o.unit)
   const units=[...new Set(readings.map(o=>o.unit))]
   if(!readings.length||units.length!==1)return {variable,known:false,unit:null,min:null,max:null}
   const values=readings.map(o=>o.numeric_value)
-  return {variable,known:true,unit:units[0],min:Math.min(...values),max:Math.max(...values)}
+  const report=readings[0].source_metadata
+  const lastReport=report?.last_report_time_provenance==='EXPLICIT_ATTRIBUTE_RECEIVED_AT'&&Number.isFinite(Date.parse(report.last_report_at))?report.last_report_at:null
+  return {variable,known:true,unit:units[0],min:Math.min(...values),max:Math.max(...values),lastReport}
  })
 }
 

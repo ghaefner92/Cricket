@@ -1,0 +1,25 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "vite",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "rewrites": [
+    {
+      "source": "/api/dyconet/health",
+      "destination": "https://backend.example.invalid/health"
+    },
+    {
+      "source": "/api/dyconet",
+      "destination": "https://backend.example.invalid/api/dyconet"
+    },
+    {
+      "source": "/api/dyconet/:path*",
+      "destination": "https://backend.example.invalid/api/dyconet/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

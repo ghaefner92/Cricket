@@ -1,0 +1,70 @@
+{
+  "robot": {
+    "size": [
+      1254,
+      1254
+    ],
+    "grid": [
+      4,
+      4
+    ],
+    "frames": 16,
+    "unique_frames": 16,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "sha256": "5fb6eada109d46c2cdd1eb2e5cef23e93c1280c5a2b069ca18269100b24596b8"
+  },
+  "explorer": {
+    "size": [
+      1254,
+      1254
+    ],
+    "grid": [
+      4,
+      4
+    ],
+    "frames": 16,
+    "unique_frames": 16,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "sha256": "4357fe0391d0eef6216a80a5632398290ede72129378a6b507003b4684f64d73"
+  },
+  "creature": {
+    "size": [
+      1254,
+      1254
+    ],
+    "grid": [
+      4,
+      4
+    ],
+    "frames": 16,
+    "unique_frames": 16,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "sha256": "8619eb7c5d58821eb08d044a9e924d4aa924fce32e68f508cd46dcbbaea3a7db"
+  },
+  "naturalist": {
+    "size": [
+      1254,
+      1254
+    ],
+    "grid": [
+      4,
+      4
+    ],
+    "frames": 16,
+    "unique_frames": 16,
+    "alpha_range": [
+      0,
+      255
+    ],
+    "sha256": "b6a7e8293b0c34f5abdf47e91cb1199daa2d2f0aff4f185924410c7c3ddc18fa"
+  }
+}

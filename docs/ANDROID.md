@@ -68,8 +68,10 @@ incluye elecciones, clima y narraciones guardadas. Las importaciones archivan el
 Passport anterior y rechazan simulaciones con el mismo ID y contenido distinto.
 La creación de un Passport nuevo conserva el anterior y puede cancelarse.
 
-La ubicación puntual pide permisos sólo al utilizarla. El seguimiento continuo y
-el aprendizaje bayesiano todavía corresponden a fases posteriores del modelo.
+La ubicación puntual pide permisos sólo al utilizarla. La versión 0.4.0 añade
+tracking explícito, pausa, finalización y confirmación de experiencia. Consulta
+[Fase 1: tracking y contratos](FASE1_TRACKING.md) para el flujo y su validación.
+El aprendizaje bayesiano permanece pendiente.
 
 ## Referencias
 

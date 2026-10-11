@@ -15,6 +15,7 @@ This adapter runs no HOTCO simulation itself.
 """
 
 from __future__ import annotations
+from need_allocation import validate_need_allocation
 
 from dataclasses import dataclass
 import math
@@ -608,11 +609,17 @@ def build_adaptive_hotco_input(
         "observed_measurements",
     )
 
-    raw_needs = _raw_needs(
-        observed.get(
-            "needs_raw_1_to_7"
-        )
-    )
+    allocation = None
+    if "needs_allocation" in observed:
+        if "needs_raw_1_to_7" in observed:
+            _fail("Ambiguous observed needs: allocation and legacy ratings")
+        try:
+            allocation, allocation_needs = validate_need_allocation(observed["needs_allocation"])
+        except ValueError as exc:
+            raise AdaptiveHotcoAdapterError(str(exc)) from exc
+        raw_needs = allocation["points"]
+    else:
+        raw_needs = _raw_needs(observed.get("needs_raw_1_to_7"))
 
     raw_valences = _raw_valences(
         observed.get(
@@ -646,6 +653,8 @@ def build_adaptive_hotco_input(
             / 6.0
         for need in NEEDS
     }
+    if allocation is not None:
+        normalized_needs = allocation_needs
 
     normalized_valences = {
         mode:
@@ -884,6 +893,7 @@ def build_adaptive_hotco_input(
     )
 
     participant = ParticipantInput(
+        needs_allocation=allocation,
         agent_id=
             agent_id,
 

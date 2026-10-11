@@ -1,3 +1,15 @@
+export function liveDepartureDelay(details){
+ const seconds=details?.departure_delay_seconds
+ return details?.realtime===true&&Number.isInteger(seconds)&&seconds>0?seconds:null
+}
+export function largestDepartureDelay(route){
+ return (route?.legs||[]).filter(leg=>leg.mode==='pt'&&liveDepartureDelay(leg.transit)!==null)
+  .reduce((largest,leg)=>!largest||liveDepartureDelay(leg.transit)>liveDepartureDelay(largest)?leg.transit:largest,null)
+}
+export function departureDelayLabel(seconds,locale='en'){
+ const amount=new Intl.NumberFormat(locale,{maximumFractionDigits:1}).format(seconds>=60?seconds/60:seconds)
+ return `+${amount} ${seconds>=60?'min':'s'}`
+}
 export function delayText(seconds,locale='en'){
  const de=locale==='de'
  if(!Number.isInteger(seconds))return de?'Keine Echtzeitprognose':'No live prediction'

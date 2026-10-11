@@ -21,6 +21,7 @@ No fabricated raw questionnaire values are created.
 """
 
 from __future__ import annotations
+from need_allocation import validate_need_allocation
 
 from datetime import datetime, timezone
 import math
@@ -267,6 +268,26 @@ def _active_candidate(
     return candidate
 
 
+def _allocation_from_passport(passport):
+    observed = passport.get("observed_measurements", {})
+    if "needs_allocation" not in observed:
+        return None
+    if "needs_raw_1_to_7" in observed:
+        _fail("Ambiguous observed needs: allocation and legacy ratings")
+    try:
+        allocation, _ = validate_need_allocation(observed["needs_allocation"])
+    except ValueError as exc:
+        raise AdaptiveProfileUpdateError(str(exc)) from exc
+    return allocation
+
+
+def _normalized_need_measurements(passport, raw_needs):
+    allocation = _allocation_from_passport(passport)
+    if allocation is not None:
+        return {need: raw_needs[need] / 10.0 for need in NEEDS}
+    return {need: (raw_needs[need] - 1.0) / 6.0 for need in NEEDS}
+
+
 def _raw_measurements(
     passport: Mapping[str, Any],
 ) -> tuple[
@@ -285,10 +306,9 @@ def _raw_measurements(
         ),
     )
 
+    allocation = _allocation_from_passport(passport)
     raw_needs_source = _mapping(
-        observed.get(
-            "needs_raw_1_to_7"
-        ),
+        allocation["points"] if allocation is not None else observed.get("needs_raw_1_to_7"),
         (
             "previous_passport."
             "observed_measurements."
@@ -337,8 +357,8 @@ def _raw_measurements(
             raw_needs_source[
                 need
             ],
-            minimum=1,
-            maximum=7,
+            minimum=0 if allocation is not None else 1,
+            maximum=10 if allocation is not None else 7,
             path=(
                 "previous_passport."
                 "observed_measurements."
@@ -712,15 +732,9 @@ def reconstruct_adaptive_participant(
             "must account for all 44 cells"
         )
 
-    normalized_needs = {
-        need:
-            (
-                raw_needs[need]
-                - 1.0
-            )
-            / 6.0
-        for need in NEEDS
-    }
+    normalized_needs = _normalized_need_measurements(previous, raw_needs)
+    from daily_passport import estimation_basis
+    frozen_inputs = estimation_basis(previous) if "belief_estimation_inputs" in previous else None
 
     normalized_valences = {
         mode:
@@ -732,10 +746,10 @@ def reconstruct_adaptive_participant(
     try:
         personalized = _RUNTIME.personalize(
             needs=
-                normalized_needs,
+                frozen_inputs["needs"] if frozen_inputs is not None else normalized_needs,
 
             valences=
-                normalized_valences,
+                frozen_inputs["valences"] if frozen_inputs is not None else normalized_valences,
 
             observed_answers=
                 raw_beliefs,
@@ -803,6 +817,7 @@ def reconstruct_adaptive_participant(
         )
 
     return ParticipantInput(
+        needs_allocation=_allocation_from_passport(previous),
         agent_id=
             agent_id,
 
@@ -1097,6 +1112,8 @@ def prepare_adaptive_profile_update(
     # -----------------------------------------------------
 
     if kind == "need":
+        if _allocation_from_passport(previous) is not None:
+            _fail("Weekly need weights must be changed by reallocating the complete 10-point budget")
 
         need = str(
             expected_target.get(
@@ -1257,17 +1274,7 @@ def prepare_adaptive_profile_update(
     # Rebuild the dense profile from raw observations.
     # -----------------------------------------------------
 
-    normalized_needs = {
-        need:
-            (
-                raw_needs[
-                    need
-                ]
-                - 1.0
-            )
-            / 6.0
-        for need in NEEDS
-    }
+    normalized_needs = _normalized_need_measurements(previous, raw_needs)
 
     normalized_valences = {
         mode:
@@ -1345,6 +1352,7 @@ def prepare_adaptive_profile_update(
         )
 
     participant = ParticipantInput(
+        needs_allocation=_allocation_from_passport(previous),
         agent_id=
             str(
                 previous.get(

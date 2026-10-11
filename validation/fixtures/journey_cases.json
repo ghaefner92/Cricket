@@ -1,0 +1,5645 @@
+[
+  {
+    "name": "manual_pending",
+    "valid": true,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "manual_confirmed",
+    "valid": true,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "confirmed",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": {
+        "schema_version": "cricket-experience-v1",
+        "event_id": "experience-trip-fixture",
+        "confirmed_at": "2026-10-08T10:02:00Z",
+        "completion": "as_planned",
+        "actual_modes": [
+          "walk"
+        ],
+        "changes": "",
+        "ratings": {
+          "comfort": 6
+        },
+        "choice_reason": null,
+        "learning_applied": false
+      }
+    }
+  },
+  {
+    "name": "tracked_finished",
+    "valid": true,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "changed_modes",
+    "valid": true,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "confirmed",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": {
+        "schema_version": "cricket-experience-v1",
+        "event_id": "experience-trip-fixture",
+        "confirmed_at": "2026-10-08T10:02:00Z",
+        "completion": "changed",
+        "actual_modes": [
+          "pt",
+          "walk"
+        ],
+        "changes": "Changed to tram",
+        "ratings": {
+          "comfort": 6
+        },
+        "choice_reason": null,
+        "learning_applied": false
+      }
+    }
+  },
+  {
+    "name": "not_taken",
+    "valid": true,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "confirmed",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": {
+        "schema_version": "cricket-experience-v1",
+        "event_id": "experience-trip-fixture",
+        "confirmed_at": "2026-10-08T10:02:00Z",
+        "completion": "not_taken",
+        "actual_modes": [],
+        "changes": "",
+        "ratings": {},
+        "choice_reason": null,
+        "learning_applied": false
+      }
+    }
+  },
+  {
+    "name": "tracked_recording",
+    "valid": true,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": null,
+      "status": "recording",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "gap_is_not_joined",
+    "valid": true,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 1
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 0,
+        "elapsed_seconds": 120,
+        "gap_count": 1,
+        "segment_index": 1,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "wrong_schema",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "v0",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "wrong_search",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "other",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "wrong_choice",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "other",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "choice_out_of_range",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 99,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "wrong_passport",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 2,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "changed_route",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 100,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "wrong_recommendation",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "clear",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "wrong_alternatives",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "wrong_context_time",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:00:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "invented_weather",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": {
+            "weather": "sunny"
+          },
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "manual_fake_distance",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": 100,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "manual_fake_duration",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": 600,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "implicit_confirmation",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": {
+        "schema_version": "cricket-experience-v1",
+        "event_id": "experience-trip-fixture",
+        "confirmed_at": "2026-10-08T10:02:00Z",
+        "completion": "as_planned",
+        "actual_modes": [
+          "walk"
+        ],
+        "changes": "",
+        "ratings": {
+          "comfort": 6
+        },
+        "choice_reason": null,
+        "learning_applied": false
+      }
+    }
+  },
+  {
+    "name": "learning_not_enabled",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "confirmed",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": {
+        "schema_version": "cricket-experience-v1",
+        "event_id": "experience-trip-fixture",
+        "confirmed_at": "2026-10-08T10:02:00Z",
+        "completion": "as_planned",
+        "actual_modes": [
+          "walk"
+        ],
+        "changes": "",
+        "ratings": {
+          "comfort": 6
+        },
+        "choice_reason": null,
+        "learning_applied": true
+      }
+    }
+  },
+  {
+    "name": "rating_out_of_range",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "confirmed",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": {
+        "schema_version": "cricket-experience-v1",
+        "event_id": "experience-trip-fixture",
+        "confirmed_at": "2026-10-08T10:02:00Z",
+        "completion": "as_planned",
+        "actual_modes": [
+          "walk"
+        ],
+        "changes": "",
+        "ratings": {
+          "comfort": 8
+        },
+        "choice_reason": null,
+        "learning_applied": false
+      }
+    }
+  },
+  {
+    "name": "rating_unknown_need",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "confirmed",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": {
+        "schema_version": "cricket-experience-v1",
+        "event_id": "experience-trip-fixture",
+        "confirmed_at": "2026-10-08T10:02:00Z",
+        "completion": "as_planned",
+        "actual_modes": [
+          "walk"
+        ],
+        "changes": "",
+        "ratings": {
+          "comfort": 6,
+          "wealth": 5
+        },
+        "choice_reason": null,
+        "learning_applied": false
+      }
+    }
+  },
+  {
+    "name": "duplicate_modes",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "confirmed",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": {
+        "schema_version": "cricket-experience-v1",
+        "event_id": "experience-trip-fixture",
+        "confirmed_at": "2026-10-08T10:02:00Z",
+        "completion": "as_planned",
+        "actual_modes": [
+          "walk",
+          "walk"
+        ],
+        "changes": "",
+        "ratings": {
+          "comfort": 6
+        },
+        "choice_reason": null,
+        "learning_applied": false
+      }
+    }
+  },
+  {
+    "name": "as_planned_mode_mismatch",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "confirmed",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": {
+        "schema_version": "cricket-experience-v1",
+        "event_id": "experience-trip-fixture",
+        "confirmed_at": "2026-10-08T10:02:00Z",
+        "completion": "as_planned",
+        "actual_modes": [
+          "car"
+        ],
+        "changes": "",
+        "ratings": {
+          "comfort": 6
+        },
+        "choice_reason": null,
+        "learning_applied": false
+      }
+    }
+  },
+  {
+    "name": "unperformed_trip_rating",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "confirmed",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": {
+        "schema_version": "cricket-experience-v1",
+        "event_id": "experience-trip-fixture",
+        "confirmed_at": "2026-10-08T10:02:00Z",
+        "completion": "not_taken",
+        "actual_modes": [],
+        "changes": "",
+        "ratings": {
+          "comfort": 4
+        },
+        "choice_reason": null,
+        "learning_applied": false
+      }
+    }
+  },
+  {
+    "name": "confirmation_before_end",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "confirmed",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": {
+        "schema_version": "cricket-experience-v1",
+        "event_id": "experience-trip-fixture",
+        "confirmed_at": "2026-10-08T09:00:00Z",
+        "completion": "as_planned",
+        "actual_modes": [
+          "walk"
+        ],
+        "changes": "",
+        "ratings": {
+          "comfort": 6
+        },
+        "choice_reason": null,
+        "learning_applied": false
+      }
+    }
+  },
+  {
+    "name": "timestamp_without_zone",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "mock_fix",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": true,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "poor_accuracy",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 100,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "invalid_coordinate",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 91,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "fabricated_distance",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 5000,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "duplicate_fix_time",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "joined_long_gap",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 211000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "gps_teleport",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 55,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "segment_without_gap",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:02:10Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 1,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "future_fix",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": "2026-10-08T10:01:00Z",
+      "ended_at": "2026-10-08T10:03:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "tracked",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [
+          {
+            "lat": 52.1,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:01:10Z",
+            "received_at": "2026-10-08T10:01:10Z",
+            "monotonic_ms": 11000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          },
+          {
+            "lat": 52.101,
+            "lon": 11.6,
+            "accuracy_m": 5,
+            "recorded_at": "2026-10-08T10:04:00Z",
+            "received_at": "2026-10-08T10:02:10Z",
+            "monotonic_ms": 71000,
+            "provider": "gps",
+            "mock": false,
+            "segment_index": 0
+          }
+        ],
+        "events": [
+          {
+            "at": "2026-10-08T10:01:00Z",
+            "kind": "start",
+            "detail": ""
+          },
+          {
+            "at": "2026-10-08T10:03:00Z",
+            "kind": "finish",
+            "detail": ""
+          }
+        ],
+        "rejected_fixes": 0,
+        "distance_m": 111.19508023324306,
+        "elapsed_seconds": 120,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": 1000,
+        "boot_count": 1
+      },
+      "experience": null
+    }
+  },
+  {
+    "name": "unknown_field",
+    "valid": false,
+    "record": {
+      "version": 1,
+      "search_id": "phase1-fixture",
+      "created_at": "2026-10-08T09:59:00Z",
+      "status": "complete",
+      "request": {
+        "search_id": "phase1-fixture",
+        "datetime": "2026-10-08T09:59:00Z"
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "places": {
+        "origin": {
+          "lat": 52.1,
+          "lon": 11.6,
+          "label": "Fixture origin"
+        },
+        "destination": {
+          "lat": 52.11,
+          "lon": 11.6,
+          "label": "Fixture destination"
+        }
+      },
+      "result": {
+        "search_id": "phase1-fixture",
+        "schema_version": "routed-contextual-deliberation-v1",
+        "routing": {
+          "routes": [
+            {
+              "rank": 0,
+              "mode_key": "walk",
+              "available": true,
+              "provider": "fixture",
+              "summary": {
+                "duration_seconds": 600,
+                "distance_meters": 1000
+              },
+              "legs": []
+            }
+          ]
+        },
+        "route_audit": []
+      },
+      "recommendation": {
+        "state": "uncertain",
+        "winner": null,
+        "primary_route_id": null
+      },
+      "choices": [
+        {
+          "chosen_at": "2026-10-08T10:00:00Z",
+          "mode_key": "walk",
+          "routing_rank": 0,
+          "route_id": "route-fixture"
+        }
+      ]
+    },
+    "journey": {
+      "schema_version": "cricket-journey-v1",
+      "journey_id": "trip-fixture",
+      "search_id": "phase1-fixture",
+      "choice_index": 0,
+      "choice_event_id": "choice-772547d55dafaecc4dc0909f15d1072cf1663e30ef90f618a81f061eb23f8a74",
+      "created_at": "2026-10-08T10:01:00Z",
+      "started_at": null,
+      "ended_at": "2026-10-08T10:01:00Z",
+      "status": "awaiting_confirmation",
+      "capture_mode": "manual",
+      "selection": {
+        "chosen_at": "2026-10-08T10:00:00Z",
+        "mode_key": "walk",
+        "route_id": "route-fixture",
+        "routing_rank": 0,
+        "provider": null,
+        "provider_itinerary_id": null
+      },
+      "passport_reference": {
+        "passport_id": "fixture-passport",
+        "revision": 1,
+        "fingerprint": "fixture-fingerprint",
+        "confirmed_at": "2026-10-08T09:00:00Z"
+      },
+      "plan": {
+        "route": {
+          "rank": 0,
+          "mode_key": "walk",
+          "available": true,
+          "provider": "fixture",
+          "summary": {
+            "duration_seconds": 600,
+            "distance_meters": 1000
+          },
+          "legs": []
+        },
+        "recommendation": {
+          "state": "uncertain",
+          "winner": null,
+          "primary_route_id": null
+        },
+        "alternatives": [
+          {
+            "routing_rank": 0,
+            "mode_key": "walk",
+            "available": true
+          }
+        ],
+        "context_at_selection": {
+          "queried_at": "2026-10-08T09:59:00Z",
+          "snapshot": null,
+          "temporal_reference": "search_query"
+        }
+      },
+      "tracking": {
+        "points": [],
+        "events": [],
+        "rejected_fixes": 0,
+        "distance_m": null,
+        "elapsed_seconds": null,
+        "gap_count": 0,
+        "segment_index": 0,
+        "approximate": true,
+        "started_monotonic_ms": null,
+        "boot_count": null
+      },
+      "experience": null,
+      "automatic_learning": true
+    }
+  }
+]

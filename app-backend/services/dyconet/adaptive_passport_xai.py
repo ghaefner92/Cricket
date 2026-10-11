@@ -417,6 +417,12 @@ def build_adaptive_cognitive_passport(
         },
     }
 
+    if participant.needs_allocation is not None:
+        passport["observed_measurements"].pop("needs_raw_1_to_7", None)
+        passport["observed_measurements"]["needs_allocation"] = participant.needs_allocation
+        passport["input_provenance"]["transformations"]["needs"] = "points / 10; no rounding"
+        passport["measurement_provenance"]["needs"]["scale"] = "weekly_need_allocation_1.0"
+
     passport[
         "adaptive_passport"
     ] = {

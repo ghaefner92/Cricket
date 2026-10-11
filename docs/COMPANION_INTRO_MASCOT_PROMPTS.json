@@ -1,0 +1,34 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "release": "0.4.29",
+  "jobs": [
+    {
+      "key": "spider",
+      "ref": "C:/Users/equj44id/StudioProjects/Cricket/android-native/app/src/main/assets/art/jrpg/meet-explorer-action-v1.png",
+      "prompt": "Use case: stylized-concept. Reference image is identity/style reference only. Extract and animate the tiny friendly brown spider companion visible beside the explorer in the third row. Production animation sprite sheet, exactly FOUR columns and THREE rows, 12 equally sized square cells, row-major temporal order. Each cell contains ONE complete centered subject at identical scale and registration, all pixels safely inside with 12% padding. No grid lines, no labels, no lettering, no background shadows. Genuine transparent alpha background. Polished smooth-contoured retro JRPG pixel sprites matching reference palette, consistent silhouette and lighting; small readable pixels with soft highlights. No main human character. Cute round dark-brown abdomen, exactly eight short legs, two large white eyes. Frames 0-3 emerge/stretch legs; 4-7 gently turn/wave front legs; 8-11 quiet suspended breathing/blink loop. Spider alone, no explorer, no lantern, no thread or web baked into bitmap; thread will be drawn by the app.",
+      "source": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-717521de-b3d1-4bc4-88cc-dcdd57e4d590.png",
+      "saved": "android-native/app/src/main/assets/art/jrpg/companion-intro-spider-v1.png"
+    },
+    {
+      "key": "drone",
+      "ref": "C:/Users/equj44id/StudioProjects/Cricket/android-native/app/src/main/assets/art/jrpg/meet-robot-action-v1.png",
+      "prompt": "Use case: stylized-concept. Reference image is identity/style reference only. Animate ONLY the little hovering robot pet beside the main robot, NOT the main robot itself. Production animation sprite sheet, exactly FOUR columns and THREE rows, 12 equally sized square cells, row-major temporal order. Each cell contains ONE complete centered subject at identical scale and registration, all pixels safely inside with 12% padding. No grid lines, no labels, no lettering, no background shadows. Genuine transparent alpha background. Polished smooth-contoured retro JRPG pixel sprites matching reference palette, consistent silhouette and lighting; small readable pixels with soft highlights. No main human character. Small white round robot drone with black digital face, glowing cyan eyes, circular cyan side ears and floating cyan halo above head. Frames 0-3 flying; 4-7 leaning forward thinking with cyan eyes changing into thoughtful expressions; 8-11 joyful calm blinking hover loop. NO mathematical text or equation in image; app adds exact equation as native text above head. Full halo within each cell. No big robot, no dashboard.",
+      "source": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-c7ced833-610e-4263-b4b9-08def8c10244.png",
+      "saved": "android-native/app/src/main/assets/art/jrpg/companion-intro-drone-v1.png"
+    },
+    {
+      "key": "spirit",
+      "ref": "C:/Users/equj44id/StudioProjects/Cricket/android-native/app/src/main/assets/art/jrpg/meet-creature-action-v1.png",
+      "prompt": "Use case: stylized-concept. Reference image is identity/style reference only. Animate ONLY the tiny mint green magical spirit companion of the purple creature. Production animation sprite sheet, exactly FOUR columns and THREE rows, 12 equally sized square cells, row-major temporal order. Each cell contains ONE complete centered subject at identical scale and registration, all pixels safely inside with 12% padding. No grid lines, no labels, no lettering, no background shadows. Genuine transparent alpha background. Polished smooth-contoured retro JRPG pixel sprites matching reference palette, consistent silhouette and lighting; small readable pixels with soft highlights. No main human character. White soft teardrop ghost with small black kind eyes, pink cheeks, curled floating tail, mint turquoise glow, tiny arms. Frames 0-3 floating forward; 4-7 turning gently through side view and back to front; 8-11 calm floating smiling blink cycle. No creature, no separate trail baked in bitmap (continuous light trail drawn by app). Glow fits inside transparent cell.",
+      "source": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-5c3bf7bf-8485-4a29-9473-fb348b9ec21e.png",
+      "saved": "android-native/app/src/main/assets/art/jrpg/companion-intro-spirit-v1.png"
+    },
+    {
+      "key": "portrait",
+      "ref": "C:/Users/equj44id/StudioProjects/Cricket/android-native/app/src/main/assets/branding/companion-ovgu-transparent-v2.png",
+      "prompt": "Use case: identity-preserve. Reference image is identity reference for the Otto von Guericke portrait on the left of university logo. Create ONLY his full bust portrait repeated as a subtle animation sprite sheet. Production animation sprite sheet, exactly FOUR columns and THREE rows, 12 equally sized square cells, row-major temporal order. Each cell contains ONE complete centered subject at identical scale and registration, all pixels safely inside with 12% padding. No grid lines, no labels, no lettering, no background shadows. Genuine transparent alpha background. Polished smooth-contoured retro JRPG pixel sprites matching reference palette, consistent silhouette and lighting; small readable pixels with soft highlights. No main human character. Preserve recognizable historical monochrome engraved logo silhouette exactly: black shoulder-length curled hair, white face, black curved mustache and small pointed beard, white collar and black coat. NO JRPG chibi reinterpretation, retain the dignified original black and white engraved logo style, no color. Fixed head, collar, silhouette, scale and position throughout. Frames 0-3: both eyes open, mouth closed -> slightly open -> softly open -> closed. Frames 4-7: mouth closed, right eye gradually closes into friendly wink and reopens. Frames 8-11: neutral then another tiny mouth opening and return neutral. Do not include any logo rectangle or typography. Full entire bust not cut off, generous padding. Genuine alpha transparency.",
+      "source": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-e341c1c1-88a1-4896-a04a-be23bc9f7718.png",
+      "saved": "android-native/app/src/main/assets/art/jrpg/companion-intro-portrait-v1.png"
+    }
+  ]
+}

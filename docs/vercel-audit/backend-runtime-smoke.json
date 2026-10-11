@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "health": 200,
+    "journey_contract": 200,
+    "invalid_json_rejected": 400,
+    "missing_journey_rejected": 422,
+    "choice_status": 200
+  },
+  "registered_routes": [
+    "/api/dyconet",
+    "/api/dyconet/adaptive-passport/bootstrap",
+    "/api/dyconet/adaptive-passport/complete",
+    "/api/dyconet/adaptive-passport/profile-update",
+    "/api/dyconet/adaptive-passport/start",
+    "/api/dyconet/choice-explanation",
+    "/api/dyconet/choice-explanation/status",
+    "/api/dyconet/contextual-deliberation",
+    "/api/dyconet/contextual-explanation",
+    "/api/dyconet/contextual-explanation/narrate",
+    "/api/dyconet/geocoding",
+    "/api/dyconet/journeys/contract",
+    "/api/dyconet/journeys/validate",
+    "/api/dyconet/map-tiles/<int:z>/<int:x>/<int:y>",
+    "/api/dyconet/profile-update",
+    "/api/dyconet/routed-contextual-deliberation",
+    "/api/dyconet/weather",
+    "/health",
+    "/static/<path:filename>"
+  ],
+  "network_used": false,
+  "private_env_copied": false,
+  "copied_files": 49,
+  "limitations": "Uses locally installed Python dependencies; does not verify Vercel build, external providers or production load."
+}

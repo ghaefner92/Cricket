@@ -1,0 +1,46 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "release": "0.4.32",
+  "jobs": [
+    {
+      "key": "naturalist",
+      "source": "companion-intro-naturalist-v1.png",
+      "file": "companion-intro-naturalist-smooth-v2.png",
+      "cols": 6,
+      "rows": 4,
+      "prompt": "Use case: style-transfer. Edit the provided animation sheet into a HIGH RESOLUTION smooth hand-painted JRPG character animation sheet. Preserve exact character identity, outfit, palette, silhouette, head-to-body proportions, facing direction and every pose in its original cell and order. Replace visibly blocky pixel stair-steps and grainy/dithered shading with clean smooth anti-aliased curved outlines, fine continuous contours, silky cel-painted shading and subtle soft gradients, polished modern 2D JRPG illustration; keep charming retro-inspired character design but NO pixel-art rendering, NO mosaic texture, NO coarse pixel grid, NO blurry upscaled pixels. This is a true detailed repaint rather than a blur filter. Transparent RGBA with genuine zero-alpha background, no background tint or opaque halo. Every entire full-body pose fits inside its own equal cell with a little clear margin. Same registration, baseline and scale across cells except authored jumps. No new props, no text, no watermark, no grid lines. Keep the overall grid and frames exactly as input so existing animation remains compatible. Exact SIX columns by FOUR rows, 24 frames. Render at 3072 x 2048 pixels, 512 x 512 per cell. Preserve naturalist blonde ponytail, burgundy long sleeve, navy trousers, tan boots, navy backpack with coral straps, and open hand greeting / surprised reach / amused laugh / wave sequence. NO dogs or mushrooms baked in the sheet; those are separate animated layers. Preserve her side-facing open hand in first row.",
+      "generated": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-e8a9a2fb-2d70-4a0f-b770-3037611819c3.png",
+      "saved": "android-native/app/src/main/assets/art/jrpg/companion-intro-naturalist-smooth-v2.png"
+    },
+    {
+      "key": "robot",
+      "source": "welcome-robot-v1.png",
+      "file": "companion-intro-robot-smooth-v2.png",
+      "cols": 4,
+      "rows": 4,
+      "prompt": "Use case: style-transfer. Edit the provided animation sheet into a HIGH RESOLUTION smooth hand-painted JRPG character animation sheet. Preserve exact character identity, outfit, palette, silhouette, head-to-body proportions, facing direction and every pose in its original cell and order. Replace visibly blocky pixel stair-steps and grainy/dithered shading with clean smooth anti-aliased curved outlines, fine continuous contours, silky cel-painted shading and subtle soft gradients, polished modern 2D JRPG illustration; keep charming retro-inspired character design but NO pixel-art rendering, NO mosaic texture, NO coarse pixel grid, NO blurry upscaled pixels. This is a true detailed repaint rather than a blur filter. Transparent RGBA with genuine zero-alpha background, no background tint or opaque halo. Every entire full-body pose fits inside its own equal cell with a little clear margin. Same registration, baseline and scale across cells except authored jumps. No new props, no text, no watermark, no grid lines. Keep the overall grid and frames exactly as input so existing animation remains compatible. Exact FOUR columns by FOUR rows, 16 frames. Render at 2048 x 2048 pixels, 512 x 512 per cell. Preserve mint-green robot, dark teal outline, round black eyes, gold antenna tip and gold chest display, all greeting/wave poses. Soft clean antenna glow must stay inside each cell with transparent margins; no cut-off head/feet, no mini robot added.",
+      "generated": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-cf6800f2-7e0e-4b7b-ba60-4bb332ee4f4a.png",
+      "saved": "android-native/app/src/main/assets/art/jrpg/companion-intro-robot-smooth-v2.png"
+    },
+    {
+      "key": "explorer",
+      "source": "welcome-explorer-v1.png",
+      "file": "companion-intro-explorer-smooth-v2.png",
+      "cols": 4,
+      "rows": 4,
+      "prompt": "Use case: style-transfer. Edit the provided animation sheet into a HIGH RESOLUTION smooth hand-painted JRPG character animation sheet. Preserve exact character identity, outfit, palette, silhouette, head-to-body proportions, facing direction and every pose in its original cell and order. Replace visibly blocky pixel stair-steps and grainy/dithered shading with clean smooth anti-aliased curved outlines, fine continuous contours, silky cel-painted shading and subtle soft gradients, polished modern 2D JRPG illustration; keep charming retro-inspired character design but NO pixel-art rendering, NO mosaic texture, NO coarse pixel grid, NO blurry upscaled pixels. This is a true detailed repaint rather than a blur filter. Transparent RGBA with genuine zero-alpha background, no background tint or opaque halo. Every entire full-body pose fits inside its own equal cell with a little clear margin. Same registration, baseline and scale across cells except authored jumps. No new props, no text, no watermark, no grid lines. Keep the overall grid and frames exactly as input so existing animation remains compatible. Exact FOUR columns by FOUR rows, 16 frames. Render at 2048 x 2048 pixels, 512 x 512 per cell. Preserve explorer tan fedora with dark band, dark brown hair, teal jacket, cream scarf, crossbody satchel, navy trousers, brown boots, steps/hat tip/waves and calm final row. Do not add spiders or lanterns or new props.",
+      "generated": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-8691a1a3-75ae-47a0-964e-af7acef15414.png",
+      "saved": "android-native/app/src/main/assets/art/jrpg/companion-intro-explorer-smooth-v2.png"
+    },
+    {
+      "key": "creature",
+      "source": "welcome-creature-v1.png",
+      "file": "companion-intro-creature-smooth-v2.png",
+      "cols": 4,
+      "rows": 4,
+      "prompt": "Use case: style-transfer. Edit the provided animation sheet into a HIGH RESOLUTION smooth hand-painted JRPG character animation sheet. Preserve exact character identity, outfit, palette, silhouette, head-to-body proportions, facing direction and every pose in its original cell and order. Replace visibly blocky pixel stair-steps and grainy/dithered shading with clean smooth anti-aliased curved outlines, fine continuous contours, silky cel-painted shading and subtle soft gradients, polished modern 2D JRPG illustration; keep charming retro-inspired character design but NO pixel-art rendering, NO mosaic texture, NO coarse pixel grid, NO blurry upscaled pixels. This is a true detailed repaint rather than a blur filter. Transparent RGBA with genuine zero-alpha background, no background tint or opaque halo. Every entire full-body pose fits inside its own equal cell with a little clear margin. Same registration, baseline and scale across cells except authored jumps. No new props, no text, no watermark, no grid lines. Keep the overall grid and frames exactly as input so existing animation remains compatible. Exact FOUR columns by FOUR rows, 16 frames. Render at 2048 x 2048 pixels, 512 x 512 per cell. Preserve creature mint-green skin, pointed ears, plum-magenta tousled hair, purple hoodie with gold drawstrings, turquoise pendant, navy shorts, brown boots, forehead stitch and jumping/waving/calm expressions. Keep whole original character in every cell. No spirits or new props added.",
+      "generated": "C:\\Users\\equj44id\\.codex\\generated_images\\01a116c4-a480-7ec3-a56b-518365917059\\exec-bfd14f4d-dc22-497f-847b-0d56833d2c3c.png",
+      "saved": "android-native/app/src/main/assets/art/jrpg/companion-intro-creature-smooth-v2.png"
+    }
+  ]
+}

@@ -537,6 +537,7 @@ def build_adaptive_micro_question(
         in patterns
         and winner in MODES
         and rival in MODES
+        and participant.needs_allocation is None
     ):
 
         scores = (
