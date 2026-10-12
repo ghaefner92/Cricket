@@ -67,7 +67,6 @@ from contextual_xai_narrator import (
     narrate_minimized_evidence,
 )
 from orion_context import DEFAULT_BASE_URL, PUBLIC_TIMEOUT_SECONDS
-from context_models import active_context_model, DEFAULT_RHO, EXPERIMENTAL_UNCALIBRATED
 from routing_bridge import RoutingBridgeError, RoutingUnavailableError, run_routed_deliberation
 
 
@@ -245,7 +244,7 @@ def health() -> Any:
                 "timeout_seconds": PUBLIC_TIMEOUT_SECONDS,
                 "context_contract_version": "route-context-v1",
             },
-            "context_model": {"active_context_model": "observations_only", "context_model_status": "NOT_APPLIED", "f3_enabled_by_default": False, "bayesian_learning_applied": False, "legacy_reproduction_requires_explicit_policy": True},
+            "context_model": {"active_context_model": "observations_only", "context_model_status": "NOT_APPLIED", "external_context_drive_supported": False, "bayesian_learning_applied": False},
         }
     )
 
@@ -575,7 +574,7 @@ def routed_contextual_deliberation_route() -> Any:
 
 @app.post("/api/dyconet/contextual-deliberation")
 def contextual_deliberation_route() -> Any:
-    """Run one baseline and one route-conditioned simulation per candidate."""
+    """Run HOTCO and archive each route's observations without external forcing."""
 
     try:
         return jsonify(run_contextual_deliberation(request.get_json(force=True)))

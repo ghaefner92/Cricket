@@ -5,7 +5,7 @@ from hotco_ct_v4_3 import HOTCOCTv43
 from input_mapping_v4_3 import MODES
 
 
-def assess_robustness(participant, result, engine, context=None):
+def assess_robustness(participant, result, engine):
     active = np.flatnonzero(np.asarray(participant.availability) == 1)
     if len(active) <= 1:
         return {"status": "NOT_APPLICABLE", "scenario_count": 0}
@@ -23,13 +23,13 @@ def assess_robustness(participant, result, engine, context=None):
         beliefs[winner] += direction * 0.02 * signed_needs
         beliefs[rival] -= direction * 0.02 * signed_needs
         variant = replace(participant, beliefs=np.clip(beliefs, -1, 1).tolist())
-        values = engine.simulate(variant, context_perturbation=context).trajectory[0, -1, sl]
+        values = engine.simulate(variant).trajectory[0, -1, sl]
         other = np.max(values[active[active != winner]])
         scenarios.append({"name": "belief_pair_stress", "direction": direction,
                           "winner": MODES[int(active[np.argmax(values[active])])],
                           "reference_winner_margin": float(values[winner] - other)})
     fine_engine = HOTCOCTv43(parameters=replace(engine.parameters, dt=engine.parameters.dt / 2))
-    fine = fine_engine.simulate(participant, context_perturbation=context).trajectory[0, -1, sl]
+    fine = fine_engine.simulate(participant).trajectory[0, -1, sl]
     error = float(np.max(np.abs(fine[active] - terminal[active])))
     fine_winner = int(active[np.argmax(fine[active])])
     # Two action errors bound uncertainty in their difference conservatively.

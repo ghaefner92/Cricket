@@ -15,11 +15,9 @@ Desde la raíz:
 node android-native/scripts/build.mjs
 ```
 
-El comando existente desde `experimental-frontend` también compila Kotlin:
-
-```powershell
-npm run android:apk
-```
+La compilación principal no necesita `experimental-frontend`, npm ni Vite.
+Los antiguos alias npm pertenecen al frontend anterior; usar el comando de la
+raíz mostrado arriba o Gradle desde `android-native`.
 
 APK: `android-native/app/build/outputs/apk/debug/app-debug.apk`.
 El script detecta el JDK de Android Studio y el SDK de este equipo; también
@@ -47,6 +45,20 @@ las direcciones locales de desarrollo indicadas en la configuración de red.
 Las direcciones y las imágenes del mapa se descargan a través del backend, por
 lo que basta la conexión USB para el teléfono. El ordenador necesita Internet.
 OTP y Orion se configuran en el backend; las claves de Groq permanecen allí.
+
+Para levantar los servicios locales de búsqueda en este equipo:
+
+```powershell
+pwsh -NoProfile -File validation/start_search_services.ps1
+```
+
+El script arranca los servicios ausentes (backend 8077, OTP 8091 y proxy de
+tiempo real 8092), configura el enlace USB y conserva logs privados en
+`.local-backups`. Requiere acceso de red fuera del entorno restringido del agente.
+Detecta la instalación existente de OTP mediante su marcador; se puede indicar
+otra ruta con `CRICKET_OTP_PROBE_ROOT`. No recompila el grafo. Si el backend estaba
+ejecutándose con red restringida, `-RestartBackend` reinicia solo ese proceso tras
+comprobar que corresponde a Python/main.py.
 
 ## Pantallas
 
@@ -76,7 +88,7 @@ El aprendizaje bayesiano permanece pendiente.
 ## Referencias
 
 [Correspondencia de componentes y alcance](MIGRACION_COMPOSE.md).
-[APK híbrida anterior](ANDROID_LEGACY.md). Vue permanece disponible para web;
-`npm run android:legacy:apk` recompila la versión Capacitor. Instalar una versión
-anterior requiere gestionar sus códigos de versión y copias de datos; el archivo
-WebView anterior se conserva para recuperación y no recibe nuevos registros nativos.
+[APK híbrida anterior](ANDROID_LEGACY.md), documentación histórica. El autor
+retiró `experimental-frontend` el 12 de octubre de 2026; la interfaz Vue y los
+alias npm de aquel proyecto ya no están disponibles. El script inline de
+migración de datos antiguos continúa dentro de MainActivity, independiente de Vue.

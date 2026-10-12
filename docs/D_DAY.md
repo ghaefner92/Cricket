@@ -71,12 +71,14 @@ límites: [D_DAY_PHASE4_DELIVERY.md](D_DAY_PHASE4_DELIVERY.md).
 | Viaje registrado | GPS/eventos y métricas, o declaración manual identificada | Conservar origen, calidad y estados; cancelación no equivale a viaje completado | Evidencia objetiva solo en dimensiones medibles y con modelo de observación |
 | Experience | Comodidad bipolar 1–7 obligatoria; afecto −3…+3 obligatorio por modo utilizado, `r/3`; otras satisfacciones opcionales | Evidencia identificada e idempotente, versión antes/después; sin actualización activa | Dos modelos bayesianos ordinales separados en fase 4; omisión histórica significa desconocido, nunca cero |
 
-F3 queda descartado. El flujo D-Day solicita `context_policy=observations_only`:
-conserva observaciones y rutas, pero no introduce fuerzas contextuales en la ODE.
+F3 queda eliminado del código el 12 de octubre de 2026, por decisión del autor.
+El flujo D-Day conserva `context_policy=observations_only`: archiva observaciones
+y rutas sin añadir fuerzas contextuales a la ODE. Es la única política admitida;
+el modo histórico de fuerzas ya no puede solicitarse ni activarse por entorno.
 Hasta la fase 6, las diferencias entre alternativas provienen de las entradas
-existentes y no de un aprendizaje contextual aún inexistente. La política por defecto del backend también es `observations_only`. Reproducir
-análisis históricos exige solicitar explícitamente `legacy_context_drive`; esa
-compatibilidad queda fuera del contrato D-Day y no se utiliza en la app.
+existentes y no de un aprendizaje contextual aún inexistente. Los originales y
+resultados históricos se conservan para lectura, sin reinterpretarlos ni volver
+a calcular sus fuerzas retiradas. Detalle: [F3_REMOVAL_NATIVE_INDEPENDENCE.md](F3_REMOVAL_NATIVE_INDEPENDENCE.md).
 
 La capa bayesiana de fase 4 estima expectativas en un laboratorio separado.
 La actualización de entradas activas entre deliberaciones pertenece a fases 5–6.

@@ -25,6 +25,8 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.TimeoutCancellationException
 import org.json.JSONObject
 
 @Composable fun JourneyScreen(model:CricketModel,onLocate:()->Unit,onTrackStart:(String,Int)->Unit) {
@@ -57,16 +59,17 @@ import org.json.JSONObject
  var targetOrigin by rememberSaveable {mutableStateOf(model.origin==null)}
  var editor by rememberSaveable {mutableStateOf<Boolean?>(null)}
  var details by rememberSaveable {mutableStateOf<String?>(null)}
+ var automaticOriginAllowed by rememberSaveable {mutableStateOf(model.origin==null)}
  fun closeEditor(){keyboard?.hide();focus.clearFocus();editor=null}
  Box(Modifier.fillMaxSize()) {
-  TravelPlanningMap(model,originDraft,targetOrigin,{closeEditor();targetOrigin=it},0,Modifier.fillMaxSize(),showSelector=false)
+  TravelPlanningMap(model,originDraft,targetOrigin,{automaticOriginAllowed=false;closeEditor();targetOrigin=it},0,Modifier.fillMaxSize(),showSelector=false,allowAutomaticOrigin=automaticOriginAllowed)
   Surface(Modifier.align(Alignment.TopCenter).fillMaxWidth().padding(8.dp),color=Panel.copy(alpha=.97f),shape=MaterialTheme.shapes.large,shadowElevation=4.dp) {
    CompositionLocalProvider(LocalMinimumInteractiveComponentSize provides 40.dp) {
    Column(Modifier.padding(horizontal=4.dp,vertical=2.dp)) {
     Row(verticalAlignment=Alignment.CenterVertically) {
      Column {
-      IconButton({targetOrigin=true;closeEditor()},enabled=!model.busy,modifier=Modifier.size(40.dp).semantics {contentDescription=model.text("Set origin on map","Start auf Karte setzen")}) {TravelActionSprite("origin",Modifier.size(22.dp),highlighted=targetOrigin)}
-      IconButton({closeEditor();val a=model.origin;val b=model.destination;model.setPlace(true,b);model.setPlace(false,a);originDraft.value=b?.label.orEmpty();destinationDraft.value=a?.label.orEmpty()},enabled=!model.busy,modifier=Modifier.size(40.dp).semantics {contentDescription=model.text("Swap origin and destination","Start und Ziel tauschen")}) {TravelActionSprite("swap",Modifier.size(22.dp))}
+      IconButton({automaticOriginAllowed=false;targetOrigin=true;closeEditor()},enabled=!model.busy,modifier=Modifier.size(40.dp).semantics {contentDescription=model.text("Set origin on map","Start auf Karte setzen")}) {TravelActionSprite("origin",Modifier.size(22.dp),highlighted=targetOrigin)}
+      IconButton({automaticOriginAllowed=false;closeEditor();val a=model.origin;val b=model.destination;model.setPlace(true,b);model.setPlace(false,a);originDraft.value=b?.label.orEmpty();destinationDraft.value=a?.label.orEmpty()},enabled=!model.busy,modifier=Modifier.size(40.dp).semantics {contentDescription=model.text("Swap origin and destination","Start und Ziel tauschen")}) {TravelActionSprite("swap",Modifier.size(22.dp))}
       IconButton({targetOrigin=false;closeEditor()},enabled=!model.busy,modifier=Modifier.size(40.dp).semantics {contentDescription=model.text("Set destination on map","Ziel auf Karte setzen")}) {TravelActionSprite("destination",Modifier.size(22.dp),highlighted=!targetOrigin)}
      }
      Column(Modifier.weight(1f)) {
@@ -74,7 +77,7 @@ import org.json.JSONObject
        val place=if(start)model.origin else model.destination
        val draft=if(start)originDraft else destinationDraft
        Row(verticalAlignment=Alignment.CenterVertically) {
-        TextButton({targetOrigin=start;editor=start},enabled=!model.busy,modifier=Modifier.weight(1f).heightIn(min=40.dp)) {
+        TextButton({automaticOriginAllowed=false;targetOrigin=start;editor=start},enabled=!model.busy,modifier=Modifier.weight(1f).heightIn(min=40.dp)) {
          Text(place?.label?:draft.value.takeIf {it.isNotBlank()}?:model.text(if(start)"Choose origin"else"Choose destination",if(start)"Start wählen"else"Ziel wählen"),maxLines=1,overflow=androidx.compose.ui.text.style.TextOverflow.Ellipsis,style=MaterialTheme.typography.bodyMedium,color=Pale,modifier=Modifier.fillMaxWidth())
         }
        }
@@ -98,6 +101,9 @@ import org.json.JSONObject
   ModalBottomSheet(onDismissRequest={closeEditor()},containerColor=Panel,sheetState=rememberModalBottomSheetState(skipPartiallyExpanded=true)) {
    Column(Modifier.fillMaxWidth().imePadding().verticalScroll(rememberScrollState()).padding(16.dp),verticalArrangement=Arrangement.spacedBy(8.dp)) {
     Row(verticalAlignment=Alignment.CenterVertically){Text(model.text(if(start)"Origin"else"Destination",if(start)"Start"else"Ziel"),Modifier.weight(1f),style=MaterialTheme.typography.titleMedium);TextButton({closeEditor()}){Text(model.text("Map","Karte"))}}
+    if(start)CurrentLocationOriginChoice(model){place->
+     model.setPlace(true,place);originDraft.value=place.label;targetOrigin=false;closeEditor()
+    }
     AddressField(model,if(start)model.origin else model.destination,model.text(if(start)"A · Origin"else"B · Destination",if(start)"A · Start"else"B · Ziel"),{place->model.setPlace(start,place);if(place!=null){closeEditor();if(start)targetOrigin=false}},if(start)originDraft else destinationDraft,showSelectionHint=false,autoFocus=true)
    }
   }
@@ -118,6 +124,31 @@ import org.json.JSONObject
    }
   }
  }}
+}
+@Composable private fun CurrentLocationOriginChoice(model:CricketModel,onChoose:(Place)->Unit) {
+ val context=LocalContext.current
+ val scope=rememberCoroutineScope()
+ val choose by rememberUpdatedState(onChoose)
+ var waiting by remember {mutableStateOf(false)}
+ var message by remember {mutableStateOf<String?>(null)}
+ val access=rememberAndroidLocationAccess(model,onReady={
+  scope.launch {
+   try {
+    val fix=currentMapLocation(context)
+    choose(Place(fix.latitude,fix.longitude,model.text("My current location","Mein aktueller Standort"),"geo-${fix.time}",source="geolocation",accuracy=fix.accuracy))
+   }catch(e:TimeoutCancellationException){
+    message=model.text("Position unavailable. Try again or choose an address.","Standort nicht verfügbar. Erneut versuchen oder Adresse wählen.")
+   }catch(e:CancellationException){throw e}catch(_:Exception){
+    message=model.text("Location unavailable. You can choose an address.","Standort nicht verfügbar. Du kannst eine Adresse wählen.")
+   }finally{waiting=false}
+  }
+ },onUnavailable={waiting=false;message=model.text("Location access is needed to use your current position.","Für deinen aktuellen Standort ist Standortzugriff erforderlich.")})
+ TextButton({waiting=true;message=null;access.request()},enabled=!waiting&&!model.busy,modifier=Modifier.fillMaxWidth().heightIn(min=48.dp)) {
+  if(waiting)CircularProgressIndicator(Modifier.size(20.dp),strokeWidth=2.dp)else PixelIcon("location",Modifier.size(22.dp))
+  Spacer(Modifier.width(8.dp))
+  Text(if(waiting)model.text("Finding your position…","Standort wird gesucht…")else model.text("My current location","Mein aktueller Standort"))
+ }
+ message?.let {Text(it,color=MutedText,style=MaterialTheme.typography.bodySmall)}
 }
 @Composable fun AddressField(model:CricketModel,selected:Place?,label:String,onChoose:(Place?)->Unit,draft:MutableState<String>?=null,onFocused:()->Unit={},showSelectionHint:Boolean=true,autoFocus:Boolean=false) {
  val fieldFocus=remember {FocusRequester()}

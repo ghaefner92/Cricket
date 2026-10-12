@@ -133,7 +133,15 @@ private data class ProjectedRoutePath(val route:MapRoute,val path:Path,val offse
    finally{locationBusy=false}
   }
  }
- val locationActions=rememberAndroidLocationAccess(model,onReady={locationBlocked=false;if(planning)onPlanningLocate?.invoke()else locateMap()},onUnavailable={locationBusy=false;locationBlocked=!hasLocationAccess(context)||!locationServicesEnabled(context)})
+ val locationActions=rememberAndroidLocationAccess(model,onReady={locationBlocked=false;follow=true;if(planning)onPlanningLocate?.invoke()else if(mapFix==null)locateMap()},onUnavailable={locationBusy=false;locationBlocked=!hasLocationAccess(context)||!locationServicesEnabled(context)})
+ // Keep the display current even after a manual pan. Camera following is independent.
+ LaunchedEffect(mapLifecycle,planning,locationBlocked,routeKey) {
+  if(!planning&&!locationBlocked)mapLifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+   try {mapLocations(context).collect {fix->
+    mapFix=obj("lat" to fix.latitude,"lon" to fix.longitude,"accuracy_m" to fix.accuracy.toDouble(),"monotonic_ms" to fix.elapsedRealtimeNanos/1000000)
+   }}catch(e:CancellationException){throw e}catch(_:Exception){}
+  }
+ }
  val focus=shown.find {it.id==selected}
  val markerMode=(focus?.mode?:if(tracking)modelMode(selection?.optString("mode_key").orEmpty())else model.activeMode).takeIf {it in listOf("walk","bike","car","pt")}?:"walk"
  val journeyId=trackedTrip?.optString("journey_id")
@@ -334,7 +342,7 @@ private data class ProjectedRoutePath(val route:MapRoute,val path:Path,val offse
     Column {
      IconButton({styleSheet=true},Modifier.size(44.dp).semantics {contentDescription=model.text("Map views","Kartenansichten")+" · "+mapStyle.title(model)}) {MapLayersIcon(Modifier.size(22.dp))}
      IconButton({poiSettingsSheet=true},Modifier.size(44.dp).semantics {contentDescription=model.text("Map settings · Places and radius","Karteneinstellungen · Orte und Radius")}) {PixelIcon("settings",Modifier.size(22.dp))}
-     IconButton(onClick={locationActions.manage()},modifier=Modifier.size(44.dp).semantics {contentDescription=if(!hasLocationAccess(context))model.text("Location permission blocked · Android app settings","Standortberechtigung gesperrt · Android-App-Einstellungen")else if(locationBlocked)model.text("Location off · Tap to enable","Standort aus · Antippen zum Aktivieren")else model.text("Location on · Android location settings","Standort an · Android-Standorteinstellungen")}) {
+     IconButton(onClick={follow=true;locationActions.request()},modifier=Modifier.size(44.dp).semantics {contentDescription=if(!hasLocationAccess(context))model.text("My position · Allow location access","Mein Standort · Standortzugriff erlauben")else if(locationBlocked)model.text("My position · Enable location","Mein Standort · Standort aktivieren")else model.text("My position · Center map","Mein Standort · Karte zentrieren")}) {
       if((locationBusy||planningLocating)&&!locationBlocked)CircularProgressIndicator(Modifier.size(22.dp),strokeWidth=2.dp)else Box(Modifier.size(24.dp)) {
        PixelIcon("location",Modifier.fillMaxSize())
        if(locationBlocked)Canvas(Modifier.fillMaxSize()){val a=Offset(size.width*.15f,size.height*.85f);val b=Offset(size.width*.85f,size.height*.15f);drawLine(Ink,a,b,5.dp.toPx(),StrokeCap.Round);drawLine(Color(0xFFFF5252),a,b,3.dp.toPx(),StrokeCap.Round)}

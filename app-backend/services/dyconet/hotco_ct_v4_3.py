@@ -16,7 +16,7 @@ import numpy as np
 from input_mapping_v4_3 import MODES, NEEDS, ParticipantInput
 
 
-MODEL_VERSION = "hotco_ct_v4.3-online.1"
+MODEL_VERSION = "hotco_ct_v4.3-online.2"
 MODEL_NAME = "DYCONET / HOTCO-CT v4.3"
 
 
@@ -37,13 +37,6 @@ class HOTCOCTParameters:
     settling_state_threshold: float = 0.01
     settling_dwell: float = 1.0
     practical_margin_threshold: float = 0.01
-    # Fixed reference scaling for Phase 4B contextual drive. This is not
-    # learned and is intentionally separate from every HOTCO parameter.
-    alpha_context: float = 1.0
-
-    def __post_init__(self) -> None:
-        if not np.isfinite(self.alpha_context) or self.alpha_context < 0.0:
-            raise ValueError("alpha_context must be non-negative")
 
 
 @dataclass
@@ -140,7 +133,6 @@ class HOTCOCTv43:
         state: np.ndarray,
         topology: np.ndarray,
         availability: np.ndarray,
-        context_perturbation: Any = None,
     ) -> np.ndarray:
         """Equation 12: first aggregate signed input, then rectify its net sign."""
 
@@ -158,23 +150,6 @@ class HOTCOCTv43:
         )
         inhibition = inhibition.copy()
         inhibition[:, action_slice] += lateral
-
-        if context_perturbation is not None and self.parameters.alpha_context > 0.0:
-            if isinstance(context_perturbation, np.ndarray):
-                xi_context = np.array(context_perturbation, dtype=np.float64, copy=True)
-                if xi_context.ndim == 1:
-                    xi_context = np.broadcast_to(xi_context, state.shape).copy()
-                action_slice = slice(self.n_needs, self.n_needs + self.n_modes)
-                if np.any(xi_context[:, action_slice] != 0.0):
-                    xi_context[:, action_slice] = 0.0
-            else:
-                xi_context, _ = self._context_vectors(context_perturbation, state.shape[0])
-            if xi_context.shape != state.shape:
-                raise ValueError("context perturbation vector must match the HOTCO state shape")
-            xi_positive = np.maximum(xi_context, 0.0)
-            xi_negative = np.maximum(-xi_context, 0.0)
-            excitation = excitation + self.parameters.alpha_context * xi_positive
-            inhibition = inhibition + self.parameters.alpha_context * xi_negative
 
         return (
             dynamic_mask
@@ -230,26 +205,25 @@ class HOTCOCTv43:
         topology: np.ndarray,
         availability: np.ndarray,
         stats: Dict[str, Dict[str, float | int]],
-        context_perturbation: Any = None,
     ) -> np.ndarray:
         """One RK4 step with projection before every non-initial derivative."""
 
         dt = self.parameters.dt
-        k1 = self.vector_field(state, topology, availability, context_perturbation)
+        k1 = self.vector_field(state, topology, availability)
 
         stage2 = self._project_and_record(state + 0.5 * dt * k1, availability, stats)
-        k2 = self.vector_field(stage2, topology, availability, context_perturbation)
+        k2 = self.vector_field(stage2, topology, availability)
 
         stage3 = self._project_and_record(state + 0.5 * dt * k2, availability, stats)
-        k3 = self.vector_field(stage3, topology, availability, context_perturbation)
+        k3 = self.vector_field(stage3, topology, availability)
 
         stage4 = self._project_and_record(state + dt * k3, availability, stats)
-        k4 = self.vector_field(stage4, topology, availability, context_perturbation)
+        k4 = self.vector_field(stage4, topology, availability)
 
         raw_next = state + (dt / 6.0) * (k1 + 2.0 * k2 + 2.0 * k3 + k4)
         return self._project_and_record(raw_next, availability, stats)
 
-    def simulate(self, participant: ParticipantInput, context_perturbation: Any = None) -> SimulationResult:
+    def simulate(self, participant: ParticipantInput) -> SimulationResult:
         initial_state, beliefs, availability = self.arrays_from_input(participant)
         if not np.isfinite(initial_state).all():
             raise ValueError("initial state contains non-finite values")
@@ -263,12 +237,11 @@ class HOTCOCTv43:
             raise ValueError("initial state is outside the declared HOTCO-CT bounds")
 
         topology = self.build_topology(beliefs)
-        context_input, context_metadata = self._context_vectors(context_perturbation, state_batch=initial_state.shape[0]) if context_perturbation is not None else (None, self._empty_context_metadata())
         state = initial_state
         states = [state]
         correction_stats = self._empty_correction_stats()
         for _ in range(self.n_steps):
-            state = self.rk4_step(state, topology, availability, correction_stats, context_input)
+            state = self.rk4_step(state, topology, availability, correction_stats)
             states.append(state)
 
         trajectory = np.stack(states, axis=1)
@@ -277,90 +250,8 @@ class HOTCOCTv43:
             topology=topology,
             availability=availability,
             projection_corrections=correction_stats,
-            context_metadata=context_metadata,
+            context_metadata={"context_applied": False, "applied": False,
+                "context_model": "observations_only", "context_policy": "observations_only",
+                "context_model_status": "NOT_APPLIED", "learning_applied": False,
+                "state_carryover_applied": False, "warnings": []},
         )
-
-    def _context_vectors(self, context_perturbation: Any, state_batch: int) -> tuple[np.ndarray, Dict[str, Any]]:
-        """Align Phase 4A semantic vectors to this topology without remapping science."""
-
-        xi = np.zeros((state_batch, self.n_nodes), dtype=np.float64)
-        warnings: list[str] = []
-        if context_perturbation is None:
-            return xi, self._context_metadata(xi, False, warnings)
-
-        need_values = getattr(context_perturbation, "need_perturbations", None)
-        valence_values = getattr(context_perturbation, "valence_perturbations", None)
-        action_values = getattr(context_perturbation, "action_perturbations", None)
-        source_warnings = list(getattr(context_perturbation, "warnings", ()))
-        perturbation_version = getattr(context_perturbation, "perturbation_version", None)
-        normalization_version = getattr(context_perturbation, "normalization_version", None)
-        if isinstance(context_perturbation, dict):
-            need_values = context_perturbation.get("need_perturbations", context_perturbation.get("need", {}))
-            valence_values = context_perturbation.get("valence_perturbations", context_perturbation.get("valence", {}))
-            action_values = context_perturbation.get("action_perturbations", context_perturbation.get("action", {}))
-            source_warnings = list(context_perturbation.get("warnings", ()))
-            perturbation_version = context_perturbation.get("perturbation_version")
-            normalization_version = context_perturbation.get("normalization_version")
-            if not need_values and not valence_values and not action_values:
-                need_values = {key: value for key, value in context_perturbation.items() if str(key).startswith("need_")}
-                valence_values = {key: value for key, value in context_perturbation.items() if str(key).startswith("valence_")}
-                action_values = {key: value for key, value in context_perturbation.items() if str(key).startswith("action_")}
-        need_values = need_values or {}
-        valence_values = valence_values or {}
-        action_values = action_values or {}
-
-        need_indices = {name: index for index, name in enumerate(NEEDS)}
-        mode_indices = {name: index for index, name in enumerate(MODES)}
-        used_targets: list[str] = []
-        for target, value in dict(need_values).items():
-            semantic = str(target).removeprefix("need_")
-            if semantic not in need_indices:
-                warnings.append(f"context target '{target}' does not exist in active need topology")
-                continue
-            xi[:, need_indices[semantic]] += float(value)
-            used_targets.append(str(target))
-        for target, value in dict(valence_values).items():
-            semantic = str(target).removeprefix("valence_")
-            canonical = {"car_driver": "car", "pt_bus_tram": "pt"}.get(semantic, semantic)
-            if canonical not in mode_indices:
-                warnings.append(f"context target '{target}' does not exist in active valence topology")
-                continue
-            xi[:, self.n_needs + self.n_modes + mode_indices[canonical]] += float(value)
-            used_targets.append(str(target))
-        for target, value in dict(action_values).items():
-            if float(value) != 0.0:
-                warnings.append(f"direct action context target '{target}' ignored; action perturbations must be zero")
-
-        if np.any(~np.isfinite(xi)):
-            raise ValueError("context perturbation values must be finite")
-        warnings = source_warnings + warnings
-        metadata = self._context_metadata(xi, bool(np.any(xi != 0.0)) and self.parameters.alpha_context > 0.0, warnings)
-        metadata.update({"target_names": used_targets, "perturbation_version": perturbation_version, "normalization_version": normalization_version})
-        return xi, metadata
-
-    def _empty_context_metadata(self) -> Dict[str, Any]:
-        return self._context_metadata(np.zeros((1, self.n_nodes), dtype=np.float64), False, [])
-
-    def _context_metadata(self, xi: np.ndarray, applied: bool, warnings: list[str]) -> Dict[str, Any]:
-        """Expose the complete semantic contextual drive used by the ODE."""
-
-        names = (
-            [f"need_{name}" for name in NEEDS]
-            + [f"action_{name}" for name in MODES]
-            + [f"valence_{name}" for name in MODES]
-        )
-        vector = xi[0].tolist()
-        positive = np.maximum(xi[0], 0.0).tolist()
-        negative = np.maximum(-xi[0], 0.0).tolist()
-        return {
-            "context_applied": applied,
-            "applied": applied,
-            "alpha_context": self.parameters.alpha_context,
-            "xi_context": dict(zip(names, vector)),
-            "positive_contextual_drive": dict(zip(names, positive)),
-            "negative_contextual_drive": dict(zip(names, negative)),
-            "perturbation_version": None,
-            "normalization_version": None,
-            "target_names": [],
-            "warnings": list(warnings),
-        }

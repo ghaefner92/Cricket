@@ -64,7 +64,7 @@ def _driver_facts(perturbation: Mapping[str, Any]) -> list[dict[str, Any]]:
             "effective_exposure": item.get("effective_exposure"),
             "coefficient": item.get("coefficient"),
             "xi": signed,
-            "contribution_kind": "pre_bounded_mapping" if perturbation.get("perturbation_version") == "f3-need-only-v1" else "direct_input",
+            "contribution_kind": "archived_contribution",
             "combined_target_drive": perturbation.get("need_perturbations", {}).get(item.get("target_node")),
             "source_scope": item.get("source_scope"),
             "provenance": {
@@ -173,15 +173,9 @@ def build_contextual_xai(deliberation: Mapping[str, Any], route_id: str, alterna
     }
     summary: list[str] = []
     if positive:
-        if positive[0]["contribution_kind"] == "pre_bounded_mapping":
-            summary.append(f"{positive[0]['stressor']} contributes to the combined contextual input for {positive[0]['target']}.")
-        else:
-            summary.append(f"{positive[0]['stressor']} produced a positive contextual contribution to {positive[0]['target']} ({positive[0]['xi']:.6g}).")
+        summary.append(f"Archived evidence records a positive contribution from {positive[0]['stressor']} for {positive[0]['target']} ({positive[0]['xi']:.6g}).")
     if negative:
-        if negative[0]["contribution_kind"] == "pre_bounded_mapping":
-            summary.append(f"{negative[0]['stressor']} contributes negatively to the combined contextual input for {negative[0]['target']}.")
-        else:
-            summary.append(f"{negative[0]['stressor']} produced a negative contextual contribution to {negative[0]['target']} ({negative[0]['xi']:.6g}).")
+        summary.append(f"Archived evidence records a negative contribution from {negative[0]['stressor']} for {negative[0]['target']} ({negative[0]['xi']:.6g}).")
     if contextual_ambiguity in {"NEAR_TIE", "UNRESOLVED"}:
         summary.append("The exploratory analysis shows similar support for the leading alternatives.")
     elif contextual_ambiguity == "UNSETTLED":

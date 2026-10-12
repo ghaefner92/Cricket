@@ -210,9 +210,7 @@ def digital_companion_evidence(request: "NarrationRequest") -> dict[str, Any]:
         "context_facts": facts,
         "deterministic_drivers": [
             {key: item.get(key) for key in (
-                ("stressor", "target", "target_family", "mode", "contribution_kind", "combined_target_drive")
-                if evidence.get("context_model") == "F3_NEED_ONLY_V1"
-                else ("stressor", "target", "target_family", "mode", "xi")
+                "stressor", "target", "target_family", "mode", "xi"
             )}
             for item in drivers if isinstance(item, Mapping)
         ],

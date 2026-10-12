@@ -46,18 +46,17 @@ class DDayTest(unittest.TestCase):
         b = self.fixture(); b["simulations"][0]["journeys"].append(copy.deepcopy(b["simulations"][0]["journeys"][0]))
         self.assertEqual(422, client.post("/api/dyconet/d-day/validate", json=b).status_code)
 
-    def test_observations_only_never_builds_f3_and_preserves_trajectories(self):
+    def test_observations_only_preserves_trajectories(self):
         req = replace(request_fixture(), context_policy="observations_only", record_trajectories=True)
         service = ContextualDeliberationService(engine=HOTCOCTv43(parameters=HOTCOCTParameters(horizon=2)))
-        with patch("contextual_deliberation.build_context_perturbation", side_effect=AssertionError("F3 must not run")):
-            result = service.deliberate(req).to_dict()
+        result = service.deliberate(req).to_dict()
         baseline = result["baseline"]
         for route in result["candidate_results"]:
             self.assertTrue(route["route_context"])
             self.assertEqual(baseline["final_action_activations"], route["hotco"]["final_action_activations"])
             self.assertEqual(baseline["simulation_evidence"]["trajectory_id"], route["hotco"]["simulation_evidence"]["trajectory_id"])
             self.assertEqual("NOT_APPLIED", route["hotco"]["context_metadata"]["context_model_status"])
-            self.assertEqual({}, route["context_perturbation"]["need_perturbations"])
+            self.assertNotIn("context_perturbation", route)
 
     def test_unknown_policy_rejected(self):
         p = json.loads(self.fixture()["storage"][PASSPORT])["response"]["cognitive_passport"]

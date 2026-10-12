@@ -1,5 +1,36 @@
 # Memoria del proyecto
 
+Travel 0.4.106: abrir el editor A/B, seleccionar A en mapa o intercambiar
+deshabilita el relleno automático del origen en esa pantalla. GPS sigue activo;
+borrar/escribir A no elige My current location ni cierra el editor. La opción
+de ubicación permanece explícita. docs/TRAVEL_MANUAL_ORIGIN_04106.md.
+
+Travel 0.4.105: selector A · Origin incorpora My current location para reemplazar
+el origen por una lectura reciente. Permisos/servicios Android, progreso y error
+reintentable; conserva B y cierra selector tras éxito. No inicia Journey/Experience.
+El origen queda como posición elegida, sin reescritura continua por GPS.
+docs/TRAVEL_CURRENT_ORIGIN_04105.md.
+
+Travel 0.4.104: botón de ubicación solo centra el mapa; sustituye la apertura
+de ajustes de 0.4.98. Cursor/avatar con escucha GPS/red continua en RESUMED,
+intervalo solicitado 1 s, sin prometer cadencia/precisión. Panning no detiene
+observaciones; tocar restaura centrado. Sin crear Journey/Experience ni escribir
+tracking por mostrar el mapa. Validación real con GPS y avatar cambiantes;
+docs/TRAVEL_LIVE_LOCATION_04104.md.
+
+12 de octubre de 2026: el autor confirma eliminar experimental-frontend.
+Carpeta Vue/Capacitor retirada después de compilar y probar la app nativa sin
+ella. Conservar android-native, app-backend, contracts y validation/fixtures;
+compilar desde la raíz con node android-native/scripts/build.mjs o Gradle.
+
+12 de octubre de 2026: el autor pide eliminar F3 completamente del código.
+Retirados constructores de fuerzas, parámetro/entrada del solver y modo de
+ejecución histórico; única política observations_only. Conservar originales
+y resultados históricos como evidencia archivada, sin recalcular fuerzas.
+Vue experimental-frontend es anterior: app principal Kotlin/Compose en
+android-native, sin dependencia de Vue; WebView solo migra datos con script
+inline. Comprobaciones: docs/F3_REMOVAL_NATIVE_INDEPENDENCE.md.
+
 Companion 0.4.103: acceso Passport sustituido por Companion, icono del rostro
 elegido y una tarjeta de avatar/narración en primera persona. Fuente SNES al
 mismo tamaño y emojis; sin HOTCO/Passport/modelos en esa tarjeta. Groq reutiliza

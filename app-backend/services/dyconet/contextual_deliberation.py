@@ -1,26 +1,16 @@
 """Phase 5 orchestration for route-conditioned HOTCO deliberation.
 
 Candidate order is preserved. This service composes the existing provider,
-normalizer, perturbation builder, and HOTCO simulator without duplicating
-their scientific rules.
+normalizer and HOTCO simulator. Context is archived as observations and
+does not add external forces to the dynamics.
 """
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field, replace, asdict
-from copy import deepcopy
+from dataclasses import dataclass, field, asdict
 from journey_availability import apply_journey_availability
 from typing import Any, Mapping, Sequence
 
-from context_perturbation import (
-    PERTURBATION_VERSION,
-    ContextPerturbationBuilder,
-    ContextPerturbationResult,
-    SUPPORTED_TOLERANCES,
-    active_tolerance_dimensions,
-    ToleranceProfile,
-)
-from context_models import build_context_perturbation, EXPERIMENTAL_UNCALIBRATED
 from hotco_ct_v4_3 import HOTCOCTv43, MODEL_VERSION, SimulationResult
 from input_mapping_v4_3 import MODES, NEEDS, ParticipantInput, parse_participant_input
 from orion_context import (
@@ -94,7 +84,6 @@ class ContextualDeliberationRequest:
     search_id: str
     timestamp: str
     participant: ParticipantInput
-    tolerance_profile: ToleranceProfile
     candidate_routes: tuple[CandidateRouteInput, ...]
     observations: Mapping[str, Any] = field(default_factory=dict)
     query_configuration: ContextQueryConfiguration = ContextQueryConfiguration()
@@ -178,38 +167,17 @@ class ContextualDeliberationRequest:
             except ValueError as exc:
                 raise ContextualDeliberationError(str(exc)) from exc
 
-        warnings: list[str] = []
-        tolerance_values = data.get("tolerance_profile")
-        if tolerance_values is None and isinstance(passport_value, Mapping):
-            root = passport_value.get("cognitive_passport", passport_value)
-            profile = root.get("profile", {}) if isinstance(root, Mapping) else {}
-            tolerance_values = profile.get("environmental_tolerances", {}) if isinstance(profile, Mapping) else {}
-        tolerance_values = tolerance_values or {}
-        if not isinstance(tolerance_values, Mapping):
-            raise ContextualDeliberationError("tolerance_profile must be a JSON object")
-        filtered = {
-            name: tolerance_values[name]
-            for name in SUPPORTED_TOLERANCES
-            if name in tolerance_values and tolerance_values[name] is not None
-        }
-        for name in active_tolerance_dimensions(filtered):
-            if name not in filtered:
-                warnings.append(f"tolerance '{name}' is missing; that contextual dimension remains UNKNOWN")
-        extras = sorted(set(tolerance_values) - set(SUPPORTED_TOLERANCES))
-        if extras:
-            warnings.append(f"unsupported tolerance dimensions ignored: {', '.join(extras)}")
         policy = data.get("context_policy", "observations_only")
-        if policy not in ("observations_only", "legacy_context_drive"):
+        if policy != "observations_only":
             raise ContextualDeliberationError("unsupported context_policy")
         return cls(
             search_id,
             timestamp,
             participant,
-            ToleranceProfile(filtered),
             candidates,
             data.get("contextual_observations", {}),
             ContextQueryConfiguration.from_dict(data.get("contextual_query")),
-            tuple(warnings),
+            (),
             data.get("record_trajectories") is True,
             policy,
         )
@@ -234,14 +202,13 @@ class HOTCODeliberationSummary:
 class RouteDeliberationResult:
     route_id: str
     route_context: RouteContext
-    context_perturbation: ContextPerturbationResult
     hotco: HOTCODeliberationSummary
     difference_from_baseline: Mapping[str, Mapping[str, float]]
     warnings: tuple[str, ...]
     source_status: Mapping[str, str]
 
     def to_dict(self) -> dict[str, Any]:
-        return {"route_id": self.route_id, "route_context": self.route_context.to_dict(), "context_perturbation": self.context_perturbation.to_dict(), "hotco": self.hotco.to_dict(), "difference_from_baseline": {key: dict(value) for key, value in self.difference_from_baseline.items()}, "warnings": list(self.warnings), "source_status": dict(self.source_status)}
+        return {"route_id": self.route_id, "route_context": self.route_context.to_dict(), "hotco": self.hotco.to_dict(), "difference_from_baseline": {key: dict(value) for key, value in self.difference_from_baseline.items()}, "warnings": list(self.warnings), "source_status": dict(self.source_status)}
 
 
 @dataclass(frozen=True)
@@ -252,11 +219,10 @@ class ContextualDeliberationResponse:
     candidate_results: tuple[RouteDeliberationResult, ...]
     model_version: str
     normalization_version: str
-    perturbation_version: str
     warnings: tuple[str, ...]
 
     def to_dict(self) -> dict[str, Any]:
-        output = {"schema_version": RESPONSE_SCHEMA_VERSION, "search_id": self.search_id, "timestamp": self.timestamp, "baseline": self.baseline.to_dict(), "candidate_results": [item.to_dict() for item in self.candidate_results], "model_version": self.model_version, "normalization_version": self.normalization_version, "perturbation_version": self.perturbation_version, "warnings": list(self.warnings)}
+        output = {"schema_version": RESPONSE_SCHEMA_VERSION, "search_id": self.search_id, "timestamp": self.timestamp, "baseline": self.baseline.to_dict(), "candidate_results": [item.to_dict() for item in self.candidate_results], "model_version": self.model_version, "normalization_version": self.normalization_version, "warnings": list(self.warnings)}
         from hashlib import sha256
         import json
         archive = {}
@@ -280,48 +246,21 @@ class ContextualDeliberationService:
         self.adapter = adapter or RouteContextAdapter()
 
     def deliberate(self, request: ContextualDeliberationRequest) -> ContextualDeliberationResponse:
-        # Cache within this request only: identical effective context forces
-        # share checks, while route observations and metadata stay separate.
-        robustness_cache = {}
-        simulation_cache = {}
+        if request.context_policy != "observations_only":
+            raise ContextualDeliberationError("unsupported context_policy")
+        # Context does not change the participant's inputs in this delivery.
+        # Share dynamics and robustness checks while keeping route evidence separate.
         baseline_result = self.engine.simulate(request.participant)
-        def summarize(result, context=None):
-            vector, _ = self.engine._context_vectors(context, 1)
-            key = (vector * self.engine.parameters.alpha_context).tobytes()
-            if key not in robustness_cache:
-                robustness_cache[key] = assess_robustness(request.participant, result, self.engine, context)
-            return self._summary(request.participant, result, robustness_cache[key], request.record_trajectories)
-        baseline = summarize(baseline_result)
+        robustness = assess_robustness(request.participant, baseline_result, self.engine)
+        baseline = self._summary(request.participant, baseline_result, robustness, request.record_trajectories)
         candidate_results: list[RouteDeliberationResult] = []
         for candidate in request.candidate_routes:
             route_context, source_status, context_warnings = self._enrich_candidate(candidate, request)
-            if request.context_policy == "observations_only":
-                # D-Day excludes F3: preserve measured context, never manufacture
-                # a learned expectation or a direct ODE force from these readings.
-                perturbation = ContextPerturbationResult(candidate.route_id, NORMALIZATION_VERSION,
-                    PERTURBATION_VERSION, (), {}, {}, {}, (), (), (), (), {})
-                context_model, rho = "observations_only", None
-            else:
-                perturbation, context_model, rho = build_context_perturbation(route_context, baseline_result, self.engine, dict(request.tolerance_profile.values))
-            # One participant and fixed engine parameters per request. Equal
-            # aligned forcing vectors have identical dynamics, even when their
-            # route evidence/warnings differ. Keep that metadata per candidate.
-            vector, metadata = self.engine._context_vectors(perturbation, 1)
-            simulation_key = vector.tobytes()
-            if simulation_key not in simulation_cache:
-                simulation_cache[simulation_key] = (baseline_result if request.context_policy == "observations_only" else
-                    self.engine.simulate(request.participant, context_perturbation=perturbation))
-            cached = simulation_cache[simulation_key]
-            contextual_result = replace(cached, trajectory=cached.trajectory.copy(),
-                topology=cached.topology.copy(), availability=cached.availability.copy(),
-                projection_corrections=deepcopy(cached.projection_corrections), context_metadata=metadata)
-            contextual_result.context_metadata.update({"context_model": context_model, "context_model_status": EXPERIMENTAL_UNCALIBRATED, "rho": rho})
-            if request.context_policy == "observations_only":
-                contextual_result.context_metadata.update({"context_policy": "observations_only",
-                    "context_model_status": "NOT_APPLIED", "learning_applied": False, "state_carryover_applied": False})
-            contextual = summarize(contextual_result, perturbation)
-            candidate_results.append(RouteDeliberationResult(candidate.route_id, route_context, perturbation, contextual, self._difference(baseline, contextual), tuple(dict.fromkeys((*context_warnings, *perturbation.warnings, *contextual.context_metadata.get("warnings", ())))), source_status))
-        return ContextualDeliberationResponse(request.search_id, request.timestamp, baseline, tuple(candidate_results), MODEL_VERSION, NORMALIZATION_VERSION, PERTURBATION_VERSION, request.warnings)
+            contextual = self._summary(request.participant, baseline_result, robustness, request.record_trajectories)
+            candidate_results.append(RouteDeliberationResult(candidate.route_id, route_context,
+                contextual, self._difference(baseline, contextual), tuple(dict.fromkeys(context_warnings)), source_status))
+        return ContextualDeliberationResponse(request.search_id, request.timestamp, baseline,
+            tuple(candidate_results), MODEL_VERSION, NORMALIZATION_VERSION, request.warnings)
 
     def _enrich_candidate(self, candidate: CandidateRouteInput, request: ContextualDeliberationRequest) -> tuple[RouteContext, dict[str, str], list[str]]:
         supplied = request.observations.get(candidate.route_id, {}) if isinstance(request.observations, Mapping) else {}

@@ -1,4 +1,12 @@
-# Cricket
+codex# Cricket
+
+La app Android actual está en `android-native` y usa Kotlin/Compose. Se compila
+desde la raíz con `node android-native/scripts/build.mjs`, con backend en
+`app-backend/services/dyconet` y contratos en `contracts`. No depende de
+`experimental-frontend`: la carpeta Vue/Capacitor anterior fue eliminada por
+decisión del autor. Las instrucciones web siguientes son históricas y sus
+archivos ya no forman parte del proyecto actual. Estado actual:
+[Android nativo](docs/ANDROID.md), [D-Day](docs/D_DAY.md).
 
 Audited snapshot of the IMIQ experimental web app, captured on 6 October 2026: a Vue/SNES interface with a confirmed avatar, weekly goals, Cognitive Passport, HOTCO-CT deliberation, Orion environmental context and route cards linked to a Leaflet map.
 

@@ -110,7 +110,9 @@ internal fun selectedMapPlace(point:GeoPoint,nearbyAddress:String?,de:Boolean):P
 
 
 
-@Composable internal fun TravelPlanningMap(model:CricketModel,originDraft:MutableState<String>,targetOrigin:Boolean,onTargetChange:(Boolean)->Unit,locationRequest:Int,modifier:Modifier=Modifier,showSelector:Boolean=true){
+@Composable internal fun TravelPlanningMap(model:CricketModel,originDraft:MutableState<String>,targetOrigin:Boolean,onTargetChange:(Boolean)->Unit,locationRequest:Int,modifier:Modifier=Modifier,showSelector:Boolean=true,allowAutomaticOrigin:Boolean=true){
+
+ val automaticOriginAllowed by rememberUpdatedState(allowAutomaticOrigin)
 
  val context=LocalContext.current;val lifecycle=LocalLifecycleOwner.current.lifecycle
 
@@ -137,43 +139,35 @@ internal fun selectedMapPlace(point:GeoPoint,nearbyAddress:String?,de:Boolean):P
  fun permitted()=listOf(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION).any {context.checkSelfPermission(it)==PackageManager.PERMISSION_GRANTED}
 
  fun freshPosition(){
-
-  if(!active||locating||!permitted()||!enabled())return
-
+  if(!active||locationJob?.isActive==true||!permitted()||!enabled())return
   val requestGeneration=generation
-
   locating=true;message=null
-
   locationJob=scope.launch {
-
    try {lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED){
-
     locating=true
-
-    try {
-
-     val fix=currentMapLocation(context)
-
-     model.planningPosition=obj("lat" to fix.latitude,"lon" to fix.longitude,"accuracy_m" to fix.accuracy.toDouble(),"monotonic_ms" to fix.elapsedRealtimeNanos/1000000)
-
-     if(model.origin==null&&originDraft.value.isBlank()){model.setPlace(true,Place(fix.latitude,fix.longitude,model.text("My current location","Mein aktueller Standort"),"geo-${fix.time}",source="geolocation",accuracy=fix.accuracy));onTargetChange(false)}
-
-     message=model.text("Location accuracy: about ${fix.accuracy.toInt()} m","Standortgenauigkeit: etwa ${fix.accuracy.toInt()} m")
-
-    }catch(e:TimeoutCancellationException){message=model.text("Position unavailable. Choose a point on the map or enter an address.","Standort nicht verfügbar. Kartenpunkt wählen oder Adresse eingeben.")}
-
-    locating=false
-
-    // Wait for disposal rather than repeatedly collecting/storing a trajectory.
-
-    awaitCancellation()
-
-   }}catch(e:CancellationException){throw e}catch(e:Exception){message=model.text("Location unavailable. You can still choose addresses or map points.","Standort nicht verfügbar. Adressen oder Kartenpunkte bleiben nutzbar.")}
-
-   finally{if(generation==requestGeneration)locating=false}
-
+    coroutineScope {
+     val timeout=launch {
+      delay(25000)
+      if(locating){
+       locating=false
+       message=model.text("Still waiting for a fresh position. You can choose a map point while I keep looking.","Ich warte noch auf einen aktuellen Standort. Du kannst einen Kartenpunkt wählen, während ich weiter suche.")
+      }
+     }
+     try {mapLocations(context).collect {fix->
+      if(!active||generation!=requestGeneration)return@collect
+      model.planningPosition=obj("lat" to fix.latitude,"lon" to fix.longitude,"accuracy_m" to fix.accuracy.toDouble(),"monotonic_ms" to fix.elapsedRealtimeNanos/1000000)
+      if(automaticOriginAllowed&&model.origin==null&&originDraft.value.isBlank()){
+       model.setPlace(true,Place(fix.latitude,fix.longitude,model.text("My current location","Mein aktueller Standort"),"geo-${fix.time}",source="geolocation",accuracy=fix.accuracy))
+       onTargetChange(false)
+      }
+      locating=false;timeout.cancel()
+      message=model.text("Location accuracy: about ${fix.accuracy.toInt()} m","Standortgenauigkeit: etwa ${fix.accuracy.toInt()} m")
+     }}finally {timeout.cancel();locating=false}
+    }
+   }}catch(e:CancellationException){throw e}catch(e:Exception){
+    message=model.text("Location unavailable. You can still choose addresses or map points.","Standort nicht verfügbar. Adressen oder Kartenpunkte bleiben nutzbar.")
+   }finally{if(generation==requestGeneration)locating=false}
   }
-
  }
 
  val resolution=rememberLauncherForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) {requesting=false;if(active){if(enabled())freshPosition()else message=model.text("Location stays off. Choose addresses or map points.","Standort bleibt ausgeschaltet. Adressen oder Kartenpunkte wählen.")}}
@@ -200,7 +194,7 @@ internal fun selectedMapPlace(point:GeoPoint,nearbyAddress:String?,de:Boolean):P
 
  val permission=rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()){grants->requesting=false;if(active){if(grants.values.any {it})checkSettings()else message=model.text("Location permission declined. Choose addresses or map points.","Standortberechtigung abgelehnt. Adressen oder Kartenpunkte wählen.")}}
 
- fun locate(){if(!active||locating||requesting)return;requesting=true;generation++;locationJob?.cancel();locating=false;model.planningPosition=null;if(permitted())checkSettings()else permission.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION))}
+ fun locate(){if(!active||requesting)return;if(permitted()&&enabled()){freshPosition();return};requesting=true;generation++;locationJob?.cancel();locating=false;model.planningPosition=null;if(permitted())checkSettings()else permission.launch(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION))}
 
  LaunchedEffect(locationRequest){
 
