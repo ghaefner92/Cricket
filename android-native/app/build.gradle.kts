@@ -2,7 +2,7 @@ plugins { id("com.android.application"); id("org.jetbrains.kotlin.android"); id(
 android {
  namespace = "de.ovgu.imiq.cricket"
  compileSdk = 36
- defaultConfig { applicationId = "de.ovgu.imiq.cricket"; minSdk = 26; targetSdk = 36; versionCode = 111; versionName = "0.4.100";testInstrumentationRunner="androidx.test.runner.AndroidJUnitRunner" }
+ defaultConfig { applicationId = "de.ovgu.imiq.cricket"; minSdk = 26; targetSdk = 36; versionCode = 114; versionName = "0.4.103";testInstrumentationRunner="androidx.test.runner.AndroidJUnitRunner" }
  buildFeatures { compose = true; buildConfig = true }
  sourceSets.getByName("main").assets.srcDir("../../contracts")
  sourceSets.getByName("androidTest").assets.srcDir("../../validation/fixtures")

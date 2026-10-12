@@ -17,7 +17,8 @@ import org.json.JSONObject
 @Composable fun HistoryDetails(model:CricketModel,record:JSONObject) {
  val context=LocalContext.current
  val wording=remember {context.assets.open("choiceWordings.json").bufferedReader().use {JSONObject(it.readText())}}
- if(record.objects("journeys").isNotEmpty())Disclosure(model.text("Actual journeys and experiences","Tatsächliche Reisen und Erfahrungen")) {
+ if(record.objects("journeys").isNotEmpty())Column(verticalArrangement=Arrangement.spacedBy(8.dp)) {
+  Copy(model.text("Journeys and experiences","Reisen und Erfahrungen"),Mint)
   record.objects("journeys").forEach {trip->
    Copy(tripStatus(model,trip.getString("status"))+" · "+trip.getString("capture_mode"))
    Copy("${metric(trip.getJSONObject("tracking").number("distance_m")?.div(1000))} km · ${metric(trip.getJSONObject("tracking").number("elapsed_seconds")?.div(60))} min")
@@ -26,7 +27,7 @@ import org.json.JSONObject
  }
  Disclosure(model.text("Saved simulation","Gespeicherte Simulation")) {
   val full by produceState<JSONObject?>(null,record.getString("search_id"),model.revision) {
-   try {value=(if(record.optBoolean("history_preview"))withContext(Dispatchers.IO){model.store.record(record.getString("search_id"))}else record)?:error("Saved journey unavailable")}
+   try {value=(if(record.optBoolean("history_preview"))withContext(Dispatchers.IO){model.store.recordForReflection(record.getString("search_id"))}else record)?:error("Saved journey unavailable")}
    catch(e:CancellationException){throw e}catch(e:Exception){model.error=e.message;value=JSONObject().put("load_failed",true)}
   }
   val record=full

@@ -64,6 +64,24 @@ def one(items, predicate, name):
 def goals(snapshot, passport):
     if snapshot is None:
         return {'status': 'UNKNOWN', 'reason': 'confirmed_snapshot_not_supplied'}
+    if snapshot.get('needsSource') == 'ordinal_importance_1_7':
+        ratings = obj(snapshot.get('goalRatings'), 'goalRatings')
+        require(set(ratings) == set(GOAL_MAP), 'goalRatings keys do not match Cricket')
+        require(all(type(v) is int and 1 <= v <= 7 for v in ratings.values()),
+                'goalRatings must be independent ordinal ratings from 1 to 7')
+        require(snapshot.get('conversion') == 'rating_minus1_div6_v1', 'unsupported importance conversion')
+        raw = obj(passport.get('observed_measurements'), 'observed_measurements').get('needs_raw_1_to_7', {})
+        normalized = obj(passport.get('profile', {}).get('needs'), 'profile.needs')
+        for key, need in GOAL_MAP.items():
+            require(raw.get(need) == ratings[key], f'importance response mismatch: {key}')
+            require(math.isclose(number(normalized.get(need), need), (ratings[key]-1)/6,
+                                 abs_tol=1e-7), f'importance normalization mismatch: {key}')
+        daily = passport.get('daily_goals', {})
+        return {'status': 'AVAILABLE', 'measurement_type': 'ordinal_importance_1_7',
+                'local_date': daily.get('local_date'), 'timezone': daily.get('timezone'),
+                'ratings': dict(ratings), 'goal_to_need': GOAL_MAP.copy(),
+                'conversion': snapshot['conversion'],
+                'interpretation': 'declared importance for the decision Passport; not focal salience or trip progress'}
     points = obj(snapshot.get('goalPoints'), 'goalPoints')
     require(set(points) == set(GOAL_MAP), 'goalPoints keys do not match Cricket')
     require(all(type(v) is int and 0 <= v <= 10 for v in points.values())

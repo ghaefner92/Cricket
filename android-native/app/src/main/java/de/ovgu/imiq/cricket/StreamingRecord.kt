@@ -5,7 +5,7 @@ import java.io.PushbackReader
 import org.json.*
 
 /** Read SQLite chunks directly; discarded branches never become strings or JSON trees. */
-internal fun readStreamingRecord(source:Reader,research:Boolean=false,ui:Boolean=false):JSONObject {
+internal fun readStreamingRecord(source:Reader,research:Boolean=false,ui:Boolean=false,history:Boolean=false,reflection:Boolean=false):JSONObject {
  val reader=PushbackReader(source.buffered(),1)
  fun next():Int {var c=reader.read();while(c>=0&&c.toChar().isWhitespace())c=reader.read();return c}
  fun quoted(first:Int,retain:Boolean):String {
@@ -21,6 +21,19 @@ internal fun readStreamingRecord(source:Reader,research:Boolean=false,ui:Boolean
   var n=reader.read();while(n>=0&&n!=44&&n!=125&&n!=93&&!n.toChar().isWhitespace())n=reader.read();if(n>=0)reader.unread(n)
  }
  fun retain(path:String):Boolean {
+  if(history){
+   val root=path.substringBefore('.').substringBefore('[')
+   if(root !in setOf("search_id","created_at","status","places","choices","journeys"))return false
+   if(path.startsWith("choices[]."))return path.removePrefix("choices[].") in setOf("mode_key","chosen_at","choice_event_id","routing_rank","route_id")
+   if(path.startsWith("journeys[].tracking."))return path.removePrefix("journeys[].tracking.") in setOf("distance_m","elapsed_seconds")
+   if(path.startsWith("journeys[]."))return path.removePrefix("journeys[].") in setOf("journey_id","status","capture_mode","tracking","started_at","ended_at")
+   return true
+  }
+  if(reflection){
+   val root=path.substringBefore('.').substringBefore('[')
+   if(root !in setOf("version","search_id","created_at","status","places","request","result","passport_reference","choices","confirmed_snapshot","explanations"))return false
+  }
+  if((ui||reflection)&&path=="result.contextual_deliberation.trajectory_archive")return false
   if(ui&&path=="d_day_forecast.request")return false
   if(!research)return true
   if(path=="result"||path.startsWith("result."))return false

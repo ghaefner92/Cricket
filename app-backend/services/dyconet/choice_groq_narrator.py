@@ -73,7 +73,7 @@ def validate_selection(value, prompt):
     return copy.deepcopy(value)
 
 
-def provider_selection(prompt, api_key):
+def provider_selection(prompt, api_key, *, system_prompt=None):
     from groq import Groq
     # Only a completed, checked JSON answer enters the dialogue. No token stream.
     with Groq(api_key=api_key, timeout=12.0, max_retries=0) as client:
@@ -83,7 +83,7 @@ def provider_selection(prompt, api_key):
             response_format={'type': 'json_schema', 'json_schema': {
                 'name': 'choice_voice_selection', 'strict': True,
                 'schema': selection_schema(prompt)}},
-            messages=[{'role': 'system', 'content': (
+            messages=[{'role': 'system', 'content': system_prompt or (
                 'You are the voice editor for a digital travelling companion. '
                 'Select natural, warm wording for this saved choice, using only the supplied options. '
                 'Speak directly to the user as a supportive companion, using their saved declarations of goal importance. '

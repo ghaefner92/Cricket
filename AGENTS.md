@@ -1,5 +1,28 @@
 # Memoria del proyecto
 
+Companion 0.4.103: acceso Passport sustituido por Companion, icono del rostro
+elegido y una tarjeta de avatar/narración en primera persona. Fuente SNES al
+mismo tamaño y emojis; sin HOTCO/Passport/modelos en esa tarjeta. Groq reutiliza
+transporte/validación, catálogo longitudinal separado de choice; datos acotados
+proyectados en SQLite, exclusiones compartidas y caché ligada a evidencia.
+Registro de revisión ausente no permite patrones del histórico. Groq real 403,
+respaldo identificado. Sin activar posteriores/Passport/HOTCO. 162 backend y
+108 JVM aprobadas. docs/COMPANION_REFLECTION_04103.md.
+
+Companion 0.4.102: inicio con un único título suave menta y C del icono
+integrada; sin símbolo separado ni fuente pixel en el título. Avatares con
+32 fotogramas, preocupación durante fuga simultánea y risa al llegar; retrato
+universitario con 24 y anclaje fijo. Cuatro mascotas +50 %, fantasma orbita
+Let's go. Fundidos premultiplicados en capa aislada evitan caída de opacidad;
+reloj leído en Canvas para evitar recomposición por fotograma. Atlas startup_*
+separados de otros usos. docs/COMPANION_STARTUP_04102.md.
+
+Travel 0.4.101: historial proyectado en SQLite antes de cargar JSON; prioriza
+viajes y elecciones, acceso directo a Companion explanation. Narración admite
+importancia ordinal 1–7 además de reparto histórico; guardar explicación con
+json_set, sin cargar archivos grandes. Groq configurado pero consulta real 403
+por red; fallback identificado, sin afirmar LLM. docs/TRAVEL_HISTORY_04101.md.
+
 Travel 0.4.100: reproducción sin GPS continúa fuera de pantalla con reloj
 monotónico y estado separado ACTIVE_PLAYBACK; servicio foreground specialUse,
 notificación de apertura/pausa/reanudación/finalizar. Cambiar menú/Back no cancela.

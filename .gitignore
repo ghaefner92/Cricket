@@ -40,6 +40,9 @@ AUDIT_INVENTORY.*
 # Private device migration snapshots
 .local-backups/
 
+# Local participant survey export; publish aggregate audits only
+/mobility_data.json
+
 # Reproducible simulation outputs and local audit artifacts
 output/
 app-backend/services/dyconet/tmp*/

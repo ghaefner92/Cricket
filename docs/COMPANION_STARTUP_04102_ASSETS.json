@@ -1,0 +1,72 @@
+{
+  "naturalist": {
+    "file": "companion-startup-naturalist-v3.png",
+    "size": [
+      1774,
+      887
+    ],
+    "frames": 32,
+    "anchor": "centre-bottom",
+    "reference_size": [
+      175.0,
+      222
+    ],
+    "transparent": true
+  },
+  "robot": {
+    "file": "companion-startup-robot-v3.png",
+    "size": [
+      1774,
+      887
+    ],
+    "frames": 32,
+    "anchor": "centre-bottom",
+    "reference_size": [
+      180.0,
+      219
+    ],
+    "transparent": true
+  },
+  "explorer": {
+    "file": "companion-startup-explorer-v3.png",
+    "size": [
+      1774,
+      887
+    ],
+    "frames": 32,
+    "anchor": "centre-bottom",
+    "reference_size": [
+      164.0,
+      216
+    ],
+    "transparent": true
+  },
+  "creature": {
+    "file": "companion-startup-creature-v3.png",
+    "size": [
+      1774,
+      887
+    ],
+    "frames": 32,
+    "anchor": "centre-bottom",
+    "reference_size": [
+      172.0,
+      212
+    ],
+    "transparent": true
+  },
+  "portrait": {
+    "file": "companion-startup-portrait-v3.png",
+    "size": [
+      1774,
+      887
+    ],
+    "frames": 24,
+    "anchor": "centre-bottom",
+    "reference_size": [
+      213.0,
+      259
+    ],
+    "transparent": true
+  }
+}

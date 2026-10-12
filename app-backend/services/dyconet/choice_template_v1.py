@@ -112,11 +112,13 @@ def render_choice_template(evidence, *, language='en'):
 
   weekly=evidence.get('weekly_goals',{})
   if weekly.get('status')=='AVAILABLE':
-   points=weekly['points'];mapping=weekly['goal_to_need'];terms=evidence['selected_relations']['by_need']
+   rating_key='ratings' if weekly.get('measurement_type')=='ordinal_importance_1_7' else 'points'
+   points=weekly[rating_key];mapping=weekly['goal_to_need'];terms=evidence['selected_relations']['by_need']
+   minimum=1 if rating_key=='ratings' else 0
    by_need={row['need']:(i,row) for i,row in enumerate(terms)}
    relevant=[]
    for goal,need in mapping.items():
-    if points.get(goal,0)>0 and need in by_need:
+    if points.get(goal,0)>minimum and need in by_need:
      i,row=by_need[need]
      relevant.append((goal,need,points[goal],i,row))
    signs=set()
@@ -135,7 +137,7 @@ def render_choice_template(evidence, *, language='en'):
       f'El modelo representa tensiones con estas prioridades semanales: {labels}.' if relation=='OPPOSITION' else f'El modelo representa apoyos relacionados con estas prioridades semanales: {labels}.')
     refs=[]
     for goal,need,priority,i,row in selected:
-     refs.extend([f'/weekly_goals/points/{goal}',f'/weekly_goals/goal_to_need/{goal}',
+     refs.extend([f'/weekly_goals/{rating_key}/{goal}',f'/weekly_goals/goal_to_need/{goal}',
                   f'/selected_relations/by_need/{i}/relation',f'/selected_relations/by_need/{i}/signed_input_terminal',
                   f'/selected_relations/by_need/{i}/belief_source'])
     add('GOALS_'+relation,section,text,refs)

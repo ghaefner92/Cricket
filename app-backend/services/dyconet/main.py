@@ -638,6 +638,8 @@ def contextual_explanation_narrate_route() -> Any:
 
 from choice_explanation_api import register_choice_explanation
 register_choice_explanation(app)
+from companion_reflection import register as register_companion_reflection
+register_companion_reflection(app)
 from geocoding_api import register_geocoding
 register_geocoding(app)
 from transit_stop_api import register_transit_stops

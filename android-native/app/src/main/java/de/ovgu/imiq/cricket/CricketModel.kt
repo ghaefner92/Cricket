@@ -71,6 +71,11 @@ class CricketModel(app:Application):AndroidViewModel(app) {
  var reflection by mutableStateOf<JSONObject?>(null)
  var reflectionBusy by mutableStateOf(false)
  var reflectionError by mutableStateOf<String?>(null)
+ var companionReflection by mutableStateOf<JSONObject?>(null)
+ var companionReflectionBusy by mutableStateOf(false)
+ var companionReflectionFailed by mutableStateOf(false)
+ private var companionNarration:Job?=null
+ private var companionNarrationVersion=0
  var beliefStart by mutableStateOf<JSONObject?>(null)
  var beliefIndex by mutableStateOf(0)
  var beliefAnswers by mutableStateOf(JSONObject())
@@ -281,15 +286,34 @@ class CricketModel(app:Application):AndroidViewModel(app) {
   if(id==null){reflectionBusy=false;return}
   val language=locale
   narration=viewModelScope.launch { try {
-   val record=withContext(Dispatchers.IO){store.record(id)}?:error("Journey not saved");val index=record.getJSONArray("choices").length()-1
+   val record=withContext(Dispatchers.IO){store.recordForReflection(id)}?:error("Journey not saved");val index=record.getJSONArray("choices").length()-1
    val existing=if(force)null else record.objects("explanations").lastOrNull { it.optInt("choice_index")==index&&it.optString("language")==language }?.optJSONObject("response")
-   val value=existing?:api.call("/api/dyconet/choice-explanation",obj("record" to record,"choice_index" to index,"confirmed_snapshot" to (store.confirmedSnapshot(record)?:error("The original Passport for this journey is unavailable")),"language" to language),30000)
+   val retryNarration=existing?.optJSONObject("narration")?.optString("status")=="TEMPLATE_FALLBACK"
+   val value=if(existing==null||retryNarration)api.call("/api/dyconet/choice-explanation",obj("record" to record,"choice_index" to index,"confirmed_snapshot" to (store.confirmedSnapshot(record)?:error("The original Passport for this journey is unavailable")),"language" to language),30000)else existing
    require(validReflection(value,record,index,language,getApplication<Application>().assets.open("choiceWordings.json").bufferedReader().use { JSONObject(it.readText()) })) { "Unverified explanation" }
-   if(existing==null){store.mutateRecord(id){latest->val entries=latest.optJSONArray("explanations")?:JSONArray();entries.put(obj("choice_index" to index,"language" to language,"response" to value,"created_at" to now()));latest.put("explanations",entries)}}
+   if(existing==null||retryNarration)withContext(Dispatchers.IO){store.saveExplanation(id,index,language,value)}
    if(version==narrationVersion)reflection=value
   }catch(e:CancellationException){throw e}catch(e:Exception){if(version==narrationVersion)reflectionError=e.message}finally{if(version==narrationVersion)reflectionBusy=false} }
  }
- fun openHistory(record:JSONObject){if(record.optString("status")!="complete")return;result=record.getJSONObject("result");historyId=record.getString("search_id");routeProfileSnapshot=record.optJSONObject("request")?.optJSONObject("cognitive_passport")?.let {record.getString("search_id") to it};origin=Place.fromJson(record.getJSONObject("places").getJSONObject("origin"));destination=Place.fromJson(record.getJSONObject("places").getJSONObject("destination"));val choice=record.objects("choices").lastOrNull();chosenId=choice?.let { "${it.optInt("routing_rank")}-${it.optString("mode_key")}" };selectedId=chosenId;activeMode=cards(result).find { it.id==chosenId }?.mode?:cards(result).firstOrNull()?.mode?:"walk";tab="journey";routeView=if(choice==null)"alternatives" else "reflection";if(choice!=null)loadReflection()}
+ fun loadCompanionReflection(force:Boolean=false) {
+  companionNarration?.cancel();val version=++companionNarrationVersion
+  companionReflection=null;companionReflectionFailed=false;companionReflectionBusy=true
+  val language=locale
+  companionNarration=viewModelScope.launch {try {
+   val request=withContext(Dispatchers.IO){companionRequest(store,language)}
+   val key="$COMPANION_REFLECTION.$language"
+   val cached=if(force)null else withContext(Dispatchers.IO){store.json(key)}?.takeIf {validCompanionReflection(it,request)}
+   val response=cached?:api.call("/api/dyconet/companion-reflection",request,30000)
+   require(validCompanionReflection(response,request)) {"Unverified companion reflection"}
+   if(version==companionNarrationVersion){
+    if(cached==null)withContext(Dispatchers.IO){store.put(key,response)}
+    companionReflection=response
+   }
+  }catch(e:CancellationException){throw e}catch(e:Exception){if(version==companionNarrationVersion)companionReflectionFailed=true}
+   finally {if(version==companionNarrationVersion)companionReflectionBusy=false}
+  }
+ }
+ fun openHistory(record:JSONObject){if(record.optString("status")!="complete")return;result=record.getJSONObject("result");historyId=record.getString("search_id");routeProfileSnapshot=record.optJSONObject("request")?.optJSONObject("cognitive_passport")?.let {record.getString("search_id") to it};origin=Place.fromJson(record.getJSONObject("places").getJSONObject("origin"));destination=Place.fromJson(record.getJSONObject("places").getJSONObject("destination"));val choice=record.objects("choices").lastOrNull();chosenId=choice?.let { "${it.optInt("routing_rank")}-${it.optString("mode_key")}" };selectedId=chosenId;activeMode=cards(result).find { it.id==chosenId }?.mode?:cards(result).firstOrNull()?.mode?:"walk";tab="journey";routeView=if(choice==null)"alternatives" else "preview"}
  fun saveSettings(value:JSONObject){val max=value.optInt("maxWalk",1500);require(max in 0..10000);store.put(SETTINGS,value);revision++}
  fun openTrip(searchId:String,journeyId:String?=null){tripSearchId=searchId;tripId=journeyId;tab="journey";routeView="trip"}
  var pendingGpsStart:Pair<String,Int>?=null

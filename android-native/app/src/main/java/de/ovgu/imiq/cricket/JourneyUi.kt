@@ -36,7 +36,7 @@ import org.json.JSONObject
   if(model.routeView!="search")Row(Modifier.fillMaxWidth().padding(horizontal=12.dp),horizontalArrangement=Arrangement.spacedBy(6.dp)) {
    RouteIcon("search",model.text("Search","Suche"),model.routeView=="search"){model.routeView="search"}
    if(result!=null)RouteIcon("map",model.text("Map and routes","Karte und Wege")){model.routeView="alternatives"}
-   if(model.chosenId!=null)RouteIcon("passport",model.text("Choice","Wahl"),model.routeView=="reflection"){model.routeView="reflection";model.loadReflection()}
+   if(model.chosenId!=null)RouteIcon("home","Companion"){model.tab="passport"}
   }
   if(model.busy)Row(Modifier.padding(14.dp),verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)){CircularProgressIndicator(Modifier.size(24.dp));Text(model.text("Searching…","Suche läuft…"),Modifier.weight(1f));TextButton({model.cancel()}){Text(model.text("Cancel","Abbrechen"))}}
   when(model.routeView){
@@ -278,21 +278,4 @@ import org.json.JSONObject
  })
  else Copy("Orion · "+(model.historyId?.let {model.store.record(it)?.optJSONObject("request")?.optString("datetime")}.orEmpty()),MutedText)
 }
-@Composable fun ReflectionScreen(model:CricketModel) {
- val context=LocalContext.current;val wording=remember {context.assets.open("choiceWordings.json").bufferedReader().use {JSONObject(it.readText())}}
- val allRows=dialogueRows(model.reflection,wording);var page by remember(model.reflection){mutableIntStateOf(0)};var details by remember(model.reflection){mutableStateOf(false)};var readAll by remember(model.reflection){mutableStateOf(false)}
- val visible=if(details)allRows else allRows.filter { it.section!="model_detail" }
- val pages=buildList<List<DialogueRow>>{var rows=mutableListOf<DialogueRow>();var count=0;visible.forEach { row->if(rows.isNotEmpty()&&count+row.text.length>850){add(rows);rows=mutableListOf();count=0};rows.add(row);count+=row.text.length};if(rows.isNotEmpty())add(rows)}
- val rows=if(readAll)visible else pages.getOrNull(page).orEmpty();var revealed by remember(rows){mutableIntStateOf(0)}
- val animation=model.settings().optString("motion")=="full"
- val textLength=rows.sumOf { it.text.codePointCount(0,it.text.length) }
- LaunchedEffect(rows,animation){revealed=if(animation)0 else textLength;if(animation)while(revealed<textLength){delay(16);revealed=(revealed+3).coerceAtMost(textLength)}}
- val card=cards(model.result).find {it.id==model.chosenId}
- ScreenColumn {
-  model.historyId?.let {id->PixelButton(model.text("Start trip / confirm experience →","Reise starten / Erfahrung bestätigen →"),{model.openTrip(id)},Modifier.fillMaxWidth(),primary=true)}
-  PixelCard {Row(verticalAlignment=Alignment.CenterVertically,horizontalArrangement=Arrangement.spacedBy(12.dp)){CompanionSprite(model.companion().optString("appearance","robot"),Modifier.size(104.dp),animated=animation,talking=revealed<textLength,portrait=true);Column(Modifier.weight(1f)){Heading(model.companion().optString("name"));Copy(model.text("✓ Choice saved","✓ Wahl gespeichert"),Mint);if(card!=null)Copy(modeName(card.mode,model.de))}}
-   when {model.reflectionBusy->{CircularProgressIndicator();Copy(model.text("Let me look at your choice…","Ich schaue mir deine Wahl an…"))};model.reflectionError!=null->{Copy(model.text("Your choice is saved. I could not load the explanation just now.","Deine Wahl ist gespeichert. Die Erklärung konnte gerade nicht geladen werden."));PixelButton(model.text("Try again","Erneut versuchen"),{model.loadReflection(true)})};else->{var offset=0;rows.forEach { row->val length=row.text.codePointCount(0,row.text.length);val chars=(revealed-offset).coerceIn(0,length);val fragment=row.text.substring(0,row.text.offsetByCodePoints(0,chars));offset+=length;if(chars>0)Text(fragment,modifier=Modifier.clearAndSetSemantics { text=AnnotatedString(row.text) },color=when(row.section){"affinities"->Mint;"tensions"->Gold;else->Pale})};if(revealed<textLength)PixelButton(model.text("Show text","Text anzeigen"),{revealed=textLength});if(!readAll&&page<pages.lastIndex)PixelButton(model.text("Continue →","Weiter →"),{page++},Modifier.fillMaxWidth(),primary=true);if(!readAll&&page>0)PixelButton(model.text("← Back","← Zurück"),{page--});if(pages.size>1){Copy("${page+1}/${pages.size}",MutedText);PixelButton(if(readAll)model.text("Read in pages","Seitenweise lesen")else model.text("Read all","Alles lesen"),{readAll=!readAll;page=0})};if(allRows.any {it.section=="model_detail"})PixelButton(if(details)model.text("Brief explanation","Kurze Erklärung")else model.text("Simulation details","Simulationsdetails"),{details=!details;page=0});Copy(model.text("Explanation checked against your saved choice and model results.","Erklärung mit deiner gespeicherten Wahl und den Modellergebnissen abgeglichen."),MutedText);PixelButton(model.text("Refresh story","Neu erzählen"),{model.loadReflection(true)})}}
-  }
-  PixelButton(model.text("Keep comparing","Weiter vergleichen"),{model.routeView="alternatives"},Modifier.fillMaxWidth())
- }
-}
+@Composable fun ReflectionScreen(model:CricketModel) = CompanionScreen(model)

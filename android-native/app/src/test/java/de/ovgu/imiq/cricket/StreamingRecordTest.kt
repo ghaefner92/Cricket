@@ -24,4 +24,19 @@ class StreamingRecordTest {
   val value=readStreamingRecord(source,research=true);assertEquals("after",value.getString("search_id"));assertFalse(value.has("result"))
  }
  @Test(expected=IllegalStateException::class) fun incompleteRecordFailsRatherThanReturningPartialEvidence(){readStreamingRecord(StringReader("{\"search_id\":\"broken"))}
+ @Test fun historyAndReflectionDiscardIndependentLargePayloadsBeforeJsonAllocation(){
+  val raw=obj("version" to 1,"search_id" to "s","status" to "complete","places" to obj("origin" to obj("label" to "A")),
+   "request" to obj("cognitive_passport" to obj("identity" to "original")),"result" to obj("routing" to obj("routes" to org.json.JSONArray()),"contextual_deliberation" to obj("trajectory_archive" to obj("large" to "omit"),"baseline" to obj("process_diagnostics" to 3))),
+   "d_day_forecast" to obj("request" to obj("large" to "omit")),"choices" to org.json.JSONArray().put(obj("chosen_at" to "now","mode_key" to "walk","legs" to org.json.JSONArray().put("large"))),
+   "journeys" to org.json.JSONArray().put(obj("journey_id" to "j","status" to "confirmed","capture_mode" to "manual","tracking" to obj("distance_m" to 10,"points" to org.json.JSONArray().put("large")),"plan" to obj("large" to "omit"))),"explanations" to org.json.JSONArray().put(obj("language" to "en")))
+  val history=readStreamingRecord(StringReader(raw.toString()),history=true)
+  assertFalse(history.has("result"));assertFalse(history.has("request"));assertFalse(history.objects("choices").single().has("legs"))
+  assertFalse(history.objects("journeys").single().getJSONObject("tracking").has("points"))
+  val reflection=readStreamingRecord(StringReader(raw.toString()),reflection=true)
+  assertFalse(reflection.has("d_day_forecast"));assertFalse(reflection.has("journeys"))
+  assertFalse(reflection.getJSONObject("result").getJSONObject("contextual_deliberation").has("trajectory_archive"))
+  assertEquals(3,reflection.getJSONObject("result").getJSONObject("contextual_deliberation").getJSONObject("baseline").getInt("process_diagnostics"))
+  assertEquals("original",reflection.getJSONObject("request").getJSONObject("cognitive_passport").getString("identity"))
+  assertEquals(1,reflection.objects("explanations").size)
+ }
 }

@@ -73,7 +73,7 @@ import org.json.JSONObject
     val next=sorted.firstOrNull {it.route.optBoolean("available") }?:sorted.firstOrNull()
     if(next!=null){model.selectedId=next.id;model.activeMode=mode}
    }}
-   if(preview)RouteIcon("passport",model.text("My thoughts on your choice","Meine Gedanken zu deiner Wahl")){model.routeView="reflection";model.loadReflection()}
+   if(preview)RouteIcon("home","Companion"){model.tab="passport"}
   }
   JourneyWeatherStrip(model,all)
   Box(Modifier.weight(1f).fillMaxWidth()) {NativeJourneyMap(model,compact=true,selectedOnly=preview)}

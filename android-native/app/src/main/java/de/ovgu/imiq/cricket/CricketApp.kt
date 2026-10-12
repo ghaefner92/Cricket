@@ -40,7 +40,7 @@ import kotlinx.coroutines.withContext
  CricketTheme(settings.optString("textSize")=="large") {
   Scaffold(containerColor=Ink,snackbarHost={SnackbarHost(snackbar)},topBar={if(!immersiveJourney&&!(model.ready&&model.tab=="journey"&&model.routeView=="search"))TopAppBar(title={Text("COMPANION",color=Gold,style=MaterialTheme.typography.titleMedium)},actions={TextButton({model.setLanguage(if(model.de)"en"else"de")}){Text(if(model.de)"EN"else"DE")}},colors=TopAppBarDefaults.topAppBarColors(containerColor=Ink))},bottomBar={
    if(!immersiveJourney&&model.ready&&model.passport()!=null&&model.store.json("cricket.passport-renewal.v1")==null)NavigationBar(containerColor=Panel,windowInsets=if(model.tab=="journey"&&model.routeView=="search")WindowInsets(0,0,0,0)else NavigationBarDefaults.windowInsets,modifier=if(model.tab=="journey"&&model.routeView=="search")Modifier.navigationBarsPadding().height(64.dp)else Modifier){
-    listOf("home","journey","passport","settings").forEach { key->NavigationBarItem(selected=model.tab==key,onClick={if(key=="journey"&&model.tab!="journey"){if(model.store.json(ACTIVE_PLAYBACK)!=null)model.openPlayback()else if(model.routeView!="trip")model.routeView="search"};model.tab=key;model.error=null},icon={NavigationSprite(when(key){"journey"->"travel";"passport"->"passport";"settings"->"menu";else->"home"},model.tab==key,settings.optString("motion")=="full")},label={Text(when(key){"home"->model.text("Home","Start");"journey"->model.text("Travel","Reise");"passport"->"Passport";else->model.text("Menu","Menü")},style=MaterialTheme.typography.bodySmall)},alwaysShowLabel=true) }
+    listOf("home","journey","passport","settings").forEach { key->NavigationBarItem(selected=model.tab==key,onClick={if(key=="journey"&&model.tab!="journey"){if(model.store.json(ACTIVE_PLAYBACK)!=null)model.openPlayback()else if(model.routeView!="trip")model.routeView="search"};model.tab=key;model.error=null},icon={if(key=="passport")CompanionFaceIcon(model.companion().optString("appearance","robot"))else NavigationSprite(when(key){"journey"->"travel";"settings"->"menu";else->"home"},model.tab==key,settings.optString("motion")=="full")},label={Text(when(key){"home"->model.text("Home","Start");"journey"->model.text("Travel","Reise");"passport"->"Companion";else->model.text("Menu","Menü")},style=MaterialTheme.typography.bodySmall)},alwaysShowLabel=true) }
    }
   }) { padding->
    Column(Modifier.fillMaxSize().padding(padding)) {
@@ -54,7 +54,7 @@ import kotlinx.coroutines.withContext
      model.passport()==null||model.store.json("cricket.passport-renewal.v1")!=null->Onboarding(model)
      model.tab=="home"->HomeScreen(model)
      model.tab=="journey"->JourneyScreen(model,onLocate,onTrackStart)
-     model.tab=="passport"->PassportScreen(model)
+     model.tab=="passport"->CompanionScreen(model)
      else->SettingsScreen(model,onExport,onImport)
     }
    }
@@ -169,7 +169,7 @@ import kotlinx.coroutines.withContext
 }
 
 @Composable fun HistoryScreen(model:CricketModel,onExport:(JSONObject,String)->Unit) {
- var limit by remember {mutableIntStateOf(20)}
+ var limit by remember {mutableIntStateOf(10)}
  val records by produceState<List<JSONObject>?>(null,model.revision,limit) {
   try {value=withContext(Dispatchers.IO){model.store.historyPreviews(limit+1)}}
   catch(e:CancellationException){throw e}catch(e:Exception){model.error=e.message;value=emptyList()}
@@ -178,7 +178,20 @@ import kotlinx.coroutines.withContext
  if(loaded==null){Box(Modifier.fillMaxSize(),contentAlignment=Alignment.Center){CircularProgressIndicator(color=Mint)};return}
  LazyColumn(Modifier.fillMaxSize().padding(14.dp),verticalArrangement=Arrangement.spacedBy(14.dp)) {
   item {Heading(model.text("Journey history","Reiseverlauf"));Copy(model.text("A saved choice does not confirm that the trip took place.","Eine gespeicherte Wahl bestätigt keine durchgeführte Reise."));if(loaded.isEmpty())Copy(model.text("Your searched journeys will appear here.","Deine gesuchten Reisen erscheinen hier."))}
-  items(loaded.take(limit),key={it.getString("search_id")}){ record->PixelCard {val places=record.optJSONObject("places");Heading(places?.optJSONObject("destination")?.optString("label")?:model.text("Journey","Reise"));Copy(places?.optJSONObject("origin")?.optString("label").orEmpty());Copy(record.optString("created_at"));Copy("${record.optString("status")} · ${record.objects("choices").size} "+model.text("choices","Wahlen"));PixelButton(model.text("Open journey","Reise öffnen"),{model.run {val full=withContext(Dispatchers.IO){model.store.record(record.getString("search_id"))}?:error("Journey not saved");model.openHistory(full)}},enabled=record.optString("status")=="complete"&&!model.busy);PixelButton(model.text("Export simulation","Simulation exportieren"),{model.run {val full=withContext(Dispatchers.IO){model.store.record(record.getString("search_id"))}?:error("Journey not saved");onExport(full,"Companion-${record.getString("search_id")}.json")}});HistoryDetails(model,record);Disclosure(model.text("Saved choices","Gespeicherte Wahlen")){record.objects("choices").forEach { choice->Copy("${modeName(choice.optString("mode_key"),model.de)} · ${choice.optString("chosen_at")}") }}}}
+  items(loaded.take(limit),key={it.getString("search_id")}){ record->PixelCard {
+   val places=record.optJSONObject("places")
+   Heading(places?.optJSONObject("destination")?.optString("label")?:model.text("Journey","Reise"))
+   Copy(places?.optJSONObject("origin")?.optString("label").orEmpty());Copy(record.optString("created_at"))
+   Copy("${record.optString("status")} · ${record.objects("choices").size} "+model.text("choices","Wahlen"))
+   HistoryDetails(model,record)
+   PixelButton(model.text("Open journey","Reise öffnen"),{model.run {
+    val full=withContext(Dispatchers.IO){model.store.recordForUi(record.getString("search_id"))}?:error("Journey not saved")
+    model.openHistory(full)
+   }},enabled=record.optString("status")=="complete"&&!model.busy)
+   if(record.objects("choices").isNotEmpty())PixelButton("Companion",{model.tab="passport"},enabled=!model.busy)
+   PixelButton(model.text("Export simulation","Simulation exportieren"),{model.run {val full=withContext(Dispatchers.IO){model.store.record(record.getString("search_id"))}?:error("Journey not saved");onExport(full,"Companion-${record.getString("search_id")}.json")}})
+   Disclosure(model.text("Saved choices","Gespeicherte Wahlen")){record.objects("choices").forEach { choice->Copy("${modeName(choice.optString("mode_key"),model.de)} · ${choice.optString("chosen_at")}") }}
+  }}
   if(loaded.size>limit)item {PixelButton(model.text("More journeys","Weitere Reisen"),{limit+=20},Modifier.fillMaxWidth())}
  }
 }

@@ -111,8 +111,50 @@ class Store(private val context:Context,val databaseName:String="cricket-native-
  fun history():List<JSONObject> = snapshot {db->val ids=db.rawQuery("SELECT id FROM searches ORDER BY created DESC",null).use {c->buildList {while(c.moveToNext())add(c.getString(0))}};ids.mapNotNull(::record)}
  fun historyPreviews(limit:Int):List<JSONObject> {
   require(limit>0)
-  val ids=readableDatabase.rawQuery("SELECT id FROM searches ORDER BY created DESC LIMIT ?",arrayOf(limit.toString())).use {c->buildList {while(c.moveToNext())add(c.getString(0))}}
-  return ids.mapNotNull {id->record(id)?.let(::historyPreview)}
+  // Project in SQLite: no multi-megabyte result or forecast reaches CursorWindow/JVM.
+  val query="""SELECT json_object('history_preview',json('true'),'search_id',id,
+   'created_at',created,'status',json_extract(value,'$.status'),'places',json_extract(value,'$.places'),
+   'choices',json((SELECT json_group_array(json_object('mode_key',json_extract(c.value,'$.mode_key'),
+    'chosen_at',json_extract(c.value,'$.chosen_at'),'choice_event_id',json_extract(c.value,'$.choice_event_id'),
+    'routing_rank',json_extract(c.value,'$.routing_rank'),'route_id',json_extract(c.value,'$.route_id')))
+    FROM json_each(searches.value,'$.choices') c)),
+   'journeys',json((SELECT json_group_array(json_object('journey_id',json_extract(j.value,'$.journey_id'),
+    'status',json_extract(j.value,'$.status'),'capture_mode',json_extract(j.value,'$.capture_mode'),
+    'tracking',json_object('distance_m',json_extract(j.value,'$.tracking.distance_m'),
+     'elapsed_seconds',json_extract(j.value,'$.tracking.elapsed_seconds'))))
+    FROM json_each(searches.value,'$.journeys') j)))
+   FROM searches ORDER BY CASE WHEN json_array_length(value,'$.journeys')>0 THEN 0
+    WHEN json_array_length(value,'$.choices')>0 THEN 1 ELSE 2 END,created DESC LIMIT ?"""
+  return readableDatabase.rawQuery(query,arrayOf(limit.toString())).use {c->buildList {while(c.moveToNext())add(JSONObject(c.getString(0)))}}
+ }
+ /** A bounded SQL projection: no trajectories, GPS, weather arrays or notes. */
+ internal fun companionEvidence(subject:String):List<JSONObject> {
+  val query="""SELECT json_object('search_id',s.id,
+   'passport',json_extract(s.value,'$.request.cognitive_passport'),
+   'evidence_classification',json_extract(s.value,'$.evidence_classification'),
+   'journey',json_object('journey_id',json_extract(j.value,'$.journey_id'),
+    'status',json_extract(j.value,'$.status'),'selection',json_extract(j.value,'$.selection'),
+    'evidence_classification',COALESCE(json_extract(j.value,'$.evidence_classification'),json_extract(s.value,'$.evidence_classification')),
+    'experience',json_object('event_id',json_extract(j.value,'$.experience.event_id'),
+     'confirmed_at',json_extract(j.value,'$.experience.confirmed_at'),
+     'completion',json_extract(j.value,'$.experience.completion'),
+     'actual_modes',json_extract(j.value,'$.experience.actual_modes'),
+     'affect_scale_version',json_extract(j.value,'$.experience.affect_scale_version'),
+     'mode_valences_raw_minus3_to_3',json_extract(j.value,'$.experience.mode_valences_raw_minus3_to_3'),
+     'comfort_observation',json_extract(j.value,'$.experience.comfort_observation'),
+     'need_satisfaction_raw_1_to_7',json_extract(j.value,'$.experience.need_satisfaction_raw_1_to_7'))),
+   'hotco',CASE WHEN json_type(j.value,'$.plan.context_at_selection.snapshot.hotco')='object' THEN
+    json_object('node_activations',json_object('needs',json_object('final',json_extract(j.value,'$.plan.context_at_selection.snapshot.hotco.node_activations.needs.final'))),
+     'process_diagnostics',json_object('support_dynamics',json_extract(j.value,'$.plan.context_at_selection.snapshot.hotco.process_diagnostics.support_dynamics'))) ELSE NULL END)
+   FROM searches s,json_each(s.value,'$.journeys') j
+   WHERE json_type(j.value,'$.experience')='object'
+    AND json_extract(s.value,'$.request.cognitive_passport.agent_id')=?
+   ORDER BY json_extract(j.value,'$.experience.confirmed_at') DESC,s.id,json_extract(j.value,'$.journey_id') LIMIT 60"""
+  return readableDatabase.rawQuery(query,arrayOf(subject)).use {c->buildList {while(c.moveToNext())add(JSONObject(c.getString(0)))}}
+ }
+ internal fun companionLearnedHeader(root:String):JSONObject? {
+  val tip=get("$LEARNED.tip.$root")?:return null
+  return readableDatabase.rawQuery("SELECT json_object('schema_version',json_extract(value,'$.schema_version'),'original_passport_id',json_extract(value,'$.original_passport_id'),'revision',json_extract(value,'$.revision'),'evidence_cutoff',json_extract(value,'$.evidence_cutoff'),'activation',json_extract(value,'$.activation')) FROM kv WHERE key=?",arrayOf("$LEARNED.version.$tip")).use {if(it.moveToFirst())JSONObject(it.getString(0))else null}
  }
  // Research uses per-record snapshots: do not retain every large trajectory or
  // hold one writer transaction across the entire history while GPS is active.
@@ -128,7 +170,7 @@ class Store(private val context:Context,val databaseName:String="cricket-native-
   val ids=db.rawQuery("SELECT id FROM searches WHERE instr(value,?)>0 ORDER BY created DESC",arrayOf("\"awaiting_confirmation\"")).use {c->buildList {while(c.moveToNext())add(c.getString(0))}}
   ids.firstNotNullOfOrNull {id->record(id)?.let {record->record.objects("journeys").lastOrNull {it.optString("status")=="awaiting_confirmation"}?.let {record to it}}}
  }
- private fun streamedRecord(id:String,research:Boolean=false,ui:Boolean=false):JSONObject?=snapshot {db->
+ private fun streamedRecord(id:String,research:Boolean=false,ui:Boolean=false,history:Boolean=false,reflection:Boolean=false):JSONObject?=snapshot {db->
   val exists=db.rawQuery("SELECT 1 FROM searches WHERE id=?",arrayOf(id)).use {it.moveToFirst()}
   if(!exists)return@snapshot null
   val stream=object:java.io.InputStream() {
@@ -136,10 +178,26 @@ class Store(private val context:Context,val databaseName:String="cricket-native-
    override fun read():Int {if(index==chunk.size){if(ended)return -1;chunk=db.rawQuery("SELECT substr(CAST(value AS BLOB),?,262144) FROM searches WHERE id=?",arrayOf(offset.toString(),id)).use {check(it.moveToFirst());it.getBlob(0)};index=0;offset+=chunk.size;if(chunk.isEmpty()){ended=true;return -1}};return chunk[index++].toInt() and 255}
    override fun read(buffer:ByteArray,start:Int,length:Int):Int {if(length==0)return 0;val first=read();if(first<0)return -1;buffer[start]=first.toByte();val count=minOf(length-1,chunk.size-index);chunk.copyInto(buffer,start+1,index,index+count);index+=count;return count+1}
   }
-  stream.reader(Charsets.UTF_8).use {readStreamingRecord(it,research,ui)}
+  stream.reader(Charsets.UTF_8).use {readStreamingRecord(it,research,ui,history,reflection)}
  }
  internal fun researchRecord(id:String):JSONObject? = streamedRecord(id,true)
  fun recordForUi(id:String):JSONObject? = streamedRecord(id,ui=true)
+ fun recordForReflection(id:String):JSONObject? = streamedRecord(id,reflection=true)
+ fun saveExplanation(id:String,index:Int,language:String,response:JSONObject) {
+  val db=writableDatabase;db.beginTransaction()
+  try {
+   val record=recordForReflection(id)?:error("Journey not saved")
+   require(response.getJSONObject("identity").getInt("choice_index")==index)
+   require(record.objects("choices").getOrNull(index)?.optString("chosen_at")==response.getJSONObject("identity").optString("chosen_at")) {"Saved choice changed"}
+   val entries=record.optJSONArray("explanations")?:JSONArray()
+   val previous=entries.objects().lastOrNull{it.optInt("choice_index")==index&&it.optString("language")==language}?.optJSONObject("response")
+   if(previous!=null&&canonical(previous)==canonical(response)){db.setTransactionSuccessful();return}
+   entries.put(obj("choice_index" to index,"language" to language,"response" to response,"created_at" to now()))
+   // SQLite updates the original document; large archives never enter the JVM.
+   db.execSQL("UPDATE searches SET value=json_set(value,'$.explanations',json(?)) WHERE id=?",arrayOf(entries.toString(),id))
+   db.setTransactionSuccessful()
+  }finally{db.endTransaction()}
+ }
  fun record(id:String):JSONObject? = streamedRecord(id)
  fun saveRecord(record:JSONObject) { require(validRecord(record));writableDatabase.execSQL("INSERT OR REPLACE INTO searches VALUES (?,?,?)",arrayOf(record.getString("search_id"),record.getString("created_at"),record.toString())) }
  fun mutateRecord(id:String,block:(JSONObject)->Unit) {
